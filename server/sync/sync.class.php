@@ -20,7 +20,7 @@ class serverSync {
     
     private function _syncronizePage($psHref) {
         
-        $laIds = $laNames = $laLinks = $laRates = $laDescs = $laAuthors = $laCats = array();
+        $laIds = $laNames = $laLinks = $laRates = $laDescs = $laAuthors = $laCats = $laDates = array();
         
         @$this->dom->loadHTML(file_get_contents($psHref));
         
@@ -70,6 +70,19 @@ class serverSync {
             }
         }
         
+        // Date
+        $elements = $this->xpath->query(".//*[@class='story_item']/footer/span[@class='white']");
+        if (!is_null($elements)) {
+            $lnCnt = 0;
+            foreach ($elements as $element) {
+                $lsDate = $this->_getStorDate($element);
+                
+                $laDates[$lnCnt] = $lsDate;
+                
+                $lnCnt++;
+            }
+        }
+        
         // Author
         $elements = $this->xpath->query(".//*[@class='story_item']/footer/span[@class='white']/span[@class='autor']/a");
         if (!is_null($elements)) {
@@ -96,7 +109,7 @@ class serverSync {
             }
         }
         
-        $this->data = $this->_getStorArray($laIds, $laNames, $laLinks, $laRates, $laDescs, $laAuthors, $laCats);
+        $this->data = $this->_getStorArray($laIds, $laNames, $laLinks, $laRates, $laDescs, $laAuthors, $laCats, $laDates);
         
         $this->_putPageIntoDB();
         
@@ -117,6 +130,13 @@ class serverSync {
     
     private function _getStorLink($element) {
         return ($element->getAttribute('href'));
+    }
+    
+    private function _getStorDate($element) {
+        preg_match ('/^(\d\d-\d\d-\d\d\d\d),\s*\d\d:\d\d/', $element->nodeValue, $match);
+        $lsDate = $match[1];
+        $laDate = explode('-', $lsDate);
+        return ($laDate[2] . '-' . $laDate[1] . '-' . $laDate[0]);
     }
     
     private function _getStorRate($element) {
@@ -141,7 +161,7 @@ class serverSync {
         return $laCats;
     }
     
-    private function _getStorArray($paIds, $paNames, $paLinks, $paRates, $paDescs, $paAuthors, $paCats) {
+    private function _getStorArray($paIds, $paNames, $paLinks, $paRates, $paDescs, $paAuthors, $paCats, $paDates) {
         $laReturn = array();
         $lnSizeof = sizeof($paIds);
         for ($i = 0; $i < $lnSizeof; $i++) {
@@ -149,6 +169,7 @@ class serverSync {
                 'name'   => $paNames[$i],
                 'link'   => $paLinks[$i],
                 'rate'   => $paRates[$i],
+                'date'   => $paDates[$i],
                 'desc'   => $paDescs[$i],
                 'author' => $paAuthors[$i],
                 'cats'   => $paCats[$i]
