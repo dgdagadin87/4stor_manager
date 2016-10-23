@@ -15,7 +15,7 @@ class serverSyncModel {
         $getStorSQL = 'SELECT `storId` FROM `stories` WHERE `storId` = \'' . intval($pnStorId) . '\'';
         $getStorQuery = DB_Query ('mysql', $getStorSQL, $this->connection);
         if (!$getStorQuery) {
-            exit ($getStorSQL . "\r\n" . DB_Error ('mysql'));
+            exit ($getStorSQL . "\r\n" . DB_Error ('mysql', $this->connection));
         }
         
         $numRows = DB_NumRows('mysql', $getStorQuery);
@@ -28,7 +28,7 @@ class serverSyncModel {
             $updateRateSQL = 'UPDATE `stories` SET `storRate` = \'' . $paStorData['rate'] . '\' WHERE `storId` = \'' . intval($pnStorId) . '\'';
             $updateRateQuery = DB_Query ('mysql', $updateRateSQL, $this->connection);
             if (!$getStorQuery) {
-                exit ($updateRateSQL . "\r\n" . DB_Error ('mysql'));
+                exit ($updateRateSQL . "\r\n" . DB_Error ('mysql', $this->connection));
             }
         }
     }
@@ -36,7 +36,7 @@ class serverSyncModel {
     public function insertStorData ($pnStorId, $paStorData) {
         $storId = intval($pnStorId);
         $storName = DB_EscapeString('mysql', $this->connection, $paStorData['name']);
-        $storHref = DB_EscapeString('mysql', $this->connection, $paStorData['href']);
+        $storHref = DB_EscapeString('mysql', $this->connection, $paStorData['link']);
         $storRate = $paStorData['rate'];
         $storDesc = DB_EscapeString('mysql', $this->connection, $paStorData['desc']);
         $authorId = $this->getAuthorId($paStorData['author']['name']);
@@ -44,7 +44,18 @@ class serverSyncModel {
         $SQL = 'INSERT INTO `stories` (storId, storName, storHref, storRate, storDesc, storAuthorId) VALUES (\'' . $storId . '\', \'' . $storName . '\', \'' . $storHref . '\', , \'' . $storRate . '\', , \'' . $storDesc . '\', \'' . $authorId . '\')';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
-            exit ($SQL . "\r\n" . DB_Error ('mysql'));
+            exit ($SQL . "\r\n" . DB_Error ('mysql', $this->connection));
+        }
+        
+        $SqlArray = array();
+        foreach ($paStorData as $catName) {
+            $catId = $this->getCatId($catName);
+            $SqlArray[] = '(\'' . $catId . '\', \'' . $storId . '\')';
+        }
+        $SQL = 'INSERT INTO `cats2stories` (catId, storId) VALUES ' . implode(', ', $SqlArray);
+        $Query = DB_Query ('mysql', $SQL, $this->connection);
+        if (!$Query) {
+            exit ($SQL . "\r\n" . DB_Error ('mysql', $this->connection));
         }
     }
     
@@ -53,20 +64,31 @@ class serverSyncModel {
         $getAuthorSQL = 'SELECT `authorId` FROM `authors` WHERE `authorName` = \'' .$authName  . '\'';
         $getAuthorQuery = DB_Query ('mysql', $getAuthorSQL, $this->connection);
         if (!$getAuthorQuery) {
-            exit ($getAuthorSQL . "\r\n" . DB_Error ('mysql'));
+            exit ($getAuthorSQL . "\r\n" . DB_Error ('mysql', $this->connection));
         }
         $authorData = DB_FetchAssoc ('mysql', $getAuthorQuery);
         return (intval($authorData['authorId']));
     }
     
-    public function insertAuthor ($paAuthorData) {
+    public function getCatId ($psCatName) {
+        $catName = DB_EscapeString('mysql', $this->connection, $psCatName);
+        $SQL = 'SELECT `catId` FROM `categories` WHERE `catName` = \'' .$catName  . '\'';
+        $Query = DB_Query ('mysql', $SQL, $this->connection);
+        if (!$Query) {
+            exit ($SQL . "\r\n" . DB_Error ('mysql', $this->connection));
+        }
+        $catData = DB_FetchAssoc ('mysql', $Query);
+        return (intval($catData['catId']));
+    }
+    
+    public function insertAuthorData ($paAuthorData) {
         $authName = DB_EscapeString('mysql', $this->connection, $paAuthorData['name']);
         $authHref = DB_EscapeString('mysql', $this->connection, $paAuthorData['href']);
         
         $getAuthorSQL = 'SELECT `authorId` FROM `authors` WHERE `authorName` = \'' .$authName  . '\'';
         $getAuthorQuery = DB_Query ('mysql', $getAuthorSQL, $this->connection);
         if (!$getAuthorQuery) {
-            exit ($getAuthorSQL . "\r\n" . DB_Error ('mysql'));
+            exit ($getAuthorSQL . "\r\n" . DB_Error ('mysql', $this->connection));
         }
         
         $numRows = DB_NumRows('mysql', $getAuthorQuery);
@@ -74,20 +96,20 @@ class serverSyncModel {
             $SQL = 'INSERT INTO `authors` (authorName, authorHref) VALUES (\'' . $authName . '\', \'' . $authHref . '\')';
             $Query = DB_Query ('mysql', $SQL, $this->connection);
             if (!$Query) {
-                exit ($SQL . "\r\n" . DB_Error ('mysql'));
+                exit ($SQL . "\r\n" . DB_Error ('mysql', $this->connection));
             }
         }
     }
     
-    public function insertCats ($paCatsData) {
-        foreach ($paCatsData as $key=>$catName) {
+    public function insertCatsData ($paCatsData) {
+        foreach ($paCatsData as $catName) {
             $catName = DB_EscapeString('mysql', $this->connection, $catName);
             $catHref = DB_EscapeString('mysql', $this->connection, 'category link');
             
             $SQL = 'SELECT `catId` FROM `categories` WHERE `catName` = \'' .$catName  . '\'';
             $Query = DB_Query ('mysql', $SQL, $this->connection);
             if (!$Query) {
-                exit ($SQL . "\r\n" . DB_Error ('mysql'));
+                exit ($SQL . "\r\n" . DB_Error ('mysql', $this->connection));
             }
 
             $numRows = DB_NumRows('mysql', $Query);
@@ -95,7 +117,7 @@ class serverSyncModel {
                 $SQL = 'INSERT INTO `categories` (catName, catHref) VALUES (\'' . $catName . '\', \'' . $catHref . '\')';
                 $Query = DB_Query ('mysql', $SQL, $this->connection);
                 if (!$Query) {
-                    exit ($SQL . "\r\n" . DB_Error ('mysql'));
+                    exit ($SQL . "\r\n" . DB_Error ('mysql', $this->connection));
                 }
             }
         }
