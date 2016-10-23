@@ -1,5 +1,8 @@
 <?php
 
+require ('../cfg/config.php');
+require ('../inc/db.inc.php');
+
 class serverSync {
     
     public $dom;
@@ -8,16 +11,19 @@ class serverSync {
     
     public function __construct($paConf) {
         $this->dom = new DOMDocument();
-        $this->href = 'http://4stor.ru/top/';
+        $this->href = $paConf['href'];
+        $this->lastPage = $paConf['lastPage'];
     }
     
-    public function syncronize() {
-        
-        header('Content-Type: text/html; charset=utf-8');
+    public function synchronize() {
+        $this->_syncronizePage('http://4stor.ru/histori-for-life/page/2/');
+    }
+    
+    public function _syncronizePage($psHref) {
         
         $laIds = $laNames = $laLinks = $laRates = $laDescs = $laAuthors = $laCats = array();
         
-        @$this->dom->loadHTML(file_get_contents($this->href));
+        @$this->dom->loadHTML(file_get_contents($psHref));
         
         $this->xpath = new DOMXpath($this->dom);
         
@@ -91,7 +97,8 @@ class serverSync {
             }
         }
         
-        echo '<pre>';var_dump($this->_getStorArray($laIds, $laNames, $laLinks, $laRates, $laDescs, $laAuthors, $laCats));
+        //header('Content-Type: text/html; charset=utf-8');
+        //echo '<pre>';var_dump($this->_getStorArray($laIds, $laNames, $laLinks, $laRates, $laDescs, $laAuthors, $laCats));
         
     }
     
@@ -149,7 +156,14 @@ class serverSync {
         return ($laReturn);
     }
     
+    private function _putPageIntoDB () {
+        
+    }
+    
 }
 
-$sync = new serverSync(array());
-$sync->syncronize();
+$sync = new serverSync(array(
+    'href'=>'http://4stor.ru/histori-for-life/page',
+    'lastPage'=>2384
+));
+$sync->synchronize();
