@@ -119,9 +119,6 @@ class serverSync {
         $this->data = $this->_getStorArray($laIds, $laNames, $laLinks, $laRates, $laDescs, $laAuthors, $laCats, $laDates);
         
         $this->_putPageIntoDB();
-        
-        
-        
     }
     
     private function _getStorId($element) {
