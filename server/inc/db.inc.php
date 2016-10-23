@@ -5,13 +5,13 @@ function DB_Connect ($DBType) {
     switch ($DBType) {
         case "mysql":
         {
-            return mysql_connect (CONNECTION_HOST, CONNECTION_USER, CONNECTION_PASSWORD);
+            return mysqli_connect (CONNECTION_HOST, CONNECTION_USER, CONNECTION_PASSWORD, CONNECTION_DB);
             break;
         }
 
         default:
         {
-            return mysql_connect (CONNECTION_HOST, CONNECTION_USER, CONNECTION_PASSWORD);
+            return mysqli_connect (CONNECTION_HOST, CONNECTION_USER, CONNECTION_PASSWORD);
             break;
         }
     }
@@ -22,13 +22,13 @@ function DB_SelectDatabase ($DBType, $DBName, $ServerConn) {
     switch ($DBType) {
         case "mysql":
         {
-            return mysql_select_db ($DBName, $ServerConn);
+            return mysqli_select_db ($ServerConn, $DBName);
             break;
         }
 
         default:
         {
-            return mysql_select_db ($DBName, $ServerConn);
+            return mysqli_select_db ($ServerConn, $DBName);
             break;
         }
     }
@@ -39,47 +39,47 @@ function DB_Query ($DBType, $QueryString, $ServerConn) {
     switch ($DBType) {
         case "mysql":
         {
-            return mysql_query ($QueryString, $ServerConn);
+            return mysqli_query ($ServerConn, $QueryString);
             break;
         }
 
         default:
         {
-            return mysql_query ($QueryString, $ServerConn);
+            return mysqli_query ($ServerConn, $QueryString);
             break;
         }
     }
 }
 
 //Запрос к базе данных
-function DB_NumRows ($DBType, $QueryResource) {
+function DB_NumRows ($DBType, $QueryResult) {
     switch ($DBType) {
         case "mysql":
         {
-            return mysql_num_rows ($QueryResource);
+            return mysqli_num_rows ($QueryResult);
             break;
         }
 
         default:
         {
-            return mysql_num_rows ($QueryResource);
+            return mysqli_num_rows ($QueryResult);
             break;
         }
     }
 }
 
 //Ассоциативный массив из результата запроса
-function DB_FetchAssoc ($DBType, $QueryResource) {
+function DB_FetchAssoc ($DBType, $QueryResult) {
     switch ($DBType) {
         case "mysql":
         {
-            return mysql_fetch_assoc ($QueryResource);
+            return mysqli_fetch_assoc ($QueryResult);
             break;
         }
 
         default:
         {
-            return mysql_fetch_assoc ($QueryResource);
+            return mysqli_fetch_assoc ($QueryResult);
             break;
         }
     }
@@ -103,17 +103,17 @@ function DB_Result ($DBType, $QueryResource, $Row, $Column) {
 }
 
 //экранирование служебный SQL-символов
-function DB_EscapeString ($DBType, $String) {
+function DB_EscapeString ($DBType, $ConnectResource, $String) {
     switch ($DBType) {
         case "mysql":
         {
-            return mysql_real_escape_string ($String);
+            return mysqli_real_escape_string ($ConnectResource, $String);
             break;
         }
 
         default:
         {
-            return mysql_real_escape_string ($String);
+            return mysqli_real_escape_string ($ConnectResource, $String);
             break;
         }
     }
@@ -124,28 +124,26 @@ function DB_LastID ($DBType, $ServerConn) {
     switch ($DBType) {
         case "mysql":
         {
-            return mysql_insert_id ($ServerConn);
+            return mysqli_insert_id ($ServerConn);
             break;
         }
 
         default:
         {
-            return mysql_insert_id ($ServerConn);
+            return mysqli_insert_id ($ServerConn);
             break;
         }
     }
 }
 
 //ошибка бд
-function DB_Error ($DBType) {
+function DB_Error ($DBType, $ConnectResource) {
     switch ($DBType) {
         case "mysql":
         default:
         {
-            return mysql_errno () . ": " . mysql_error ();
+            return mysqli_errno ($ConnectResource) . ": " . mysqli_error ($ConnectResource);
             break;
         }
     }
 }
-
-?>
