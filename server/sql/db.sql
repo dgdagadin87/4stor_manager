@@ -1,3 +1,4 @@
+DROP TABLE categories;
 CREATE TABLE categories 
 (
     catId INT AUTO_INCREMENT NOT NULL , 
@@ -11,6 +12,7 @@ CREATE TABLE categories
 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
 ENGINE = MYISAM;
 
+DROP TABLE authors;
 CREATE TABLE authors 
 (
     authorId INT AUTO_INCREMENT NOT NULL , 
@@ -24,6 +26,7 @@ CREATE TABLE authors
 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
 ENGINE = MYISAM;
 
+DROP TABLE stories;
 CREATE TABLE stories 
 (
     storId BIGINT AUTO_INCREMENT NOT NULL , 
@@ -39,6 +42,7 @@ CREATE TABLE stories
 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
 ENGINE = MYISAM;
 
+DROP TABLE cats2stories;
 CREATE TABLE cats2stories 
 (
     cat2storId BIGINT AUTO_INCREMENT NOT NULL , 
