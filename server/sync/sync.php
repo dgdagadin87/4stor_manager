@@ -19,7 +19,7 @@ class serverSync {
         $this->_syncronizePage('http://4stor.ru/histori-for-life/page/2/');
     }
     
-    public function _syncronizePage($psHref) {
+    private function _syncronizePage($psHref) {
         
         $laIds = $laNames = $laLinks = $laRates = $laDescs = $laAuthors = $laCats = array();
         
@@ -97,6 +97,8 @@ class serverSync {
             }
         }
         
+        $this->_putPageIntoDB($this->_getStorArray($laIds, $laNames, $laLinks, $laRates, $laDescs, $laAuthors, $laCats));
+        
         //header('Content-Type: text/html; charset=utf-8');
         //echo '<pre>';var_dump($this->_getStorArray($laIds, $laNames, $laLinks, $laRates, $laDescs, $laAuthors, $laCats));
         
@@ -156,7 +158,7 @@ class serverSync {
         return ($laReturn);
     }
     
-    private function _putPageIntoDB () {
+    private function _putPageIntoDB ($laStors) {
         
     }
     
