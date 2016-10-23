@@ -15,7 +15,7 @@ class serverSync {
         
         header('Content-Type: text/html; charset=utf-8');
         
-        $laIds = $laNames = $laLinks = $laRates = $laDescs = $laCats = array();
+        $laIds = $laNames = $laLinks = $laRates = $laDescs = $laAuthors = $laCats = array();
         
         @$this->dom->loadHTML(file_get_contents($this->href));
         
@@ -65,6 +65,19 @@ class serverSync {
             }
         }
         
+        // Author
+        $elements = $this->xpath->query(".//*[@class='story_item']/footer/span[@class='white']/span[@class='autor']/a");
+        if (!is_null($elements)) {
+            $lnCnt = 0;
+            foreach ($elements as $element) {
+                $laCurAuthor = $this->_getStorAuthor($element);
+                
+                $laAuthors[$lnCnt] = $laCurAuthor;
+                
+                $lnCnt++;
+            }
+        }
+        
         // Cats
         $elements = $this->xpath->query(".//*[@class='story_item']/header/div[@class='parent']");
         if (!is_null($elements)) {
@@ -77,6 +90,9 @@ class serverSync {
                 $lnCnt++;
             }
         }
+        
+        echo '<pre>';var_dump($this->_getStorArray($laIds, $laNames, $laLinks, $laRates, $laDescs, $laAuthors, $laCats));
+        
     }
     
     private function _getStorId($element) {
@@ -98,6 +114,13 @@ class serverSync {
         return ($element->nodeValue);
     }
     
+    private function _getStorAuthor($element) {
+        $laReturn = array();
+        $laReturn['name'] = $element->nodeValue;
+        $laReturn['href'] = $element->getAttribute('href');
+        return ($laReturn);
+    }
+    
     private function _getStorDesc($element) {
         return ($this->dom->saveXML($element));
     }
@@ -107,6 +130,23 @@ class serverSync {
         $catString = $element->nodeValue;
         $laCats = preg_split('/\s*\/\s*/', $catString);
         return $laCats;
+    }
+    
+    private function _getStorArray($paIds, $paNames, $paLinks, $paRates, $paDescs, $paAuthors, $paCats) {
+        $laReturn = array();
+        $lnSizeof = sizeof($paIds);
+        for ($i = 0; $i < $lnSizeof; $i++) {
+            $laCurStor = array(
+                'name'   => $paNames[$i],
+                'link'   => $paLinks[$i],
+                'rate'   => $paRates[$i],
+                'desc'   => $paDescs[$i],
+                'author' => $paAuthors[$i],
+                'cats'   => $paCats[$i]
+            );
+            $laReturn[$paIds[$i]] = $laCurStor;
+        }
+        return ($laReturn);
     }
     
 }
