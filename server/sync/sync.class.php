@@ -15,7 +15,7 @@ class serverSync {
     }
     
     public function synchronize() {
-        $this->_syncronizePage('http://4stor.ru/histori-for-life/page/2/');
+        $this->_syncronizePage('http://4stor.ru/histori-for-life/page/3/');
     }
     
     private function _syncronizePage($psHref) {
@@ -25,6 +25,13 @@ class serverSync {
         @$this->dom->loadHTML(file_get_contents($psHref));
         
         $this->xpath = new DOMXpath($this->dom);
+        
+        // if is empty
+        $elements = $this->xpath->query(".//*[@id='dle-content']");
+        $length = $elements->length;
+        if ($length < 1) {
+            exit('All stories of this category are synchronized.');
+        }
         
         // Id, Name, link
         $elements = $this->xpath->query(".//*[@class='story_item']/header/h2/a");
