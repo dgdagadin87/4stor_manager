@@ -51,6 +51,17 @@ function DB_Query ($DBType, $QueryString, $ServerConn) {
     }
 }
 
+function DB_SetUTF8 ($ConnResource, $DBType) {
+
+    switch ($DBType) {
+        case'mysql':
+        default: {
+            DB_Query($DBType, "SET NAMES utf8", $ConnResource);
+            break;
+        }
+    }
+}
+
 //Запрос к базе данных
 function DB_NumRows ($DBType, $QueryResult) {
     switch ($DBType) {
