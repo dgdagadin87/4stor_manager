@@ -33,6 +33,7 @@ CREATE TABLE stories
     storName TEXT NOT NULL , 
     storHref TEXT NOT NULL , 
     storRate INT NOT NULL , 
+    storDate DATE NOT NULL , 
     storDesc TEXT NOT NULL , 
     storContent LONGTEXT ,
     storAuthorId INT NOT NULL , 
