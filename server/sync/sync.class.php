@@ -10,12 +10,13 @@ class serverSync {
     public function __construct($paConf) {
         $this->dom = new DOMDocument();
         $this->href = $paConf['href'];
-        $this->lastPage = $paConf['lastPage'];
         $this->model = $paConf['model'];
     }
     
     public function synchronize() {
-        $this->_syncronizePage('http://4stor.ru/histori-for-life/page/3/');
+        for ($i = 1; $i < 1000000; $i++) {
+            $this->_syncronizePage($this->href . 'page/' . $i . '/');
+        }
     }
     
     private function _syncronizePage($psHref) {

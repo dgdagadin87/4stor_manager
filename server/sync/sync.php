@@ -1,16 +1,17 @@
 <?php
 
-require ('../cfg/config.php');
-require ('../inc/db.inc.php');
+require (__DIR__ . '/../cfg/config.php');
+require (__DIR__ . '/../inc/db.inc.php');
 
-require ('sync.class.php');
-require ('sync.model.php');
+require (__DIR__ . '/sync.class.php');
+require (__DIR__ . '/sync.model.php');
+
+set_time_limit(0);
 
 header('Content-Type: text/html; charset=utf-8');
 
 $sync = new serverSync(array(
     'model'   => new serverSyncModel(),
-    'href'    => 'http://4stor.ru/histori-for-life/page',
-    'lastPage'=> 2384
+    'href'    => 'http://4stor.ru/skazki/'
 ));
 $sync->synchronize();
