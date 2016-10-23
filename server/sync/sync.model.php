@@ -41,14 +41,14 @@ class serverSyncModel {
         $storDesc = DB_EscapeString('mysql', $this->connection, $paStorData['desc']);
         $authorId = $this->getAuthorId($paStorData['author']['name']);
         
-        $SQL = 'INSERT INTO `stories` (storId, storName, storHref, storRate, storDesc, storAuthorId) VALUES (\'' . $storId . '\', \'' . $storName . '\', \'' . $storHref . '\', , \'' . $storRate . '\', , \'' . $storDesc . '\', \'' . $authorId . '\')';
+        $SQL = 'INSERT INTO `stories` (storId, storName, storHref, storRate, storDesc, storAuthorId) VALUES (\'' . $storId . '\', \'' . $storName . '\', \'' . $storHref . '\' , \'' . $storRate . '\', \'' . $storDesc . '\', \'' . $authorId . '\')';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
             exit ($SQL . "\r\n" . DB_Error ('mysql', $this->connection));
         }
         
         $SqlArray = array();
-        foreach ($paStorData as $catName) {
+        foreach ($paStorData['cats'] as $catName) {
             $catId = $this->getCatId($catName);
             $SqlArray[] = '(\'' . $catId . '\', \'' . $storId . '\')';
         }
