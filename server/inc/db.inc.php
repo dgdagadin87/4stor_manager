@@ -6,13 +6,11 @@ function DB_Connect ($DBType) {
         case "mysql":
         {
             return mysqli_connect (CONNECTION_HOST, CONNECTION_USER, CONNECTION_PASSWORD, CONNECTION_DB);
-            break;
         }
 
         default:
         {
             return mysqli_connect (CONNECTION_HOST, CONNECTION_USER, CONNECTION_PASSWORD, CONNECTION_DB);
-            break;
         }
     }
 }
@@ -23,13 +21,11 @@ function DB_SelectDatabase ($DBType, $DBName, $ServerConn) {
         case "mysql":
         {
             return mysqli_select_db ($ServerConn, $DBName);
-            break;
         }
 
         default:
         {
             return mysqli_select_db ($ServerConn, $DBName);
-            break;
         }
     }
 }
@@ -40,13 +36,11 @@ function DB_Query ($DBType, $QueryString, $ServerConn) {
         case "mysql":
         {
             return mysqli_query ($ServerConn, $QueryString);
-            break;
         }
 
         default:
         {
             return mysqli_query ($ServerConn, $QueryString);
-            break;
         }
     }
 }
@@ -57,7 +51,6 @@ function DB_SetUTF8 ($ConnResource, $DBType) {
         case'mysql':
         default: {
             DB_Query($DBType, "SET NAMES utf8", $ConnResource);
-            break;
         }
     }
 }
@@ -68,13 +61,11 @@ function DB_NumRows ($DBType, $QueryResult) {
         case "mysql":
         {
             return mysqli_num_rows ($QueryResult);
-            break;
         }
 
         default:
         {
             return mysqli_num_rows ($QueryResult);
-            break;
         }
     }
 }
@@ -85,13 +76,11 @@ function DB_FetchAssoc ($DBType, $QueryResult) {
         case "mysql":
         {
             return mysqli_fetch_assoc ($QueryResult);
-            break;
         }
 
         default:
         {
             return mysqli_fetch_assoc ($QueryResult);
-            break;
         }
     }
 }
@@ -102,13 +91,11 @@ function DB_Result ($DBType, $QueryResource, $Row, $Column) {
         case "mysql":
         {
             return mysql_result ($QueryResource, $Row, $Column);
-            break;
         }
 
         default:
         {
             return mysql_result ($QueryResource, $Row, $Column);
-            break;
         }
     }
 }
@@ -119,13 +106,11 @@ function DB_EscapeString ($DBType, $ConnectResource, $String) {
         case "mysql":
         {
             return mysqli_real_escape_string ($ConnectResource, $String);
-            break;
         }
 
         default:
         {
             return mysqli_real_escape_string ($ConnectResource, $String);
-            break;
         }
     }
 }
@@ -136,13 +121,11 @@ function DB_LastID ($DBType, $ServerConn) {
         case "mysql":
         {
             return mysqli_insert_id ($ServerConn);
-            break;
         }
 
         default:
         {
             return mysqli_insert_id ($ServerConn);
-            break;
         }
     }
 }
@@ -154,7 +137,6 @@ function DB_Error ($DBType, $ConnectResource) {
         default:
         {
             return mysqli_errno ($ConnectResource) . ": " . mysqli_error ($ConnectResource);
-            break;
         }
     }
 }
