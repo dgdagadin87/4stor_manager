@@ -11,7 +11,7 @@ function DB_Connect ($DBType) {
 
         default:
         {
-            return mysqli_connect (CONNECTION_HOST, CONNECTION_USER, CONNECTION_PASSWORD);
+            return mysqli_connect (CONNECTION_HOST, CONNECTION_USER, CONNECTION_PASSWORD, CONNECTION_DB);
             break;
         }
     }
