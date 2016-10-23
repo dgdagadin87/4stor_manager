@@ -29,7 +29,7 @@ ENGINE = MYISAM;
 DROP TABLE stories;
 CREATE TABLE stories 
 (
-    storId BIGINT AUTO_INCREMENT NOT NULL , 
+    storId BIGINT NOT NULL , 
     storName TEXT NOT NULL , 
     storHref TEXT NOT NULL , 
     storRate INT NOT NULL , 
