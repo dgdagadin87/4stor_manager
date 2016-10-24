@@ -29,8 +29,12 @@ class serverSync {
         
         // if is empty
         $elements = $this->xpath->query(".//*[@id='dle-content']");
+        $b = $elements->length<1 ? 'true' : 'false';
+        Helper::Main_Log(__DIR__, $psHref . '---' . $b . "\n\r");
+//        Helper::Main_Log(__DIR__, $b);
+//        exit;
         $length = $elements->length;
-        if ($length < 1) {
+        if ($b === 'true') {
             exit('All stories of this category are synchronized.');
         }
         
