@@ -138,9 +138,15 @@ class serverSync {
     }
     
     private function _getStorDate($element) {
-        preg_match ('/^(\d\d-\d\d-\d\d\d\d),\s*\d\d:\d\d/', $element->nodeValue, $match);
+        preg_match ('/^([\d]{1,2}-[\d]{1,2}-\d\d\d\d),\s*\d\d:\d\d/', $element->nodeValue, $match);
         $lsDate = $match[1];
-        $laDate = explode('-', $lsDate);
+        return $this->_prepareDate($lsDate);
+    }
+    
+    private function _prepareDate ($psDate) {
+        $laDate = explode('-', $psDate);
+        $laDate[0] = strlen($laDate[0]) < 2 ? '0'.$laDate[0] : $laDate[0];
+        $laDate[1] = strlen($laDate[0]) < 2 ? '0'.$laDate[1] : $laDate[1];
         return ($laDate[2] . '-' . $laDate[1] . '-' . $laDate[0]);
     }
     
