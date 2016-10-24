@@ -105,7 +105,7 @@ class serverSyncModel {
     public function insertCatsData ($paCatsData) {
         foreach ($paCatsData as $catName) {
             $catName = DB_EscapeString('mysql', $this->connection, $catName);
-            $catHref = DB_EscapeString('mysql', $this->connection, 'category link');
+            $catHref = DB_EscapeString('mysql', $this->connection, 'category link_');
             
             $SQL = 'SELECT `catId` FROM `categories` WHERE `catName` = \'' .$catName  . '\'';
             $Query = DB_Query ('mysql', $SQL, $this->connection);
@@ -115,7 +115,7 @@ class serverSyncModel {
 
             $numRows = DB_NumRows('mysql', $Query);
             if ($numRows < 1) {
-                $SQL = 'INSERT INTO `categories` (catName, catHref) VALUES (\'' . $catName . '\', \'' . $catHref . '\')';
+                $SQL = 'INSERT INTO `categories` (catName, catHref) VALUES (\'' . $catName . '\', \'' . $catHref . $catName . '\')';
                 $Query = DB_Query ('mysql', $SQL, $this->connection);
                 if (!$Query) {
                     exit ($SQL . "\r\n" . DB_Error ('mysql', $this->connection));
