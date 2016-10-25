@@ -14,5 +14,11 @@ class Helper {
 	fclose ($FileHandler);
     }
     
+    public static function Main_GetActions () {
+        return array(
+            'mainpage'
+        );
+    }
+    
 }
 
