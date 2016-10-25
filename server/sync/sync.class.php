@@ -8,7 +8,6 @@ class serverSync {
     public $data;
     
     public function __construct($paConf) {
-        $this->dom = new DOMDocument();
         $this->href = $paConf['href'];
         $this->model = $paConf['model'];
     }
@@ -20,23 +19,13 @@ class serverSync {
     }
     
     private function _syncronizePage($psHref) {
+        $this->dom = new DOMDocument();
         
         $laIds = $laNames = $laLinks = $laRates = $laDescs = $laAuthors = $laCats = $laDates = array();
         
         @$this->dom->loadHTML(file_get_contents($psHref));
         
         $this->xpath = new DOMXpath($this->dom);
-        
-        // if is empty
-        $elements = $this->xpath->query(".//*[@id='dle-content']");
-        $b = $elements->length<1 ? 'true' : 'false';
-        Helper::Main_Log(__DIR__, $psHref . '---' . $b . "\n\r");
-//        Helper::Main_Log(__DIR__, $b);
-//        exit;
-        $length = $elements->length;
-        if ($b === 'true') {
-            exit('All stories of this category are synchronized.');
-        }
         
         // Id, Name, link
         $elements = $this->xpath->query(".//*[@class='story_item']/header/h2/a");
@@ -54,6 +43,11 @@ class serverSync {
                 
                 $lnCnt++;
             }
+        }
+        
+        // if is empty
+        if (sizeof($laIds) < 1) {
+            exit('All stories of this category are synchronized.');
         }
         
         // Rating
