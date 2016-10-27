@@ -47,6 +47,12 @@ define([
     layoutController.prototype.showIndex = function() {
         this.renderView();
     };
+    layoutController.prototype.showSearch = function() {
+        this.renderView();
+    };
+    layoutController.prototype.showSettings = function() {
+        this.renderView();
+    };
     
     layoutController.prototype.getView = function() {
         return this._view;

@@ -22,12 +22,12 @@ define(
                 this._layout.showIndex();
             },
             
-            page1 : function() {
-                this._layout.showPage1();
+            search : function() {
+                this._layout.showSearch();
             },
             
-            page2 : function() {
-                this._layout.showPage2();
+            settings : function() {
+                this._layout.showSettings();
             }
         });
     }
