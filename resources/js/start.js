@@ -1,6 +1,5 @@
 require.config({
-    baseUrl : '/resources/js',
-    //urlArgs: "bust=" +  (new Date()).getTime(),
+    baseUrl : '/4stor/4stor_manager/resources/js',
     paths : {
         jquery         : 'library/jquery/jquery',
         jquery_ui      : 'library/jquery/jquery-ui',

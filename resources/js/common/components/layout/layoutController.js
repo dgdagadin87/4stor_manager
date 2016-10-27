@@ -4,7 +4,7 @@ define([
     'underscore',
     'backbone', 
     'jquery',
-    'common/components/views/layoutView'
+    'common/components/layout/views/layoutView'
 ], function (
     _,
     Backbone,
@@ -17,6 +17,10 @@ define([
     
     layoutController.prototype._init = function() {
         this._view = new mainLayoutView();
+        
+        this._view.on('initialize', function(){
+            console.log('view.initialized');
+        });
     };
     
     layoutController.prototype.addMainRegion = function(regionName, regionId, view) {
