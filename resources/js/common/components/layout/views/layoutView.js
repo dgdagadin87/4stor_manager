@@ -27,6 +27,10 @@ define(
                 Application.trigger("mainlayout:init");
             },
             
+            onRender: function() {
+                Application.trigger("mainlayout:render");
+            },
+            
             templateHelpers : function() {
                 return {}
             }
