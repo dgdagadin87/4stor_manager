@@ -1,4 +1,8 @@
-.active {
+.header-menu a {
+    margin-right: 10px;
+}
+
+.header-menu .active {
     font-weight: bold;
 }
 
