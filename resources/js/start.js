@@ -15,7 +15,7 @@ require.config({
         MainController : 'application/MainController',
 		
         settings       : 'config/settings',
-        commonUtils    : 'common/commonUtils'
+        coreUtils      : '_core/coreUtils'
 		
     },
     shim : {
