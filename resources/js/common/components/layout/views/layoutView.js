@@ -18,6 +18,7 @@ define(
             regions : {
                 headerRegion: '#header-region',
                 mainRegion: '#main-region',
+                crumbsRegion: '#crumbs-region',
                 leftRegion: '#left-region',
                 footerRegion: '#footer-region',
                 dialogRegion: '#dialog-region'
