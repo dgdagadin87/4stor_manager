@@ -16,6 +16,7 @@ define(
         return Backbone.Marionette.Controller.extend({
             initialize: function(options) {
                 this._component = new layoutComponent();
+                this._component.renderView();
             },
             index : function() {
                 console.log('index');

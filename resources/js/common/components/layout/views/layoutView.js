@@ -2,10 +2,12 @@ define(
     [
         'backbone',
         'marionette',
+        'Application',
         'text!common/components/layout/templates/layoutTemplate.html'
     ], function(
         Backbone,
         Marionette,
+        Application,
         template
     ) {
         return Backbone.Marionette.LayoutView.extend({
@@ -22,7 +24,7 @@ define(
             },
             
             initialize: function() {
-                
+                Application.trigger("mainlayout:init");
             },
             
             templateHelpers : function() {
