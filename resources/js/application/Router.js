@@ -8,7 +8,9 @@ define(
     ) {
         return Backbone.Marionette.AppRouter.extend({
             appRoutes : {
-                "" : "index"
+                "" : "index",
+                "page1" : "page1",
+                "page2" : "page2",
             }
         });
     }

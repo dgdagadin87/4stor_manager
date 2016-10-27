@@ -28,7 +28,7 @@ define(
             },
             
             onRender: function() {
-                Application.trigger("mainlayout:render");
+                Application.trigger("mainlayout:render", arguments);
             },
             
             templateHelpers : function() {

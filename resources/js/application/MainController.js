@@ -15,10 +15,19 @@ define(
     ) {
         return Backbone.Marionette.Controller.extend({
             initialize: function(options) {
-                this._component = new layoutComponent();
+                this._layout = new layoutComponent();
             },
+
             index : function() {
-                this._component.renderView();
+                this._layout.showIndex();
+            },
+            
+            page1 : function() {
+                this._layout.showPage1();
+            },
+            
+            page2 : function() {
+                this._layout.showPage2();
             }
         });
     }

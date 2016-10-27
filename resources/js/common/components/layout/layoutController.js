@@ -44,6 +44,10 @@ define([
         }
     };
     
+    layoutController.prototype.showIndex = function() {
+        this.renderView();
+    };
+    
     layoutController.prototype.getView = function() {
         return this._view;
     };
