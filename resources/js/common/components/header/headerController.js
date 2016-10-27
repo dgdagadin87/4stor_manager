@@ -4,6 +4,7 @@ define([
     'underscore',
     'backbone', 
     'jquery',
+    'coreUtils',
     'Application',
     'common/components/header/views/headerView',
     'common/components/header/models/headerModel'
@@ -11,6 +12,7 @@ define([
     _,
     Backbone,
     $,
+    CoreUtils,
     Application,
     headerView,
     headerModel
@@ -37,11 +39,19 @@ define([
     };
     
     headerController.prototype._onViewRendered = function() {
-        console.log('header view rendered');
+        var params = CoreUtils.getURIParams();
+        var rootParam = params[0] || 'main';
+        this._setActiveHeader(rootParam);
     };
     
     headerController.prototype.renderView = function() {
         this.getView().render();
+    };
+    
+    headerController.prototype._setActiveHeader = function(psParam) {
+        var classes = ['main', 'search', 'settings'];
+        var headerClass = classes.indexOf(psParam) !== -1 ? psParam : 'main';
+        this._view.$('.'+headerClass).addClass('active');
     };
     
     headerController.prototype.getView = function() {
