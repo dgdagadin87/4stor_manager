@@ -1,0 +1,5 @@
+define({
+    "defaults" : {
+		"test" : "test"
+    }
+});

@@ -14,6 +14,9 @@ require.config({
 		Router         : 'application/Router',
 		MainController : 'application/MainController',
 		
+		settings       : 'config/settings',
+		commonUtils    : 'common/commonUtils'
+		
     },
     shim : {
         'jquery_ui' : {
