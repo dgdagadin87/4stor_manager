@@ -2,14 +2,22 @@ define(
     [
         'backbone',
         'marionette'
-    ], function (
+    ],
+    function (
         Backbone,
         Marionette
     ) {
-        var App = new Backbone.Marionette.Application();
-        App.addInitializer(function () {
+        var mainApp = new Backbone.Marionette.Application();
+            mainApp.addRegions({
+                headerRegion: "#header-region",
+                mainRegion: "#main-region",
+                footerRegion: "#footer-region",
+                leftRegion: "#left-region",
+                dialogRegion: "#dialog-region"
+            });
+        mainApp.addInitializer(function () {
             Backbone.history.start();
         });
-        return App;
+        return mainApp;
     }
 );

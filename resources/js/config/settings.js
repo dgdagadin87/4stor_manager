@@ -1,5 +1,5 @@
 define({
     "defaults" : {
-		"test" : "test"
+	"test" : "test"
     }
 });

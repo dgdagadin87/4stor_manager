@@ -1,5 +1,5 @@
 require.config({
-    baseUrl : '/resources/js/',
+    baseUrl : '/resources/js',
     //urlArgs: "bust=" +  (new Date()).getTime(),
     paths : {
         jquery         : 'library/jquery/jquery',
@@ -10,12 +10,12 @@ require.config({
 
         text           : 'library/require/text',
 		
-		Application    : 'application/Application'
-		Router         : 'application/Router',
-		MainController : 'application/MainController',
+        Application    : 'application/Application',
+        Router         : 'application/Router',
+        MainController : 'application/MainController',
 		
-		settings       : 'config/settings',
-		commonUtils    : 'common/commonUtils'
+        settings       : 'config/settings',
+        commonUtils    : 'common/commonUtils'
 		
     },
     shim : {
@@ -48,9 +48,9 @@ require(
         Router,
         MainController
     ) {
-        App.appRouter = new Router({
+        Application.appRouter = new Router({
             controller : new MainController()
         });
-        App.start();
+        Application.start();
     }
 );
