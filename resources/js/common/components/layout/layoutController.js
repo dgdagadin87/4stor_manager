@@ -56,7 +56,6 @@ define([
     };
 
     layoutController.prototype.showComponents = function(action){
-        console.log(action);
         this._currentPage = action;
         if (this._isLayoutRendered) {
             this._renderComponents();
