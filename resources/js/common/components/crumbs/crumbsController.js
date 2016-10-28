@@ -48,6 +48,11 @@ define([
         this.getView().render();
     };
     
+    crumbsController.prototype.showBreadCrumbs = function() {
+        var mainLayout = Application.getMainLayout();
+        mainLayout.getView().showChildView('crumbsRegion', this.getView());
+    };
+    
     crumbsController.prototype.getModel = function() {
         return this._model;
     };

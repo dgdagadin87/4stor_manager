@@ -23,6 +23,8 @@ define([
         
         BaseController.call(this);
         
+        this._isHeaderRendered = false;
+        
         this._model = new headerModel();
         this._view = new headerView();
         
@@ -47,10 +49,13 @@ define([
         this._setActiveHeader(rootParam);
     };
 
+    headerController.prototype.showHeader = function() {
+        var mainLayout = Application.getMainLayout();
+        mainLayout.getView().showChildView('headerRegion', this.getView());
+    };
+
     headerController.prototype.renderView = function() {
-        if (!this._isHeaderRendered) {
-            this.getView().render();
-        }
+        this.getView().render();
     };
     
     headerController.prototype._setActiveHeader = function(psParam) {
