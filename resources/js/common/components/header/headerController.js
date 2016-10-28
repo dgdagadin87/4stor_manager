@@ -18,24 +18,20 @@ define([
     headerModel
 ) {
     var headerController = function() {
-        this._bindEvents();
-        this._init();
-    };
-    
-    headerController.prototype._bindEvents = function() {
-        Application.on('header:init', this._onViewInitialized());
-        Application.on('header:render', this._onViewRendered.bind(this));
-    };
-    
-    headerController.prototype._init = function() {
+        
         this._model = new headerModel();
         this._view = new headerView();
         
-        this._view.model = this._model;
+        this._init();
+        this._bindEvents();
     };
     
-    headerController.prototype._onViewInitialized = function() {
-        console.log('header view was initialized');
+    headerController.prototype._bindEvents = function() {
+        this._view.on('render', this._onViewRendered.bind(this));
+    };
+    
+    headerController.prototype._init = function() {
+        this._view.model = this._model;
     };
     
     headerController.prototype._onViewRendered = function() {
@@ -43,7 +39,7 @@ define([
         var rootParam = params[0] || 'main';
         this._setActiveHeader(rootParam);
     };
-    
+
     headerController.prototype.renderView = function() {
         this.getView().render();
     };
