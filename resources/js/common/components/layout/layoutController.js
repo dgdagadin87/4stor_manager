@@ -16,21 +16,20 @@ define([
     headerComponent
 ) {
     var layoutController = function() {
-        this._bindEvents();
+        
+        this._view = new mainLayoutView();
+        
+        this._headerComponent = new headerComponent();
+        
         this._init();
+        this._bindEvents();
     };
     
     layoutController.prototype._bindEvents = function() {
-        Application.on('mainlayout:init', this._onViewInitialized.bind(this));
-        Application.on('mainlayout:render', this._onViewRendered.bind(this));
+        this._view.on('render', this._onViewRendered.bind(this));
     };
     
     layoutController.prototype._init = function() {
-        this._view = new mainLayoutView();
-    };
-    
-    layoutController.prototype._onViewInitialized = function() {
-        this._headerComponent = new headerComponent();
     };
     
     layoutController.prototype._onViewRendered = function() {

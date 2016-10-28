@@ -35,7 +35,7 @@ define([
     };
     
     headerController.prototype._onViewInitialized = function() {
-        console.log('header view initialized');
+        console.log('header view was initialized');
     };
     
     headerController.prototype._onViewRendered = function() {

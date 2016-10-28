@@ -1,5 +1,5 @@
 require.config({
-    baseUrl : '/4stor/4stor_manager/resources/js',
+    baseUrl : '/resources/js',
     paths : {
         jquery         : 'library/jquery/jquery',
         jquery_ui      : 'library/jquery/jquery-ui',
