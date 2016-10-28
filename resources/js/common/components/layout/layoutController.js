@@ -6,21 +6,24 @@ define([
     'jquery',
     'Application',
     'common/components/layout/views/layoutView',
-    'common/components/header/headerController'
+    'common/components/header/headerController',
+    'common/components/crumbs/crumbsController'
 ], function (
     _,
     Backbone,
     $,
     Application,
     mainLayoutView,
-    headerComponent
+    headerComponent,
+    crumbsComponent
 ) {
     var layoutController = function() {
-        
+
         this._view = new mainLayoutView();
-        
+
         this._headerComponent = new headerComponent();
-        
+        this._crumbsComponent = new crumbsComponent();
+
         this._init();
         this._bindEvents();
     };
@@ -33,12 +36,13 @@ define([
     };
     
     layoutController.prototype._onViewRendered = function() {
-        this._view._isViewRendered = true;
+        this._view._isLayoutRendered = true;
         this._view.showChildView('headerRegion', this._headerComponent.getView());
+        this._view.showChildView('crumbsRegion', this._crumbsComponent.getView());
     };
     
     layoutController.prototype.renderView = function() {
-        if (!this._view._isViewRendered) {
+        if (!this._view._isLayoutRendered) {
             this.getView().render();
         }
     };

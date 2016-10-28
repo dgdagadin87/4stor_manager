@@ -35,13 +35,16 @@ define([
     };
     
     headerController.prototype._onViewRendered = function() {
+        this._isHeaderRendered = true;
         var params = CoreUtils.getURIParams();
         var rootParam = params[0] || 'main';
         this._setActiveHeader(rootParam);
     };
 
     headerController.prototype.renderView = function() {
-        this.getView().render();
+        if (!this._isHeaderRendered) {
+            this.getView().render();
+        }
     };
     
     headerController.prototype._setActiveHeader = function(psParam) {
