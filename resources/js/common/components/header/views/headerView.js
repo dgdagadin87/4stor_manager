@@ -21,11 +21,9 @@ define(
             },
 
             initialize: function() {
-                Application.trigger("header:init");
             },
             
             onRender: function() {
-                Application.trigger("header:render");
             },
             
             onHeaderMenuClick: function(ev) {
