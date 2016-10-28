@@ -6,6 +6,7 @@ define([
     'jquery',
     'coreUtils',
     'Application',
+    '_base/BaseController',
     'common/components/crumbs/views/crumbsView',
     'common/components/crumbs/models/crumbsModel'
 ], function (
@@ -14,10 +15,13 @@ define([
     $,
     CoreUtils,
     Application,
+    BaseController,
     crumbsView,
     crumbsModel
 ) {
     var crumbsController = function() {
+        
+        BaseController.call(this);
         
         this._model = new crumbsModel();
         this._view = new crumbsView();
@@ -25,6 +29,8 @@ define([
         this._init();
         this._bindEvents();
     };
+    
+    crumbsController.prototype = Object.create(BaseController.prototype);
     
     crumbsController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
@@ -40,10 +46,6 @@ define([
 
     crumbsController.prototype.renderView = function() {
         this.getView().render();
-    };
-
-    crumbsController.prototype.getView = function() {
-        return this._view;
     };
     
     crumbsController.prototype.getModel = function() {

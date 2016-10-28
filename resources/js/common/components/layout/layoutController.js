@@ -5,6 +5,7 @@ define([
     'backbone', 
     'jquery',
     'Application',
+    '_base/BaseController',
     'common/components/layout/views/layoutView',
     'common/components/header/headerController',
     'common/components/crumbs/crumbsController'
@@ -13,11 +14,14 @@ define([
     Backbone,
     $,
     Application,
+    BaseController,
     mainLayoutView,
     headerComponent,
     crumbsComponent
 ) {
     var layoutController = function() {
+
+        BaseController.call(this);
 
         this._view = new mainLayoutView();
 
@@ -27,6 +31,8 @@ define([
         this._init();
         this._bindEvents();
     };
+    
+    layoutController.prototype = Object.create(BaseController.prototype);
     
     layoutController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
@@ -57,9 +63,5 @@ define([
         this.renderView();
     };
     
-    layoutController.prototype.getView = function() {
-        return this._view;
-    };
-
     return layoutController;
 });

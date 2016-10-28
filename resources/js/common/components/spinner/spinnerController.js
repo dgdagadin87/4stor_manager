@@ -6,6 +6,7 @@ define([
     'jquery',
     'coreUtils',
     'Application',
+    '_base/BaseController',
     'common/components/spinner/views/spinnerView',
     'common/components/spinner/models/spinnerModel'
 ], function (
@@ -14,10 +15,13 @@ define([
     $,
     CoreUtils,
     Application,
+    BaseController,
     spinnerView,
     spinnerModel
 ) {
     var spinnerController = function() {
+        
+        BaseController.call(this);
         
         this._model = new spinnerModel();
         this._view = new spinnerView();
@@ -25,6 +29,8 @@ define([
         this._init();
         this._bindEvents();
     };
+    
+    spinnerController.prototype = Object.create(BaseController.prototype);
     
     spinnerController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
@@ -40,10 +46,6 @@ define([
 
     spinnerController.prototype.renderView = function() {
         this.getView().render();
-    };
-
-    spinnerController.prototype.getView = function() {
-        return this._view;
     };
 
     return spinnerController;

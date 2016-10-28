@@ -6,6 +6,7 @@ define([
     'jquery',
     'coreUtils',
     'Application',
+    '_base/BaseController',
     'common/components/header/views/headerView',
     'common/components/header/models/headerModel'
 ], function (
@@ -14,10 +15,13 @@ define([
     $,
     CoreUtils,
     Application,
+    BaseController,
     headerView,
     headerModel
 ) {
     var headerController = function() {
+        
+        BaseController.call(this);
         
         this._model = new headerModel();
         this._view = new headerView();
@@ -25,6 +29,8 @@ define([
         this._init();
         this._bindEvents();
     };
+ 
+    headerController.prototype = Object.create(BaseController.prototype);
     
     headerController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
@@ -51,10 +57,6 @@ define([
         var classes = ['main', 'search', 'settings'];
         var headerClass = classes.indexOf(psParam) !== -1 ? psParam : 'main';
         this._view.$('.'+headerClass).addClass('active');
-    };
-    
-    headerController.prototype.getView = function() {
-        return this._view;
     };
     
     headerController.prototype.getModel = function() {
