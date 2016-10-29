@@ -13,7 +13,8 @@ define(
             className : 'spinnerModel',
             defaults : {
                 title: '',
-                message: ''
+                message: '',
+                spinclass: ''
             },
             initialize : function() {}
         });

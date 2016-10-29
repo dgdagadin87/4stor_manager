@@ -37,7 +37,7 @@ define([
     };
     
     spinnerController.prototype._init = function() {
-        this._view.model = this.model;
+        this._view.model = this._model;
     };
     
     spinnerController.prototype._onViewRendered = function() {
@@ -46,6 +46,15 @@ define([
 
     spinnerController.prototype.renderView = function() {
         this.getView().render();
+    };
+    
+    spinnerController.prototype.showSpinner = function(region) {
+        var mainLayout = Application.getMainLayout();
+        mainLayout.getView().showChildView(region, this.getView());
+    };
+    
+    spinnerController.prototype.getModel = function() {
+        return this._model;
     };
 
     return spinnerController;
