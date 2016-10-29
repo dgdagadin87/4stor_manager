@@ -6,3 +6,9 @@
     font-weight: bold;
 }
 
+.small {
+    width:80px;
+    height:80px;
+    background: #FFF url('../img/preloader.gif') no-repeat;
+}
+
