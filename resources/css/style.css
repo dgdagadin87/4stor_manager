@@ -7,8 +7,8 @@
 }
 
 .small {
-    width:80px;
-    height:80px;
-    background: #FFF url('../img/preloader.gif') no-repeat;
+    width:41px;
+    height:41px;
+    background: #FFF url('../img/small-preloader.gif') no-repeat;
 }
 
