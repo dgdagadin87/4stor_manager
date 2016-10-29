@@ -16,7 +16,8 @@ class Helper {
     
     public static function Main_GetActions () {
         return array(
-            'mainpage'
+            'index',
+            'categories'
         );
     }
     
