@@ -14,8 +14,7 @@ define(
             defaults : {
                 categoryId       : 0,
                 categoryUrl      : '',
-                categoryName     : '',
-                categoryIsActive : false
+                categoryName     : ''
             },
             initialize : function() {}
         });
