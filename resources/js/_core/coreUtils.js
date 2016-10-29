@@ -48,10 +48,10 @@ define([
         
         axajQuery: function(config, functions){
             var loConf = config || {};
-            var BeforeSend    = lfIsEmpty(functions.beforeSend)    || !$.isFunction(functions.beforeSend)    ? this.emptyFunction : functions.beforeSend;
-            var AfterSuccess  = lfIsEmpty(functions.afterSuccess)  || !$.isFunction(functions.afterSuccess)  ? this.emptyFunction : functions.afterSuccess;
-            var AfterError    = lfIsEmpty(functions.afterError)    || !$.isFunction(functions.afterError)    ? this.emptyFunction : functions.afterError;
-            var AfterComplete = lfIsEmpty(functions.afterComplete) || !$.isFunction(functions.afterComplete) ? this.emptyFunction : functions.afterComplete;
+            var BeforeSend    = this.isEmpty(functions.beforeSend)    || !$.isFunction(functions.beforeSend)    ? this.emptyFunction : functions.beforeSend;
+            var AfterSuccess  = this.isEmpty(functions.afterSuccess)  || !$.isFunction(functions.afterSuccess)  ? this.emptyFunction : functions.afterSuccess;
+            var AfterError    = this.isEmpty(functions.afterError)    || !$.isFunction(functions.afterError)    ? this.emptyFunction : functions.afterError;
+            var AfterComplete = this.isEmpty(functions.afterComplete) || !$.isFunction(functions.afterComplete) ? this.emptyFunction : functions.afterComplete;
                 
             var queryConfig = {
                     type: 'POST',
@@ -68,7 +68,6 @@ define([
                         AfterSuccess(data, textStatus, jqXHR);
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
-                        alert('На сервере какая-то ошибка');
                         AfterError(jqXHR, textStatus, errorThrown);
                     },
                     complete: function(jqXHR, textStatus){
