@@ -18,7 +18,7 @@ define(
             template : _.template(template),
 
             childView: CatsItemView,
-            childViewContainer: ".categories",
+            childViewContainer: ".categories-container",
 
             collection: new collection(),
 

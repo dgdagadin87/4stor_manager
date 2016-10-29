@@ -47,12 +47,14 @@ define([
     
     catlistController.prototype.showCategoryList = function() {
         var me = this;
+        var view = me.getView();
         var beforeSend = function() {
             Application.trigger('spinner:small:show');
         };
         var afterSuccess = function(data) {
             var mainLayout = Application.getMainLayout();
-            mainLayout.getView().showChildView('leftRegion', me.getView());
+            view.collection.set(data);
+            mainLayout.getView().showChildView('leftRegion', view);
         };
         var afterError = function() {
             alert('На сервере какая-то ошибка');
