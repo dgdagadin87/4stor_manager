@@ -27,7 +27,7 @@ class serverSyncModel {
         else {
             $updateRateSQL = 'UPDATE `stories` SET `storRate` = \'' . $paStorData['rate'] . '\' WHERE `storId` = \'' . intval($pnStorId) . '\'';
             $updateRateQuery = DB_Query ('mysql', $updateRateSQL, $this->connection);
-            if (!$getStorQuery) {
+            if (!$updateRateQuery) {
                 exit ($updateRateSQL . "\r\n" . DB_Error ('mysql', $this->connection));
             }
         }
@@ -132,4 +132,3 @@ class serverSyncModel {
     }
     
 }
-
