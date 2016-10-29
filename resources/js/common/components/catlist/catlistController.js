@@ -7,6 +7,7 @@ define([
     'coreUtils',
     'Application',
     '_base/BaseController',
+    'settings',
     'common/components/catlist/views/catlistView'
 ], function (
     _,
@@ -15,6 +16,7 @@ define([
     CoreUtils,
     Application,
     BaseController,
+    Settings,
     catlistView
 ) {
     var catlistController = function() {
@@ -44,10 +46,26 @@ define([
     };
     
     catlistController.prototype.showCategoryList = function() {
+        var me = this;
         var beforeSend = function() {
             Application.trigger('spinner:small:show');
         };
-        beforeSend();
+        var afterSuccess = function(data) {
+            var mainLayout = Application.getMainLayout();
+            mainLayout.getView().showChildView('leftRegion', me.getView());
+        };
+        var afterError = function() {
+            alert('На сервере какая-то ошибка');
+        };
+        var loCfg = {
+            url: Settings.url.getCategories
+        };
+        var functions = {
+            beforeSend: beforeSend,
+            afterSuccess: afterSuccess,
+            afterError: afterError
+        };
+        CoreUtils.axajQuery(loCfg, functions);
     };
 
     return catlistController;
