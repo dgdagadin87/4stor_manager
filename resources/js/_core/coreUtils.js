@@ -59,7 +59,6 @@ define([
                     cache: false,
                     dataType: 'json',
                     headers: {
-                        Connection: 'close'
                     },
                     beforeSend: function(jqXHR, settings){
                         BeforeSend(jqXHR, settings);
