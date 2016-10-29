@@ -8,7 +8,9 @@ define([
     '_base/BaseController',
     'common/components/layout/views/layoutView',
     'common/components/header/headerController',
-    'common/components/crumbs/crumbsController'
+    'common/components/crumbs/crumbsController',
+    'common/components/catlist/catlistController',
+    'common/components/spinner/spinnerController'
 ], function (
     _,
     Backbone,
@@ -17,7 +19,9 @@ define([
     BaseController,
     mainLayoutView,
     headerComponent,
-    crumbsComponent
+    crumbsComponent,
+    catlistComponent,
+    spinnerComponent
 ) {
     var layoutController = function() {
 
@@ -31,6 +35,9 @@ define([
 
         this._headerComponent = new headerComponent();
         this._crumbsComponent = new crumbsComponent();
+        this._catlistComponent = new catlistComponent();
+        this._smallSpinnerComponent = new spinnerComponent();
+        this._largeSpinnerComponent = new spinnerComponent();
 
         this._init();
         this._bindEvents();
@@ -40,14 +47,24 @@ define([
 
     layoutController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
+        Application.on('spinner:small:show', this._onSmallSpinnerShow.bind(this));
     };
 
     layoutController.prototype._init = function() {
     };
 
+    layoutController.prototype._onSmallSpinnerShow = function() {
+        this._smallSpinnerComponent.getModel().set({
+            title:'Идет загрузка категорий',
+            spinclass: 'small'
+        });
+        this._smallSpinnerComponent.showSpinner('leftRegion');
+    };
+
     layoutController.prototype._renderComponents = function() {
         this._headerComponent.showHeader();
         this._crumbsComponent.showBreadCrumbs();
+        this._catlistComponent.showCategoryList();
     };
 
     layoutController.prototype._onViewRendered = function() {
