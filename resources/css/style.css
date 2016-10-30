@@ -35,9 +35,9 @@ body, html {
     font-weight: bold;
 }
 
-.small {
-    width:41px;
-    height:41px;
-    background: #FFF url('../img/small-preloader.gif') no-repeat;
+.large {
+    width:80px;
+    height:80px;
+    background: #FFF url('../img/large-preloader.gif') no-repeat;
 }
 
