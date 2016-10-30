@@ -6,6 +6,8 @@ define([
     'jquery',
     'Application',
     '_base/BaseController',
+    'coreUtils',
+    'settings',
     'common/components/layout/views/layoutView',
     'common/components/header/headerController',
     'common/components/crumbs/crumbsController',
@@ -17,6 +19,8 @@ define([
     $,
     Application,
     BaseController,
+    CoreUtils,
+    Settings,
     mainLayoutView,
     headerComponent,
     crumbsComponent,
@@ -30,6 +34,10 @@ define([
         this._currentPage = '';
         
         this._isLayoutRendered = false;
+        
+        this._isDataLoaded = false;
+        
+        this._commonData = {};
 
         this._view = new mainLayoutView();
 
@@ -71,7 +79,7 @@ define([
     layoutController.prototype._renderComponents = function() {
         this._headerComponent.showHeader();
         this._crumbsComponent.showBreadCrumbs();
-        this._catlistComponent.showCategoryList();
+        this._catlistComponent.showCategoryList(this._commonData.categories);
     };
 
     layoutController.prototype._onViewRendered = function() {
@@ -80,12 +88,47 @@ define([
     };
 
     layoutController.prototype.showComponents = function(action){
-        this._currentPage = action;
-        if (this._isLayoutRendered) {
-            this._renderComponents();
+        var me = this;
+        var showParts = function() {
+            if (me._isLayoutRendered) {
+                me._renderComponents();
+            }
+            else {
+                me.renderView();
+            }
+        };
+        var afterSuccess = function(data) {
+            var laData = data.data || [];
+            var lbSuccess = data.success || false;
+            var lsMessage = data.message || '';
+            if (!lbSuccess) {
+                Application.trigger('error:modal:show', lsMessage);
+            }
+            else {
+                var commonData = laData;
+                me._isDataLoaded = true;
+                me._commonData = commonData;
+                showParts();
+            }
+            
+            
+        };
+        var afterError = function(){
+            Application.trigger('error:modal:show', 'Ошибка на севере');
+        };
+        
+        me._currentPage = action;
+        if (this._isDataLoaded) {
+            showParts(me._commonData);
         }
         else {
-            this.renderView();
+            CoreUtils.axajQuery({
+                url: Settings.url.getCommonData
+            },
+            {
+                afterSuccess: afterSuccess,
+                afterError: afterError
+            });
         }
     };
 
