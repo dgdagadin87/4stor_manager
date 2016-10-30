@@ -13,7 +13,10 @@ class categoriesModel {
         $SQL = 'SELECT * FROM `categories`';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
-            exit ($SQL . "\r\n" . DB_Error ('mysql', $this->connection));
+            return array(
+                'success'=>false,
+                'message'=>'Ошибка при получении списка категорий'
+            );
         }
         $categories = array();
         while($catData = DB_FetchAssoc ('mysql', $Query)) {
@@ -23,7 +26,11 @@ class categoriesModel {
             $category['categoryHref'] = $catData['catHref'];
             $categories[] = $category;
         }
-        return $categories;
+        return array(
+            'success' => true,
+            'message' => '',
+            'data'    => $categories
+        );
     }
     
     public function connect () {

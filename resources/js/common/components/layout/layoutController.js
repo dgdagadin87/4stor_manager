@@ -48,9 +48,16 @@ define([
     layoutController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
         Application.on('spinner:small:show', this._onSmallSpinnerShow.bind(this));
+        Application.on('error:modal:show', this._onModalErrorShow.bind(this));
     };
 
     layoutController.prototype._init = function() {
+    };
+
+    layoutController.prototype._onModalErrorShow = function() {
+        var laArgs = arguments || [];
+        var errorMsg = laArgs[0] || '';
+        alert(errorMsg);
     };
 
     layoutController.prototype._onSmallSpinnerShow = function() {
