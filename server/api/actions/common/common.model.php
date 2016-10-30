@@ -26,7 +26,7 @@ class commonModel {
     }
     
     public function getCategories() {
-        $SQL = 'SELECT * FROM `categories`';
+        $SQL = 'SELECT *, (SELECT COUNT(*) FROM `cats2stories` WHERE categories.catId = cats2stories.catId) AS numStors FROM `categories`';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
             return 'Ошибка при получении списка категорий';
@@ -37,6 +37,7 @@ class commonModel {
             $category['categoryId'] = $catData['catId'];
             $category['categoryName'] = $catData['catName'];
             $category['categoryHref'] = $catData['catHref'];
+            $category['categoryStors'] = $catData['numStors'];
             $categories[] = $category;
         }
         return $categories;
