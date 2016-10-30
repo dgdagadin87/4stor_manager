@@ -7,8 +7,7 @@ define([
     'coreUtils',
     'Application',
     '_base/BaseController',
-    'common/components/header/views/headerView',
-    'common/components/header/models/headerModel'
+    'common/components/header/views/headerView'
 ], function (
     _,
     Backbone,
@@ -16,16 +15,14 @@ define([
     CoreUtils,
     Application,
     BaseController,
-    headerView,
-    headerModel
+    headerView
 ) {
     var headerController = function() {
         
         BaseController.call(this);
         
         this._isHeaderRendered = false;
-        
-        this._model = new headerModel();
+
         this._view = new headerView();
         
         this._init();
@@ -39,7 +36,6 @@ define([
     };
     
     headerController.prototype._init = function() {
-        this._view.model = this._model;
     };
     
     headerController.prototype._onViewRendered = function() {
