@@ -1,3 +1,32 @@
+body, html {
+    margin:0px;
+    padding:0px;
+}
+.main-container {
+    width:1200px;
+    margin:0 auto;
+}
+.main-header{
+    padding: 10px;
+    background-color:#fff;
+}
+.main-sidebar{
+    padding:10px;
+    background-color:#fff;
+    width:200px;
+    float:left;
+}
+.main-content{
+    padding: 10px;
+    background-color:#fff;
+    margin-left:202px;
+}
+.main-footer{
+    padding: 10px;
+    background-color:#fff;
+    clear:both;
+}
+
 .header-menu a {
     margin-right: 10px;
 }
