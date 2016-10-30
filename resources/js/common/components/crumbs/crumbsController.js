@@ -41,7 +41,6 @@ define([
     };
     
     crumbsController.prototype._onViewRendered = function() {
-        console.log('breadcrumbs were rendered');
     };
 
     crumbsController.prototype.renderView = function() {
