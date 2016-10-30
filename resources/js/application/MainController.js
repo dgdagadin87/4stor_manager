@@ -31,6 +31,10 @@ define(
             
             settings : function() {
                 this._layout.showComponents('settings');
+            },
+            
+            best : function() {
+                this._layout.showComponents('best');
             }
         });
     }

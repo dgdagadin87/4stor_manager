@@ -59,7 +59,7 @@ define([
     };
     
     headerController.prototype._setActiveHeader = function(psParam) {
-        var classes = ['main', 'search', 'settings'];
+        var classes = ['main', 'search', 'settings', 'best'];
         var headerClass = classes.indexOf(psParam) !== -1 ? psParam : 'main';
         this._view.$('.'+headerClass).addClass('active');
     };
