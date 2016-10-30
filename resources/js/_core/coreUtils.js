@@ -54,9 +54,9 @@ define([
             var AfterComplete = this.isEmpty(functions.afterComplete) || !$.isFunction(functions.afterComplete) ? this.emptyFunction : functions.afterComplete;
                 
             var queryConfig = {
-                    type: 'POST',
+                    type: 'GET',
                     async: true,
-                    cache: false,
+                    //cache: false,
                     dataType: 'json',
                     headers: {
                     },
