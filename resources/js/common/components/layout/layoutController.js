@@ -8,6 +8,7 @@ define([
     '_base/BaseController',
     'coreUtils',
     'settings',
+    'regionManager',
     'common/components/layout/views/layoutView',
     'common/components/header/headerController',
     'common/components/crumbs/crumbsController',
@@ -21,6 +22,7 @@ define([
     BaseController,
     CoreUtils,
     Settings,
+    regionManager,
     mainLayoutView,
     headerComponent,
     crumbsComponent,
@@ -30,6 +32,8 @@ define([
     var layoutController = function() {
 
         BaseController.call(this);
+
+        this._regionManager = new regionManager(this);
 
         this._currentPage = '';
         
