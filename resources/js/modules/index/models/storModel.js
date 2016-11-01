@@ -19,7 +19,9 @@ define(
                 storAuthorName : '',
                 storAuthorHref : '',
                 storRate       : 0,
-                storDate       : ''
+                storDate       : '',
+                storWatches    : 0,
+                storComments   : 0
             },
             initialize : function() {}
         });

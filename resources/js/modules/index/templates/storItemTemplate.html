@@ -5,8 +5,10 @@
     <%=storShortDesc%>
 </div>
 <div class="index-stor-bottom">
-    <span class="date"><%=storDate%></span>
-    <a target="_blank" class="author" href="<%=storHref%>"><%=storName%></a>
-    <span class="<% if(storRate < 0){ %>plus<% }else{ %>minus<% } %>-rate"><%=storRate%></span>
+    Добавлено <span class="date"><%=storDate%></span>
+    от <a target="_blank" class="author" href="<%=storAuthorHref%>"><%=storAuthorName%></a>&nbsp;
+    <span class="<% if(storRate < 0){ %>plus<% }else{ %>minus<% } %>-rate"><%=storRate%></span>&nbsp;
+    просмотров: <span class="watches"><%=storWatches%></span>&nbsp;
+    комментариев: <a target="_blank" class="comments" href="<%=storHref%>#comment"><%=storComments%></a>
     <a class="goto-site" target="_blank" href="<%=storHref%>">на сайт...</a>
 </div>
