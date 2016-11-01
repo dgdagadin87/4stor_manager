@@ -199,7 +199,10 @@ class serverSync {
     }
     
     private function _getNumComments($element) {
-        return ($element->nodeValue);
+        $value = $element->nodeValue;
+        $value = empty($value) ? '0' : intval($value);
+        if ($element->nodeValue=='') {var_dump($value);exit;}
+        return ($value);
     }
     
     private function _getStorAuthor($element) {

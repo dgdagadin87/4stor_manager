@@ -41,7 +41,7 @@ class serverSyncModel {
         $storDate = DB_EscapeString('mysql', $this->connection, $paStorData['date']);
         $storDesc = DB_EscapeString('mysql', $this->connection, $paStorData['desc']);
         $storWatches = DB_EscapeString('mysql', $this->connection, $paStorData['watches']);
-        $storComments = DB_EscapeString('mysql', $this->connection, $paStorData['comments']);
+        $storComments = intval($paStorData['comments']);
         $authorId = $this->getAuthorId($paStorData['author']['name']);
         
         $SQL = 'INSERT INTO `stories` (storId, storName, storHref, storRate, storDate, storDesc, storAuthorId, storWatches, storComments) VALUES (\'' . $storId . '\', \'' . $storName . '\', \'' . $storHref . '\' , \'' . $storRate . '\', \'' . $storDate . '\', \'' . $storDesc . '\', \'' . $authorId . '\', \'' . $storWatches . '\', \'' . $storComments . '\')';
