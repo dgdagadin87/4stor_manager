@@ -21,7 +21,7 @@ class serverSync {
     private function _syncronizePage($psHref) {
         $this->dom = new DOMDocument();
         
-        $laIds = $laNames = $laLinks = $laRates = $laDescs = $laAuthors = $laCats = $laDates = array();
+        $laIds = $laNames = $laLinks = $laRates = $laDescs = $laAuthors = $laCats = $laDates = $laWatches = $laComments = array();
         
         @$this->dom->loadHTML(file_get_contents($psHref));
         
@@ -58,6 +58,32 @@ class serverSync {
                 $lnRate = $this->_getStorRate($element);
                 
                 $laRates[$lnCnt] = $lnRate;
+                
+                $lnCnt++;
+            }
+        }
+        
+        // Num watches
+        $elements = $this->xpath->query(".//*[@class='story_item']/footer/span/span[2]");
+        if (!is_null($elements)) {
+            $lnCnt = 0;
+            foreach ($elements as $element) {
+                $lnWatches = $this->_getNumWatches($element);
+                
+                $laWatches[$lnCnt] = $lnWatches;
+                
+                $lnCnt++;
+            }
+        }
+        
+        // Num comments
+        $elements = $this->xpath->query(".//*[@class='story_item']/footer/span/span[3]/a/span");
+        if (!is_null($elements)) {
+            $lnCnt = 0;
+            foreach ($elements as $element) {
+                $lnComments = $this->_getNumComments($element);
+                
+                $laComments[$lnCnt] = $lnComments;
                 
                 $lnCnt++;
             }
@@ -115,7 +141,7 @@ class serverSync {
             }
         }
         
-        $this->data = $this->_getStorArray($laIds, $laNames, $laLinks, $laRates, $laDescs, $laAuthors, $laCats, $laDates);
+        $this->data = $this->_getStorArray($laIds, $laNames, $laLinks, $laRates, $laDescs, $laAuthors, $laCats, $laDates, $laWatches, $laComments);
         
         $this->_putPageIntoDB();
     }
@@ -136,19 +162,43 @@ class serverSync {
     }
     
     private function _getStorDate($element) {
-        preg_match ('/^([\d]{1,2}-[\d]{1,2}-\d\d\d\d),\s*\d\d:\d\d/', $element->nodeValue, $match);
+        //preg_match ('/^([\d]{1,2}-[\d]{1,2}-\d\d\d\d),\s*(\d\d:\d\d)/', $element->nodeValue, $match);
+        preg_match ('/^(.*?),\s*(\d\d:\d\d)/', $element->nodeValue, $match);
         $lsDate = $match[1];
-        return $this->_prepareDate($lsDate);
+        $lsTime = $match[2] . ':00';
+        return $this->_prepareDate($lsDate, $lsTime);
     }
     
-    private function _prepareDate ($psDate) {
+    private function _prepareDate ($psDate, $psTime) {
+        $laTime = explode(':',$psTime);
+        if (preg_match('/сегодня/ui', $psDate)) {
+            $today = mktime($laTime[0], $laTime[1], 0, date("m")  , date("d"), date("Y"));
+            return (date("Y-m-d H:i:s", $today));
+        }
+        else if (preg_match('/вчера/ui', $psDate)) {
+            $yesterday = mktime($laTime[0], $laTime[1], 0, date("m")  , date("d")-1, date("Y"));
+            return date("Y-m-d H:i:s", $yesterday);
+        }
         $laDate = explode('-', $psDate);
         $laDate[0] = strlen($laDate[0]) < 2 ? '0'.$laDate[0] : $laDate[0];
         $laDate[1] = strlen($laDate[0]) < 2 ? '0'.$laDate[1] : $laDate[1];
-        return ($laDate[2] . '-' . $laDate[1] . '-' . $laDate[0]);
+        return ($laDate[2] . '-' . $laDate[1] . '-' . $laDate[0] . ' ' . $psTime);
     }
     
     private function _getStorRate($element) {
+        return ($element->nodeValue);
+    }
+    
+    private function _getNumWatches($element) {
+        $value = $element->nodeValue;
+        $array = preg_split('/\s*:\s*/',$value);
+        $watches = $array[1];
+        $watches = str_replace(' ', '', $watches);
+        $watches = intval($watches);
+        return ($watches);
+    }
+    
+    private function _getNumComments($element) {
         return ($element->nodeValue);
     }
     
@@ -170,18 +220,20 @@ class serverSync {
         return $laCats;
     }
     
-    private function _getStorArray($paIds, $paNames, $paLinks, $paRates, $paDescs, $paAuthors, $paCats, $paDates) {
+    private function _getStorArray($paIds, $paNames, $paLinks, $paRates, $paDescs, $paAuthors, $paCats, $paDates, $paWatches, $paComments) {
         $laReturn = array();
         $lnSizeof = sizeof($paIds);
         for ($i = 0; $i < $lnSizeof; $i++) {
             $laCurStor = array(
-                'name'   => $paNames[$i],
-                'link'   => $paLinks[$i],
-                'rate'   => $paRates[$i],
-                'date'   => $paDates[$i],
-                'desc'   => $paDescs[$i],
-                'author' => $paAuthors[$i],
-                'cats'   => $paCats[$i]
+                'name'    => $paNames[$i],
+                'link'    => $paLinks[$i],
+                'rate'    => $paRates[$i],
+                'watches' => $paWatches[$i],
+                'comments'=> $paComments[$i],
+                'date'    => $paDates[$i],
+                'desc'    => $paDescs[$i],
+                'author'  => $paAuthors[$i],
+                'cats'    => $paCats[$i]
             );
             $laReturn[$paIds[$i]] = $laCurStor;
         }

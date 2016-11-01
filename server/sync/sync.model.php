@@ -40,9 +40,11 @@ class serverSyncModel {
         $storRate = $paStorData['rate'];
         $storDate = DB_EscapeString('mysql', $this->connection, $paStorData['date']);
         $storDesc = DB_EscapeString('mysql', $this->connection, $paStorData['desc']);
+        $storWatches = DB_EscapeString('mysql', $this->connection, $paStorData['watches']);
+        $storComments = DB_EscapeString('mysql', $this->connection, $paStorData['comments']);
         $authorId = $this->getAuthorId($paStorData['author']['name']);
         
-        $SQL = 'INSERT INTO `stories` (storId, storName, storHref, storRate, storDate, storDesc, storAuthorId) VALUES (\'' . $storId . '\', \'' . $storName . '\', \'' . $storHref . '\' , \'' . $storRate . '\', \'' . $storDate . '\', \'' . $storDesc . '\', \'' . $authorId . '\')';
+        $SQL = 'INSERT INTO `stories` (storId, storName, storHref, storRate, storDate, storDesc, storAuthorId, storWatches, storComments) VALUES (\'' . $storId . '\', \'' . $storName . '\', \'' . $storHref . '\' , \'' . $storRate . '\', \'' . $storDate . '\', \'' . $storDesc . '\', \'' . $authorId . '\', \'' . $storWatches . '\', \'' . $storComments . '\')';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
             exit ($SQL . "\r\n" . DB_Error ('mysql', $this->connection));
