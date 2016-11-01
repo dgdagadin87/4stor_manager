@@ -2,21 +2,22 @@ require.config({
     baseUrl : '/resources/js',
     urlArgs: "bust=" + (new Date()).getTime(),
     paths : {
-        jquery         : 'library/jquery/jquery',
-        jquery_ui      : 'library/jquery/jquery-ui',
-        underscore     : 'library/underscore/underscore',
-        backbone       : 'library/backbone/backbone',
-        marionette     : 'library/backbone/backbone.marionette',
+        jquery             : 'library/jquery/jquery',
+        jquery_ui          : 'library/jquery/jquery-ui',
+        underscore         : 'library/underscore/underscore',
+        backbone           : 'library/backbone/backbone',
+        backboneRelational : 'library/backbone/backbone.relational',
+        marionette         : 'library/backbone/backbone.marionette',
 
-        text           : 'library/require/text',
+        text               : 'library/require/text',
 		
-        Application    : 'application/Application',
-        Router         : 'application/Router',
-        MainController : 'application/MainController',
+        Application        : 'application/Application',
+        Router             : 'application/Router',
+        MainController     : 'application/MainController',
 		
-        settings       : 'config/settings',
-        coreUtils      : '_core/coreUtils',
-        regionManager  : '_core/regionManager'
+        settings           : 'config/settings',
+        coreUtils          : '_core/coreUtils',
+        regionManager      : '_core/regionManager'
 		
     },
     shim : {
