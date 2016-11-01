@@ -14,11 +14,12 @@ define(
             defaults : {
                 storId         : 0,
                 storName       : '',
+                storHref       : '',
                 storShortDesc  : '',
                 storAuthorName : '',
                 storAuthorHref : '',
                 storRate       : 0,
-                categoryStors : 0
+                storDate       : ''
             },
             initialize : function() {}
         });

@@ -3,17 +3,17 @@ define(
         'jquery',
         'underscore',
         'backbone',
-        'common/components/catlist/models/catlistModel'
+        'common/modules/catlist/models/indexModel'
     ],
     function(
         $,
         _,
         Backbone,
-        catlistModel
+        indexModel
     ) {
         return Backbone.Collection.extend({
-            className : 'categoryListCollection',
-            model: catlistModel
+            className : 'indexCollection',
+            model: indexModel
         });
     }
 );

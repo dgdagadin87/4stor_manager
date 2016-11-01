@@ -39,15 +39,24 @@ define([
     };
     
     indexController.prototype._onViewRendered = function() {
-        this._isHeaderRendered = true;
-        var params = CoreUtils.getURIParams();
-        var rootParam = params[0] || 'main';
-        this._setActiveHeader(rootParam);
+        this._isIndexRendered = true;
     };
 
     indexController.prototype.showCurrentContent = function() {
-        var mainLayout = Application.getMainLayout();
-        mainLayout.getView().showChildView('headerRegion', this.getView());
+        var me = this;
+        var lfRender;
+        if (!this._isIndexRendered) {
+            lfRender = function(){
+                me.renderView();
+            };
+        }
+        else {
+            lfRender = function(){
+                me.renderView();
+            };
+        }
+//        var mainLayout = Application.getMainLayout();
+//        mainLayout.getView().showChildView('headerRegion', this.getView());
     };
 
     indexController.prototype.renderView = function() {

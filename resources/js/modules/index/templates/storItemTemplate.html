@@ -1,0 +1,12 @@
+<div class="index-stor-title">
+    <a class="title" href="/#stories/<%=storId%>"><%=storName%></a>
+</div>
+<div class="index-stor-short-desc">
+    <%=storShortDesc%>
+</div>
+<div class="index-stor-bottom">
+    <span class="date"><%=storDate%></span>
+    <a target="_blank" class="author" href="<%=storHref%>"><%=storName%></a>
+    <span class="<% if(storRate < 0){ %>plus<% }else{ %>minus<% } %>-rate"><%=storRate%></span>
+    <a class="goto-site" target="_blank" href="<%=storHref%>">на сайт...</a>
+</div>
