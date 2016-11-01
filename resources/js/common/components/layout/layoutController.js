@@ -48,7 +48,6 @@ define([
         this._headerComponent = new headerComponent();
         this._crumbsComponent = new crumbsComponent();
         this._catlistComponent = new catlistComponent();
-//        this._smallSpinnerComponent = new spinnerComponent();
         this._largeSpinnerComponent = new spinnerComponent();
 
         this._init();
@@ -59,7 +58,7 @@ define([
 
     layoutController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
-//        Application.on('spinner:small:show', this._onSmallSpinnerShow.bind(this));
+        Application.on('spinner:large:show', this._onLargeSpinnerShow.bind(this));
         Application.on('error:modal:show', this._onModalErrorShow.bind(this));
     };
 
@@ -72,13 +71,16 @@ define([
         alert(errorMsg);
     };
 
-//    layoutController.prototype._onSmallSpinnerShow = function() {
-//        this._smallSpinnerComponent.getModel().set({
-//            title:'Идет загрузка категорий',
-//            spinclass: 'small'
-//        });
-//        this._smallSpinnerComponent.showSpinner('leftRegion');
-//    };
+    layoutController.prototype._onLargeSpinnerShow = function() {
+        var args = arguments || [];
+        var region  = args[1] || '';
+        var message = args[2] || '';
+        this._largeSpinnerComponent.getModel().set({
+            title:message,
+            spinclass: 'large'
+        });
+        this._largeSpinnerComponent.showSpinner(region);
+    };
 
     layoutController.prototype._renderComponents = function() {
         this._headerComponent.showHeader();

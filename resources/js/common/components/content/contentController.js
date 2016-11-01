@@ -46,17 +46,20 @@ define([
         if (psAction === 'index') {
             lsClassPrefix = 'index';
         }
+        var regionName = lsClassPrefix+'Region';
 
         className = lsClassPrefix+'Module';
         componentName = '_'+lsClassPrefix+'Component';
 
         // 1)set module
         if (!me[componentName]) {
-            me[componentName] = new className();
+            me[componentName] = new className({
+                regionName: regionName
+            });
         }
 
         // 2)prepare region for showing
-        _regionManager.prepareRegionForRender(psAction);
+        _regionManager.prepareRegionForRender(regionName);
 
         // 3)render content component
         me[componentName].showCurrentContent(loParams);
