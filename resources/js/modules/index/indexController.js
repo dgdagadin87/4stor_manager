@@ -47,18 +47,18 @@ define([
         this._isIndexRendered = true;
     };
 
-    indexController.prototype.showCurrentContent = function() {
+    indexController.prototype.showCurrentContent = function(poParams) {
         var me = this;
         var mainLayout = Application.getMainLayout();
         var lfRender;
         if (!this._isIndexRendered) {
             lfRender = function(){
-                mainLayout.getView().showChildView(me._regionName, me.getView());
+                mainLayout[me._regionName].show(me.getView(), {forceShow: true});
             };
         }
         else {
             lfRender = function(){
-                mainLayout[me._regionName].show(me.getView(), {preventDestroy: true});
+                mainLayout[me._regionName].show(me.getView(), {forceShow: true});
             };
         }
         

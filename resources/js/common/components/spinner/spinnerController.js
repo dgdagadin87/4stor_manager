@@ -24,7 +24,6 @@ define([
         BaseController.call(this);
         
         this._model = new spinnerModel();
-        this._view = new spinnerView();
         
         this._init();
         this._bindEvents();
@@ -37,7 +36,7 @@ define([
     };
     
     spinnerController.prototype._init = function() {
-        this._view.model = this._model;
+        //this._view.model = this._model;
     };
     
     spinnerController.prototype._onViewRendered = function() {
@@ -50,7 +49,9 @@ define([
     
     spinnerController.prototype.showSpinner = function(region) {
         var mainLayout = Application.getMainLayout();
-        mainLayout.getView().showChildView(region, this.getView());
+        this._view = new spinnerView();
+        this._view.model = this._model;
+        mainLayout[region].show(this.getView(), {preventDestroy: true});
     };
     
     spinnerController.prototype.getModel = function() {
