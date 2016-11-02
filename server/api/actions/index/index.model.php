@@ -46,7 +46,20 @@ class indexModel {
                 'categoryName' => 'Истории из жизни',
                 'categoryUrl' => 'href1',
                 'categoryStors' => 777,
-                'stors' => array()
+                'stors' => array(
+                    array(
+                        'storId'         => 1,
+                        'storName'       => 'История 1',
+                        'storHref'       => 'link',
+                        'storShortDesc'  => 'Краткое описание',
+                        'storAuthorName' => 'Author',
+                        'storAuthorHref' => 'hhh',
+                        'storRate'       => 7,
+                        'storDate'       => 'date',
+                        'storWatches'    => 777,
+                        'storComments'   => 7
+                    )
+                )
             ),
             array(
                 'categoryId' => 2,
