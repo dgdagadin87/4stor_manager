@@ -50,8 +50,6 @@ define([
     spinnerController.prototype.showSpinner = function(region) {
         var mainLayout = Application.getMainLayout();
         var layoutView = mainLayout.getView();
-        console.log(mainLayout);
-        console.log(region);
         this._view = new spinnerView();
         this._view.on('render', this._onViewRendered.bind(this));
         this._view.model = this._model;
