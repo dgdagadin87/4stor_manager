@@ -4,17 +4,20 @@ define(
         'backbone',
         'marionette',
         './storItemView',
+        '../collections/storCollection',
         'text!modules/index/templates/indexItemTemplate.html'
     ], function (
         _,
         Backbone,
         Marionette,
         storItemView,
+        collection,
         template
     ) {
         return Backbone.Marionette.CompositeView.extend({
             tagName: "div",
             className: 'index-category-item',
+            collection: new collection(),
             childView: storItemView,
             childContainerView: '.index-category-stors',
             template: _.template(template),

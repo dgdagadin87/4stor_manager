@@ -50,15 +50,16 @@ define([
     indexController.prototype.showCurrentContent = function(poParams) {
         var me = this;
         var mainLayout = Application.getMainLayout();
+        var layoutView = mainLayout.getView();
         var lfRender;
         if (!this._isIndexRendered) {
             lfRender = function(){
-                mainLayout[me._regionName].show(me.getView(), {forceShow: true});
+                layoutView[me._regionName].show(me.getView(), {forceShow: true});
             };
         }
         else {
             lfRender = function(){
-                mainLayout[me._regionName].show(me.getView(), {forceShow: true});
+                layoutView[me._regionName].show(me.getView(), {forceShow: true});
             };
         }
         

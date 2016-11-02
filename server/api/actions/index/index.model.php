@@ -1,6 +1,6 @@
 <?php
 
-class commonModel {
+class indexModel {
     
     public $connection = null;
     
@@ -9,13 +9,13 @@ class commonModel {
         return $this->getIndex();
     }
     
-    public function getCommon () {
+    public function getIndex () {
         $laReturn = array(
             'success' => true,
             'message' => '',
             'data'    => array()
         );
-        $index = $this->getIndex();
+        $index = $this->getCatStors();
         if (!is_array($index)) {
             $laReturn['success'] = false;
             $laReturn['message'] = $index;
@@ -25,7 +25,7 @@ class commonModel {
         return $laReturn;
     }
     
-    public function getIndex() {
+    public function getCatStors() {
 //        $SQL = 'SELECT *, (SELECT COUNT(*) FROM `cats2stories` WHERE categories.catId = cats2stories.catId) AS numStors FROM `categories`';
 //        $Query = DB_Query ('mysql', $SQL, $this->connection);
 //        if (!$Query) {
@@ -44,20 +44,23 @@ class commonModel {
             array(
                 'categoryId' => 1,
                 'categoryName' => 'Истории из жизни',
-                'categoryHref' => 'href1',
-                'categoryStors' => 777
+                'categoryUrl' => 'href1',
+                'categoryStors' => 777,
+                'stors' => array()
             ),
             array(
                 'categoryId' => 2,
                 'categoryName' => 'Творческие истории',
-                'categoryHref' => 'href2',
-                'categoryStors' => 77
+                'categoryUrl' => 'href2',
+                'categoryStors' => 77,
+                'stors' => array()
             ),
             array(
                 'categoryId' => 3,
                 'categoryName' => 'Несерьезные истории',
-                'categoryHref' => 'href3',
-                'categoryStors' => 7
+                'categoryUrl' => 'href3',
+                'categoryStors' => 7,
+                'stors' => array()
             )
         );
         return $categories;
