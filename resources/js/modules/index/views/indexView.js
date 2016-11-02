@@ -3,32 +3,31 @@ define(
         'backbone',
         'marionette',
         'Application',
-        'text!common/components/header/templates/headerTemplate.html'
+        './indexItemView',
+        'text!modules/index/templates/indexTemplate.html'
     ], function(
         Backbone,
         Marionette,
         Application,
+        ItemView,
         template
     ) {
-        return Backbone.Marionette.ItemView.extend({
+        return Backbone.Marionette.CompositeView.extend({
             template : _.template(template),
 
+            childView: ItemView,
+            childViewContainer: ".index-list-container",
+
             tagName: 'div',
-            className: 'header-menu',
+            className: 'index-list',
 
             events : {
-                'click .header-menu-item' : 'onHeaderMenuClick'
             },
 
             initialize: function() {
             },
             
             onRender: function() {
-            },
-            
-            onHeaderMenuClick: function(ev) {
-                this.$('.header-menu-item').removeClass('active');
-                this.$(ev.currentTarget).addClass('active');
             },
             
             templateHelpers : function() {

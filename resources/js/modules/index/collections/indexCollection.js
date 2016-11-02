@@ -3,7 +3,7 @@ define(
         'jquery',
         'underscore',
         'backbone',
-        'common/modules/catlist/models/indexModel'
+        'modules/index/models/indexModel'
     ],
     function(
         $,
