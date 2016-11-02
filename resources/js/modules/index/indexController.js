@@ -8,7 +8,7 @@ define([
     'Application',
     'settings',
     '_base/BaseController',
-    'common/components/header/views/headerView'
+    'modules/index/views/indexView'
 ], function (
     _,
     Backbone,
@@ -17,7 +17,7 @@ define([
     Application,
     Settings,
     BaseController,
-    headerView
+    indexView
 ) {
     var indexController = function(poConfig) {
         
@@ -80,7 +80,7 @@ define([
         
         Application.trigger('spinner:large:show', this._regionName, 'Идет загрузка данных...');
         CoreUtils.axajQuery({
-            url: Settings.url.getCommonData
+            url: Settings.url.getIndexData
         },
         {
             afterSuccess: afterSuccess,

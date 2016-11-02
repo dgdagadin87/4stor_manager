@@ -7,7 +7,8 @@ define([
     'coreUtils',
     'Application',
     '_base/BaseController',
-    'settings'
+    'settings',
+    'modules/index/indexController'
 ], function (
     _,
     Backbone,
@@ -15,14 +16,12 @@ define([
     CoreUtils,
     Application,
     BaseController,
-    Settings
+    Settings,
+    indexModule
 ) {
     var contentController = function() {
         
         BaseController.call(this);
-        
-        var mainLayout = Application.getMainLayout();
-        this._regionManager = new regionManager(mainLayout);
         
         this._init();
         this._bindEvents();
@@ -34,6 +33,9 @@ define([
     };
     
     contentController.prototype._init = function() {
+        this._contentConstructors = {
+            index: indexModule
+        };
     };
     
     
@@ -48,12 +50,12 @@ define([
         }
         var regionName = lsClassPrefix+'Region';
 
-        className = lsClassPrefix+'Module';
+        className = lsClassPrefix;
         componentName = '_'+lsClassPrefix+'Component';
 
         // 1)set module
         if (!me[componentName]) {
-            me[componentName] = new className({
+            me[componentName] = new this._contentConstructors[className]({
                 regionName: regionName
             });
         }
