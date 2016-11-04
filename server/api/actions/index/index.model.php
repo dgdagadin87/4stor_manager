@@ -66,14 +66,40 @@ class indexModel {
                 'categoryName' => 'Творческие истории',
                 'categoryUrl' => 'href2',
                 'categoryStors' => 77,
-                'stors' => array()
+                'stors' => array(
+                    array(
+                        'storId'         => 1,
+                        'storName'       => 'История 1',
+                        'storHref'       => 'link',
+                        'storShortDesc'  => 'Краткое описание',
+                        'storAuthorName' => 'Author',
+                        'storAuthorHref' => 'hhh',
+                        'storRate'       => 7,
+                        'storDate'       => 'date',
+                        'storWatches'    => 777,
+                        'storComments'   => 7
+                    )
+                )
             ),
             array(
                 'categoryId' => 3,
                 'categoryName' => 'Несерьезные истории',
                 'categoryUrl' => 'href3',
                 'categoryStors' => 7,
-                'stors' => array()
+                'stors' => array(
+                    array(
+                        'storId'         => 1,
+                        'storName'       => 'История 1',
+                        'storHref'       => 'link',
+                        'storShortDesc'  => 'Краткое описание',
+                        'storAuthorName' => 'Author',
+                        'storAuthorHref' => 'hhh',
+                        'storRate'       => 7,
+                        'storDate'       => 'date',
+                        'storWatches'    => 777,
+                        'storComments'   => 7
+                    )
+                )
             )
         );
         return $categories;
