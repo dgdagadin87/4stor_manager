@@ -63,7 +63,6 @@ define(['underscore','jquery'], function(_,$) {
             if (!regionExists) {
                 this._addRegionToCache(regionName);
                 layoutView.addRegion(regionName, '#' + regionId);
-                console.log(regionName);
                 return (true);
             }
         } else {
@@ -75,12 +74,12 @@ define(['underscore','jquery'], function(_,$) {
         }
     };
 
-//    RegionManager.prototype.hideRegionByName = function(regionName) {
-//        var region = this._getRegionsFromContextInstance(regionName);
-//        if (region) {
-//            region.$el.hide();
-//        }
-//    };
+    RegionManager.prototype.hideRegionByName = function(regionName) {
+        var region = this._getContextInstance().getView()[regionName] || false;
+        if (region) {
+            region.$el.hide();
+        }
+    };
     
 //    RegionManager.prototype.showRegionByName = function(regionName, viewName) {
 //        var region = this._getRegionsFromContextInstance(regionName),
