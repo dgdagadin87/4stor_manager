@@ -3,17 +3,17 @@ define(
         'jquery',
         'underscore',
         'backbone',
-        'modules/index/models/storModel'
+        'modules/index/models/indexModel'
     ],
     function(
         $,
         _,
         Backbone,
-        storModel
+        indexModel
     ) {
         return Backbone.Collection.extend({
-            className : 'storCollection',
-            model: storModel
+            className : 'indexCollection',
+            model: indexModel
         });
     }
 );

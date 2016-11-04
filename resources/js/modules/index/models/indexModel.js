@@ -3,17 +3,13 @@
 define(
     [
         'underscore',
-        'backbone',
-        'backboneRelational',
-        './storModel'
+        'backbone'
     ],
     function(
         _,
-        Backbone,
-        BackboneRelational,
-        storModel
+        Backbone
     ) {
-        return Backbone.RelationalModel.extend({
+        return Backbone.Model.extend({
             className : 'indexModel',
             defaults : {
                 categoryId       : 0,
@@ -22,15 +18,7 @@ define(
                 categoryStors    : 0,
                 stors: []
             },
-            relations : [
-                {
-                    type : Backbone.HasMany,
-                    key : 'stors',
-                    relatedModel: storModel
-                }
-            ],
             initialize : function() {
-                Backbone.RelationalModel.prototype.initialize.apply(this, arguments);
             }
         });
     }
