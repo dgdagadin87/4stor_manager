@@ -5,7 +5,7 @@ class indexModel {
     public $connection = null;
     
     public function run () {
-        //$this->connect();
+        $this->connect();
         return $this->getIndex();
     }
     
@@ -26,83 +26,50 @@ class indexModel {
     }
     
     public function getCatStors() {
-//        $SQL = 'SELECT *, (SELECT COUNT(*) FROM `cats2stories` WHERE categories.catId = cats2stories.catId) AS numStors FROM `categories`';
-//        $Query = DB_Query ('mysql', $SQL, $this->connection);
-//        if (!$Query) {
-//            return 'Ошибка при получении списка категорий';
-//        }
-//        $categories = array();
-//        while($catData = DB_FetchAssoc ('mysql', $Query)) {
-//            $category = array();
-//            $category['categoryId'] = $catData['catId'];
-//            $category['categoryName'] = $catData['catName'];
-//            $category['categoryHref'] = $catData['catHref'];
-//            $category['categoryStors'] = $catData['numStors'];
-//            $categories[] = $category;
-//        }
-        $categories = array(
-            array(
-                'categoryId' => 1,
-                'categoryName' => 'Истории из жизни',
-                'categoryUrl' => 'href1',
-                'categoryStors' => 777,
-                'stors' => array(
-                    array(
-                        'storId'         => 1,
-                        'storName'       => 'История 1',
-                        'storHref'       => 'link',
-                        'storShortDesc'  => 'Краткое описание',
-                        'storAuthorName' => 'Author',
-                        'storAuthorHref' => 'hhh',
-                        'storRate'       => 7,
-                        'storDate'       => 'date',
-                        'storWatches'    => 777,
-                        'storComments'   => 7
-                    )
-                )
-            ),
-            array(
-                'categoryId' => 2,
-                'categoryName' => 'Творческие истории',
-                'categoryUrl' => 'href2',
-                'categoryStors' => 77,
-                'stors' => array(
-                    array(
-                        'storId'         => 1,
-                        'storName'       => 'История 1',
-                        'storHref'       => 'link',
-                        'storShortDesc'  => 'Краткое описание',
-                        'storAuthorName' => 'Author',
-                        'storAuthorHref' => 'hhh',
-                        'storRate'       => 7,
-                        'storDate'       => 'date',
-                        'storWatches'    => 777,
-                        'storComments'   => 7
-                    )
-                )
-            ),
-            array(
-                'categoryId' => 3,
-                'categoryName' => 'Несерьезные истории',
-                'categoryUrl' => 'href3',
-                'categoryStors' => 7,
-                'stors' => array(
-                    array(
-                        'storId'         => 1,
-                        'storName'       => 'История 1',
-                        'storHref'       => 'link',
-                        'storShortDesc'  => 'Краткое описание',
-                        'storAuthorName' => 'Author',
-                        'storAuthorHref' => 'hhh',
-                        'storRate'       => 7,
-                        'storDate'       => 'date',
-                        'storWatches'    => 777,
-                        'storComments'   => 7
-                    )
-                )
-            )
-        );
-        return $categories;
+        $SQL = ''
+            . '(SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE c2s.catId IN (5) ORDER BY c2s.storId, s.storDate DESC LIMIT 5) '
+            . 'UNION '
+            . '(SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE c2s.catId IN (6) ORDER BY c2s.storId, s.storDate DESC LIMIT 5) '
+            . 'UNION '
+            . '(SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE c2s.catId IN (16) ORDER BY c2s.storId, s.storDate DESC LIMIT 5)';
+        $Query = DB_Query ('mysql', $SQL, $this->connection);
+        if (!$Query) {
+            return 'Ошибка при получении данных главной страницы';
+        }
+        $tmpIndex = array();
+        while($Data = DB_FetchAssoc ('mysql', $Query)) {
+            $catId = $Data['cid'];
+            $storId = $Data['storId'];
+            if (!isset($tmpIndex[$catId])) {
+                $tmpIndex[$catId] = array(
+                    'categoryId' => $Data['cid'],
+                    'categoryName' => $Data['catName'],
+                    'categoryUrl'  => $Data['catHref'],
+                    'stors' => array()
+                );
+            }
+            if (!isset($tmpIndex[$catId]['stors'][$storId])) {
+                $tmpIndex[$catId]['stors'][$storId] = array(
+                    'storId'         => $storId,
+                    'storName'       => $Data['storName'],
+                    'storHref'       => $Data['storHref'],
+                    'storShortDesc'  => $Data['storDesc'],
+                    'storAuthorName' => 'Author',
+                    'storAuthorHref' => 'hhh',
+                    'storRate'       => $Data['storRate'],
+                    'storDate'       => $Data['storDate'],
+                    'storWatches'    => $Data['storWatches'],
+                    'storComments'   => $Data['storComments']
+                );
+            }
+        }
+        
+        $tmpIndex = array_values($tmpIndex);
+        foreach ($tmpIndex as $indexKey=>$indexValue) {
+            $tmpIndex[$indexKey]['stors'] = array_values($indexValue['stors']);
+        }
+        
+        return ($tmpIndex);
     }
     
     public function connect () {
@@ -113,4 +80,3 @@ class indexModel {
     }
     
 }
-
