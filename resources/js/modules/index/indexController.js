@@ -64,7 +64,6 @@ define([
         }
         
         var afterSuccess = function(data) {
-            console.log(data);
             var laData = data.data || [];
             var indexData = laData.index || [];
             var lbSuccess = data.success || false;
@@ -77,8 +76,9 @@ define([
                 lfRender();
             }
         };
-        var afterError = function(){
-            Application.trigger('error:modal:show', 'Ошибка на севере');
+        var afterError = function(data){
+            var lsMessage = data.message || '';
+            Application.trigger('error:modal:show', lsMessage);
         };
         
         Application.trigger('spinner:large:show', this._regionName, 'Идет загрузка данных...');
