@@ -53,22 +53,24 @@ define(['underscore','jquery'], function(_,$) {
 
         var region;
         var mainLayout = this._getContextInstance();
+        var layoutView = mainLayout.getView();
 
         var regionExists = this._ifRegionExists(regionName);
         var regionId = this.getRegionIdByName(regionName);
-        var regionDOM = $('#'+regionId);
+        var regionDOM = document.getElementById(regionId);
 
         if (regionDOM) {
             if (!regionExists) {
                 this._addRegionToCache(regionName);
-                mainLayout.addRegion(regionName, '#' + regionId);
+                layoutView.addRegion(regionName, '#' + regionId);
+                console.log(regionName);
                 return (true);
             }
         } else {
             regionDOM = document.createElement('div');
             regionDOM.id = regionId;
             $('#__CONTENT_CONTAINER__').append(regionDOM);
-            region = mainLayout.addRegion(regionName, '#' + regionId);
+            region = layoutView.addRegion(regionName, '#' + regionId);
             return (true);
         }
     };

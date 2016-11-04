@@ -13,7 +13,7 @@ define([
     'common/components/header/headerController',
     'common/components/crumbs/crumbsController',
     'common/components/catlist/catlistController',
-    'common/components/catlist/contentController',
+    'common/components/content/contentController',
     'common/components/spinner/spinnerController'
 ], function (
     _,
@@ -50,7 +50,7 @@ define([
         this._headerComponent = new headerComponent();
         this._crumbsComponent = new crumbsComponent();
         this._catlistComponent = new catlistComponent();
-        this._contentController = new contentController();
+        this._contentComponent = new contentController();
         this._largeSpinnerComponent = new spinnerComponent();
 
         this._init();
@@ -76,8 +76,8 @@ define([
 
     layoutController.prototype._onLargeSpinnerShow = function() {
         var args = arguments || [];
-        var region  = args[1] || '';
-        var message = args[2] || '';
+        var region  = args[0] || '';
+        var message = args[1] || '';
         this._largeSpinnerComponent.getModel().set({
             title:message,
             spinclass: 'large'

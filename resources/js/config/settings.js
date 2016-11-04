@@ -3,6 +3,7 @@ define({
 	"serverName" : "4stor.local"
     },
     "url": {
-        "getCommonData": "http://4stor.local/server/api/json.php?action=common"
+        "getCommonData": "http://localhost/server/api/json.php?action=common",
+        "getIndexData": "http://localhost/server/api/json.php?action=index",
     }
 });

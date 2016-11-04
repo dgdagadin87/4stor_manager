@@ -8,7 +8,7 @@ define([
     'Application',
     'settings',
     '_base/BaseController',
-    'common/components/header/views/headerView'
+    'modules/index/views/indexView'
 ], function (
     _,
     Backbone,
@@ -17,7 +17,7 @@ define([
     Application,
     Settings,
     BaseController,
-    headerView
+    indexView
 ) {
     var indexController = function(poConfig) {
         
@@ -50,27 +50,30 @@ define([
     indexController.prototype.showCurrentContent = function(poParams) {
         var me = this;
         var mainLayout = Application.getMainLayout();
+        var layoutView = mainLayout.getView();
         var lfRender;
         if (!this._isIndexRendered) {
             lfRender = function(){
-                mainLayout[me._regionName].show(me.getView(), {forceShow: true});
+                layoutView[me._regionName].show(me.getView(), {forceShow: true});
             };
         }
         else {
             lfRender = function(){
-                mainLayout[me._regionName].show(me.getView(), {forceShow: true});
+                layoutView[me._regionName].show(me.getView(), {forceShow: true});
             };
         }
         
         var afterSuccess = function(data) {
+            console.log(data);
             var laData = data.data || [];
+            var indexData = laData.index || [];
             var lbSuccess = data.success || false;
             var lsMessage = data.message || '';
             if (!lbSuccess) {
                 Application.trigger('error:modal:show', lsMessage);
             }
             else {
-                me.getView().collection.set(laData);
+                me.getView().collection.set(indexData);
                 lfRender();
             }
         };
@@ -80,7 +83,7 @@ define([
         
         Application.trigger('spinner:large:show', this._regionName, 'Идет загрузка данных...');
         CoreUtils.axajQuery({
-            url: Settings.url.getCommonData
+            url: Settings.url.getIndexData
         },
         {
             afterSuccess: afterSuccess,

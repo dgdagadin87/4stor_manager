@@ -3,7 +3,7 @@ define(
         'underscore',
         'backbone',
         'marionette',
-        'text!modules/index/templates/catlistItemTemplate.html'
+        'text!modules/index/templates/storItemTemplate.html'
     ], function (
         _,
         Backbone,
