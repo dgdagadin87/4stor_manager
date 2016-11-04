@@ -15,7 +15,6 @@ define(
                 categoryId       : 0,
                 categoryUrl      : '',
                 categoryName     : '',
-                categoryStors    : 0,
                 stors: []
             },
             initialize : function() {
