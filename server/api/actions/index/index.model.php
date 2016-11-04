@@ -4,8 +4,13 @@ class indexModel {
     
     public $connection = null;
     
+    public $lifeHistoriesId = null;
+    public $artHistoriesId  = null;
+    public $natHistoriesId  = null;
+    
     public function run () {
         $this->connect();
+        $this->setCatsIdByName();
         return $this->getIndex();
     }
     
@@ -25,13 +30,34 @@ class indexModel {
         return $laReturn;
     }
     
+    public function setCatsIdByName () {
+        $SQL = 'SELECT catId, catName FROM categories WHERE catName IN (\'Творческие истории\', \'Природные аномальные явления\', \'Истории из жизни\')';
+        $Query = DB_Query ('mysql', $SQL, $this->connection);
+        if (!$Query) {
+            return 'Ошибка при получении данных категорий';
+        }
+        while($Data = DB_FetchAssoc ('mysql', $Query)) {
+            $catId = $Data['catId'];
+            $catName = $Data['catName'];
+            if ($catName === 'Творческие истории') {
+                $this->artHistoriesId = $catId;
+            }
+            if ($catName === 'Природные аномальные явления') {
+                $this->natHistoriesId = $catId;
+            }
+            if ($catName === 'Истории из жизни') {
+                $this->lifeHistoriesId = $catId;
+            }
+        }
+    }
+
     public function getCatStors() {
         $SQL = ''
-            . '(SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE c2s.catId IN (5) ORDER BY c2s.storId, s.storDate DESC LIMIT 5) '
+            . '(SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE c2s.catId IN (' . $this->lifeHistoriesId . ') ORDER BY s.storDate DESC LIMIT 5) '
             . 'UNION '
-            . '(SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE c2s.catId IN (6) ORDER BY c2s.storId, s.storDate DESC LIMIT 5) '
+            . '(SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE c2s.catId IN (' . $this->artHistoriesId . ') ORDER BY s.storDate DESC LIMIT 5) '
             . 'UNION '
-            . '(SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE c2s.catId IN (16) ORDER BY c2s.storId, s.storDate DESC LIMIT 5)';
+            . '(SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE c2s.catId IN (' . $this->lifeHistoriesId . ') ORDER BY s.storDate DESC LIMIT 5)';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
             return 'Ошибка при получении данных главной страницы';
