@@ -27,6 +27,7 @@ define([
         BaseController.call(this);
         
         this._isIndexRendered = false;
+        this._isDataLoaded = false;
 
         this._view = new indexView();
         
@@ -63,32 +64,37 @@ define([
             };
         }
         
-        var afterSuccess = function(data) {
-            var laData = data.data || [];
-            var indexData = laData.index || [];
-            var lbSuccess = data.success || false;
-            var lsMessage = data.message || '';
-            if (!lbSuccess) {
+        if (!me._isDataLoaded) {
+            var afterSuccess = function(data) {
+                var laData = data.data || [];
+                var indexData = laData.index || [];
+                var lbSuccess = data.success || false;
+                var lsMessage = data.message || '';
+                if (!lbSuccess) {
+                    Application.trigger('error:modal:show', lsMessage);
+                }
+                else {
+                    me._isDataLoaded = true;
+                    me.getView().collection.set(indexData);
+                    lfRender();
+                }
+            };
+            var afterError = function(data){
+                var lsMessage = data.message || '';
                 Application.trigger('error:modal:show', lsMessage);
-            }
-            else {
-                me.getView().collection.set(indexData);
-                lfRender();
-            }
-        };
-        var afterError = function(data){
-            var lsMessage = data.message || '';
-            Application.trigger('error:modal:show', lsMessage);
-        };
-        
-        Application.trigger('spinner:large:show', this._regionName, 'Идет загрузка данных...');
-        CoreUtils.axajQuery({
-            url: Settings.url.getIndexData
-        },
-        {
-            afterSuccess: afterSuccess,
-            afterError: afterError
-        });
+            };
+            Application.trigger('spinner:large:show', this._regionName, 'Идет загрузка данных...');
+            CoreUtils.axajQuery({
+                url: Settings.url.getIndexData
+            },
+            {
+                afterSuccess: afterSuccess,
+                afterError: afterError
+            });
+        }
+        else {
+            lfRender();
+        }
     };
 
     indexController.prototype.renderView = function() {
