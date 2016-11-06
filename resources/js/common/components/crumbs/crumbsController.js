@@ -48,7 +48,6 @@ define([
     };
     
     crumbsController.prototype.showBreadCrumbs = function(paData) {
-        console.log(paData);
         var mainLayout = Application.getMainLayout();
         var view = this.getView();
         view.collection.set(paData);
