@@ -65,6 +65,7 @@ define([
         Application.on('error:modal:show', this._onModalErrorShow.bind(this));
         Application.on('breadcrumbs:show', this._onBreadCrumbsShow.bind(this));
         Application.on('breadcrumbs:hide', this._onBreadCrumbsHide.bind(this));
+        Application.on('content:hide', this._onContentHide.bind(this));
     };
 
     layoutController.prototype._init = function() {
@@ -84,6 +85,10 @@ define([
         this._crumbsComponent.hideBreadCrumbs();
     };
 
+    layoutController.prototype._onContentHide = function() {
+        this._regionManager.hideContentRegions();
+    };
+
     layoutController.prototype._onLargeSpinnerShow = function() {
         var args = arguments || [];
         var region  = args[0] || '';
@@ -97,7 +102,6 @@ define([
 
     layoutController.prototype._renderComponents = function() {
         this._headerComponent.showHeader();
-        //this._crumbsComponent.showBreadCrumbs();
         this._catlistComponent.showCategoryList(this._commonData.categories);
         this._contentComponent.showContent(this._currentPage, {});
     };

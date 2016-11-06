@@ -1,6 +1,6 @@
 "use strict";
 
-define(['underscore','jquery'], function(_,$) {
+define(['underscore','jquery','coreUtils'], function(_,$,CoreUtils) {
 
     var RegionManager = function(context) {
 
@@ -63,15 +63,23 @@ define(['underscore','jquery'], function(_,$) {
             if (!regionExists) {
                 this._addRegionToCache(regionName);
                 layoutView.addRegion(regionName, '#' + regionId);
-                return (true);
             }
         } else {
             regionDOM = document.createElement('div');
             regionDOM.id = regionId;
             $('#__CONTENT_CONTAINER__').append(regionDOM);
+            this._addRegionToCache(regionName);
             region = layoutView.addRegion(regionName, '#' + regionId);
-            return (true);
         }
+        
+        this.hideContentRegions();
+        if (CoreUtils.isEmpty(region)) {
+            region = this._getContextInstance().getView()[regionName] || false;
+        }
+        if (region) {
+            region.$el.show();
+        }
+        
     };
 
     RegionManager.prototype.hideRegionByName = function(regionName) {
@@ -81,16 +89,13 @@ define(['underscore','jquery'], function(_,$) {
         }
     };
     
-//    RegionManager.prototype.showRegionByName = function(regionName, viewName) {
-//        var region = this._getRegionsFromContextInstance(regionName),
-//            cachedView = this._getViewByNameInCache(viewName);
-//        if (region) {
-//            region.$el.show();
-//            if (cachedView) {
-//                region.show(cachedView);
-//            }
-//        }
-//    };
+    RegionManager.prototype.hideContentRegions = function() {
+        var cachedRegions = this._getCachedRegions();
+        var me = this;
+        _.each (cachedRegions, function(regionName){
+            me.hideRegionByName(regionName);
+        });
+    };
 
     return RegionManager;
 });
