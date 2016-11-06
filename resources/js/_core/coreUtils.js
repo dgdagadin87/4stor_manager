@@ -13,6 +13,10 @@ define([
 ) {
     return {
 
+        setTitle: function (title) {
+            $('title').text(title);
+        },
+
         getCurrentRoute : function(){
             return Backbone.history.fragment;
         },

@@ -21,6 +21,8 @@ define([
 ) {
     var indexController = function(poConfig) {
         
+        CoreUtils.setTitle('Страшные истории - главная страница');
+        
         var loConfig = poConfig || {};
         this._regionName = loConfig.regionName;
         
@@ -87,7 +89,7 @@ define([
                 var lsMessage = data.message || '';
                 Application.trigger('error:modal:show', lsMessage);
             };
-            //Application.trigger('breadcrumbs:hide');
+            Application.trigger('breadcrumbs:hide');
             Application.trigger('spinner:large:show', this._regionName, 'Идет загрузка данных...');
             CoreUtils.axajQuery({
                 url: Settings.url.getIndexData
