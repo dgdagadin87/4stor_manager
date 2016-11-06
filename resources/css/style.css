@@ -43,3 +43,14 @@ body, html {
     background: #FFF url('../img/large-preloader.gif') no-repeat;
 }
 
+.index-category-item {
+    margin-top:20px;
+}
+.index-category-item .index-category-title a.title {
+    color: #AA0000;
+    font-size: 23px;
+}
+
+.breadcrumbs-container {
+    border:1px solid black;
+}

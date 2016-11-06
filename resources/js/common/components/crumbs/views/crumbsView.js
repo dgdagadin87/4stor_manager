@@ -1,20 +1,29 @@
 define(
     [
+        'underscore',
         'backbone',
         'marionette',
-        'Application',
+        'common/components/crumbs/views/crumbsItemView',
+        'common/components/crumbs/collections/crumbsCollection',
         'text!common/components/crumbs/templates/crumbsTemplate.html'
     ], function(
+        _,
         Backbone,
         Marionette,
-        Application,
+        CrumbsItemView,
+        collection,
         template
     ) {
-        return Backbone.Marionette.ItemView.extend({
+        return Backbone.Marionette.CompositeView.extend({
             template : _.template(template),
 
             tagName: 'div',
             className: 'breadcrumbs',
+
+            childView: CrumbsItemView,
+            childViewContainer: ".breadcrumbs-container",
+
+            collection: new collection(),
 
             events : {
             },

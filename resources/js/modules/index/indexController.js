@@ -28,6 +28,7 @@ define([
         
         this._isIndexRendered = false;
         this._isDataLoaded = false;
+        this._breadCrumbs = [];
 
         this._view = new indexView();
         
@@ -68,6 +69,7 @@ define([
             var afterSuccess = function(data) {
                 var laData = data.data || [];
                 var indexData = laData.index || [];
+                var breadCrumbsData = laData.breadcrumbs || [];
                 var lbSuccess = data.success || false;
                 var lsMessage = data.message || '';
                 if (!lbSuccess) {
@@ -75,6 +77,8 @@ define([
                 }
                 else {
                     me._isDataLoaded = true;
+                    me._breadCrumbs = breadCrumbsData;
+                    Application.trigger('breadcrumbs:show', breadCrumbsData);
                     me.getView().collection.set(indexData);
                     lfRender();
                 }
@@ -83,6 +87,7 @@ define([
                 var lsMessage = data.message || '';
                 Application.trigger('error:modal:show', lsMessage);
             };
+            //Application.trigger('breadcrumbs:hide');
             Application.trigger('spinner:large:show', this._regionName, 'Идет загрузка данных...');
             CoreUtils.axajQuery({
                 url: Settings.url.getIndexData
@@ -93,6 +98,7 @@ define([
             });
         }
         else {
+            Application.trigger('breadcrumbs:show', me._breadCrumbs);
             lfRender();
         }
     };

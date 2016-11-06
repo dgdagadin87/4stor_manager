@@ -27,6 +27,7 @@ class indexModel {
             return $laReturn;
         }
         $laReturn['data']['index'] = $index;
+        $laReturn['data']['breadcrumbs'] = $this->getBreadCrumbs();
         return $laReturn;
     }
     
@@ -126,6 +127,16 @@ class indexModel {
         }
         
         return ($tmpIndex);
+    }
+    
+    public function getBreadCrumbs () {
+        return array(
+            array(
+                'isMain' => true,
+                'url' => '',
+                'name' => 'Главная страница'
+            )
+        );
     }
     
     public function connect () {

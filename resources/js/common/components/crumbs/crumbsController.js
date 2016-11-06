@@ -47,9 +47,17 @@ define([
         this.getView().render();
     };
     
-    crumbsController.prototype.showBreadCrumbs = function() {
+    crumbsController.prototype.showBreadCrumbs = function(paData) {
+        console.log(paData);
         var mainLayout = Application.getMainLayout();
-        mainLayout.getView().showChildView('crumbsRegion', this.getView());
+        var view = this.getView();
+        view.collection.set(paData);
+        mainLayout.getView()['crumbsRegion'].show(view);
+    };
+    
+    crumbsController.prototype.hideBreadCrumbs = function() {
+        var mainLayout = Application.getMainLayout();
+        mainLayout._regionManager.hideRegionByName('crumbsRegion');
     };
     
     crumbsController.prototype.getModel = function() {
