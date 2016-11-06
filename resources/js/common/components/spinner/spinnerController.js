@@ -40,7 +40,6 @@ define([
     };
     
     spinnerController.prototype._onViewRendered = function() {
-        console.log('spinner is rendered');
     };
 
     spinnerController.prototype.renderView = function() {
