@@ -20,6 +20,7 @@ body, html {
 }
 .main-content{
     padding: 10px;
+    padding-left: 20px;
     background-color:#fff;
     margin-left:202px;
 }
@@ -49,6 +50,23 @@ body, html {
 .index-category-item .index-category-title a.title {
     color: #AA0000;
     font-size: 23px;
+}
+
+.index-category-item .index-stor-item {
+    margin-top:10px;
+    padding:10px;
+    border:1px solid green;
+    border-radius:6px;
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5);;
+}
+.index-category-item .index-stor-item .index-stor-bottom {
+    border-top:1px solid orange;
+}
+.index-category-item .index-stor-item .plus-rate {
+    color:green;
+}
+.index-category-item .index-stor-item .minus-rate {
+    color:red;
 }
 
 .breadcrumbs-container {
