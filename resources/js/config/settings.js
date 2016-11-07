@@ -1,6 +1,10 @@
 define({
     "defaults" : {
-	"serverName" : "4stor.local"
+	"serverName" : "4stor.local",
+        "numStart" : 2,
+        "numEnd" : 2,
+        "numLeft" : 2,
+        "numRight" : 2
     },
     "url": {
         "getCommonData": "http://4stor.local/server/api/json.php?action=common",

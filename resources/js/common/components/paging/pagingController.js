@@ -6,7 +6,9 @@ define([
     'jquery',
     'coreUtils',
     'Application',
+    'settings',
     '_base/BaseController',
+    'common/components/paging/models/pagingModel',
     'common/components/paging/views/pagingView'
 ], function (
     _,
@@ -14,14 +16,25 @@ define([
     $,
     CoreUtils,
     Application,
+    Settings,
     BaseController,
+    pagingModel,
     pagingView
 ) {
-    var pagingController = function() {
+    var pagingController = function(poConfig) {
+        
+        var loConfig = poConfig || {};
+        
+        this._numStart = loConfig.numStart || Settings.defaults.numStart;
+        this._numEnd   = loConfig.numEnd   || Settings.defaults.numEnd;
+        this._numLeft  = loConfig.numLeft  || Settings.defaults.numLeft;
+        this._numRight = loConfig.numRight || Settings.defaults.numRight;
         
         BaseController.call(this);
         
         this._isPagingRendered = false;
+
+        this._model = new pagingView();
 
         this._view = new pagingView();
         
@@ -36,6 +49,11 @@ define([
     };
     
     pagingController.prototype._init = function() {
+        var me = this;
+        this._view.model = this._model;
+        _.each(['Start','End','Left','Right'], function(name){
+            me._view['_num'+name] = me['_num'+name];
+        });
     };
     
     pagingController.prototype._onViewRendered = function() {
