@@ -32,7 +32,7 @@ define([
         this._isDataLoaded = false;
         this._breadCrumbs = [];
 
-        this._view = new indexView();
+        this._view = new storlistView();
         
         this._init();
         this._bindEvents();

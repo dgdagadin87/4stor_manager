@@ -8,7 +8,8 @@ define([
     'Application',
     '_base/BaseController',
     'settings',
-    'modules/index/indexController'
+    'modules/index/indexController',
+    'modules/storlist/storlistController'
 ], function (
     _,
     Backbone,
@@ -17,7 +18,8 @@ define([
     Application,
     BaseController,
     Settings,
-    indexModule
+    indexModule,
+    storlistModule
 ) {
     var contentController = function() {
         
@@ -34,7 +36,8 @@ define([
     
     contentController.prototype._init = function() {
         this._contentConstructors = {
-            index: indexModule
+            index: indexModule,
+            category: storlistModule
         };
     };
     
@@ -47,6 +50,9 @@ define([
         var componentName, className;
         if (psAction === 'index') {
             lsClassPrefix = 'index';
+        }
+        else if (psAction === 'category') {
+            lsClassPrefix = 'category';
         }
         var regionName = lsClassPrefix+'Region';
 

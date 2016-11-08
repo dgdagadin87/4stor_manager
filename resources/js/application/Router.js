@@ -8,9 +8,10 @@ define(
     ) {
         return Backbone.Marionette.AppRouter.extend({
             appRoutes : {
-                ""         : "index",
-                "search"   : "search",
-                "settings" : "settings"
+                ""             : "index",
+                "category/:id" : "category",
+                "search"       : "search",
+                "settings"     : "settings"
             }
         });
     }

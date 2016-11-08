@@ -89,7 +89,6 @@ define([
                 var lsMessage = data.message || '';
                 Application.trigger('error:modal:show', lsMessage);
             };
-            //Application.trigger('content:hide');
             Application.trigger('breadcrumbs:hide');
             Application.trigger('spinner:large:show', this._regionName, 'Идет загрузка данных...');
             CoreUtils.axajQuery({

@@ -35,6 +35,10 @@ define(
             
             best : function() {
                 this._layout.showComponents('best');
+            },
+            
+            category : function(catId) {
+                this._layout.showComponents('best');
             }
         });
     }
