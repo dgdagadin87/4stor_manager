@@ -40,8 +40,6 @@ class indexModel {
         $authors = array();
         while($Data = DB_FetchAssoc ('mysql', $Query)) {
             $authorId = $Data['authorId'];
-            $authorName = $Data['authorName'];
-            $authorHref = $Data['authorHref'];
             $authors[$authorId] = array(
                 'authorName' => $Data['authorName'],
                 'authorHref' => $Data['authorHref'],
