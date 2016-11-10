@@ -31,7 +31,7 @@ define(
             },
             
             templateHelpers : function() {
-                return {}
+                return {};
             }
         });
     }
