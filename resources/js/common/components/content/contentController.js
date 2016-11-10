@@ -9,7 +9,7 @@ define([
     '_base/BaseController',
     'settings',
     'modules/index/indexController',
-    'modules/storlist/storlistController'
+    'modules/category/categoryController'
 ], function (
     _,
     Backbone,
@@ -19,7 +19,7 @@ define([
     BaseController,
     Settings,
     indexModule,
-    storlistModule
+    categoryModule
 ) {
     var contentController = function() {
         
@@ -37,7 +37,7 @@ define([
     contentController.prototype._init = function() {
         this._contentConstructors = {
             index: indexModule,
-            category: storlistModule
+            category: categoryModule
         };
     };
     

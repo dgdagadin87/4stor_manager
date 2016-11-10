@@ -8,7 +8,7 @@ define([
     'Application',
     'settings',
     '_base/BaseController'
-    //'modules/storelist/views/storlistView'
+    //'modules/storelist/views/categoryView'
 ], function (
     _,
     Backbone,
@@ -17,9 +17,9 @@ define([
     Application,
     Settings,
     BaseController
-    //storlistView
+    //categoryView
 ) {
-    var storlistController = function(poConfig) {
+    var categoryController = function(poConfig) {
         
         CoreUtils.setTitle('Страшные истории - страница категории ""');
         
@@ -28,35 +28,40 @@ define([
         
         BaseController.call(this);
         
+        this._categoryId = null;
+        
         this._isStorlistRendered = false;
         this._isDataLoaded = false;
         this._breadCrumbs = [];
 
-        //this._view = new storlistView();
+        //this._view = new categoryView();
         
         this._init();
         this._bindEvents();
     };
  
-    storlistController.prototype = Object.create(BaseController.prototype);
+    categoryController.prototype = Object.create(BaseController.prototype);
     
     storlistController.prototype._bindEvents = function() {
         //this._view.on('render', this._onViewRendered.bind(this));
     };
     
-    storlistController.prototype._init = function() {
+    categoryController.prototype._init = function() {
     };
     
-    storlistController.prototype._onViewRendered = function() {
-        this._isStorlistRendered = true;
+    categoryController.prototype._onViewRendered = function() {
+        this._isCategoryRendered = true;
         
     };
     
-    storlistController.prototype.showCurrentContent = function(poParams) {
-        console.log(poParams);
+    categoryController.prototype.showCurrentContent = function(poParams) {
+        var catId = poParams.categoryId || 0;
+        if (catId !== this._categoryId) {
+            this._categoryId = catId;
+        }
     };
 
-//    storlistController.prototype.showCurrentContent = function(poParams) {
+//    categoryController.prototype.showCurrentContent = function(poParams) {
 //        var me = this;
 //        var mainLayout = Application.getMainLayout();
 //        var layoutView = mainLayout.getView();
@@ -107,13 +112,13 @@ define([
 //        }
 //    };
 
-    storlistController.prototype.renderView = function() {
+    categoryController.prototype.renderView = function() {
         this.getView().render();
     };
     
-    storlistController.prototype.getModel = function() {
+    categoryController.prototype.getModel = function() {
         return this._model;
     };
 
-   return storlistController;
+   return categoryController;
 });
