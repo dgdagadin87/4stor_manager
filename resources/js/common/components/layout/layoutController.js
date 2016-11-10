@@ -37,6 +37,8 @@ define([
 
         this._regionManager = new regionManager(this);
 
+        this._urlParams = {};
+
         this._currentPage = '';
         
         this._isLayoutRendered = false;
@@ -96,9 +98,10 @@ define([
     };
 
     layoutController.prototype._renderComponents = function() {
+        var params = this._urlParams;
         this._headerComponent.showHeader();
         this._catlistComponent.showCategoryList(this._commonData.categories);
-        this._contentComponent.showContent(this._currentPage, {});
+        this._contentComponent.showContent(this._currentPage, params);
     };
 
     layoutController.prototype._onViewRendered = function() {
@@ -106,8 +109,10 @@ define([
         this._renderComponents();
     };
 
-    layoutController.prototype.showComponents = function(action){
+    layoutController.prototype.showComponents = function(action, params){
         var me = this;
+        var loParams = params || {};
+        me._urlParams = loParams;
         var showParts = function() {
             if (me._isLayoutRendered) {
                 me._renderComponents();
@@ -129,8 +134,6 @@ define([
                 me._commonData = commonData;
                 showParts();
             }
-            
-            
         };
         var afterError = function(){
             Application.trigger('error:modal:show', 'Ошибка на севере');

@@ -22,23 +22,25 @@ define(
             },
 
             index : function() {
-                this._layout.showComponents('index');
+                this._layout.showComponents('index', {});
             },
             
             search : function() {
-                this._layout.showComponents('search');
+                this._layout.showComponents('search', {});
             },
             
             settings : function() {
-                this._layout.showComponents('settings');
+                this._layout.showComponents('settings', {});
             },
             
             best : function() {
-                this._layout.showComponents('best');
+                this._layout.showComponents('best', {});
             },
             
             category : function(catId) {
-                this._layout.showComponents('best');
+                this._layout.showComponents('category', {
+                    categoryId: catId
+                });
             }
         });
     }
