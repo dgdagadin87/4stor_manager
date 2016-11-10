@@ -4,6 +4,8 @@ class indexModel {
     
     public $connection = null;
     
+    public $categories = array();
+    
     public $lifeHistoriesId = null;
     public $artHistoriesId  = null;
     public $natHistoriesId  = null;
@@ -30,6 +32,27 @@ class indexModel {
         $laReturn['data']['breadcrumbs'] = $this->getBreadCrumbs();
         return $laReturn;
     }
+
+    public function getFullStorCatList ($storIds) {
+        $laStors = array();
+        $SQL = 'SELECT catId, storId FROM cats2stories WHERE storId IN (' . implode(',', $storIds) . ')';
+        $Query = DB_Query ('mysql', $SQL, $this->connection);
+        if (!$Query) {
+            return 'Ошибка при получении полного списка категорий рассказов';
+        }
+        while($Data = DB_FetchAssoc ('mysql', $Query)) {
+            $storId = $Data['storId'];
+            $catId  = $Data['catId'];
+            if (!isset($laStors[$storId])) {
+                $laStors[$storId] = array();
+            }
+            $laStors[$storId][] = array(
+                'catId' => $catId,
+                'catName' => $this->categories[$catId]
+            );
+        }
+        return $laStors;
+    }
     
     public function getAuthors ($authorIds) {
         $SQL = 'SELECT * FROM authors WHERE authorId IN (' . implode(',', $authorIds) . ')';
@@ -49,7 +72,7 @@ class indexModel {
     }
     
     public function setCatsIdByName () {
-        $SQL = 'SELECT catId, catName FROM categories WHERE catName IN (\'Творческие истории\', \'Природные аномальные явления\', \'Истории из жизни\')';
+        $SQL = 'SELECT catId, catName FROM categories';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
             return 'Ошибка при получении данных категорий';
@@ -57,6 +80,9 @@ class indexModel {
         while($Data = DB_FetchAssoc ('mysql', $Query)) {
             $catId = $Data['catId'];
             $catName = $Data['catName'];
+            
+            $this->categories[$catId] = $catName;
+            
             if ($catName === 'Творческие истории') {
                 $this->artHistoriesId = $catId;
             }
@@ -82,9 +108,13 @@ class indexModel {
         }
         $tmpIndex = array();
         $authorIds = array();
+        
+        $storIds = array();
+        
         while($Data = DB_FetchAssoc ('mysql', $Query)) {
             $catId = $Data['cid'];
             $storId = $Data['storId'];
+            $storIds[] = $storId;
             if (!array_key_exists($Data['storAuthorId'], $authorIds)) {
                 $authorIds[] = $Data['storAuthorId'];
             }
@@ -108,19 +138,22 @@ class indexModel {
                     'storRate'       => $Data['storRate'],
                     'storDate'       => $Data['storDate'],
                     'storWatches'    => $Data['storWatches'],
-                    'storComments'   => $Data['storComments']
+                    'storComments'   => $Data['storComments'],
+                    'storCats'       => array()
                 );
             }
         }
         
+        $cats = $this->getFullStorCatList($storIds);
         $authors = $this->getAuthors($authorIds);
-        
+
         $tmpIndex = array_values($tmpIndex);
         foreach ($tmpIndex as $indexKey=>$indexValue) {
             $tmpIndex[$indexKey]['stors'] = array_values($indexValue['stors']);
             foreach ($tmpIndex[$indexKey]['stors'] as $k=>$v) {
                 $tmpIndex[$indexKey]['stors'][$k]['storAuthorName'] = $authors[$v['storAuthorId']]['authorName'];
                 $tmpIndex[$indexKey]['stors'][$k]['storAuthorHref'] = $authors[$v['storAuthorId']]['authorHref'];
+                $tmpIndex[$indexKey]['stors'][$k]['storCats'] = $cats[$v['storId']];
             }
         }
         
