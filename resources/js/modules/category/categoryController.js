@@ -42,7 +42,7 @@ define([
  
     categoryController.prototype = Object.create(BaseController.prototype);
     
-    storlistController.prototype._bindEvents = function() {
+    categoryController.prototype._bindEvents = function() {
         //this._view.on('render', this._onViewRendered.bind(this));
     };
     
