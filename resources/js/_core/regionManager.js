@@ -37,8 +37,8 @@ define(['underscore','jquery','coreUtils'], function(_,$,CoreUtils) {
             case 'index':
             default:
                 return 'index-region';
-            case 'storelist':
-                return 'storelist-region';
+            case 'category':
+                return 'category-region';
         }
     };
     
