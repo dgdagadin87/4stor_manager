@@ -107,6 +107,7 @@ class categoryModel {
             return $laReturn;
         }
         $laReturn['data']['category'] = $stors;
+        $laReturn['data']['breadcrumbs'] = $this->getBreadCrumbs();
         $laReturn['data']['paging'] = array(
             'page' => $this->curPage,
             'numPages' => $this->numPages
@@ -154,6 +155,21 @@ class categoryModel {
         }
         
         return $stors;
+    }
+    
+    public function getBreadCrumbs () {
+        return array(
+            array(
+                'isMain' => true,
+                'url' => '',
+                'name' => 'Главная страница'
+            ),
+            array(
+                'isMain' => false,
+                'url' => 'category/' . $this->categoryId,
+                'name' => $this->categoryName
+            )
+        );
     }
     
     public function getSortByArray() {
