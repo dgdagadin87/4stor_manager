@@ -49,11 +49,12 @@ class categoryModel {
         if ($categoryId < 1) {
             return 'Не определена категория';
         }
-        
+
         // количество историй в категории
-        $SQL = 'SELECT COUNT(*) FROM `stories` WHERE `catId` = ' . $categoryId;
+        $SQL = 'SELECT COUNT(*) FROM `cats2stories` WHERE catId = ' . $categoryId;
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
+            var_dump($SQL);exit;
             return 'Ошибка при получении количества историй в категории';
         }
         $numStores = DB_Result ('mysql', $Query, 0, 0);
@@ -72,6 +73,7 @@ class categoryModel {
         $this->categoryId = $categoryId;
         $this->curPage = $page;
         $this->numPages = $numPages;
+        
     }
     
     public function getAuthors ($authorIds) {
