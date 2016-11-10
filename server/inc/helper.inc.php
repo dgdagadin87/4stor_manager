@@ -17,7 +17,8 @@ class Helper {
     public static function Main_GetActions () {
         return array(
             'index',
-            'common'
+            'common',
+            'category'
         );
     }
     

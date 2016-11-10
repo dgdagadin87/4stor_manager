@@ -106,7 +106,7 @@ class categoryModel {
             $laReturn['message'] = $stors;
             return $laReturn;
         }
-        $laReturn['data']['stors'] = $stors;
+        $laReturn['data']['category'] = $stors;
         $laReturn['data']['paging'] = array(
             'page' => $this->curPage,
             'numPages' => $this->numPages
