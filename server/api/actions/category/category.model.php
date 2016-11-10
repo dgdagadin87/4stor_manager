@@ -18,6 +18,27 @@ class categoryModel {
         return $this->getCategory();
     }
     
+    public function getFullStorCatList ($storIds) {
+        $laStors = array();
+        $SQL = 'SELECT catId, storId FROM cats2stories WHERE storId IN (' . implode(',', $storIds) . ')';
+        $Query = DB_Query ('mysql', $SQL, $this->connection);
+        if (!$Query) {
+            return 'Ошибка при получении полного списка категорий рассказов';
+        }
+        while($Data = DB_FetchAssoc ('mysql', $Query)) {
+            $storId = $Data['storId'];
+            $catId  = $Data['catId'];
+            if (!isset($laStors[$storId])) {
+                $laStors[$storId] = array();
+            }
+            $laStors[$storId][] = array(
+                'catId' => $catId,
+                'catName' => $this->categories[$catId]
+            );
+        }
+        return $laStors;
+    }
+    
     public function getMeta() {
         // сортировка
         $sortBy = isset($_GET['sortBy']) && in_array($_GET['sortBy'], $this->getSortByArray()) ? $_GET['sortBy'] : 'storDate';
@@ -103,7 +124,9 @@ class categoryModel {
         
         $authors = array();
         $stors   = array();
+        $storIds = array();
         while($Data = DB_FetchAssoc ('mysql', $Query)) {
+            $storIds[] = $Data['storId'];
             $authors[] = $Data['storAuthorId'];
             $stors[] = array(
                 'storId'         => $Data['storId'],
@@ -116,13 +139,18 @@ class categoryModel {
                 'storRate'       => $Data['storRate'],
                 'storDate'       => $Data['storDate'],
                 'storWatches'    => $Data['storWatches'],
-                'storComments'   => $Data['storComments']
+                'storComments'   => $Data['storComments'],
+                'storCats'       => array()
             );
         }
+        
+        $cats = $this->getFullStorCatList($storIds);
+        $authors = $this->getAuthors($authors);
         
         foreach ($stors as $storKey=>$storData) {
             $stors[$storKey]['storAuthorName'] = $authors[$storData['storAuthorId']]['storAuthorName'];
             $stors[$storKey]['storAuthorHref'] = $authors[$storData['storAuthorId']]['storAuthorHref'];
+            $stors[$storKey]['storCats'] = $cats[$storData['storId']];
         }
         
         return $stors;
