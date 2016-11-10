@@ -60,7 +60,7 @@ define([
             var queryConfig = {
                     type: 'GET',
                     async: true,
-                    //cache: false,
+                    cache: false,
                     dataType: 'json',
                     headers: {
                     },
