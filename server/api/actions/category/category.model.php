@@ -4,6 +4,8 @@ class categoryModel {
     
     public $connection = null;
     
+    public $categories = array();
+    
     public $categoryId   = null;
     public $categoryName = null;
     
@@ -22,7 +24,7 @@ class categoryModel {
         $laStors = array();
         $SQL = 'SELECT catId, storId FROM cats2stories WHERE storId IN (' . implode(',', $storIds) . ')';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
-        if (!$Query) {
+        if (!$Query) {var_dump($SQL);exit;
             return 'Ошибка при получении полного списка категорий рассказов';
         }
         while($Data = DB_FetchAssoc ('mysql', $Query)) {
@@ -50,11 +52,29 @@ class categoryModel {
             return 'Не определена категория';
         }
 
+        // полный список категорий
+        $SQL = 'SELECT catId, catName FROM categories';
+        $Query = DB_Query ('mysql', $SQL, $this->connection);
+        if (!$Query) {
+            return 'Ошибка при получении данных категорий';
+        }
+        while($Data = DB_FetchAssoc ('mysql', $Query)) {
+            $catId = $Data['catId'];
+            $catName = $Data['catName'];
+            $this->categories[$catId] = $catName;
+            
+            if ($categoryId == $catId) {
+                $this->categoryName = $catName;
+            }
+        }
+        if (is_null($this->categoryName)) {
+            return 'Указанной категории нет в списке';
+        }
+        
         // количество историй в категории
         $SQL = 'SELECT COUNT(*) FROM `cats2stories` WHERE catId = ' . $categoryId;
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
-            var_dump($SQL);exit;
             return 'Ошибка при получении количества историй в категории';
         }
         $numStores = DB_Result ('mysql', $Query, 0, 0);
@@ -74,6 +94,7 @@ class categoryModel {
         $this->curPage = $page;
         $this->numPages = $numPages;
         
+        return (true);
     }
     
     public function getAuthors ($authorIds) {
@@ -95,7 +116,10 @@ class categoryModel {
     
     public function getCategory () {
         
-        $this->getMeta();
+        $metaResult = $this->getMeta();
+        if ($metaResult !== true) {
+            return ($metaResult);
+        }
         
         $laReturn = array(
             'success' => true,
@@ -151,8 +175,8 @@ class categoryModel {
         $authors = $this->getAuthors($authors);
         
         foreach ($stors as $storKey=>$storData) {
-            $stors[$storKey]['storAuthorName'] = $authors[$storData['storAuthorId']]['storAuthorName'];
-            $stors[$storKey]['storAuthorHref'] = $authors[$storData['storAuthorId']]['storAuthorHref'];
+            $stors[$storKey]['storAuthorName'] = $authors[$storData['storAuthorId']]['authorName'];
+            $stors[$storKey]['storAuthorHref'] = $authors[$storData['storAuthorId']]['authorHref'];
             $stors[$storKey]['storCats'] = $cats[$storData['storId']];
         }
         
