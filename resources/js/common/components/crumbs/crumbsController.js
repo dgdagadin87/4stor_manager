@@ -23,6 +23,8 @@ define([
         
         BaseController.call(this);
         
+        this._isBreadCrumbsRendered = false;
+        
         this._model = new crumbsModel();
         this._view = new crumbsView();
         
@@ -41,6 +43,9 @@ define([
     };
     
     crumbsController.prototype._onViewRendered = function() {
+        if (!this._isBreadCrumbsRendered) {
+            this._isBreadCrumbsRendered = true;
+        }
     };
 
     crumbsController.prototype.renderView = function() {
@@ -51,6 +56,7 @@ define([
         var mainLayout = Application.getMainLayout();
         var view = this.getView();
         view.collection.set(paData);
+        mainLayout._regionManager.showRegionByName('crumbsRegion');
         mainLayout.getView()['crumbsRegion'].show(view);
     };
     

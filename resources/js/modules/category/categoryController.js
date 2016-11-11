@@ -24,7 +24,7 @@ define([
     var categoryController = function(poConfig) {
         
         CoreUtils.setTitle('Страшные истории - страница категории ""');
-        
+
         var loConfig = poConfig || {};
         this._regionName = loConfig.regionName;
         
@@ -62,7 +62,10 @@ define([
         var catId = poParams.categoryId || 0;
         if (catId !== this._categoryId) {
             this._categoryId = catId;
-            this._showCurrentContent()
+            this._showCurrentContent();
+        }
+        else {
+            Application.trigger('breadcrumbs:show', this._breadCrumbs);
         }
     };
     
@@ -93,6 +96,7 @@ define([
                 Application.trigger('error:modal:show', lsMessage);
             }
             else {
+                me._breadCrumbs = breadCrumbsData;
                 Application.trigger('breadcrumbs:show', breadCrumbsData);
                 //me.getView().collection.set(indexData);
                 lfRender();

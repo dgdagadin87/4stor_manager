@@ -11,7 +11,7 @@ define(
         template
     ) {
         return Backbone.Marionette.ItemView.extend({
-            tagName: "div",
+            tagName: "span",
             className: 'breadcrumbs-item-container',
             template: _.template(template),
             templateHelpers: function(){
