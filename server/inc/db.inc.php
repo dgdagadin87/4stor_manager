@@ -86,16 +86,16 @@ function DB_FetchAssoc ($DBType, $QueryResult) {
 }
 
 //Ассоциативный массив из результата запроса
-function DB_Result ($DBType, $QueryResource, $Row, $Column) {
+function DB_Result ($DBType, $QueryResult, $Row, $Column) {
     switch ($DBType) {
         case "mysql":
-        {
-            return mysql_result ($QueryResource, $Row, $Column);
-        }
-
         default:
         {
-            return mysql_result ($QueryResource, $Row, $Column);
+            mysqli_data_seek($QueryResult, $Row);
+            $resRow = (is_numeric($Column)) ? mysqli_fetch_row($QueryResult) : mysqli_fetch_assoc($QueryResult);
+            if (isset($resRow[$Column])){
+                return $resRow[$Column];
+            }
         }
     }
 }
