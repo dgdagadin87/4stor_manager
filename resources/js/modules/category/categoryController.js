@@ -78,12 +78,7 @@ define([
         var mainLayout = Application.getMainLayout();
         var layoutView = mainLayout.getView();
         var lfRender = function(){
-            if (!me._isCategoryRendered) {
-                layoutView[me._regionName].show(me.getView(), {forceShow: true});
-            }
-            else {
-                me.renderView();
-            }
+            layoutView[me._regionName].show(me.getView(), {forceShow: true});
         };
 
         var afterSuccess = function(data) {
