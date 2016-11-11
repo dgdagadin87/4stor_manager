@@ -79,7 +79,13 @@ define(['underscore','jquery','coreUtils'], function(_,$,CoreUtils) {
         if (region) {
             region.$el.show();
         }
-        
+    };
+    
+    RegionManager.prototype.showRegionByName = function(regionName) {
+        var region = this._getContextInstance().getView()[regionName] || false;
+        if (region) {
+            region.$el.show();
+        }
     };
 
     RegionManager.prototype.hideRegionByName = function(regionName) {
