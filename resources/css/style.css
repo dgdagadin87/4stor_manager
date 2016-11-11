@@ -5,8 +5,8 @@ body, html {
 .main-container {
     width:1200px;
     margin:0 auto;
-    margin-top:10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
 }
 .main-header{
     padding: 10px;
@@ -48,19 +48,17 @@ body, html {
     margin-top:20px;
 }
 .index-category-item .index-category-title a.title {
-    color: #AA0000;
+    color: #000;
     font-size: 23px;
 }
 
 .index-category-item .index-stor-item {
     margin-top:10px;
-    padding:10px;
-    border:1px solid green;
-    border-radius:6px;
-    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5);;
+    padding:0px;
+    border:1px solid #000;
 }
 .index-category-item .index-stor-item .index-stor-bottom {
-    border-top:1px solid orange;
+    border-top:1px solid #000;
 }
 .index-category-item .index-stor-item .plus-rate {
     color:green;
