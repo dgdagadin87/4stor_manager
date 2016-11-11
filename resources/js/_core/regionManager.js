@@ -34,10 +34,10 @@ define(['underscore','jquery','coreUtils'], function(_,$,CoreUtils) {
     
     RegionManager.prototype.getRegionIdByName = function(regionName) {
         switch (regionName) {
-            case 'index':
+            case 'indexRegion':
             default:
                 return 'index-region';
-            case 'category':
+            case 'categoryRegion':
                 return 'category-region';
         }
     };
