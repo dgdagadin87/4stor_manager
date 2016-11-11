@@ -21,8 +21,6 @@ define([
 ) {
     var indexController = function(poConfig) {
         
-        CoreUtils.setTitle('Страшные истории - главная страница');
-        
         var loConfig = poConfig || {};
         this._regionName = loConfig.regionName;
         
@@ -81,6 +79,7 @@ define([
                     me._isDataLoaded = true;
                     me._breadCrumbs = breadCrumbsData;
                     Application.trigger('breadcrumbs:show', breadCrumbsData);
+                    Application.trigger('title:change', 'Главная страница');
                     me.getView().collection.set(indexData);
                     lfRender();
                 }
@@ -101,6 +100,7 @@ define([
         }
         else {
             Application.trigger('breadcrumbs:show', me._breadCrumbs);
+            Application.trigger('title:change', 'Главная страница');
             lfRender();
         }
     };

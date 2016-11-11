@@ -22,8 +22,6 @@ define([
     categoryView
 ) {
     var categoryController = function(poConfig) {
-        
-        CoreUtils.setTitle('Страшные истории - страница категории ""');
 
         var loConfig = poConfig || {};
         this._regionName = loConfig.regionName;
@@ -33,6 +31,7 @@ define([
         this._meta = new metaModel();
         
         this._categoryId = null;
+        this._categoryName = null;
         
         this._isCategoryRendered = false;
         this._breadCrumbs = [];
@@ -47,7 +46,7 @@ define([
     
     categoryController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
-        this._meta.on('change');
+        //this._meta.on('change', this._onMetaChanged.bind(this));
     };
     
     categoryController.prototype._init = function() {
@@ -66,6 +65,7 @@ define([
         }
         else {
             Application.trigger('breadcrumbs:show', this._breadCrumbs);
+            Application.trigger('title:change', 'Категория "'+this._categoryName+'"');
         }
     };
     
@@ -84,6 +84,7 @@ define([
         var afterSuccess = function(data) {
             var laData = data.data || [];
             var categoryData = laData.category || [];
+            var catName = laData.categoryName || '';
             var breadCrumbsData = laData.breadcrumbs || [];
             var lbSuccess = data.success || false;
             var lsMessage = data.message || '';
@@ -92,7 +93,9 @@ define([
             }
             else {
                 me._breadCrumbs = breadCrumbsData;
+                me._categoryName = catName;
                 Application.trigger('breadcrumbs:show', breadCrumbsData);
+                Application.trigger('title:change', 'Категория "'+catName+'"');
                 //me.getView().collection.set(indexData);
                 lfRender();
             }

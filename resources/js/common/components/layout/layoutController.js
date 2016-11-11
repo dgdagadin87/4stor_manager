@@ -67,9 +67,14 @@ define([
         Application.on('error:modal:show', this._onModalErrorShow.bind(this));
         Application.on('breadcrumbs:show', this._onBreadCrumbsShow.bind(this));
         Application.on('breadcrumbs:hide', this._onBreadCrumbsHide.bind(this));
+        Application.on('title:change', this._onTitleChange.bind(this));
     };
 
     layoutController.prototype._init = function() {
+    };
+
+    layoutController.prototype._onTitleChange = function(title) {
+        CoreUtils.setTitle(title);
     };
 
     layoutController.prototype._onModalErrorShow = function() {
