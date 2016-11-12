@@ -78,7 +78,7 @@ body, html {
 .storlist-stor-item .storlist-stor-bottom .plus-rate {
     color:green;
 }
-.storlist-stor-item .storlist-stor-bottom.minus-rate {
+.storlist-stor-item .storlist-stor-bottom .minus-rate {
     color:red;
 }
 
