@@ -67,6 +67,21 @@ body, html {
     color:red;
 }
 
+.storlist-stor-item {
+    margin-top:10px;
+    padding:0px;
+    border:1px solid #000;
+}
+.storlist-stor-item .storlist-stor-bottom {
+    border-top:1px solid #000;
+}
+.storlist-stor-item .storlist-stor-bottom .plus-rate {
+    color:green;
+}
+.storlist-stor-item .storlist-stor-bottom.minus-rate {
+    color:red;
+}
+
 .breadcrumbs-container {
     border:1px solid black;
 }
