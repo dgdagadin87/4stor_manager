@@ -7,8 +7,10 @@ define([
     'coreUtils',
     'Application',
     'settings',
+    'regionManager',
     '_base/BaseController',
     'modules/category/models/categoryStateModel',
+    'common/components/storlist/storlistController',
     'modules/category/views/categoryView'
 ], function (
     _,
@@ -17,8 +19,10 @@ define([
     CoreUtils,
     Application,
     Settings,
+    RegionManager,
     BaseController,
     metaModel,
+    storlistController,
     categoryView
 ) {
     var categoryController = function(poConfig) {
@@ -33,10 +37,17 @@ define([
         this._categoryId = null;
         this._categoryName = null;
         
+        this._regionManager = new RegionManager(this);
+        
         this._isCategoryRendered = false;
         this._breadCrumbs = [];
 
         this._view = new categoryView();
+        
+        this._listComponent = new storlistController({
+            parentView: this._view,
+            regionName: 'storlistRegion'
+        });
         
         this._init();
         this._bindEvents();
@@ -54,6 +65,7 @@ define([
     
     categoryController.prototype._onViewRendered = function() {
         this._isCategoryRendered = true;
+        console.log('onRendered!');
         
     };
     
@@ -96,8 +108,8 @@ define([
                 me._categoryName = catName;
                 Application.trigger('breadcrumbs:show', breadCrumbsData);
                 Application.trigger('title:change', 'Категория "'+catName+'"');
-                //me.getView().collection.set(indexData);
                 lfRender();
+                me._listComponent.setData(categoryData);
             }
         };
         var afterError = function(data){
