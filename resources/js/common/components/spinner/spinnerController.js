@@ -19,11 +19,16 @@ define([
     spinnerView,
     spinnerModel
 ) {
-    var spinnerController = function() {
+    var spinnerController = function(config) {
         
         BaseController.call(this);
         
+        var loCfg = config || {};
+        this._spinnerRegion = loCfg.spinnerRegion || 'spinnerRegion';
+        
         this._model = new spinnerModel();
+        
+        this._view = new spinnerView();
         
         this._init();
         this._bindEvents();
@@ -32,11 +37,11 @@ define([
     spinnerController.prototype = Object.create(BaseController.prototype);
     
     spinnerController.prototype._bindEvents = function() {
-        //this._view.on('render', this._onViewRendered.bind(this));
+        this._view.on('render', this._onViewRendered.bind(this));
     };
     
     spinnerController.prototype._init = function() {
-        //this._view.model = this._model;
+        this._view.model = this._model;
     };
     
     spinnerController.prototype._onViewRendered = function() {
@@ -46,13 +51,13 @@ define([
         this.getView().render();
     };
     
-    spinnerController.prototype.showSpinner = function(region) {
+    spinnerController.prototype.showSpinner = function() {
         var mainLayout = Application.getMainLayout();
+        var regionManager = mainLayout._regionManager || {};
         var layoutView = mainLayout.getView();
-        this._view = new spinnerView();
-        this._view.on('render', this._onViewRendered.bind(this));
-        this._view.model = this._model;
-        layoutView[region].show(this.getView(), {preventDestroy: true});
+        regionManager.prepareRegionForRender(this._spinnerRegion);
+        regionManager.showRegionByName(this._spinnerRegion);
+        layoutView[this._spinnerRegion].show(this.getView());
     };
     
     spinnerController.prototype.getModel = function() {

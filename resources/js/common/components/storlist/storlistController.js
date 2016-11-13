@@ -28,7 +28,6 @@ define([
         BaseController.call(this);
 
         this._isStorlistRendered = false;
-        this._isDataLoaded = false;
 
         this._view = new storlistView();
         
@@ -49,13 +48,21 @@ define([
         this._isStorlistRendered = true;
     };
 
+    storlistController.prototype.showStorList = function() {
+        if (!this._isStorlistRendered) {
+            this._parentView[this._regionName].show(this.getView());
+        }
+        else {
+            this.renderView();
+        }
+    };
+
     storlistController.prototype.renderView = function() {
         this.getView().render();
     };
     
     storlistController.prototype.setData = function(data) {
         this.getView().collection.set(data);
-        this._parentView[this._regionName].show(this.getView());
     };
 
     return storlistController;

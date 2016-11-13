@@ -53,7 +53,9 @@ define([
         this._crumbsComponent = new crumbsComponent();
         this._catlistComponent = new catlistComponent();
         this._contentComponent = new contentController();
-        this._largeSpinnerComponent = new spinnerComponent();
+        this._largeSpinnerComponent = new spinnerComponent({
+            spinnerRegion:'spinnerRegion'
+        });
 
         this._init();
         this._bindEvents();
@@ -68,9 +70,19 @@ define([
         Application.on('breadcrumbs:show', this._onBreadCrumbsShow.bind(this));
         Application.on('breadcrumbs:hide', this._onBreadCrumbsHide.bind(this));
         Application.on('title:change', this._onTitleChange.bind(this));
+        Application.on('content:regions:hide', this._onContentRegionsHide.bind(this));
+        Application.on('content:region:show', this._onContentRegionShow.bind(this));
     };
 
     layoutController.prototype._init = function() {
+    };
+
+    layoutController.prototype._onContentRegionsHide = function() {
+        this._regionManager.hideContentRegions();
+    };
+    
+    layoutController.prototype._onContentRegionShow = function(regionName) {
+        this._regionManager.showRegionByName(regionName);
     };
 
     layoutController.prototype._onTitleChange = function(title) {
@@ -93,13 +105,12 @@ define([
 
     layoutController.prototype._onLargeSpinnerShow = function() {
         var args = arguments || [];
-        var region  = args[0] || '';
-        var message = args[1] || '';
+        var message = args[0] || '';
         this._largeSpinnerComponent.getModel().set({
             title:message,
             spinclass: 'large'
         });
-        this._largeSpinnerComponent.showSpinner(region);
+        this._largeSpinnerComponent.showSpinner();
     };
 
     layoutController.prototype._renderComponents = function() {

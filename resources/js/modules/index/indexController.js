@@ -26,6 +26,8 @@ define([
         
         BaseController.call(this);
         
+        this._pageTitle = 'Главная страница';
+        
         this._isIndexRendered = false;
         this._isDataLoaded = false;
         this._breadCrumbs = [];
@@ -49,22 +51,27 @@ define([
         this._isIndexRendered = true;
     };
 
-    indexController.prototype.showCurrentContent = function(poParams) {
+    indexController.prototype.showCurrentContent = function() {
         var me = this;
         var mainLayout = Application.getMainLayout();
         var layoutView = mainLayout.getView();
-        var lfRender;
-        if (!this._isIndexRendered) {
-            lfRender = function(){
-                layoutView[me._regionName].show(me.getView(), {forceShow: true});
-            };
+        var lfRender = function(){
+            
+            me.__renderContent();
+            
+            if (!me._isIndexRendered) {
+                layoutView[me._regionName].show(me.getView());
+            }
+//            else {
+//                me.renderView();
+//            }
+        };
+
+        if (me._isGlobalLoading === true) {
+            me.__renderSpinner();
+            return false;
         }
-        else {
-            lfRender = function(){
-                layoutView[me._regionName].show(me.getView(), {forceShow: true});
-            };
-        }
-        
+
         if (!me._isDataLoaded) {
             var afterSuccess = function(data) {
                 var laData = data.data || [];
@@ -72,24 +79,28 @@ define([
                 var breadCrumbsData = laData.breadcrumbs || [];
                 var lbSuccess = data.success || false;
                 var lsMessage = data.message || '';
+                
+                me._isGlobalLoading = false;
+                
                 if (!lbSuccess) {
                     Application.trigger('error:modal:show', lsMessage);
                 }
                 else {
                     me._isDataLoaded = true;
                     me._breadCrumbs = breadCrumbsData;
-                    Application.trigger('breadcrumbs:show', breadCrumbsData);
-                    Application.trigger('title:change', 'Главная страница');
                     me.getView().collection.set(indexData);
                     lfRender();
                 }
             };
             var afterError = function(data){
                 var lsMessage = data.message || '';
+                this._isGlobalLoading = false;
                 Application.trigger('error:modal:show', lsMessage);
             };
-            Application.trigger('breadcrumbs:hide');
-            Application.trigger('spinner:large:show', this._regionName, 'Идет загрузка данных...');
+
+            this._isGlobalLoading = true;
+            this.__renderSpinner();
+            
             CoreUtils.axajQuery({
                 url: Settings.url.getIndexData
             },
@@ -99,8 +110,6 @@ define([
             });
         }
         else {
-            Application.trigger('breadcrumbs:show', me._breadCrumbs);
-            Application.trigger('title:change', 'Главная страница');
             lfRender();
         }
     };

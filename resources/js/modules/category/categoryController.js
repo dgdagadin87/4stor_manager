@@ -7,7 +7,6 @@ define([
     'coreUtils',
     'Application',
     'settings',
-    'regionManager',
     '_base/BaseController',
     'modules/category/models/categoryStateModel',
     'common/components/storlist/storlistController',
@@ -19,7 +18,6 @@ define([
     CoreUtils,
     Application,
     Settings,
-    RegionManager,
     BaseController,
     metaModel,
     storlistController,
@@ -36,8 +34,6 @@ define([
         
         this._categoryId = null;
         this._categoryName = null;
-        
-        this._regionManager = new RegionManager(this);
         
         this._isCategoryRendered = false;
         this._breadCrumbs = [];
@@ -65,8 +61,7 @@ define([
     
     categoryController.prototype._onViewRendered = function() {
         this._isCategoryRendered = true;
-        console.log('onRendered!');
-        
+        this._renderComponents();
     };
     
     categoryController.prototype.showCurrentContent = function(poParams) {
@@ -76,13 +71,12 @@ define([
             this._showCurrentContent();
         }
         else {
-            Application.trigger('breadcrumbs:show', this._breadCrumbs);
-            Application.trigger('title:change', 'Категория "'+this._categoryName+'"');
+            this.__renderContent();
         }
     };
     
     categoryController.prototype._renderComponents = function() {
-        
+        this._listComponent.showStorList();
     };
 
     categoryController.prototype._showCurrentContent = function() {
@@ -90,8 +84,18 @@ define([
         var mainLayout = Application.getMainLayout();
         var layoutView = mainLayout.getView();
         var lfRender = function(){
-            layoutView[me._regionName].show(me.getView(), {forceShow: true});
+
+            me.__renderContent();
+
+            if (!me._isCategoryRendered) {
+                layoutView[me._regionName].show(me.getView());
+            }
         };
+
+        if (me._isGlobalLoading === true) {
+            me.__renderSpinner();
+            return false;
+        }
 
         var afterSuccess = function(data) {
             var laData = data.data || [];
@@ -100,24 +104,29 @@ define([
             var breadCrumbsData = laData.breadcrumbs || [];
             var lbSuccess = data.success || false;
             var lsMessage = data.message || '';
+            
+            me._isGlobalLoading = false;
+            
             if (!lbSuccess) {
                 Application.trigger('error:modal:show', lsMessage);
             }
             else {
                 me._breadCrumbs = breadCrumbsData;
                 me._categoryName = catName;
-                Application.trigger('breadcrumbs:show', breadCrumbsData);
-                Application.trigger('title:change', 'Категория "'+catName+'"');
-                lfRender();
+                me._pageTitle = 'Категория "'+me._categoryName+'"';
                 me._listComponent.setData(categoryData);
+                lfRender();
             }
         };
         var afterError = function(data){
             var lsMessage = data.message || '';
+            me._isGlobalLoading = false;
             Application.trigger('error:modal:show', lsMessage);
         };
-        Application.trigger('breadcrumbs:hide');
-        Application.trigger('spinner:large:show', this._regionName, 'Идет загрузка данных...');
+        
+        this._isGlobalLoading = true;
+        this.__renderSpinner();
+        
         CoreUtils.axajQuery({
             url: Settings.url.getCategoryData,
             data: {
