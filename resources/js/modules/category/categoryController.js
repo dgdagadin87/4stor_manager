@@ -60,11 +60,16 @@ define([
     
     categoryController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
-        Application.on('category:page:change', this._onCategoryPageChange.bind(this));
         this._meta.on('change', this._onMetaChanged.bind(this));
+        Application.on('category:page:change', this._onCategoryPageChange.bind(this));
     };
     
     categoryController.prototype._init = function() {
+        this._metaDefault = {
+            page: 1,
+            sortBy: 'storDate',
+            sortType: 'DESC'
+        };
     };
     
     categoryController.prototype._onMetaChanged = function() {
@@ -133,6 +138,9 @@ define([
     categoryController.prototype.showCurrentContent = function(poParams) {
         var catId = poParams.categoryId || 0;
         if (catId !== this._categoryId) {
+            this._meta.set(this._metaDefault, {
+                silent: true
+            });
             this._categoryId = catId;
             this._showCurrentContent();
         }
