@@ -42,7 +42,7 @@
 <% if (model.restCurrentNum < 1) { %>
 <!-- empty right part -->
 <% } else if (model.restCurrentNum >= 1 && model.restCurrentNum < (cfg.numEnd + cfg.numRight + 1)) { %>
-    <% for (var j = model.nextCurPage; j < model._numOfPages; j++) { %>
+    <% for (var j = model.nextCurPage; j <= model._numOfPages; j++) { %>
         <span class="page-span"><a class="page-link" title="на страницу <%=j%>" page-num="<%=j%>" href="#"><%=j%></a></span>
     <% } %>
 <% } else if (model.restCurrentNum >= (cfg.numEnd + cfg.numRight + 1)) { %>
