@@ -11,6 +11,12 @@
             <div class="index-stor-short-desc">
                 <%=stor.storShortDesc%>
             </div>
+            <div class="index-stor-categories">
+                <small>Категории:</small>
+                <% _.each(stor.storCats, function(cat){ %>
+                    <a href="#category/<%=cat.catId%>"><%=cat.catName%></a>&nbsp;
+                <% }); %>
+            </div>
             <div class="index-stor-bottom">
                 Добавлено <span class="date"><%=stor.storDate%></span>
                 от <a target="_blank" class="author" href="<%=stor.storAuthorHref%>"><%=stor.storAuthorName%></a>&nbsp;
