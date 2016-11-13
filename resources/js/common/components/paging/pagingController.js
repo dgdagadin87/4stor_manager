@@ -34,7 +34,10 @@ define([
         
         this._isPagingRendered = false;
 
-        this._model = new pagingView();
+        this._regionName = loConfig.regionName || 'pagingRegion';
+        this._parentView = loConfig.parentView || {};
+
+        this._model = new pagingModel();
 
         this._view = new pagingView();
         
@@ -60,7 +63,7 @@ define([
         this._isPagingRendered = true;
     };
 
-    pagingController.prototype._setPagingConfig = function(poConf) {
+    pagingController.prototype.setData = function(poConf) {
         var loConf = poConf || {};
         this._model.set(loConf);
     };
@@ -88,14 +91,12 @@ define([
         });
     };
 
-    pagingController.prototype.showPaging = function(layoutView, regionName, poConf) {
-        
-        this._setPagingConfig(poConf);
-        
+    pagingController.prototype.showPaging = function() {
+
         this._shapePaging();
         
         if (!this._isPagingRendered) {
-            layoutView.showChildView(regionName, layoutView);
+            this._parentView.showChildView(this._regionName, this._view);
         }
         else {
             this.renderView();
