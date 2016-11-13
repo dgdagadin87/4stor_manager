@@ -10,6 +10,7 @@ define([
     '_base/BaseController',
     'modules/category/models/categoryStateModel',
     'common/components/storlist/storlistController',
+    'common/components/paging/pagingController',
     'modules/category/views/categoryView'
 ], function (
     _,
@@ -21,6 +22,7 @@ define([
     BaseController,
     metaModel,
     storlistController,
+    pagingController,
     categoryView
 ) {
     var categoryController = function(poConfig) {
@@ -43,6 +45,10 @@ define([
         this._listComponent = new storlistController({
             parentView: this._view,
             regionName: 'storlistRegion'
+        });
+        this._pagingComponent = new pagingController({
+            parentView: this._view,
+            regionName: 'pagingRegion'
         });
         
         this._init();
@@ -77,6 +83,7 @@ define([
     
     categoryController.prototype._renderComponents = function() {
         this._listComponent.showStorList();
+        this._pagingComponent.showPaging();
     };
 
     categoryController.prototype._showCurrentContent = function() {
@@ -105,6 +112,7 @@ define([
             var categoryData = laData.category || [];
             var catName = laData.categoryName || '';
             var breadCrumbsData = laData.breadcrumbs || [];
+            var pagingData = laData.paging || {};
             var lbSuccess = data.success || false;
             var lsMessage = data.message || '';
             
@@ -117,7 +125,10 @@ define([
                 me._breadCrumbs = breadCrumbsData;
                 me._categoryName = catName;
                 me._pageTitle = 'Категория "'+me._categoryName+'"';
+
                 me._listComponent.setData(categoryData);
+                me._pagingComponent.setData(pagingData);
+
                 lfRender();
             }
         };

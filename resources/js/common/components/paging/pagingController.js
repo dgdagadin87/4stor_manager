@@ -66,6 +66,8 @@ define([
     pagingController.prototype.setData = function(poConf) {
         var loConf = poConf || {};
         this._model.set(loConf);
+        console.log(poConf);
+        console.log(this._model)
     };
 
     pagingController.prototype._shapePaging = function() {
