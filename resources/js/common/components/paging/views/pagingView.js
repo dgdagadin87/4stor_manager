@@ -1,10 +1,12 @@
 define(
     [
+        'jquery',
         'backbone',
         'marionette',
         'Application',
         'text!common/components/paging/templates/pagingTemplate.html'
     ], function(
+        $,
         Backbone,
         Marionette,
         Application,
@@ -28,7 +30,11 @@ define(
             
             onPageLinkClick: function(ev) {
                 ev.preventDefault();
-                console.log('page clicked');
+                var current = $(ev.currentTarget);
+                var page = current.attr('page-num');
+                var opts = this.options || {};
+                var eventPrefix = opts.eventPrefix || 'category';
+                Application.trigger(eventPrefix+':page:change', page);
             },
             
             templateHelpers : function() {

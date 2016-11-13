@@ -36,10 +36,13 @@ define([
 
         this._regionName = loConfig.regionName || 'pagingRegion';
         this._parentView = loConfig.parentView || {};
+        this._eventPrefix = loConfig.eventPrefix || 'category';
 
         this._model = new pagingModel();
 
-        this._view = new pagingView();
+        this._view = new pagingView({
+            eventPrefix: this._eventPrefix
+        });
         
         this._init();
         this._bindEvents();
