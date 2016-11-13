@@ -136,8 +136,8 @@ class categoryModel {
         $laReturn['data']['breadcrumbs'] = $this->getBreadCrumbs();
         $laReturn['data']['categoryName'] = $this->categoryName;
         $laReturn['data']['paging'] = array(
-            'page' => $this->curPage,
-            'numPages' => $this->numPages
+            '_currentPage' => $this->curPage,
+            '_numOfPages' => $this->numPages
         );
         return $laReturn;
     }
