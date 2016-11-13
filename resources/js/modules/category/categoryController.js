@@ -47,8 +47,9 @@ define([
             regionName: 'storlistRegion'
         });
         this._pagingComponent = new pagingController({
-            parentView: this._view,
-            regionName: 'pagingRegion'
+            parentView  : this._view,
+            regionName  : 'pagingRegion',
+            eventPrefix : 'category'
         });
         
         this._init();
@@ -59,10 +60,69 @@ define([
     
     categoryController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
-        //this._meta.on('change', this._onMetaChanged.bind(this));
+        Application.on('category:page:change', this._onCategoryPageChange.bind(this));
+        this._meta.on('change', this._onMetaChanged.bind(this));
     };
     
     categoryController.prototype._init = function() {
+    };
+    
+    categoryController.prototype._onMetaChanged = function() {
+        this.loadData();
+    };
+    
+    categoryController.prototype._onCategoryPageChange = function(page) {
+        this._meta.set('page', page);
+    };
+    
+    categoryController.prototype.loadData = function() {
+        var me = this;
+        var lfRender = function(){
+            Application.trigger('title:change', me._pageTitle);
+            me._renderComponents();
+        };
+        var afterSuccess = function(data) {
+            var laData = data.data || [];
+            var categoryData = laData.category || [];
+            var catName = laData.categoryName || '';
+            var pagingData = laData.paging || {};
+            var lbSuccess = data.success || false;
+            var lsMessage = data.message || '';
+            
+            if (!lbSuccess) {
+                Application.trigger('error:modal:show', lsMessage);
+            }
+            else {
+                me._categoryName = catName;
+                me._pageTitle = 'Категория "'+me._categoryName+'"';
+                if (pagingData._currentPage > 1) {
+                    me._pageTitle += ' (страница '+pagingData._currentPage+')';
+                }
+
+                me._listComponent.setData(categoryData);
+                me._pagingComponent.setData(pagingData);
+
+                lfRender();
+            }
+        };
+        var afterError = function(data){
+            var lsMessage = data.message || '';
+            Application.trigger('error:modal:show', lsMessage);
+        };
+        
+        CoreUtils.axajQuery({
+            url: Settings.url.getCategoryData,
+            data: {
+                catId   : me._categoryId,
+                page    : me._meta.get('page'),
+                sortBy  : me._meta.get('sortBy'),
+                sortType: me._meta.get('sortType')
+            }
+        },
+        {
+            afterSuccess: afterSuccess,
+            afterError: afterError
+        });
     };
     
     categoryController.prototype._onViewRendered = function() {
