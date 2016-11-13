@@ -90,6 +90,9 @@ define([
             if (!me._isCategoryRendered) {
                 layoutView[me._regionName].show(me.getView());
             }
+            else {
+                me._renderComponents();
+            }
         };
 
         if (me._isGlobalLoading === true) {
