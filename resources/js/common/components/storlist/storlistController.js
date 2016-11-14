@@ -24,10 +24,12 @@ define([
         var loConfig = poConfig || {};
         this._regionName = loConfig.regionName;
         this._parentView = loConfig.parentView;
+        this._toScrollId = loConfig.toScrollId;
         
         BaseController.call(this);
 
         this._isStorlistRendered = false;
+        this._needScroll = false;
 
         this._view = new storlistView();
         
@@ -46,9 +48,20 @@ define([
     
     storlistController.prototype._onViewRendered = function() {
         this._isStorlistRendered = true;
+        if (this._needScroll) {
+            CoreUtils.scrollToElement(this._toScrollId);
+        }
     };
 
-    storlistController.prototype.showStorList = function() {
+    storlistController.prototype.showStorList = function(pbToScroll) {
+        
+        if (pbToScroll) {
+            this._needScroll = true;
+        }
+        else {
+            this._needScroll = false;
+        }
+        
         if (!this._isStorlistRendered) {
             this._parentView[this._regionName].show(this.getView());
         }

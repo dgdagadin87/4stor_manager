@@ -13,6 +13,12 @@ define([
 ) {
     return {
 
+        scrollToElement: function (psElementId) {
+            $('html, body').animate({
+                scrollTop: $('#'+psElementId).offset().top
+            }, 500);
+        },
+
         setTitle: function (title) {
             $('title').text(title);
         },

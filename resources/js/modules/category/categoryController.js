@@ -44,7 +44,8 @@ define([
         
         this._listComponent = new storlistController({
             parentView: this._view,
-            regionName: 'storlistRegion'
+            regionName: 'storlistRegion',
+            toScrollId: 'categoryListRegion'
         });
         this._pagingComponent = new pagingController({
             parentView  : this._view,
@@ -84,7 +85,9 @@ define([
         var me = this;
         var lfRender = function(){
             Application.trigger('title:change', me._pageTitle);
-            me._renderComponents();
+            me._renderComponents({
+                toScroll: true
+            });
         };
         var afterSuccess = function(data) {
             var laData = data.data || [];
@@ -146,7 +149,9 @@ define([
     };
     
     categoryController.prototype._renderComponents = function() {
-        this._listComponent.showStorList();
+        var config = arguments[0] || {};
+        var toScroll = config.toScroll;
+        this._listComponent.showStorList(toScroll);
         this._pagingComponent.showPaging();
     };
 
