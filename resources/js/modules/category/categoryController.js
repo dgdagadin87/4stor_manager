@@ -110,10 +110,6 @@ define([
                 lfRender();
             }
         };
-        var afterError = function(data){
-            var lsMessage = data.message || '';
-            Application.trigger('error:modal:show', lsMessage);
-        };
         
         CoreUtils.axajQuery({
             url: Settings.url.getCategoryData,
@@ -126,7 +122,7 @@ define([
         },
         {
             afterSuccess: afterSuccess,
-            afterError: afterError
+            afterError: me.afterError
         });
     };
     
@@ -200,11 +196,6 @@ define([
                 lfRender();
             }
         };
-        var afterError = function(data){
-            var lsMessage = data.message || '';
-            me._isGlobalLoading = false;
-            Application.trigger('error:modal:show', lsMessage);
-        };
         
         this._isGlobalLoading = true;
         this.__renderSpinner();
@@ -220,12 +211,18 @@ define([
         },
         {
             afterSuccess: afterSuccess,
-            afterError: afterError
+            afterError: me.afterError
         });
     };
 
     categoryController.prototype.renderView = function() {
         this.getView().render();
+    };
+
+    categoryController.prototype.afterError = function(data) {
+        var lsMessage = data.message || '';
+        this._isGlobalLoading = false;
+        Application.trigger('error:modal:show', lsMessage);
     };
     
     categoryController.prototype.getModel = function() {
