@@ -1,0 +1,21 @@
+<span class="listbar-numstors">рассказов: <%=_numOfStors%></span>
+&nbsp;
+<span class="listbar-current-page">(страница <%=_currentPage%>)</span>
+<span class="listbar-panel">
+    сортирвать по:&nbsp;&nbsp;&nbsp;
+    <span class="sort-span">
+        <a sort-name="storDate" href="#" class="sort-link <% if (_sortBy === 'storDate') { %>sort-active<% } %>">дата</a>
+    </span>
+    <span class="sort-span">
+        <a sort-name="storRate" href="#" class="sort-link <% if (_sortBy === 'storRate') { %>sort-active<% } %>">рейтинг</a>
+    </span>
+    <span class="sort-span">
+        <a sort-name="storComments" href="#" class="sort-link <% if (_sortBy === 'storComments') { %>sort-active<% } %>">комментариев</a>
+    </span>
+    <span class="sort-span">
+        <a sort-name="storWatches" href="#" class="sort-link <% if (_sortBy === 'storWatches') { %>sort-active<% } %>">просмотров</a>
+    </span>
+    <span class="sort-span">
+        <a sort-name="storName" href="#" class="sort-link <% if (_sortBy === 'storName') { %>sort-active<% } %>">названию</a>
+    </span>
+</span>
