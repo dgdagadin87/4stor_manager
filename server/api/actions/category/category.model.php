@@ -12,6 +12,8 @@ class categoryModel {
     public $numPages = 1;
     public $curPage  = 1;
     
+    public $numOfStors = 0;
+    
     public $sortBy = '';
     public $sortType = '';
     
@@ -93,6 +95,7 @@ class categoryModel {
         $this->categoryId = $categoryId;
         $this->curPage = $page;
         $this->numPages = $numPages;
+        $this->numOfStors = $numStores;
         
         return (true);
     }
@@ -135,6 +138,12 @@ class categoryModel {
         $laReturn['data']['category'] = $stors;
         $laReturn['data']['breadcrumbs'] = $this->getBreadCrumbs();
         $laReturn['data']['categoryName'] = $this->categoryName;
+        $laReturn['data']['meta'] = array(
+            '_currentPage' => $this->curPage,
+            '_numOfStors' => $this->numOfStors,
+            '_sortBy' => $this->sortBy,
+            '_sortTYpe' => $this->sortType,
+        );
         $laReturn['data']['paging'] = array(
             '_currentPage' => $this->curPage,
             '_numOfPages' => $this->numPages
