@@ -4,18 +4,60 @@
 <span class="listbar-panel">
     сортировать по:&nbsp;&nbsp;&nbsp;
     <span class="sort-span">
-        <a sort-name="storDate" href="#" class="sort-link <% if (_sortBy === 'storDate') { %>sort-active<% } %>">дате</a>
+        <a sort-name="storDate" href="#" class="sort-link
+            <% if (_sortBy === 'storDate') { %>
+                sort-active
+                <% if (_sortType === 'ASC') { %>
+                    sort-asc
+                <% } else { %>
+                    sort-desc        
+                <% } %>
+            <% } %>
+            ">дате
+        </a>
     </span>
     <span class="sort-span">
-        <a sort-name="storRate" href="#" class="sort-link <% if (_sortBy === 'storRate') { %>sort-active<% } %>">рейтингу</a>
+        <a sort-name="storRate" href="#" class="sort-link
+           <% if (_sortBy === 'storRate') { %>
+                sort-active
+                <% if (_sortType === 'ASC') { %>
+                    sort-asc
+                <% } else { %>
+                    sort-desc        
+                <% } %>
+           <% } %>">рейтингу</a>
     </span>
     <span class="sort-span">
-        <a sort-name="storComments" href="#" class="sort-link <% if (_sortBy === 'storComments') { %>sort-active<% } %>">комментариям</a>
+        <a sort-name="storComments" href="#" class="sort-link
+            <% if (_sortBy === 'storComments') { %>
+                sort-active
+                <% if (_sortType === 'ASC') { %>
+                    sort-asc
+                <% } else { %>
+                    sort-desc        
+                <% } %>
+            <% } %>">комментариям</a>
     </span>
     <span class="sort-span">
-        <a sort-name="storWatches" href="#" class="sort-link <% if (_sortBy === 'storWatches') { %>sort-active<% } %>">посещаемости</a>
+        <a sort-name="storWatches" href="#" class="sort-link
+            <% if (_sortBy === 'storWatches') { %>
+                sort-active
+                <% if (_sortType === 'ASC') { %>
+                    sort-asc
+                <% } else { %>
+                    sort-desc        
+                <% } %>
+            <% } %>">посещаемости</a>
     </span>
     <span class="sort-span">
-        <a sort-name="storName" href="#" class="sort-link <% if (_sortBy === 'storName') { %>sort-active<% } %>">названию</a>
+        <a sort-name="storName" href="#" class="sort-link
+            <% if (_sortBy === 'storName') { %>
+                sort-active
+                <% if (_sortType === 'ASC') { %>
+                    sort-asc
+                <% } else { %>
+                    sort-desc        
+                <% } %>
+            <% } %>">названию</a>
     </span>
 </span>

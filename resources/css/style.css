@@ -89,3 +89,9 @@ body, html {
 .list-toolbar .sort-active {
     font-weight:bold;
 }
+.list-toolbar .sort-asc {
+    color:red;
+}
+.list-toolbar .sort-desc {
+    color:green;
+}
