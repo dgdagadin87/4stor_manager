@@ -50,7 +50,6 @@ define([
     };
     
     listbarController.prototype._init = function() {
-        var me = this;
         this._view.model = this._model;
     };
     
@@ -63,7 +62,7 @@ define([
         this._model.set(loConf);
     };
 
-    listbarController.prototype.showPaging = function() {
+    listbarController.prototype.showToolbar = function() {
 
         if (!this._isListbarRendered) {
             this._parentView.showChildView(this._regionName, this._view);

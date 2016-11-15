@@ -11,6 +11,7 @@ define([
     'modules/category/models/categoryStateModel',
     'common/components/storlist/storlistController',
     'common/components/paging/pagingController',
+    'common/components/listbar/listbarController',
     'modules/category/views/categoryView'
 ], function (
     _,
@@ -23,6 +24,7 @@ define([
     metaModel,
     storlistController,
     pagingController,
+    listbarController,
     categoryView
 ) {
     var categoryController = function(poConfig) {
@@ -42,6 +44,12 @@ define([
 
         this._view = new categoryView();
         
+        
+        this._toolbarComponent = new listbarController({
+            parentView: this._view,
+            regionName: 'toolbarRegion',
+            toScrollId: 'categoryListRegion'
+        });
         this._listComponent = new storlistController({
             parentView: this._view,
             regionName: 'storlistRegion',
@@ -153,6 +161,7 @@ define([
         var toScroll = config.toScroll;
         this._listComponent.showStorList(toScroll);
         this._pagingComponent.showPaging();
+        this._toolbarComponent.showToolbar();
     };
 
     categoryController.prototype._showCurrentContent = function() {
