@@ -142,7 +142,7 @@ class categoryModel {
             '_currentPage' => $this->curPage,
             '_numOfStors' => $this->numOfStors,
             '_sortBy' => $this->sortBy,
-            '_sortTYpe' => $this->sortType,
+            '_sortType' => $this->sortType,
         );
         $laReturn['data']['paging'] = array(
             '_currentPage' => $this->curPage,
