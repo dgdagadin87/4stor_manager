@@ -28,7 +28,13 @@ define(
             
             onSortLinkClick: function(ev) {
                 ev.preventDefault();
-                console.log('clicked');
+                var current = $(ev.currentTarget);
+                var sortBy = current.attr('sort-name');
+                var opts = this.options || {};
+                var eventPrefix = opts.eventPrefix || 'category';
+                Application.trigger(eventPrefix+':sort:change', {
+                    sortBy: sortBy
+                });
             },
             
             templateHelpers : function() {

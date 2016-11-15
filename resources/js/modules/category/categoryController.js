@@ -71,6 +71,7 @@ define([
         this._view.on('render', this._onViewRendered.bind(this));
         this._meta.on('change', this._onMetaChanged.bind(this));
         Application.on('category:page:change', this._onCategoryPageChange.bind(this));
+        Application.on('category:sort:change', this._onCategorySortChange.bind(this));
     };
     
     categoryController.prototype._init = function() {
@@ -89,6 +90,10 @@ define([
         this._meta.set('page', page);
     };
     
+    categoryController.prototype._onCategorySortChange = function(data) {
+        this._meta.set(data);
+    };
+    
     categoryController.prototype.loadData = function() {
         var me = this;
         var lfRender = function(){
@@ -102,6 +107,7 @@ define([
             var categoryData = laData.category || [];
             var catName = laData.categoryName || '';
             var pagingData = laData.paging || {};
+            var metaData = laData.meta || {};
             var lbSuccess = data.success || false;
             var lsMessage = data.message || '';
             
@@ -117,6 +123,7 @@ define([
 
                 me._listComponent.setData(categoryData);
                 me._pagingComponent.setData(pagingData);
+                me._toolbarComponent.setData(metaData);
 
                 lfRender();
             }
@@ -191,6 +198,7 @@ define([
             var catName = laData.categoryName || '';
             var breadCrumbsData = laData.breadcrumbs || [];
             var pagingData = laData.paging || {};
+            var metaData = laData.meta || {};
             var lbSuccess = data.success || false;
             var lsMessage = data.message || '';
             
@@ -206,6 +214,7 @@ define([
 
                 me._listComponent.setData(categoryData);
                 me._pagingComponent.setData(pagingData);
+                me._toolbarComponent.setData(metaData);
 
                 lfRender();
             }
