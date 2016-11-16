@@ -34,6 +34,9 @@ define(
                 var eventPrefix = opts.eventPrefix || 'category';
                 var curSortType = current.hasClass('sort-desc') || (!current.hasClass('sort-desc') && !current.hasClass('sort-asc')) ? 'DESC' : 'ASC';
                 var sortType = curSortType === 'DESC' ? 'ASC' : 'DESC';
+                if (!current.hasClass('sort-desc') && !current.hasClass('sort-asc')) {
+                    sortType = 'DESC';
+                }
                 Application.trigger(eventPrefix+':sort:change', {
                     sortBy: sortBy,
                     sortType: sortType
