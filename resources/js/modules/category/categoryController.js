@@ -91,7 +91,9 @@ define([
     };
     
     categoryController.prototype._onCategorySortChange = function(data) {
-        this._meta.set(data);
+        var loData = data || {};
+        loData.page = 1;
+        this._meta.set(loData);
     };
     
     categoryController.prototype.loadData = function() {
