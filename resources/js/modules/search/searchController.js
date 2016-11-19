@@ -64,7 +64,7 @@ define([
         this._startMessageComponent = new startMessageController({
             parentView: this._view
         });
-        this._listComponent = new searchFormController({
+        this._searchFormComponent = new searchFormController({
             parentView: this._view,
             regionName: 'searchformRegion',
             eventPrefix: 'search'
@@ -125,9 +125,8 @@ define([
     };
     
     searchController.prototype._onViewRendered = function() {
-        if (!this._isSearchRendered) {
-            this._renderBaseComponents();
-        }
+        this._isSearchRendered = true;
+        this._renderBaseComponents();
     };
     
     searchController.prototype.showCurrentContent = function(poParams) {
@@ -138,7 +137,7 @@ define([
             
             me.__renderContent();
             
-            if (!me._isIndexRendered) {
+            if (!me._isSearchRendered) {
                 layoutView[me._regionName].show(me.getView());
             }
         };

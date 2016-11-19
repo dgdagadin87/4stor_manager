@@ -3,7 +3,7 @@ define(
         'backbone',
         'marionette',
         'Application',
-        'text!modules/category/templates/categoryTemplate.html'
+        'text!modules/search/templates/searchTemplate.html'
     ], function(
         Backbone,
         Marionette,
