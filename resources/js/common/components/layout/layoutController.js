@@ -156,6 +156,7 @@ define([
         };
         
         me._currentPage = action;
+        Application.trigger('header:setactive');
         if (this._isDataLoaded) {
             showParts(me._commonData);
         }

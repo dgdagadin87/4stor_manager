@@ -33,6 +33,7 @@ define([
     
     headerController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
+        Application.on('header:setactive', this._setActiveHeader.bind(this));
     };
     
     headerController.prototype._init = function() {
@@ -40,9 +41,7 @@ define([
     
     headerController.prototype._onViewRendered = function() {
         this._isHeaderRendered = true;
-        var params = CoreUtils.getURIParams();
-        var rootParam = params[0] || 'main';
-        this._setActiveHeader(rootParam);
+        this._setActiveHeader();
     };
 
     headerController.prototype.showHeader = function() {
@@ -54,9 +53,12 @@ define([
         this.getView().render();
     };
     
-    headerController.prototype._setActiveHeader = function(psParam) {
+    headerController.prototype._setActiveHeader = function() {
+        var params = CoreUtils.getURIParams();
+        var rootParam = params[0] || 'main';
         var classes = ['main', 'search', 'settings', 'best'];
-        var headerClass = classes.indexOf(psParam) !== -1 ? psParam : 'main';
+        var headerClass = classes.indexOf(rootParam) !== -1 ? rootParam : 'main';
+        this._view.$('.header-menu-item').removeClass('active');
         this._view.$('.'+headerClass).addClass('active');
     };
     
