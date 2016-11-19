@@ -1,11 +1,13 @@
 define(
     [
+        'underscore',
         'backbone',
         'marionette',
         'Application',
         'coreUtils',
         'text!modules/search/components/searchform/templates/searchformTemplate.html'
     ], function(
+        _,
         Backbone,
         Marionette,
         Application,
@@ -30,6 +32,14 @@ define(
             onShow: function() {
                 CoreUtils.addDatepicker(this.ui.dateFrom);
                 CoreUtils.addDatepicker(this.ui.dateTo);
+            },
+
+            onClose: function () {
+                var me = this;
+                _.each(['dateFrom','dateTo'], function(name){
+                        me.ui[name].datepicker('destroy');
+                });
+                this.ui.dateInput.datetimepicker('destroy');
             },
 
             initialize: function() {
