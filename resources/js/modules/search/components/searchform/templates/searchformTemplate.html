@@ -1,13 +1,41 @@
 <!--<div class="searchform-container">-->
-<table cellspacing="0" cellpadding="0" style="border:none;">
+<table cellspacing="0" cellpadding="3" style="border:1px solid black;margin-top:10px;">
     <tr>
-        <td class="label-name">
+        <td class="label-name" style="border-bottom:1px solid black;">
             <span>Название</span>
+        </td>
+        <td class="label-name" style="border-left:1px solid black; border-bottom:1px solid black;">
+            <span>Рейтинг</span>
+        </td>
+        <td class="label-name" style="border-left:1px solid black; border-bottom:1px solid black;">
+            <span>Дата</span>
+        </td>
+        <td class="label-name" style="border-left:1px solid black; border-bottom:1px solid black;">
+            <span>Просмотров</span>
+        </td>
+        <td class="label-name" style="border-left:1px solid black; border-bottom:1px solid black;">
+            <span>Комментариев</span>
         </td>
     </tr>
     <tr>
         <td class="field-name">
-            <input type="text" name="search-name" class="search-name" id="search-name" placeholder="Введите имя" />
+            <input type="text" name="search-name" class="search-name" id="search-name" placeholder="Введите имя" style="width:120px;" />
+        </td>
+        <td class="field-name" style="border-left:1px solid black;">
+            от: <input type="text" name="search-rate-from" class="search-rate-from" id="search-rate-from" placeholder="" style="width:60px;" />
+            до: <input type="text" name="search-rate-to" class="search-rate-to" id="search-rate-to" placeholder="" style="width:60px;" />
+        </td>
+        <td class="field-name" style="border-left:1px solid black;">
+            от: <input type="text" name="search-date-from" class="search-date-from" id="search-date-from" placeholder="" style="width:60px;" />
+            до: <input type="text" name="search-date-to" class="search-date-to" id="search-date-to" placeholder="" style="width:60px;" />
+        </td>
+        <td class="field-name" style="border-left:1px solid black;">
+            от: <input type="text" name="search-watches-from" class="search-watches-from" id="search-watches-from" placeholder="" style="width:60px;" />
+            до: <input type="text" name="search-watches-to" class="search-watches-to" id="search-watches-to" placeholder="" style="width:60px;" />
+        </td>
+        <td class="field-name" style="border-left:1px solid black;">
+            от: <input type="text" name="search-comments-from" class="search-comments-from" id="search-comments-from" placeholder="" style="width:60px;" />
+            до: <input type="text" name="search-comments-to" class="search-comments-to" id="search-comments-to" placeholder="" style="width:60px;" />
         </td>
     </tr>
 </table>
