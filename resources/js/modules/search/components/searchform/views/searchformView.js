@@ -26,7 +26,7 @@ define(
             onRender: function() {
             },
             
-            onSortLinkClick: function(ev) {
+            onSubmitButtonClick: function(ev) {
                 ev.preventDefault();
                 console.log('clicked');
             },
