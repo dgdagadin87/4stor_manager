@@ -37,7 +37,7 @@ define(
             onClose: function () {
                 var me = this;
                 _.each(['dateFrom','dateTo'], function(name){
-                        me.ui[name].datepicker('destroy');
+                    me.ui[name].datepicker('destroy');
                 });
                 this.ui.dateInput.datetimepicker('destroy');
             },

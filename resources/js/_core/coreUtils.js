@@ -17,6 +17,7 @@ define([
 
         addDatepicker: function(element) {
             element.datepicker({
+                dateFormat: 'dd.mm.yy',
                 showOn: "both",
                 buttonImage: "resources/img/calendar.png",
                 buttonImageOnly: true,
