@@ -15,15 +15,38 @@ define([
 ) {
     return {
 
-        addDatepicker: function(element) {
-            element.datepicker({
+        getDate: function( element ) {
+            var date;
+            try {
+                date = $.datepicker.parseDate( 'dd.mm.yy', element.value );
+            }catch( error ) {
+                date = null;
+            }
+            return date;
+        },
+
+        addDatepickers: function(elementFrom, elementTo) {
+            var me = this;
+            var commonParams = {
                 dateFormat: 'dd.mm.yy',
                 showOn: "both",
                 buttonImage: "resources/img/calendar.png",
                 buttonImageOnly: true,
                 buttonText: 'Выберите дату',
                 maxDate: '0'
-            });
+            };
+            var fromParams = this.applyParams({
+                onSelect: function(){
+                    elementTo.datepicker("option", "minDate", me.getDate( this ));
+                }
+            }, commonParams);
+            var toParams = this.applyParams({
+                onSelect: function(){
+                    elementFrom.datepicker("option", "maxDate", me.getDate( this ));
+                }
+            }, commonParams);
+            elementFrom.datepicker(fromParams);
+            elementTo.datepicker(toParams);
         },
 
         scrollToElement: function (psElementId) {

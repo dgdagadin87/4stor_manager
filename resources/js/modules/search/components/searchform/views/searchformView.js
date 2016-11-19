@@ -30,8 +30,7 @@ define(
             },
 
             onShow: function() {
-                CoreUtils.addDatepicker(this.ui.dateFrom);
-                CoreUtils.addDatepicker(this.ui.dateTo);
+                CoreUtils.addDatepickers(this.ui.dateFrom, this.ui.dateTo);
             },
 
             onClose: function () {
