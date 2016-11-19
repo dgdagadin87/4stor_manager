@@ -13,10 +13,14 @@ define(
             className : 'listbarModel',
             defaults : {
                 _storName: '',
-                _storRateStart: null,
-                _storRateEnd  : null,
-                _storDateFrom : null,
-                _storDateTo   : null
+                _storRateStart    : null,
+                _storRateEnd      : null,
+                _storDateFrom     : null,
+                _storDateTo       : null,
+                _storWatchesFrom  : null,
+                _storWatchesTo    : null,
+                _storCommentsFrom : null,
+                _storCommentsTo   : null
             },
             initialize : function() {}
         });

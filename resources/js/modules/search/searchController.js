@@ -129,14 +129,12 @@ define([
         this._renderBaseComponents();
     };
     
-    searchController.prototype.showCurrentContent = function(poParams) {
+    searchController.prototype.showCurrentContent = function() {
         var me = this;
         var mainLayout = Application.getMainLayout();
         var layoutView = mainLayout.getView();
         var lfRender = function(){
-            
             me.__renderContent();
-            
             if (!me._isSearchRendered) {
                 layoutView[me._regionName].show(me.getView());
             }

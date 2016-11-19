@@ -13,10 +13,14 @@ define(
             className : 'searchDataModel',
             defaults : {
                 storName: '',
-                storRateStart: null,
-                storRateEnd  : null,
-                storDateFrom : null,
-                storDateTo   : null
+                storRateStart    : null,
+                storRateEnd      : null,
+                storDateFrom     : null,
+                storDateTo       : null,
+                storWatchesFrom  : null,
+                storWatchesTo    : null,
+                storCommentsFrom : null,
+                storCommentsTo   : null
             },
             initialize : function() {
             }
