@@ -62,9 +62,6 @@ define([
             if (!me._isIndexRendered) {
                 layoutView[me._regionName].show(me.getView());
             }
-//            else {
-//                me.renderView();
-//            }
         };
 
         if (me._isGlobalLoading === true) {

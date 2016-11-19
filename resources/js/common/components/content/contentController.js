@@ -9,7 +9,8 @@ define([
     '_base/BaseController',
     'settings',
     'modules/index/indexController',
-    'modules/category/categoryController'
+    'modules/category/categoryController',
+    'modules/search/searchController'
 ], function (
     _,
     Backbone,
@@ -19,7 +20,8 @@ define([
     BaseController,
     Settings,
     indexModule,
-    categoryModule
+    categoryModule,
+    searchModule
 ) {
     var contentController = function() {
         
@@ -37,7 +39,8 @@ define([
     contentController.prototype._init = function() {
         this._contentConstructors = {
             index: indexModule,
-            category: categoryModule
+            category: categoryModule,
+            search: searchModule
         };
     };
     
@@ -53,6 +56,9 @@ define([
         }
         else if (psAction === 'category') {
             lsClassPrefix = 'category';
+        }
+        else if (psAction === 'search') {
+            lsClassPrefix = 'search';
         }
         var regionName = lsClassPrefix+'Region';
 
