@@ -16,14 +16,16 @@ define(
             tagName: 'div',
             className: 'searchform-container',
 
+            ui: {
+                dateFrom : '.search-date-from',
+                dateTo   : '.search-date-to'
+            },
+
             events : {
                 'click .form-submit-button' : 'onSubmitButtonClick'
             },
 
             initialize: function() {
-            },
-            
-            onRender: function() {
             },
             
             onSubmitButtonClick: function(ev) {
