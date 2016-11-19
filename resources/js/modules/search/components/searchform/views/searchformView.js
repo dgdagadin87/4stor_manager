@@ -3,11 +3,13 @@ define(
         'backbone',
         'marionette',
         'Application',
+        'coreUtils',
         'text!modules/search/components/searchform/templates/searchformTemplate.html'
     ], function(
         Backbone,
         Marionette,
         Application,
+        CoreUtils,
         template
     ) {
         return Backbone.Marionette.ItemView.extend({
@@ -23,6 +25,11 @@ define(
 
             events : {
                 'click .form-submit-button' : 'onSubmitButtonClick'
+            },
+
+            onShow: function() {
+                CoreUtils.addDatepicker(this.ui.dateFrom);
+                CoreUtils.addDatepicker(this.ui.dateTo);
             },
 
             initialize: function() {

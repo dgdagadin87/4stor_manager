@@ -4,14 +4,26 @@ define([
     'underscore',
     'backbone', 
     'jquery',
+    'jquery_ui',
     'Application'
 ], function (
     _,
     Backbone,
     $,
+    jquery_ui,
     Application
 ) {
     return {
+
+        addDatepicker: function(element) {
+            element.datepicker({
+                showOn: "both",
+                buttonImage: "resources/img/calendar.png",
+                buttonImageOnly: true,
+                buttonText: 'Выберите дату',
+                maxDate: '0'
+            });
+        },
 
         scrollToElement: function (psElementId) {
             $('html, body').animate({
