@@ -30,7 +30,7 @@ define(
             
             onSubmitButtonClick: function(ev) {
                 ev.preventDefault();
-                console.log('clicked');
+                Application.trigger('searchform:submit');
             },
             
             templateHelpers : function() {

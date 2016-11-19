@@ -44,10 +44,15 @@ define([
     
     searchformController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
+        Application.on('searchform:submit', this._onSearchFormSubmit.bind(this));
     };
     
     searchformController.prototype._init = function() {
         this._view.model = this._model;
+    };
+    
+    searchformController.prototype._onSearchFormSubmit = function() {
+        console.log('submit button clicked');
     };
     
     searchformController.prototype._onViewRendered = function() {
