@@ -44,7 +44,6 @@ define([
     
     searchformController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
-        Application.on('searchform:submit', this._onSearchFormSubmit.bind(this));
     };
     
     searchformController.prototype._init = function() {
@@ -57,11 +56,6 @@ define([
     
     searchformController.prototype._onViewRendered = function() {
         this._isSearchformRendered = true;
-    };
-
-    searchformController.prototype.setData = function(poConf) {
-        var loConf = poConf || {};
-        this._model.set(loConf);
     };
 
     searchformController.prototype.showSearchForm = function() {

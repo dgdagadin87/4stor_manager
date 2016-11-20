@@ -26,6 +26,7 @@ define(
             },
 
             events : {
+                'change @ui.dateFrom': 'onDateFromChange',
                 'click .form-submit-button' : 'onSubmitButtonClick'
             },
 
@@ -43,10 +44,10 @@ define(
 
             initialize: function() {
             },
-            
+
             onSubmitButtonClick: function(ev) {
                 ev.preventDefault();
-                Application.trigger('searchform:submit');
+                Application.trigger('search:form:submit');
             },
             
             templateHelpers : function() {

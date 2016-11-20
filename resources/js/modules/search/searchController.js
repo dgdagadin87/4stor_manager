@@ -94,8 +94,9 @@ define([
     searchController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
         this._meta.on('change', this._onMetaChanged.bind(this));
-        Application.on('search:page:change', this._onCategoryPageChange.bind(this));
-        Application.on('search:sort:change', this._onCategorySortChange.bind(this));
+        Application.on('search:form:submit', this._onSearchFormSubmit.bind(this));
+//        Application.on('search:page:change', this._onCategoryPageChange.bind(this));
+//        Application.on('search:sort:change', this._onCategorySortChange.bind(this));
     };
     
     searchController.prototype._init = function() {
@@ -104,6 +105,10 @@ define([
             sortBy: 'storDate',
             sortType: 'DESC'
         };
+    };
+    
+    searchController.prototype._onSearchFormSubmit = function() {
+        console.log('submit button clicked');
     };
     
     searchController.prototype._onMetaChanged = function() {
