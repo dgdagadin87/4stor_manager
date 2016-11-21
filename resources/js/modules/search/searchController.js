@@ -112,7 +112,7 @@ define([
         this._bindSearchData();
         var errors = this._validateErrors();
         if (errors.length < 1) {
-            console.log('submit');
+            this.loadData();
         }
         else {
             this._showErrors(errors);
@@ -126,7 +126,7 @@ define([
     searchController.prototype._showErrors = function(errors) {
         var errorsContent = '';
         _.each(errors, function(error){
-            errorsContent += '<div class="error">'+error+'</div>'
+            errorsContent += '<div class="error">'+error+'</div>';
         });
         $('.search-error-block').html(errorsContent);
         $('.search-error-block').show();
