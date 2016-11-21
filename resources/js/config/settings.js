@@ -10,5 +10,6 @@ define({
         "getCommonData": "http://4stor.local/server/api/json.php?action=common",
         "getIndexData": "http://4stor.local/server/api/json.php?action=index",
         "getCategoryData": "http://4stor.local/server/api/json.php?action=category",
+        "getSearchData": "http://4stor.local/server/api/json.php?action=search"
     }
 });
