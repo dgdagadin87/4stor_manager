@@ -70,8 +70,8 @@ define([
             layoutView[this._spinnerRegion].show(this.getView());
         }
         else {
-            this._layout.getView()[this._spinnerRegion].$el.show();
-            this._layout.getView()[this._spinnerRegion].show(this.getView())
+            this._layout[this._spinnerRegion].$el.show();
+            this._layout[this._spinnerRegion].show(this.getView())
         }
     };
     
