@@ -8,7 +8,6 @@ define([
     'Application',
     'settings',
     '_base/BaseController',
-    './models/searchformModel',
     './views/searchformView'
 ], function (
     _,
@@ -18,7 +17,6 @@ define([
     Application,
     Settings,
     BaseController,
-    searchformModel,
     searchformView
 ) {
     var searchformController = function(poConfig) {
@@ -31,8 +29,6 @@ define([
 
         this._regionName = loConfig.regionName || 'searchformRegion';
         this._parentView = loConfig.parentView || {};
-
-        this._model = new searchformModel();
 
         this._view = new searchformView();
         
@@ -47,7 +43,6 @@ define([
     };
     
     searchformController.prototype._init = function() {
-        this._view.model = this._model;
     };
     
     searchformController.prototype._onSearchFormSubmit = function() {
