@@ -72,17 +72,17 @@ class searchModel {
         }
         
         // Если минимальный рейтинг больше максимального
-        if ($storRateStart > $storRateEnd) {
+        if (!empty($storRateStart) && !empty($storRateEnd) && ($storRateStart > $storRateEnd)) {
             return 'Поля "Рейтинг от" не должно быть больше поля "Рейтинг до"';
         }
         
         // Если минимальные просмотры больше максимальных
-        if ($storWatchesFrom > $storRateEnd) {
+        if (!empty($storWatchesFrom) && !empty($storRateEnd) && ($storWatchesFrom > $storRateEnd)) {
             return 'Поля "Просмотров от" не должно быть больше поля "Просмотров до"';
         }
         
         // Если минимальные комментарии больше максимальных
-        if ($storCommentsFrom > $storCommentsTo) {
+        if (!empty($storCommentsFrom) && !empty($storCommentsTo) && ($storCommentsFrom > $storCommentsTo)) {
             return 'Поля "Комментариев от" не должно быть больше поля "Комментариев до"';
         }
         
