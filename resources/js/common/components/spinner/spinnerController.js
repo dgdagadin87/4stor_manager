@@ -25,10 +25,14 @@ define([
         
         var loCfg = config || {};
         this._spinnerRegion = loCfg.spinnerRegion || 'spinnerRegion';
+        this._outerSpinner = loCfg.outerSpinner || false;
+        this._layout = loCfg.layout || {};
         
         this._model = new spinnerModel();
         
         this._view = new spinnerView();
+        
+        this._isSpinnerRendered = false;
         
         this._init();
         this._bindEvents();
@@ -45,6 +49,7 @@ define([
     };
     
     spinnerController.prototype._onViewRendered = function() {
+        this._isSpinnerRendered = true;
     };
 
     spinnerController.prototype.renderView = function() {
@@ -52,12 +57,18 @@ define([
     };
     
     spinnerController.prototype.showSpinner = function() {
-        var mainLayout = Application.getMainLayout();
-        var regionManager = mainLayout._regionManager || {};
-        var layoutView = mainLayout.getView();
-        regionManager.prepareRegionForRender(this._spinnerRegion);
-        regionManager.showRegionByName(this._spinnerRegion);
-        layoutView[this._spinnerRegion].show(this.getView());
+        if (!this._outerSpinner) {
+            var mainLayout = Application.getMainLayout();
+            var regionManager = mainLayout._regionManager || {};
+            var layoutView = mainLayout.getView();
+            regionManager.prepareRegionForRender(this._spinnerRegion);
+            regionManager.showRegionByName(this._spinnerRegion);
+            layoutView[this._spinnerRegion].show(this.getView());
+        }
+        else {
+            this._layout.getView()[this._spinnerRegion].$el.show();
+            this._layout.getView()[this._spinnerRegion].show(this.getView())
+        }
     };
     
     spinnerController.prototype.getModel = function() {
