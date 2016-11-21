@@ -96,6 +96,10 @@ body, html {
     color:green;
 }
 
+.searchform-container {
+    padding:10px 0;
+}
+
 .search-error-block {
     border: 1px solid crimson;
     color: red;

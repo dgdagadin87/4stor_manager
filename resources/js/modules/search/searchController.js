@@ -78,6 +78,7 @@ define([
         this._toolbarComponent = new listbarController({
             parentView: this._view,
             regionName: 'toolbarRegion',
+            eventPrefix: 'search',
             toScrollId: 'searchListRegion'
         });
         this._listComponent = new storlistController({

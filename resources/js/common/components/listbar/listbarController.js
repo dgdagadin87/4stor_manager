@@ -32,7 +32,7 @@ define([
         this._regionName = loConfig.regionName || 'listbarRegion';
         this._parentView = loConfig.parentView || {};
         this._eventPrefix = loConfig.eventPrefix || 'category';
-
+console.log(loConfig);
         this._model = new listbarModel();
 
         this._view = new listbarView({
