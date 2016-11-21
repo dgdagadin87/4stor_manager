@@ -24,7 +24,7 @@ class Helper {
     }
     
     public static function Main_ConvertDate($psDate) {
-        $paDate = implode('.', $psDate);
+        $paDate = explode('.', $psDate);
         $return = $paDate[2] . '.' . $paDate[1] . '.' . $paDate[0];
         return $return;
     }
