@@ -13,6 +13,7 @@ define([
     'common/components/storlist/storlistController',
     'common/components/paging/pagingController',
     'common/components/listbar/listbarController',
+    'common/components/spinner/spinnerController',
     'modules/search/components//startmessage/startmessageController',
     'modules/search/components/searchform/searchformController',
     'modules/search/views/searchView'
@@ -29,6 +30,7 @@ define([
     storlistController,
     pagingController,
     listbarController,
+    spinnerController,
     startMessageController,
     searchFormController,
     searchView
@@ -64,6 +66,10 @@ define([
         this._startMessageComponent = new startMessageController({
             parentView: this._view
         });
+        this._spinnerComponent = new spinnerController({
+            layout: this._view,
+            outerSpinner: true
+        });
         this._searchFormComponent = new searchFormController({
             parentView: this._view,
             regionName: 'searchformRegion',
@@ -95,8 +101,8 @@ define([
         this._view.on('render', this._onViewRendered.bind(this));
         this._meta.on('change', this._onMetaChanged.bind(this));
         Application.on('search:form:submit', this._onSearchFormSubmit.bind(this));
-//        Application.on('search:page:change', this._onCategoryPageChange.bind(this));
-//        Application.on('search:sort:change', this._onCategorySortChange.bind(this));
+        Application.on('search:page:change', this._onCategoryPageChange.bind(this));
+        Application.on('search:sort:change', this._onCategorySortChange.bind(this));
     };
     
     searchController.prototype._init = function() {
@@ -107,6 +113,31 @@ define([
         };
     };
     
+    searchController.prototype._showSearchSpinner = function() {
+        this._view['startRegion'].$el.hide();
+        this._view['toolbarRegion'].$el.hide();
+        this._view['storlistRegion'].$el.hide();
+        this._view['pagingRegion'].$el.hide();
+        if (!this._spinnerComponent.isRendered()) {
+            this._spinnerComponent.getModel().set({
+                title:'Идет загрузка',
+                spinclass: 'large'
+            });
+            this._spinnerComponent.showSpinner();
+        }
+        else {
+            this._view['spinnerRegion'].$el.show();
+        }
+    };
+    
+    searchController.prototype._hideSearchSpinner = function() {
+        this._view['startRegion'].$el.hide();
+        this._view['spinnerRegion'].$el.hide();
+        this._view['toolbarRegion'].$el.show();
+        this._view['storlistRegion'].$el.show();
+        this._view['pagingRegion'].$el.show();
+    };
+
     searchController.prototype._onSearchFormSubmit = function() {
         this._clearErrors();
         this._bindSearchData();
@@ -206,7 +237,7 @@ define([
     };
     
     searchController.prototype._onMetaChanged = function() {
-        this.loadData();
+        this.loadData(false);
     };
     
     searchController.prototype._onCategoryPageChange = function(page) {
@@ -223,7 +254,7 @@ define([
         var me = this;
         
         var lfRender = function(){
-            console.log(me);
+            me._hideSearchSpinner();
         };
 
         var afterSuccess = function(data) {
@@ -246,17 +277,31 @@ define([
                 lfRender();
             }
         };
-        
-        this._isGlobalLoading = true;
-        this.__renderSpinner();
+
+        if (isGlobal) {
+            me._meta.set(me._metaDefault);
+            me._showSearchSpinner();
+        }
+        else {
+            
+        }
         
         CoreUtils.axajQuery({
-            url: Settings.url.getCategoryData,
+            url: Settings.url.getSearchData,
             data: {
-                catId   : me._categoryId,
                 page    : me._meta.get('page'),
                 sortBy  : me._meta.get('sortBy'),
-                sortType: me._meta.get('sortType')
+                sortType: me._meta.get('sortType'),
+                
+                storName         : me._data.get('storName'),
+                storRateStart    : me._data.get('storRateStart'),
+                storRateEnd      : me._data.get('storRateEnd'),
+                storDateFrom     : me._data.get('storDateFrom'),
+                storDateTo       : me._data.get('storDateTo'),
+                storWatchesFrom  : me._data.get('storWatchesFrom'),
+                storWatchesTo    : me._data.get('storWatchesTo'),
+                storCommentsFrom : me._data.get('storCommentsFrom'),
+                storCommentsTo   : me._data.get('storCommentsTo')
             }
         },
         {
