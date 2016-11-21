@@ -95,3 +95,11 @@ body, html {
 .list-toolbar .sort-desc {
     color:green;
 }
+
+.search-error-block {
+    border: 1px solid crimson;
+    color: red;
+    padding: 10px;
+    margin-top:10px;
+    margin-bottom: 10px;
+}

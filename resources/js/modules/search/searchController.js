@@ -108,7 +108,101 @@ define([
     };
     
     searchController.prototype._onSearchFormSubmit = function() {
-        console.log('submit button clicked');
+        this._clearErrors();
+        this._bindSearchData();
+        var errors = this._validateErrors();
+        if (errors.length < 1) {
+            console.log('submit');
+        }
+        else {
+            this._showErrors(errors);
+        }
+    };
+    
+    searchController.prototype._clearErrors = function() {
+        $('.search-error-block').hide();
+    };
+    
+    searchController.prototype._showErrors = function(errors) {
+        var errorsContent = '';
+        _.each(errors, function(error){
+            errorsContent += '<div class="error">'+error+'</div>'
+        });
+        $('.search-error-block').html(errorsContent);
+        $('.search-error-block').show();
+    };
+	
+	searchController.prototype._bindSearchData = function() {
+        var data = {
+            storName         : $('#search-name').val(),
+            storRateStart    : $('#search-rate-from').val(),
+            storRateEnd      : $('#search-rate-to').val(),
+            storDateFrom     : $('#search-date-from').val(),
+            storDateTo       : $('#search-date-to').val(),
+            storWatchesFrom  : $('#search-watches-from').val(),
+            storWatchesTo    : $('#search-watches-to').val(),
+            storCommentsFrom : $('#search-comments-from').val(),
+            storCommentsTo   : $('#search-comments-to').val()
+        };
+        this._data.set(data);
+    };
+    
+    searchController.prototype._validateErrors = function() {
+        
+        var errors = [];
+        var me = this;
+        
+        // 1)Если все пусто
+        var isAllEmpty = true;
+        var allParams = ['storName','storRateStart','storRateEnd','storDateFrom','storDateTo','storWatchesFrom','storWatchesTo','storCommentsFrom','storCommentsTo'];
+        $.each(allParams, function(key, argName){
+            if (!CoreUtils.isEmpty(me._data.get(argName))) {
+                isAllEmpty = false;
+                return false;
+            }
+        });
+        if (isAllEmpty) {
+            errors.push('Хотя бы один критерий поиска должен быть заполнен');
+        }
+        if (errors.length > 0) {
+            return errors;
+        }
+        
+        // 2)Если числовые параметры не числовые
+        var numericParams = ['storRateStart','storRateEnd','storWatchesFrom','storWatchesTo','storCommentsFrom','storCommentsTo'];
+        $.each(numericParams, function(key, argName){
+            if (!CoreUtils.isEmpty(me._data.get(argName)) && !$.isNumeric(me._data.get(argName))) {
+                errors.push('Поля "Рейтинг", "Просмотров" и "Комментариев" должны быть числовыми');
+                return false;
+            }
+        });
+        if (errors.length > 0) {
+            return errors;
+        }
+        
+        // 3)Если минимальный рейтинг больше максимального
+        if (!CoreUtils.isEmpty(me._data.get('storRateStart')) && !CoreUtils.isEmpty(me._data.get('storRateEnd')) && (me._data.get('storRateStart') > me._data.get('storRateEnd'))) {
+            errors.push('Поля "Рейтинг от" не должно быть больше поля "Рейтинг до"');
+        }
+        
+        // 4)Если минимальное к-во просмотров больше максимального
+        if (!CoreUtils.isEmpty(me._data.get('storWatchesFrom')) && !CoreUtils.isEmpty(me._data.get('storWatchesTo')) && (me._data.get('storWatchesFrom') > me._data.get('storWatchesTo'))) {
+            errors.push('Поля "Просмотров от" не должно быть больше поля "Просмотров до"');
+        }
+        
+        // 5)Если минимальное к-во комментариев больше максимального
+        if (!CoreUtils.isEmpty(me._data.get('storCommentsFrom')) && !CoreUtils.isEmpty(me._data.get('storCommentsTo')) && (me._data.get('storCommentsFrom') > me._data.get('storCommentsTo'))) {
+            errors.push('Поля "Комментариев от" не должно быть больше поля "Комментариев до"');
+        }
+        
+        // 6)Еще не мешало бы сравнить даты
+        // ...
+        
+        if (errors.length > 0) {
+            return errors;
+        }
+        
+        return [];
     };
     
     searchController.prototype._onMetaChanged = function() {
