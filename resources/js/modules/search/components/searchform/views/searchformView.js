@@ -51,7 +51,7 @@ define(
             },
             
             templateHelpers : function() {
-                return this.model.toJSON();
+                return {};
             }
         });
     }
