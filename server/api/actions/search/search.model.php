@@ -266,11 +266,11 @@ class searchModel {
         }
         
         if (!empty($this->storDateFrom)) {
-            $laConditions[] = 'DATE(`s.storDate`) >= ' . Helper::Main_ConvertDate($this->storDateFrom) . '';
+            $laConditions[] = 'DATE(s.storDate) >= "' . Helper::Main_ConvertDate($this->storDateFrom) . '"';
         }
         
         if (!empty($this->storDateTo)) {
-            $laConditions[] = 'DATE(`s.storDate`) <= ' . Helper::Main_ConvertDate($this->storDateTo) . '';
+            $laConditions[] = 'DATE(s.storDate) <= "' . Helper::Main_ConvertDate($this->storDateTo) . '"';
         }
         
         $lsSql = ' ' . implode(' AND ', $laConditions) . ' ';
