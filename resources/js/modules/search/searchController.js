@@ -112,7 +112,7 @@ define([
         this._bindSearchData();
         var errors = this._validateErrors();
         if (errors.length < 1) {
-            this.loadData();
+            this.loadData(true);
         }
         else {
             this._showErrors(errors);
@@ -219,8 +219,50 @@ define([
         this._meta.set(loData);
     };
     
-    searchController.prototype.loadData = function() {
+    searchController.prototype.loadData = function(isGlobal) {
+        var me = this;
         
+        var lfRender = function(){
+            console.log(me);
+        };
+
+        var afterSuccess = function(data) {
+            var laData = data.data || [];
+            var searchData = laData.search || [];
+            var pagingData = laData.paging || {};
+            var metaData = laData.meta || {};
+            var lbSuccess = data.success || false;
+            var lsMessage = data.message || '';
+
+            if (!lbSuccess) {
+                Application.trigger('error:modal:show', lsMessage);
+            }
+            else {
+
+                me._listComponent.setData(searchData);
+                me._pagingComponent.setData(pagingData);
+                me._toolbarComponent.setData(metaData);
+
+                lfRender();
+            }
+        };
+        
+        this._isGlobalLoading = true;
+        this.__renderSpinner();
+        
+        CoreUtils.axajQuery({
+            url: Settings.url.getCategoryData,
+            data: {
+                catId   : me._categoryId,
+                page    : me._meta.get('page'),
+                sortBy  : me._meta.get('sortBy'),
+                sortType: me._meta.get('sortType')
+            }
+        },
+        {
+            afterSuccess: afterSuccess,
+            afterError: me.afterError
+        });
     };
     
     searchController.prototype._onViewRendered = function() {
