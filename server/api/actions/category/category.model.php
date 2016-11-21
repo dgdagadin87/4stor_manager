@@ -26,7 +26,7 @@ class categoryModel {
         $laStors = array();
         $SQL = 'SELECT catId, storId FROM cats2stories WHERE storId IN (' . implode(',', $storIds) . ')';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
-        if (!$Query) {var_dump($SQL);exit;
+        if (!$Query) {
             return 'Ошибка при получении полного списка категорий рассказов';
         }
         while($Data = DB_FetchAssoc ('mysql', $Query)) {
