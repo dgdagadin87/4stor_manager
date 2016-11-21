@@ -52,6 +52,10 @@ define([
         this._isSpinnerRendered = true;
     };
 
+    spinnerController.prototype.isRendered = function() {
+        return this._isSpinnerRendered;
+    };
+
     spinnerController.prototype.renderView = function() {
         this.getView().render();
     };
