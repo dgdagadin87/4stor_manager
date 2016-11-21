@@ -26,7 +26,7 @@ class searchModel {
     
     public function run () {
         $this->connect();
-        return $this->getCategory();
+        return $this->getSearch();
     }
     
     public function getFullStorCatList ($storIds) {
@@ -91,11 +91,15 @@ class searchModel {
         //    return 'Поля дат должны соответствовать формату "дд.мм.гггг"';
         //}
         
-        // категория
-        $categoryId = isset($_GET['catId']) ? intval($_GET['catId']) : 0;
-        if ($categoryId < 1) {
-            return 'Не определена категория';
-        }
+        $this->storName = $storName;
+        $this->storRateStart = $storRateStart;
+        $this->storRateEnd = $storRateEnd;
+        $this->storDateFrom = $storDateFrom;
+        $this->storDateTo = $storDateTo;
+        $this->storWatchesFrom = $storWatchesFrom;
+        $this->storWatchesTo = $storWatchesTo;
+        $this->storWatchesTo = $storWatchesTo;
+        $this->storCommentsTo = $storCommentsTo;
 
         // полный список категорий
         $SQL = 'SELECT catId, catName FROM categories';
@@ -107,20 +111,13 @@ class searchModel {
             $catId = $Data['catId'];
             $catName = $Data['catName'];
             $this->categories[$catId] = $catName;
-            
-            if ($categoryId == $catId) {
-                $this->categoryName = $catName;
-            }
-        }
-        if (is_null($this->categoryName)) {
-            return 'Указанной категории нет в списке';
         }
         
-        // количество историй в категории
-        $SQL = 'SELECT COUNT(*) FROM `cats2stories` WHERE catId = ' . $categoryId;
+        // количество историй в поиске
+        $SQL = 'SELECT COUNT(*) FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE ' . $this->getSearchConditions();
         $Query = DB_Query ('mysql', $SQL, $this->connection);
-        if (!$Query) {
-            return 'Ошибка при получении количества историй в категории';
+        if (!$Query) {exit($SQL);
+            return 'Ошибка при получении количества историй в поиске';
         }
         $numStores = DB_Result ('mysql', $Query, 0, 0);
         $numPages = $numStores > 0 ? ceil ($numStores / 10) : 1;
@@ -135,20 +132,9 @@ class searchModel {
         
         $this->sortType = $sortType;
         $this->sortBy = $sortBy;
-        $this->categoryId = $categoryId;
         $this->curPage = $page;
         $this->numPages = $numPages;
         $this->numOfStors = $numStores;
-        
-        $this->storName = $storName;
-        $this->storRateStart = $storRateStart;
-        $this->storRateEnd = $storRateEnd;
-        $this->storDateFrom = $storDateFrom;
-        $this->storDateTo = $storDateTo;
-        $this->storWatchesFrom = $storWatchesFrom;
-        $this->storWatchesTo = $storWatchesTo;
-        $this->storWatchesTo = $storWatchesTo;
-        $this->storCommentsTo = $storCommentsTo;
         
         return (true);
     }
@@ -174,7 +160,11 @@ class searchModel {
         
         $metaResult = $this->getMeta();
         if ($metaResult !== true) {
-            return ($metaResult);
+            return (array(
+                'success' => false,
+                'message' => $metaResult,
+                'data'    => array()
+            ));
         }
         
         $laReturn = array(
@@ -203,8 +193,6 @@ class searchModel {
     }
     
     public function getSearchStors() {
-        // условия поиска
-        
         // данные рассказов по выбранным критериям поиска
         $SQL = 'SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE ' . $this->getSearchConditions() . ' ORDER BY s.' . $this->sortBy . ' ' . $this->sortType . ' LIMIT ' . 10*($this->curPage - 1) . ', 10';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
@@ -250,7 +238,7 @@ class searchModel {
         $laConditions = array();
         
         if (!empty($this->storName)) {
-            $laConditions[] = 's.storName ILIKE "%' . DB_EscapeString('mysql', $this->connection, $this->storName) . '%"';
+            $laConditions[] = 's.storName LIKE "%' . DB_EscapeString('mysql', $this->connection, $this->storName) . '%"';
         }
         
         if (!empty($this->storRateStart)) {
