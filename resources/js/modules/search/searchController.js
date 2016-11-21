@@ -94,7 +94,7 @@ define([
         this._init();
         this._bindEvents();
     };
- 
+
     searchController.prototype = Object.create(BaseController.prototype);
     
     searchController.prototype._bindEvents = function() {
@@ -104,7 +104,7 @@ define([
         Application.on('search:page:change', this._onCategoryPageChange.bind(this));
         Application.on('search:sort:change', this._onCategorySortChange.bind(this));
     };
-    
+
     searchController.prototype._init = function() {
         this._metaDefault = {
             page: 1,
@@ -112,7 +112,7 @@ define([
             sortType: 'DESC'
         };
     };
-    
+
     searchController.prototype._showSearchSpinner = function() {
         this._view['startRegion'].$el.hide();
         this._view['toolbarRegion'].$el.hide();
@@ -129,7 +129,7 @@ define([
             this._view['spinnerRegion'].$el.show();
         }
     };
-    
+
     searchController.prototype._hideSearchSpinner = function() {
         this._view['startRegion'].$el.hide();
         this._view['spinnerRegion'].$el.hide();
@@ -149,11 +149,11 @@ define([
             this._showErrors(errors);
         }
     };
-    
+
     searchController.prototype._clearErrors = function() {
         $('.search-error-block').hide();
     };
-    
+
     searchController.prototype._showErrors = function(errors) {
         var errorsContent = '';
         _.each(errors, function(error){
@@ -162,7 +162,7 @@ define([
         $('.search-error-block').html(errorsContent);
         $('.search-error-block').show();
     };
-	
+
 	searchController.prototype._bindSearchData = function() {
         var data = {
             storName         : $('#search-name').val(),
@@ -177,7 +177,7 @@ define([
         };
         this._data.set(data);
     };
-    
+
     searchController.prototype._validateErrors = function() {
         
         var errors = [];
@@ -235,26 +235,29 @@ define([
         
         return [];
     };
-    
+
     searchController.prototype._onMetaChanged = function() {
         this.loadData(false);
     };
-    
+
     searchController.prototype._onCategoryPageChange = function(page) {
         this._meta.set('page', page);
     };
-    
+
     searchController.prototype._onCategorySortChange = function(data) {
         var loData = data || {};
         loData.page = 1;
         this._meta.set(loData);
     };
-    
+
     searchController.prototype.loadData = function(isGlobal) {
         var me = this;
         
         var lfRender = function(){
             me._hideSearchSpinner();
+            me._renderListComponents({
+                toScroll: true
+            });
         };
 
         var afterSuccess = function(data) {
@@ -309,12 +312,12 @@ define([
             afterError: me.afterError
         });
     };
-    
+
     searchController.prototype._onViewRendered = function() {
         this._isSearchRendered = true;
         this._renderBaseComponents();
     };
-    
+
     searchController.prototype.showCurrentContent = function() {
         var me = this;
         var mainLayout = Application.getMainLayout();
@@ -327,14 +330,18 @@ define([
         };
         lfRender();
     };
-    
+
     searchController.prototype._renderBaseComponents = function() {
         this._searchFormComponent.showSearchForm();
         this._startMessageComponent.showStartMessage();
     };
 
-    searchController.prototype._showCurrentContent = function() {
-        
+    searchController.prototype._renderListComponents = function() {
+        var config = arguments[0] || {};
+        var toScroll = config.toScroll;
+        this._listComponent.showStorList(toScroll);
+        this._pagingComponent.showPaging();
+        this._toolbarComponent.showToolbar();
     };
 
     searchController.prototype.renderView = function() {
@@ -346,10 +353,10 @@ define([
         this._isGlobalLoading = false;
         Application.trigger('error:modal:show', lsMessage);
     };
-    
+
     searchController.prototype.getModel = function() {
         return this._model;
     };
 
-   return searchController;
+    return searchController;
 });
