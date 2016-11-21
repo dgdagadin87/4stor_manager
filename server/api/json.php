@@ -3,6 +3,7 @@
 require (__DIR__ . '/../cfg/config.php');
 require (__DIR__ . '/../inc/db.inc.php');
 require (__DIR__ . '/../inc/helper.inc.php');
+require (__DIR__ . '/../abstract/abstract.model.php');
 
 set_time_limit(0);
 
