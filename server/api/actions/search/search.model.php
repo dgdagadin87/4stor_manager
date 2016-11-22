@@ -52,7 +52,7 @@ class searchModel extends abstractModel {
         }
         
         // Если минимальные просмотры больше максимальных
-        if (!empty($storWatchesFrom) && !empty($storRateEnd) && ($storWatchesFrom > $storRateEnd)) {
+        if (!empty($storWatchesFrom) && !empty($storWatchesTo) && ($storWatchesFrom > $storWatchesTo)) {
             return 'Поля "Просмотров от" не должно быть больше поля "Просмотров до"';
         }
         
