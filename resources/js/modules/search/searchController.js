@@ -125,6 +125,7 @@ define([
                 spinclass: 'large'
             });
             this._spinnerComponent.showSpinner();
+            this._view['spinnerRegion'].$el.show();
         }
         else {
             this._view['spinnerRegion'].$el.show();
