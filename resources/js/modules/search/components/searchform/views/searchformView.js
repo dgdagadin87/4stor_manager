@@ -39,7 +39,6 @@ define(
                 _.each(['dateFrom','dateTo'], function(name){
                     me.ui[name].datepicker('destroy');
                 });
-                this.ui.dateInput.datetimepicker('destroy');
             },
 
             initialize: function() {
