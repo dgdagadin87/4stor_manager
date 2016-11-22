@@ -285,7 +285,6 @@ define([
             me._showSearchSpinner();
         }
         else {
-            
         }
         
         CoreUtils.axajQuery({
