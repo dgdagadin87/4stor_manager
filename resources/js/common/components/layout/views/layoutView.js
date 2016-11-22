@@ -21,7 +21,7 @@ define(
                 crumbsRegion: '#crumbs-region',
                 leftRegion: '#left-region',
                 footerRegion: '#footer-region',
-                dialogRegion: '#dialog-region'
+                dialogMsgRegion: '#dialog-message'
             },
             
             initialize: function() {

@@ -9,6 +9,7 @@ define([
     'coreUtils',
     'settings',
     'regionManager',
+    'common/components/layout/views/dialogMessageView',
     'common/components/layout/views/layoutView',
     'common/components/header/headerController',
     'common/components/crumbs/crumbsController',
@@ -24,6 +25,7 @@ define([
     CoreUtils,
     Settings,
     regionManager,
+    dialogMessageView,
     mainLayoutView,
     headerComponent,
     crumbsComponent,
@@ -92,14 +94,16 @@ define([
     layoutController.prototype._onModalErrorShow = function() {
         var laArgs = arguments || [];
         var errorMsg = laArgs[0] || '';
-        alert(errorMsg);
+        var messageView = new dialogMessageView();
+        messageView._message = errorMsg;
+        this._view['dialogMsgRegion'].show(messageView);
     };
 
     layoutController.prototype._onBreadCrumbsShow = function(paData) {
         this._crumbsComponent.showBreadCrumbs(paData);
     };
     
-     layoutController.prototype._onBreadCrumbsHide = function() {
+    layoutController.prototype._onBreadCrumbsHide = function() {
         this._crumbsComponent.hideBreadCrumbs();
     };
 
@@ -122,6 +126,23 @@ define([
 
     layoutController.prototype._onViewRendered = function() {
         this._isLayoutRendered = true;
+        this._view['dialogMsgRegion'].onShow = function(view){
+            var me = this;
+            var closeDialog = function(){
+                me.stopListening();
+                me.empty();
+                me.$el.dialog('destroy');
+            };
+            this.listenTo(view, 'dialog:close', closeDialog);
+            this.$el.dialog({
+                modal: true,
+                title: 'Возникла ошибка',
+                width: 'auto',
+                close: function(e, ui){
+                    closeDialog();
+                }
+            });
+        };
         this._renderComponents();
     };
 
