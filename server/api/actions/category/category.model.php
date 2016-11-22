@@ -79,7 +79,11 @@ class categoryModel extends abstractModel {
         
         $metaResult = $this->getMeta();
         if ($metaResult !== true) {
-            return ($metaResult);
+            return (array(
+                'success' => false,
+                'message' => $metaResult,
+                'data'    => array()
+            ));
         }
         
         $laReturn = array(
