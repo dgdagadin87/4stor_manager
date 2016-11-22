@@ -73,7 +73,7 @@ class searchModel extends abstractModel {
         $this->storDateTo = $storDateTo;
         $this->storWatchesFrom = $storWatchesFrom;
         $this->storWatchesTo = $storWatchesTo;
-        $this->storWatchesTo = $storWatchesTo;
+        $this->storCommentsFrom = $storCommentsFrom;
         $this->storCommentsTo = $storCommentsTo;
 
         // полный список категорий
