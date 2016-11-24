@@ -18,7 +18,7 @@ define(
 
             events : {
                 'click .category-choose-set-all'   : 'onSetAllClick',
-                'click .category-choose-unset-all' : 'onSUnetAllClick'
+                'click .category-choose-unset-all' : 'onUnSetAllClick'
             },
 
             initialize: function() {
