@@ -38,7 +38,7 @@ define(
             },
             
             templateHelpers : function() {
-                var mainLayout = Application.getMailLayout();
+                var mainLayout = Application.getMainLayout();
                 var commonData = mainLayout.getCommonData();
                 var categories = commonData.categories || [];
                 return {

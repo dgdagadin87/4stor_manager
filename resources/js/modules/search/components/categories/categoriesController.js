@@ -21,16 +21,7 @@ define([
 ) {
     var categoriesController = function() {
         
-        var mainLayout = Application.getMailLayout();
-        var commonData = mainLayout.getCommonData();
-        var categories = commonData.categories || [];
-        var checkedIds = [];
-        _.each(categories, function(category){
-            checkedIds.push(category.catId);
-        });
-        
         this._model = new categoriesModel();
-        this._model.set('checkedCategories', checkedIds);
         
         BaseController.call(this);
 
@@ -45,6 +36,17 @@ define([
     
     categoriesController.prototype._init = function() {
     };
+    
+    categoriesController.prototype.setCategoriesData = function() {
+        var mainLayout = Application.getMainLayout();
+        var commonData = mainLayout.getCommonData();
+        var categories = commonData.categories || [];
+        var checkedIds = [];
+        _.each(categories, function(category){
+            checkedIds.push(category.categoryId);
+        });
+        this._model.set('checkedCategories', checkedIds);
+    }
     
     categoriesController.prototype.getViewForDialog = function() {
         this._view = new categoriesView();

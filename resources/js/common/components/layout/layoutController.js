@@ -10,6 +10,7 @@ define([
     'settings',
     'regionManager',
     'common/dialogs/message/views/dialogMessageView',
+    'modules/search/components/categories/categoriesController',
     'common/components/layout/views/layoutView',
     'common/components/header/headerController',
     'common/components/crumbs/crumbsController',
@@ -26,6 +27,7 @@ define([
     Settings,
     regionManager,
     dialogMessageView,
+    chooseCategoriesController,
     mainLayoutView,
     headerComponent,
     crumbsComponent,
@@ -58,6 +60,7 @@ define([
         this._largeSpinnerComponent = new spinnerComponent({
             spinnerRegion:'spinnerRegion'
         });
+        this._chooseComponent = new chooseCategoriesController();
 
         this._init();
         this._bindEvents();
@@ -101,8 +104,9 @@ define([
         this._view['dialogMsgRegion'].show(messageView);
     };
     
-    layoutController.prototype._onModalCategoriesOpen = function(view) {
-        console.log(this._commonData.categories);
+    layoutController.prototype._onModalCategoriesOpen = function() {
+        var categoriesView = this._chooseComponent.getViewForDialog();
+        this._view['dialogCtgRegion'].show(categoriesView);
     };
 
     layoutController.prototype._onBreadCrumbsShow = function(paData) {
@@ -197,6 +201,7 @@ define([
                 var commonData = laData;
                 me._isDataLoaded = true;
                 me._commonData = commonData;
+                me._chooseComponent.setCategoriesData();
                 showParts();
             }
         };
@@ -218,6 +223,10 @@ define([
                 afterError: afterError
             });
         }
+    };
+
+    layoutController.prototype.getCommonData = function() {
+        return this._commonData;
     };
 
     layoutController.prototype.renderView = function() {
