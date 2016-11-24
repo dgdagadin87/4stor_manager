@@ -297,7 +297,8 @@ define([
         }
         else {
         }
-        
+        var chooseModel = me._chooseComponent.getModel().toJSON();
+
         CoreUtils.axajQuery({
             url: Settings.url.getSearchData,
             data: {
@@ -313,7 +314,9 @@ define([
                 storWatchesFrom  : me._data.get('storWatchesFrom'),
                 storWatchesTo    : me._data.get('storWatchesTo'),
                 storCommentsFrom : me._data.get('storCommentsFrom'),
-                storCommentsTo   : me._data.get('storCommentsTo')
+                storCommentsTo   : me._data.get('storCommentsTo'),
+                
+                categories       : chooseModel.checkedCategories
             }
         },
         {
