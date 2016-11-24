@@ -20,6 +20,8 @@ class searchModel extends abstractModel {
     public $storCommentsFrom = null;
     public $storCommentsTo = null;
     
+    public $categoryList = array();
+    
     public function run () {
         $this->connect();
         return $this->getSearch();
@@ -40,6 +42,14 @@ class searchModel extends abstractModel {
         $storWatchesTo = isset($_GET['storWatchesTo']) ? $_GET['storWatchesTo'] : null;
         $storCommentsFrom = isset($_GET['storCommentsFrom']) && !empty($_GET['storCommentsFrom']) ? intval($_GET['storCommentsFrom']) : null;
         $storCommentsTo = isset($_GET['storCommentsFrom']) ? $_GET['storCommentsFrom'] : null;
+        
+        // категории
+        $catsList = isset($_GET['categories']) && is_array($_GET['categories']) ? $_GET['categories'] : array();
+        
+        // если пустые категории
+        if (sizeof($catsList) < 1) {
+            return 'Хотя бы одна категория должна быть выбрана';
+        }
         
         // все критерии пустые
         if (empty($storName) && empty($storRateStart) && empty($storRateEnd) && empty($storDateFrom) && empty($storDateTo) && empty($storWatchesFrom) && empty($storWatchesTo) && empty($storCommentsFrom) && empty($storCommentsTo)) {
@@ -75,6 +85,8 @@ class searchModel extends abstractModel {
         $this->storWatchesTo = $storWatchesTo;
         $this->storCommentsFrom = $storCommentsFrom;
         $this->storCommentsTo = $storCommentsTo;
+        
+        $this->categoryList = $catsList;
 
         // полный список категорий
         $SQL = 'SELECT catId, catName FROM categories';
@@ -194,6 +206,8 @@ class searchModel extends abstractModel {
 
     public function getSearchConditions() {
         $laConditions = array();
+        
+        $laConditions[] = 'c2s.catId IN (' . implode(',', $this->categoryList) . ')';
         
         if (!empty($this->storName)) {
             $laConditions[] = 's.storName LIKE "%' . DB_EscapeString('mysql', $this->connection, $this->storName) . '%"';
