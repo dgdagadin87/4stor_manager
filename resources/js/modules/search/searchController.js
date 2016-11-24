@@ -8,6 +8,7 @@ define([
     'Application',
     'settings',
     '_base/BaseController',
+    'modules/search/components/categories/categoriesController',
     'modules/search/models/searchStateModel',
     'modules/search/models/searchDataModel',
     'common/components/storlist/storlistController',
@@ -25,6 +26,7 @@ define([
     Application,
     Settings,
     BaseController,
+    chooseCategoriesController,
     metaModel,
     dataModel,
     storlistController,
@@ -91,6 +93,9 @@ define([
             regionName  : 'pagingRegion',
             eventPrefix : 'search'
         });
+        this._chooseComponent = new chooseCategoriesController();
+        
+        this._chooseComponent.setCategoriesData();
         
         this._init();
         this._bindEvents();
@@ -104,6 +109,7 @@ define([
         Application.on('search:form:submit', this._onSearchFormSubmit.bind(this));
         Application.on('search:page:change', this._onCategoryPageChange.bind(this));
         Application.on('search:sort:change', this._onCategorySortChange.bind(this));
+        Application.on('categories:dialog:open', this._onModalCategoriesOpen.bind(this));
     };
 
     searchController.prototype._init = function() {
@@ -112,6 +118,11 @@ define([
             sortBy: 'storDate',
             sortType: 'DESC'
         };
+    };
+
+    searchController.prototype._onModalCategoriesOpen = function() {
+        var categoriesView = this._chooseComponent.getViewForDialog();
+        Application.getMainLayout().getView()['dialogCtgRegion'].show(categoriesView);
     };
 
     searchController.prototype._showSearchSpinner = function() {
