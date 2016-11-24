@@ -59,9 +59,14 @@ define(
                             checked.splice(indexOf, 1);
                         }
                     }
-                    me.model.set('checkedCategories', checked);
                 });
-                this.trigger('dialog:close');
+                if (checked.length < 1) {
+                    alert('Хотя бы одна категория должна быть выбрана');
+                }
+                else {
+                    me.model.set('checkedCategories', checked);
+                    this.trigger('dialog:close');
+                }
             },
             
             onCategoriesCancelClick: function(ev) {
@@ -71,12 +76,22 @@ define(
             
             onSetAllClick: function(ev) {
                 ev.preventDefault();
-                console.log('set');
+                var me = this;
+                _.each(this.$('.category-item-checkbox'), function(item){
+                    var current = me.$(item);
+                    current.prop('checked', true);
+                    current.attr('checked', 'checked');
+                });
             },
             
             onUnSetAllClick: function(ev) {
                 ev.preventDefault();
-                console.log('unset');
+                var me = this;
+                _.each(this.$('.category-item-checkbox'), function(item){
+                    var current = me.$(item);
+                    current.prop('checked', false);
+                    current.removeAttr('checked');
+                });
             },
             
             templateHelpers : function() {
