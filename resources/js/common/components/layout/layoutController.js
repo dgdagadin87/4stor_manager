@@ -137,7 +137,6 @@ define([
         this._view['dialogMsgRegion'].onShow = function(view){
             var me = this;
             var closeDialog = function(){
-                console.log(me)
                 me.stopListening();
                 me.empty();
                 me.$el.dialog('destroy');

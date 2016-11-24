@@ -15,6 +15,15 @@ define(
 
             tagName: 'div',
             className: 'message-container',
+            
+            events: {
+                'click .message-ok': 'onOkButtonClick'
+            },
+
+            onOkButtonClick: function(ev) {
+                ev.preventDefault();
+                this.trigger('dialog:close');
+            },
 
             initialize: function() {
             },
