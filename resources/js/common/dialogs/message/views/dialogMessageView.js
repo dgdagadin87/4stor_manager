@@ -3,7 +3,7 @@ define(
         'backbone',
         'marionette',
         'Application',
-        'text!common/components/layout/templates/dialogMessageTemplate.html'
+        'text!common/dialogs/message/templates/dialogMessageTemplate.html'
     ], function(
         Backbone,
         Marionette,

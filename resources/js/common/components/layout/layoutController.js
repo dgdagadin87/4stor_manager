@@ -9,7 +9,7 @@ define([
     'coreUtils',
     'settings',
     'regionManager',
-    'common/components/layout/views/dialogMessageView',
+    'common/dialogs/message/views/dialogMessageView',
     'common/components/layout/views/layoutView',
     'common/components/header/headerController',
     'common/components/crumbs/crumbsController',
@@ -68,12 +68,14 @@ define([
     layoutController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
         Application.on('spinner:large:show', this._onLargeSpinnerShow.bind(this));
-        Application.on('error:modal:show', this._onModalErrorShow.bind(this));
         Application.on('breadcrumbs:show', this._onBreadCrumbsShow.bind(this));
         Application.on('breadcrumbs:hide', this._onBreadCrumbsHide.bind(this));
         Application.on('title:change', this._onTitleChange.bind(this));
         Application.on('content:regions:hide', this._onContentRegionsHide.bind(this));
         Application.on('content:region:show', this._onContentRegionShow.bind(this));
+        
+        Application.on('error:modal:show', this._onModalErrorShow.bind(this));
+        Application.on('categories:dialog:open', this._onModalCategoriesOpen.bind(this));
     };
 
     layoutController.prototype._init = function() {
@@ -97,6 +99,10 @@ define([
         var messageView = new dialogMessageView();
         messageView._message = errorMsg;
         this._view['dialogMsgRegion'].show(messageView);
+    };
+    
+    layoutController.prototype._onModalCategoriesOpen = function(view) {
+        console.log(this._commonData.categories);
     };
 
     layoutController.prototype._onBreadCrumbsShow = function(paData) {
@@ -126,9 +132,12 @@ define([
 
     layoutController.prototype._onViewRendered = function() {
         this._isLayoutRendered = true;
+        
+        // диалоговое окно ошибки
         this._view['dialogMsgRegion'].onShow = function(view){
             var me = this;
             var closeDialog = function(){
+                console.log(me)
                 me.stopListening();
                 me.empty();
                 me.$el.dialog('destroy');
@@ -143,6 +152,26 @@ define([
                 }
             });
         };
+            
+        // диалоговое окно списка категорий
+        this._view['dialogCtgRegion'].onShow = function(view){
+            var me = this;
+            var closeDialog = function(){
+                me.stopListening();
+                me.empty();
+                me.$el.dialog('destroy');
+            };
+            this.listenTo(view, 'dialog:close', closeDialog);
+            this.$el.dialog({
+                modal: true,
+                title: 'Выберите категории для поиска',
+                width: 'auto',
+                close: function(e, ui){
+                    closeDialog();
+                }
+            });
+        };
+            
         this._renderComponents();
     };
 

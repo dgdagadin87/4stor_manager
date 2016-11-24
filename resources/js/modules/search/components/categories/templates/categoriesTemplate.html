@@ -1,0 +1,11 @@
+<div class="category-chose-toolbar">
+    <a class="category-choose-set-all" href="#">Выбрать все</a>
+    &nbsp;&nbsp;
+    <a class="category-choose-unset-all"></a>
+</div>
+<% _.each(categories, function(category){ %>
+<div class="category-chose-list-item">
+    <input data-cat-id="<%=category.catId%>" name="category-item-<%=category.catId%>" type="checkbox" <% if (checkedCategories.indexOf(category.catId) !== -1) { %>checked="checked"<% } %> />
+    <%=category.catName%>
+</div>
+<% }); %>

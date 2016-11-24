@@ -26,7 +26,7 @@ define(
             },
 
             events : {
-                'change @ui.dateFrom': 'onDateFromChange',
+                'click .search-choose-categories': 'onChooseCategoriesClick',
                 'click .form-submit-button' : 'onSubmitButtonClick'
             },
 
@@ -42,6 +42,11 @@ define(
             },
 
             initialize: function() {
+            },
+
+            onChooseCategoriesClick: function(ev) {
+                ev.preventDefault();
+                Application.trigger('categories:dialog:open');
             },
 
             onSubmitButtonClick: function(ev) {
