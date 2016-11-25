@@ -47,6 +47,7 @@ define([
     headerController.prototype.showHeader = function() {
         var mainLayout = Application.getMainLayout();
         mainLayout.getView().showChildView('headerRegion', this.getView());
+        Application.trigger('header:setactive');
     };
 
     headerController.prototype.renderView = function() {

@@ -107,3 +107,8 @@ body, html {
     margin-top:10px;
     margin-bottom: 10px;
 }
+
+.categories-container .active {
+    font-weight:bold;
+    color:#AA0000;
+}

@@ -73,7 +73,6 @@ define([
         Application.on('title:change', this._onTitleChange.bind(this));
         Application.on('content:regions:hide', this._onContentRegionsHide.bind(this));
         Application.on('content:region:show', this._onContentRegionShow.bind(this));
-        
         Application.on('error:modal:show', this._onModalErrorShow.bind(this));
     };
 
@@ -200,7 +199,7 @@ define([
         };
         
         me._currentPage = action;
-        Application.trigger('header:setactive');
+
         if (this._isDataLoaded) {
             showParts(me._commonData);
         }

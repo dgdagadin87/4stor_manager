@@ -35,6 +35,7 @@ define([
     
     catlistController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
+        Application.on('category:setactive', this._setActiveCategory.bind(this));
     };
     
     catlistController.prototype._init = function() {
@@ -42,6 +43,26 @@ define([
     
     catlistController.prototype._onViewRendered = function() {
         this._isCategoriesRendered = true;
+    };
+
+    catlistController.prototype._setActiveCategory = function() {
+        var params = CoreUtils.getURIParams();
+        var rootParam = params[0] || 'main';
+        var secParam  = params[1] || 0;
+        $('.category-list-item').removeClass('active');
+        if (rootParam === 'category') {
+            $.each($('.catlist-item'), function(key, item){
+                var current = $(item);
+                var href = current.attr('href');
+                var hrefArray = href.split('/');
+                var curCatId = hrefArray[2] || 0;
+                if (curCatId == secParam) {
+                    current.parent().addClass('active');
+                    return false;
+                }
+            });
+        }
+        
     };
 
     catlistController.prototype.renderView = function() {
@@ -55,6 +76,7 @@ define([
             view.collection.set(paData);
             mainLayout.getView().showChildView('leftRegion', view);
         }
+        Application.trigger('category:setactive');
     };
 
     return catlistController;

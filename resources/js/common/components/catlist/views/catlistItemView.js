@@ -12,7 +12,7 @@ define(
     ) {
         return Backbone.Marionette.ItemView.extend({
             tagName: "div",
-            className: 'category-item',
+            className: 'category-list-item',
             template: _.template(template),
             templateHelpers: function(){
                 return this.model.toJSON();
