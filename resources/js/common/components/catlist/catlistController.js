@@ -62,7 +62,6 @@ define([
                 }
             });
         }
-        
     };
 
     catlistController.prototype.renderView = function() {
