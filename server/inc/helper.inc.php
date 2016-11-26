@@ -19,7 +19,8 @@ class Helper {
             'index',
             'common',
             'category',
-            'search'
+            'search',
+            'statistics'
         );
     }
     
