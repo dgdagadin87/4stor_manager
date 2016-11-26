@@ -101,9 +101,9 @@ class searchModel extends abstractModel {
         }
         
         // количество историй в поиске
-        $SQL = 'SELECT COUNT(*) FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE ' . $this->getSearchConditions();
+        $SQL = 'SELECT COUNT(DISTINCT s.storId) FROM stories s LEFT JOIN cats2stories c2s ON c2s.storId = s.storId WHERE ' . $this->getSearchConditions();
         $Query = DB_Query ('mysql', $SQL, $this->connection);
-        if (!$Query) {exit($SQL);
+        if (!$Query) {
             return 'Ошибка при получении количества историй в поиске';
         }
         $numStores = DB_Result ('mysql', $Query, 0, 0);
@@ -164,7 +164,7 @@ class searchModel extends abstractModel {
     
     public function getSearchStors() {
         // данные рассказов по выбранным критериям поиска
-        $SQL = 'SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE ' . $this->getSearchConditions() . ' ORDER BY s.' . $this->sortBy . ' ' . $this->sortType . ' LIMIT ' . 10*($this->curPage - 1) . ', 10';
+        $SQL = 'SELECT DISTINCT s.* FROM stories s LEFT JOIN cats2stories c2s ON c2s.storId = s.storId WHERE ' . $this->getSearchConditions() . ' ORDER BY s.' . $this->sortBy . ' ' . $this->sortType . ' LIMIT ' . 10*($this->curPage - 1) . ', 10';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
             return 'Ошибка при получении списка рассказов по выбранным критериям';
