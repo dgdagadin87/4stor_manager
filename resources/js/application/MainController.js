@@ -33,8 +33,8 @@ define(
                 this._layout.showComponents('settings', {});
             },
             
-            best : function() {
-                this._layout.showComponents('best', {});
+            statistics : function() {
+                this._layout.showComponents('statistics', {});
             },
             
             category : function(catId) {

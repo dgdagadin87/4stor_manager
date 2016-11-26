@@ -43,6 +43,8 @@ define(['underscore','jquery','coreUtils'], function(_,$,CoreUtils) {
                 return 'spinner-region';
             case 'searchRegion':
                 return 'search-region';
+            case 'statisticsRegion':
+                return 'statistics-region';
         }
     };
     
