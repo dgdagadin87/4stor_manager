@@ -115,7 +115,7 @@ class categoryModel extends abstractModel {
     
     public function getStors() {
         // данные рассказов на текущей странице
-        $SQL = 'SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE c2s.catId IN (' . $this->categoryId . ') ORDER BY s.' . $this->sortBy . ' ' . $this->sortType . ' LIMIT ' . 10*($this->curPage - 1) . ', 10';
+        $SQL = 'SELECT s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId WHERE c2s.catId IN (' . $this->categoryId . ') ORDER BY s.' . $this->sortBy . ' ' . $this->sortType . ' LIMIT ' . 10*($this->curPage - 1) . ', 10';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
             return 'Ошибка при получении списка рассказов выбранной категории';
