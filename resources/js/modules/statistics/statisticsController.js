@@ -99,7 +99,7 @@ define([
                 }
                 else {
                     me._isDataLoaded = true;
-                    me._model.set(statisticsData);
+                    me._model.set('catData', statisticsData);
                     lfRender();
                 }
             };

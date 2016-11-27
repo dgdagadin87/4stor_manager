@@ -14,7 +14,7 @@ define(
             template : _.template(template),
 
             tagName: 'div',
-            className: 'statistics',
+            className: 'statistics-container',
 
             events : {
             },

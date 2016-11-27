@@ -3,7 +3,7 @@ body, html {
     padding:0px;
 }
 .main-container {
-    width:1000px;
+    width:1200px;
     margin:0 auto;
     border-left: 1px solid #000;
     border-right: 1px solid #000;
@@ -111,4 +111,14 @@ body, html {
 .categories-container .active {
     font-weight:bold;
     color:#AA0000;
+}
+
+.statistics-container {
+    margin-top:10px;
+}
+.statistics-container .plus-rate {
+    color:green;
+}
+.statistics-container .minus-rate {
+    color:red;
 }

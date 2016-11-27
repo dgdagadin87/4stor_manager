@@ -1,1 +1,20 @@
-<div>Статистика</div>
+<table cellspacing="0" cellpadding="10" style="border:1px solid black;width:100%;">
+    <tr>
+        <td>Название</td>
+        <td>К-во историй<td>
+        <td>Макс. рейтинг<td>
+        <td>Сред. рейтинг<td>
+        <td>Мин. рейтинг<td>
+        <td>Ссылка на сайт</td>
+    </tr>
+    <% _.each(catData, function(category){ %>
+    <tr>
+        <td><a href="#category/<%=category.catId%>"><%=category.catName%></a></td>
+        <td><%=category.numOfStors%><td>
+        <td><span class="<% if(category.maxRate > 0){ %>plus<% }else{ %>minus<% } %>-rate"><%=category.maxRate%></span><td>
+        <td><span class="<% if(category.avgRate > 0){ %>plus<% }else{ %>minus<% } %>-rate"><%=category.avgRate%></span><td>
+        <td><span class="<% if(category.minRate > 0){ %>plus<% }else{ %>minus<% } %>-rate"><%=category.minRate%></span><td>
+        <td><a target="_blank" href="<%=category.catHref%>">Перейти</a></td>
+    </tr>
+    <% }); %>
+</table>
