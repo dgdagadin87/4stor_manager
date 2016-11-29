@@ -12,8 +12,7 @@ define(
         return Backbone.Model.extend({
             className : 'statisticsModel',
             defaults : {
-                catData: [],
-                chartData: []
+                catData: []
             },
             initialize : function() {
             }
