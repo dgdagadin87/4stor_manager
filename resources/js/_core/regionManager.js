@@ -45,6 +45,8 @@ define(['underscore','jquery','coreUtils'], function(_,$,CoreUtils) {
                 return 'search-region';
             case 'statisticsRegion':
                 return 'statistics-region';
+            case 'statchartRegion':
+                return 'statchart-region';
         }
     };
     
@@ -77,14 +79,6 @@ define(['underscore','jquery','coreUtils'], function(_,$,CoreUtils) {
             this._addRegionToCache(regionName);
             region = layoutView.addRegion(regionName, '#' + regionId);
         }
-
-//        this.hideContentRegions();
-//        if (CoreUtils.isEmpty(region)) {
-//            region = this._getContextInstance().getView()[regionName] || false;
-//        }
-//        if (region) {
-//            region.$el.show();
-//        }
     };
     
     RegionManager.prototype.showRegionByName = function(regionName) {

@@ -11,7 +11,8 @@ define([
     'modules/index/indexController',
     'modules/category/categoryController',
     'modules/search/searchController',
-    'modules/statistics/statisticsController'
+    'modules/statistics/statisticsController',
+    'modules/statchart/statchartController'
 ], function (
     _,
     Backbone,
@@ -23,7 +24,8 @@ define([
     indexModule,
     categoryModule,
     searchModule,
-    statisticsModule
+    statisticsModule,
+    statchartModule
 ) {
     var contentController = function() {
         
@@ -43,7 +45,8 @@ define([
             index: indexModule,
             category: categoryModule,
             search: searchModule,
-            statistics: statisticsModule
+            statistics: statisticsModule,
+            statchart: statchartModule
         };
     };
     
@@ -65,6 +68,9 @@ define([
         }
         else if (psAction === 'statistics') {
             lsClassPrefix = 'statistics';
+        }
+        else if (psAction === 'statchart') {
+            lsClassPrefix = 'statchart';
         }
         var regionName = lsClassPrefix+'Region';
 

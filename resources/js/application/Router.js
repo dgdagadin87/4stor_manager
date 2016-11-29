@@ -12,7 +12,8 @@ define(
                 "category/:id" : "category",
                 "search"       : "search",
                 "settings"     : "settings",
-                "statistics"   : "statistics"
+                "statistics"   : "statistics",
+                "statchart"    : "statchart"
             }
         });
     }

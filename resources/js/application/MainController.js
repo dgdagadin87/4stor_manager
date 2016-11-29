@@ -37,6 +37,10 @@ define(
                 this._layout.showComponents('statistics', {});
             },
             
+            statchart : function() {
+                this._layout.showComponents('statchart', {});
+            },
+            
             category : function(catId) {
                 this._layout.showComponents('category', {
                     categoryId: catId
