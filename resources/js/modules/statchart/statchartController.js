@@ -121,7 +121,7 @@ define([
             this.__renderSpinner();
             
             CoreUtils.axajQuery({
-                url: Settings.url.getStatcartData
+                url: Settings.url.getStatchartData
             },
             {
                 afterSuccess: afterSuccess,

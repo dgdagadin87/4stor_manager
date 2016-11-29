@@ -20,7 +20,8 @@ class Helper {
             'common',
             'category',
             'search',
-            'statistics'
+            'statistics',
+            'statchart'
         );
     }
     
