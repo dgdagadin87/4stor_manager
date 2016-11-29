@@ -17,7 +17,8 @@ require.config({
 		
         settings           : 'config/settings',
         coreUtils          : '_core/coreUtils',
-        regionManager      : '_core/regionManager'
+        regionManager      : '_core/regionManager',
+        chartManager       : '_core/chartManager'
 		
     },
     shim : {
