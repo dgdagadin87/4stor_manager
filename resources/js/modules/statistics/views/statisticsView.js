@@ -10,7 +10,7 @@ define(
         Application,
         template
     ) {
-        return Backbone.Marionette.CompositeView.extend({
+        return Backbone.Marionette.ItemView.extend({
             template : _.template(template),
 
             tagName: 'div',
