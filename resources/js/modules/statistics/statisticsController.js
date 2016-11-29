@@ -75,7 +75,7 @@ define([
             
             me.__renderContent();
             
-            if (!me._isIndexRendered) {
+            if (!me._isStatisticsRendered) {
                 layoutView[me._regionName].show(me.getView());
             }
         };
