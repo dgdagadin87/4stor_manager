@@ -53,7 +53,7 @@ define([
         for(var i = 0; i < data.length; i++) {
             
             var sliceGradient = c.createLinearGradient( 0, 0, background.width*.75, background.height*.75 );
-            sliceGradient.addColorStop( 0, '#ddd' );
+            sliceGradient.addColorStop( 0, '#777' );
             sliceGradient.addColorStop( 1, colors[i] );
             
             var fraction = data[i]/total; 
@@ -62,8 +62,8 @@ define([
             var centerWidth = background.width*.5;
             var centerHeight = background.height*.5;
 
-            //c.fillStyle = sliceGradient;
-            c.fillStyle = colors[i];
+            c.fillStyle = sliceGradient;
+            //c.fillStyle = colors[i];
 
             c.beginPath(); 
             c.moveTo(centerWidth,centerHeight); 
@@ -73,9 +73,9 @@ define([
 
             c.fill(); 
 
-//            c.strokeStyle = "white";
-//            c.lineWidth = 1;
-//            c.stroke(); 
+            c.strokeStyle = "white";
+            c.lineWidth = 1;
+            c.stroke(); 
 
             prevAngle = angle; 
         }
