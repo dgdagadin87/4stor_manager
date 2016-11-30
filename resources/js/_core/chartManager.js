@@ -62,8 +62,8 @@ define([
             var centerWidth = background.width*.5;
             var centerHeight = background.height*.5;
 
-            c.fillStyle = sliceGradient;
-            //c.fillStyle = colors[i];
+            //c.fillStyle = sliceGradient;
+            c.fillStyle = colors[i];
 
             c.beginPath(); 
             c.moveTo(centerWidth,centerHeight); 
