@@ -19,7 +19,7 @@ class statchartModel extends abstractModel {
             $laReturn['message'] = $statchart;
             return $laReturn;
         }
-        array_merge($laReturn['data'], $statchart);
+        $laReturn['data'] = $statchart;
         return $laReturn;
     }
 
@@ -30,8 +30,9 @@ class statchartModel extends abstractModel {
         if (!is_array($chartData)) {
             return ($chartData);
         }
-        array_merge($Return, $chartData);
+        $Return = $chartData;
         $Return['colors'] = $this->getChartColors();
+  
         return $Return;
     }
     
@@ -39,7 +40,7 @@ class statchartModel extends abstractModel {
         
         // данные о категориях
         $catIds = array();
-        $SQL = 'SELECT c.*, COUNT(DISTINCT s.storId) AS numOfStors FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId GROUP BY c2s.catId ORDER BY numOfStors DESC LIMIT 10';
+        $SQL = 'SELECT c.*, COUNT(DISTINCT s.storId) AS numOfStors FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId GROUP BY c2s.catId ORDER BY numOfStors DESC LIMIT 8';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
             return 'Ошибка при получении данных о категориях';
@@ -72,17 +73,17 @@ class statchartModel extends abstractModel {
     
     public function getChartColors() {
         return array(
-            'aqua',
-            'blue',
-            'chartreuse',
-            'DarkGrey',
-            'GreenYellow',
-            'LightSeaGreen',
-            'Orange',
-            'red',
-            'PapayaWhip',
-            'Snow',
-            'WhiteSmoke'
+            '#369EAD',
+            '#C24642',
+            '#7F6084',
+            '#86B402',
+            '#A2D1CF',
+            '#C8B631',
+            "#6DBCEB",
+            '#52514E',
+            '#4F81BC',
+            '#A064A1',
+            '#F79647'
         );
     }
     
