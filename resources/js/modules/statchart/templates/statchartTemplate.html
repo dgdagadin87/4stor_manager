@@ -11,13 +11,13 @@
     </tr>
     <tr>
         <td class="chart-diagram">
-            <canvas width="500" height="500" id="categoryChart"></canvas> 
+            <canvas width="300" height="300" id="categoryChart"></canvas> 
         </td>
-        <td class="chart-legend">
-        <% _.each(colorData, function(color, key){ %>
+        <td style="width:300px;vertical-align:top;" class="chart-legend">
+        <% _.each(chartData, function(numStors, key){ %>
             <div class="legend-item-container">
-                <span style="background:<%=color%>;" class="legend-color">&nbsp;</span>
-                <span title="<%=chartData[key]%> рассказов" class="legend-label"><%=catData[key]%></span>
+                <span style="display:inline-block;width:15px;background:<%=colorData[key]%>;" class="legend-color">&nbsp;</span>
+                <span style="display:inline-block;" title="<%=numStors%> рассказов" class="legend-label"><%=catData[key]%></span>
             </div>
         <% }); %>
         </td>

@@ -3,7 +3,7 @@ define(
         'backbone',
         'marionette',
         'Application',
-        'text!modules/statistics/templates/statisticsTemplate.html'
+        'text!modules/statchart/templates/statchartTemplate.html'
     ], function(
         Backbone,
         Marionette,
@@ -22,7 +22,8 @@ define(
             initialize: function() {
             },
             
-            onRender: function() {
+            onShow: function() {
+                //Application.trigger('chart:draw');
             },
             
             templateHelpers : function() {

@@ -59,12 +59,16 @@ define([
             var fraction = data[i]/total; 
             var angle = prevAngle + fraction*Math.PI*2; 
 
-            c.fillStyle = sliceGradient; 
+            var centerWidth = background.width*.5;
+            var centerHeight = background.height*.5;
+
+            //c.fillStyle = sliceGradient;
+            c.fillStyle = colors[i];
 
             c.beginPath(); 
-            c.moveTo(250,250); 
-            c.arc(250,250, radius, prevAngle, angle, false);
-            c.lineTo(250,250);
+            c.moveTo(centerWidth,centerHeight); 
+            c.arc(centerWidth,centerHeight, radius, prevAngle, angle, false);
+            c.lineTo(centerWidth,centerHeight);
             c.closePath();
 
             c.fill(); 

@@ -40,7 +40,7 @@ class statchartModel extends abstractModel {
         
         // данные о категориях
         $catIds = array();
-        $SQL = 'SELECT c.*, COUNT(DISTINCT s.storId) AS numOfStors FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId GROUP BY c2s.catId ORDER BY numOfStors DESC LIMIT 8';
+        $SQL = 'SELECT c.*, COUNT(DISTINCT s.storId) AS numOfStors FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId GROUP BY c2s.catId ORDER BY numOfStors DESC LIMIT 6';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
             return 'Ошибка при получении данных о категориях';
@@ -73,13 +73,13 @@ class statchartModel extends abstractModel {
     
     public function getChartColors() {
         return array(
-            '#369EAD',
-            '#C24642',
-            '#7F6084',
+            'blue',
+            'red',
+            'yellow',
             '#86B402',
-            '#A2D1CF',
-            '#C8B631',
-            "#6DBCEB",
+            'green',
+            'red',
+            "aqua",
             '#52514E',
             '#4F81BC',
             '#A064A1',

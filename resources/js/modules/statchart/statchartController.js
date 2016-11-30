@@ -30,18 +30,6 @@ define([
         
         BaseController.call(this);
         
-        this._chartManager = new chartManager({
-            data: this._model.get('chartData'),
-            colors: this._model.get('colorData'),
-            radius: 150,
-            canvasId: 'categoryChart',
-            background: {
-                height: 500,
-                width: 500,
-                color: 'white'
-            }
-        });
-        
         this._pageTitle = 'Статистика (диагамма)';
         
         this._isStatchartRendered = false;
@@ -61,6 +49,17 @@ define([
         
         this._model = new statchartModel();
 
+        this._chartManager = new chartManager({
+            model: this._model,
+            radius: 150,
+            canvasId: 'categoryChart',
+            background: {
+                height: 300,
+                width: 300,
+                color: 'white'
+            }
+        });
+
         this._view = new statchartView();
         
         this._init();
@@ -71,6 +70,7 @@ define([
     
     statchartController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
+        //Application.on('chart:draw', this._chartManager.drawCircle());
     };
     
     statchartController.prototype._init = function() {
@@ -79,7 +79,10 @@ define([
     
     statchartController.prototype._onViewRendered = function() {
         this._isStatchartRendered = true;
-        this._chartManager.drawCircle();
+        var me = this;
+        //this._chartManager.drawCircle();
+        
+        setTimeout(function(){me._chartManager.drawCircle();}, 1000);
     };
 
     statchartController.prototype.showCurrentContent = function() {
@@ -90,8 +93,8 @@ define([
             
             me.__renderContent();
             
-            if (!me._isIndexRendered) {
-                layoutView[me._regionName].show(me.getView());
+            if (!me._isStatchartRendered) {
+                layoutView[me._regionName].show(me._view);
             }
         };
 
@@ -118,17 +121,17 @@ define([
                 else {
                     me._isDataLoaded = true;
                     me._model.set({
-                        'catNames'  : catNames,
+                        'catData'   : catNames,
                         'chartData' : chartData,
                         'colorData' : colorData,
-                        'totalStors': total
+                        'total': total
                     });
                     lfRender();
                 }
             };
             var afterError = function(data){
                 var lsMessage = data.message || '';
-                this._isGlobalLoading = false;
+                me._isGlobalLoading = false;
                 Application.trigger('error:modal:show', lsMessage);
             };
 
