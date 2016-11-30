@@ -4,7 +4,16 @@
 </div>
 <table cellspacing="0" cellpadding="10" style="border:1px solid black;width:100%;">
     <tr>
-        <td>Диаграмма</td>
-        <td>Легенда</td>
+        <td class="chart-diagram">
+            <canvas width="500" height="500" id="categoryChart"></canvas> 
+        </td>
+        <td class="chart-legend">
+        <% _.each(colorData, function(color, key){ %>
+            <div class="legend-item-container">
+                <span style="background:<%=color%>;" class="legend-color">&nbsp;</span>
+                <span title="<%=chartData[key]%> рассказов" class="legend-label"><%=catData[key]%></span>
+            </div>
+        <% }); %>
+        </td>
     </tr>
 </table>
