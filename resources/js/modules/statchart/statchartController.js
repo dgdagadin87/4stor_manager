@@ -6,6 +6,7 @@ define([
     'jquery',
     'coreUtils',
     'Application',
+    'chartManager',
     'settings',
     '_base/BaseController',
     'modules/statchart/models/statchartModel',
@@ -16,6 +17,7 @@ define([
     $,
     CoreUtils,
     Application,
+    chartManager,
     Settings,
     BaseController,
     statchartModel,
@@ -27,6 +29,18 @@ define([
         this._regionName = loConfig.regionName;
         
         BaseController.call(this);
+        
+        this._chartManager = new chartManager({
+            data: this._model.get('chartData'),
+            colors: this._model.get('colorData'),
+            radius: 150,
+            canvasId: 'categoryChart',
+            background: {
+                height: 500,
+                width: 500,
+                color: 'white'
+            }
+        });
         
         this._pageTitle = 'Статистика (диагамма)';
         
@@ -65,6 +79,7 @@ define([
     
     statchartController.prototype._onViewRendered = function() {
         this._isStatchartRendered = true;
+        this._chartManager.drawCircle();
     };
 
     statchartController.prototype.showCurrentContent = function() {
