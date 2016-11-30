@@ -66,7 +66,7 @@ class statchartModel extends abstractModel {
         $data['categories'][] = 'Прочие';
         $data['total'] += $numStors;
         
-        return ($Data);
+        return ($data);
     }
     
     public function getChartColors() {
