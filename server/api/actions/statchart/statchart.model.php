@@ -32,6 +32,7 @@ class statchartModel extends abstractModel {
         }
         array_merge($Return, $chartData);
         $Return['colors'] = $this->getChartColors();
+        return $Return;
     }
     
     public function getChartData() {
