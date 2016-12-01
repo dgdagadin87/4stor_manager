@@ -10,7 +10,8 @@ define([
     'settings',
     '_base/BaseController',
     'modules/statchart/models/statchartModel',
-    'modules/statchart/views/statchartView'
+    'modules/statchart/views/statchartView',
+    'modules/statchart/views/diagramView'
 ], function (
     _,
     Backbone,
@@ -21,7 +22,8 @@ define([
     Settings,
     BaseController,
     statchartModel,
-    statchartView
+    statchartView,
+    diagramView
 ) {
     var statchartController = function(poConfig) {
         
@@ -61,6 +63,7 @@ define([
         });
 
         this._view = new statchartView();
+        this._diaView = new diagramView();
         
         this._init();
         this._bindEvents();
@@ -70,7 +73,7 @@ define([
     
     statchartController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
-        //Application.on('chart:draw', this._chartManager.drawCircle());
+        this._diaView.on('render', this._onDiaViewRendered.bind(this));
     };
     
     statchartController.prototype._init = function() {
@@ -79,10 +82,12 @@ define([
     
     statchartController.prototype._onViewRendered = function() {
         this._isStatchartRendered = true;
-        var me = this;
-        //this._chartManager.drawCircle();
-        
-        setTimeout(function(){me._chartManager.drawCircle();}, 1000);
+        this._view.showChildView('diagramRegion', this._diaView);
+    };
+    
+    statchartController.prototype._onDiaViewRendered = function() {
+        this._diaView.$el.attr('height', '300');
+        this._chartManager.drawCircle(this._diaView.el);
     };
 
     statchartController.prototype.showCurrentContent = function() {

@@ -75,7 +75,7 @@ class statchartModel extends abstractModel {
         return array(
             'blue',
             'red',
-            'yellow',
+            '#F79647',
             '#86B402',
             'green',
             'red',

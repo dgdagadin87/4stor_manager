@@ -34,7 +34,7 @@ define([
         return this._config;
     };
 
-    ChartManager.prototype.drawCircle = function() {
+    ChartManager.prototype.drawCircle = function(canvasElement) {
         var config = this._getConfig();
         var model = config.model;
         var data = model.get('chartData');
@@ -44,7 +44,10 @@ define([
         var background = config.background;
         var canvasId = config.canvasId;
 
-        var canvas = document.getElementById(canvasId); 
+        var centerWidth = background.width*.5;
+        var centerHeight = background.height*.5;
+
+        var canvas = canvasElement; 
         var c = canvas.getContext('2d'); 
         c.fillStyle = background.color; 
         c.fillRect(0, 0, background.height, background.width); 
@@ -52,15 +55,12 @@ define([
         var prevAngle = 0; 
         for(var i = 0; i < data.length; i++) {
             
-            var sliceGradient = c.createLinearGradient( 0, 0, background.width*.75, background.height*.75 );
-            sliceGradient.addColorStop( 0, '#777' );
-            sliceGradient.addColorStop( 1, colors[i] );
+//            var sliceGradient = c.createRadialGradient( centerWidth, centerWidth, 1, centerWidth, centerWidth, radius );
+//            sliceGradient.addColorStop( 0, '#eee' );
+//            sliceGradient.addColorStop( 1, colors[i] );
             
             var fraction = data[i]/total; 
             var angle = prevAngle + fraction*Math.PI*2; 
-
-            var centerWidth = background.width*.5;
-            var centerHeight = background.height*.5;
 
             //c.fillStyle = sliceGradient;
             c.fillStyle = colors[i];

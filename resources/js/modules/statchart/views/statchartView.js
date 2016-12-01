@@ -10,11 +10,15 @@ define(
         Application,
         template
     ) {
-        return Backbone.Marionette.ItemView.extend({
+        return Backbone.Marionette.LayoutView.extend({
             template : _.template(template),
 
             tagName: 'div',
             className: 'statchart-container',
+
+            regions: {
+                diagramRegion: '.chart-diagram'
+            },
 
             events : {
             },
@@ -23,7 +27,6 @@ define(
             },
             
             onShow: function() {
-                //Application.trigger('chart:draw');
             },
             
             templateHelpers : function() {
