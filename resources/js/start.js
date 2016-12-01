@@ -6,7 +6,6 @@ require.config({
         jquery_ui          : 'library/jquery/jquery-ui',
         underscore         : 'library/underscore/underscore',
         backbone           : 'library/backbone/backbone',
-        backboneRelational : 'library/backbone/backbone.relational',
         marionette         : 'library/backbone/backbone.marionette',
 
         text               : 'library/require/text',
