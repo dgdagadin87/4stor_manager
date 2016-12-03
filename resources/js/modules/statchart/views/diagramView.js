@@ -11,8 +11,8 @@ define(
         return Backbone.Marionette.ItemView.extend({
             template : _.template(''),
 
-            tagName: 'canvas',
-            id: 'categoryChart',
+            tagName: 'div',
+            id: 'ct-chart ct-golden-section',
 
             events : {
             },

@@ -13,6 +13,7 @@ define(
             className : 'statchartModel',
             defaults : {
                 catData: [],
+                labelData: [],
                 chartData: [],
                 colorData: [],
                 total: 0

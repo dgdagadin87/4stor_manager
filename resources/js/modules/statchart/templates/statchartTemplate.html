@@ -10,12 +10,12 @@
         </td>
     </tr>
     <tr>
-        <td style="height:300px;vertical-align:top" class="chart-diagram"></td>
-        <td style="width:300px;vertical-align:top;" class="chart-legend">
+        <td style="height:250px;vertical-align:top" class="chart-diagram"></td>
+        <td style="width:300px;vertical-align:top;padding-top:80px;" class="chart-legend">
         <% _.each(chartData, function(numStors, key){ %>
             <div class="legend-item-container">
                 <span style="display:inline-block;width:15px;background:<%=colorData[key]%>;" class="legend-color">&nbsp;</span>
-                <span style="display:inline-block;" title="<%=numStors%> рассказов" class="legend-label"><%=catData[key]%></span>
+                <span style="display:inline-block;" title="<%=numStors%> рассказов" class="legend-label"><%=labelData[key]%> <%=catData[key]%></span>
             </div>
         <% }); %>
         </td>

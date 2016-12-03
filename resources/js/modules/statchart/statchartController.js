@@ -86,8 +86,9 @@ define([
     };
     
     statchartController.prototype._onDiaViewRendered = function() {
-        this._diaView.$el.attr('height', '300');
-        this._chartManager.drawCircle(this._diaView.el);
+
+        this._chartManager.drawColumn(this._diaView.el);
+        //this._chartManager.drawCircle(this._diaView.el);
     };
 
     statchartController.prototype.showCurrentContent = function() {
@@ -113,6 +114,7 @@ define([
                 var laData = data.data || [];
                 var catNames = laData.categories || [];
                 var chartData = laData.chart || [];
+                var labelData = laData.labels || [];
                 var colorData = laData.colors || [];
                 var total = laData.total || 0;
                 var lbSuccess = data.success || false;
@@ -127,6 +129,7 @@ define([
                     me._isDataLoaded = true;
                     me._model.set({
                         'catData'   : catNames,
+                        'labelData' : labelData,
                         'chartData' : chartData,
                         'colorData' : colorData,
                         'total': total
