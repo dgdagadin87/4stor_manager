@@ -126,3 +126,6 @@ body, html {
 .catlist-disabled {
     color: grey;
 }
+.page-disabled {
+    color: grey;
+}

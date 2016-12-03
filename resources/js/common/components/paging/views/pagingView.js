@@ -31,16 +31,18 @@ define(
             onPageLinkClick: function(ev) {
                 ev.preventDefault();
                 var current = $(ev.currentTarget);
-                var page = current.attr('page-num');
-                var opts = this.options || {};
-                var eventPrefix = opts.eventPrefix || 'category';
-                Application.trigger(eventPrefix+':page:change', page);
+                if (!current.hasClass('page-disabled')) {
+                    var page = current.attr('page-num');
+                    var eventPrefix = this._eventPrefix || 'category';
+                    Application.trigger(eventPrefix+':page:change', page);
+                }
             },
             
             templateHelpers : function() {
                 return {
                     model: this.model.toJSON(),
                     cfg: {
+                        mode     : this._eventPrefix,
                         numStart : this._numStart,
                         numLeft  : this._numLeft,
                         numEnd   : this._numEnd,

@@ -43,6 +43,7 @@ define([
         this._view = new pagingView({
             eventPrefix: this._eventPrefix
         });
+        this._view._eventPrefix = this._eventPrefix
         
         this._init();
         this._bindEvents();
@@ -51,7 +52,14 @@ define([
     pagingController.prototype = Object.create(BaseController.prototype);
     
     pagingController.prototype._bindEvents = function() {
+        var me = this;
         this._view.on('render', this._onViewRendered.bind(this));
+        Application.on(me._eventPrefix+':page:disable', function(){
+            me._view.$('.page-'+me._eventPrefix+'-for-disabled').addClass('page-disabled');
+        });
+        Application.on(me._eventPrefix+':page:enable', function(){
+            $('.page-'+me._eventPrefix+'-for-disabled').removeClass('page-disabled');
+        });
     };
     
     pagingController.prototype._init = function() {
