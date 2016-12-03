@@ -299,6 +299,8 @@ define([
         }
         var chooseModel = me._chooseComponent.getModel().toJSON();
 
+        Application.trigger('search:page:disable');
+
         CoreUtils.axajQuery({
             url: Settings.url.getSearchData,
             data: {
