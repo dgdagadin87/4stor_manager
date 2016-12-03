@@ -1,9 +1,11 @@
 "use strict";
 
 define([
-    'Application'
+    'Application',
+    'Chartist'
 ], function (
-    Application
+    Application,
+    Chartist
 ) {
     var ChartManager = function(config) {
 
@@ -32,6 +34,30 @@ define([
 
     ChartManager.prototype._getConfig = function() {
         return this._config;
+    };
+
+    ChartManager.prototype.drawColumn = function(svgElement) {
+        
+        var config = this._getConfig();
+        var model = config.model;
+        var data = model.get('chartData');
+        var labels = model.get('labelData');
+        var background = config.background;
+        
+        new Chartist.Bar(svgElement,
+            {
+                labels: labels,
+                series: data
+            },
+            {
+                distributeSeries: true,
+                height: background.height
+            }
+        ).on('draw', function(data) {
+            if(data.type === 'bar') {
+                data.element.attr({style: 'stroke-width: 50px'});
+            };
+        });
     };
 
     ChartManager.prototype.drawCircle = function(canvasElement) {
