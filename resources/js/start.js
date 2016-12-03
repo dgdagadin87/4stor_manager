@@ -7,6 +7,7 @@ require.config({
         underscore         : 'library/underscore/underscore',
         backbone           : 'library/backbone/backbone',
         marionette         : 'library/backbone/backbone.marionette',
+        Chartist           : 'library/chartist/chartist.min',
 
         text               : 'library/require/text',
 		
