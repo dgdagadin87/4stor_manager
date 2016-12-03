@@ -205,6 +205,7 @@ define([
             var lsMessage = data.message || '';
             
             me._isGlobalLoading = false;
+            $('.catlist-for-disabled').removeClass('catlist-disabled');
             
             if (!lbSuccess) {
                 Application.trigger('error:modal:show', lsMessage);
@@ -223,6 +224,7 @@ define([
         };
         
         this._isGlobalLoading = true;
+        $('.catlist-for-disabled').addClass('catlist-disabled');
         this.__renderSpinner();
         
         CoreUtils.axajQuery({

@@ -14,6 +14,18 @@ define(
             tagName: "div",
             className: 'category-list-item',
             template: _.template(template),
+            
+            events: {
+                'click .catlist-item': 'onCatlistItemClick'
+            },
+            
+            onCatlistItemClick: function(ev) {
+                var current = this.$(ev.currentTarget);
+                if (current.hasClass('catlist-disabled')) {
+                    ev.preventDefault();
+                }
+            },
+            
             templateHelpers: function(){
                 return this.model.toJSON();
             }
