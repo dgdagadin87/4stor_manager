@@ -57,7 +57,7 @@ define([
     headerController.prototype._setActiveHeader = function() {
         var params = CoreUtils.getURIParams();
         var rootParam = params[0] || 'main';
-        var classes = ['main', 'search', 'settings', 'statistics'];
+        var classes = ['main', 'search', 'settings', 'statistics', 'statchart'];
         var headerClass = classes.indexOf(rootParam) !== -1 ? rootParam : 'main';
         this._view.$('.header-menu-item').removeClass('active');
         this._view.$('.'+headerClass).addClass('active');
