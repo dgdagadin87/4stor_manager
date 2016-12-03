@@ -57,9 +57,6 @@ define([
         Application.on(me._eventPrefix+':page:disable', function(){
             me._view.$('.page-'+me._eventPrefix+'-for-disabled').addClass('page-disabled');
         });
-        Application.on(me._eventPrefix+':page:enable', function(){
-            $('.page-'+me._eventPrefix+'-for-disabled').removeClass('page-disabled');
-        });
     };
     
     pagingController.prototype._init = function() {
