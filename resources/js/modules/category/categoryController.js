@@ -132,6 +132,7 @@ define([
         };
         
         Application.trigger('category:page:disable');
+        Application.trigger('category:listbar:disable');
         
         CoreUtils.axajQuery({
             url: Settings.url.getCategoryData,

@@ -34,10 +34,9 @@ define([
         this._eventPrefix = loConfig.eventPrefix || 'category';
 
         this._model = new listbarModel();
-
-        this._view = new listbarView({
-            eventPrefix: this._eventPrefix
-        });
+        
+        this._view = new listbarView();
+        this._view.eventPrefix = this._eventPrefix;
         
         this._init();
         this._bindEvents();
@@ -46,7 +45,11 @@ define([
     listbarController.prototype = Object.create(BaseController.prototype);
     
     listbarController.prototype._bindEvents = function() {
+        var me = this;
         this._view.on('render', this._onViewRendered.bind(this));
+        Application.on(me._eventPrefix+':listbar:disable', function(){
+            me._view.$('.listbar-for-disabled').addClass('listbar-disabled');
+        });
     };
     
     listbarController.prototype._init = function() {
