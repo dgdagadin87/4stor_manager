@@ -55,7 +55,7 @@ define([
         var me = this;
         this._view.on('render', this._onViewRendered.bind(this));
         Application.on(me._eventPrefix+':page:disable', function(){
-            me._view.$('.page-'+me._eventPrefix+'-for-disabled').addClass('page-disabled');
+            me._view.$('.page-for-disabled').addClass('page-disabled');
         });
     };
     

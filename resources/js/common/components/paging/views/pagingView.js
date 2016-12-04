@@ -42,7 +42,6 @@ define(
                 return {
                     model: this.model.toJSON(),
                     cfg: {
-                        mode     : this._eventPrefix,
                         numStart : this._numStart,
                         numLeft  : this._numLeft,
                         numEnd   : this._numEnd,

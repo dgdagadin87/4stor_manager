@@ -2,7 +2,7 @@
 
 <!-- start page -->
 <% if (model._currentPage > 1) { %>
-    <span class="page-span"><a class="page-<%=cfg.mode%>-for-disabled page-link" title="в начало" page-num="1" href="#">&lt;&lt;</a></span>
+    <span class="page-span"><a class="page-for-disabled page-link" title="в начало" page-num="1" href="#">&lt;&lt;</a></span>
 <% } else { %>
 <!-- empty start page -->
 <% } %>
@@ -10,7 +10,7 @@
 
 <!-- prev page -->
 <% if (model._currentPage > 1) { %>
-    <span class="page-span"><a class="page-<%=cfg.mode%>-for-disabled page-link" title="на предыдущую страницу" page-num="<%=model.prevPage%>" href="#">&lt;</a></span>
+    <span class="page-span"><a class="page-for-disabled page-link" title="на предыдущую страницу" page-num="<%=model.prevPage%>" href="#">&lt;</a></span>
 <% } else { %>
 <!-- empty prev page -->
 <% } %>
@@ -21,15 +21,15 @@
 <!-- empty left part -->
 <% } else if (model.leftRest >= 1 && model.leftRest < (cfg.numStart + cfg.numLeft + 1)) { %>
     <% for (var i = 1; i < model._currentPage; i++) { %>
-        <span class="page-span"><a class="page-<%=cfg.mode%>-for-disabled page-link" title="на страницу <%=i%>" page-num="<%=i%>" href="#"><%=i%></a></span>
+        <span class="page-span"><a class="page-for-disabled page-link" title="на страницу <%=i%>" page-num="<%=i%>" href="#"><%=i%></a></span>
     <% } %>
 <% } else if (model.leftRest >= (cfg.numStart + cfg.numLeft + 1)) { %>
     <% for (var c = 1; c <= cfg.numStart; c++) { %>
-        <span class="page-span"><a class="page-<%=cfg.mode%>-for-disabled page-link" title="на страницу <%=c%>" page-num="<%=c%>" href="#"><%=c%></a></span>
+        <span class="page-span"><a class="page-for-disabled page-link" title="на страницу <%=c%>" page-num="<%=c%>" href="#"><%=c%></a></span>
     <% } %>
         <span class="page-dottes">...</span>
     <% for (var d = (model._currentPage - cfg.numLeft);  d < model._currentPage; d++) { %>
-        <span class="page-span"><a class="page-<%=cfg.mode%>-for-disabled page-link" title="на страницу <%=d%>" page-num="<%=d%>" href="#"><%=d%></a></span>
+        <span class="page-span"><a class="page-for-disabled page-link" title="на страницу <%=d%>" page-num="<%=d%>" href="#"><%=d%></a></span>
     <% } %>
 <% } %>
 <!-- left part -end -->
@@ -43,22 +43,22 @@
 <!-- empty right part -->
 <% } else if (model.restCurrentNum >= 1 && model.restCurrentNum < (cfg.numEnd + cfg.numRight + 1)) { %>
     <% for (var j = model.nextCurPage; j <= model._numOfPages; j++) { %>
-        <span class="page-span"><a class="page-<%=cfg.mode%>-for-disabled page-link" title="на страницу <%=j%>" page-num="<%=j%>" href="#"><%=j%></a></span>
+        <span class="page-span"><a class="page-for-disabled page-link" title="на страницу <%=j%>" page-num="<%=j%>" href="#"><%=j%></a></span>
     <% } %>
 <% } else if (model.restCurrentNum >= (cfg.numEnd + cfg.numRight + 1)) { %>
     <% for (var n = model.nextCurPage;  n <= (model._currentPage + cfg.numRight); n++) { %>
-        <span class="page-span"><a class="page-<%=cfg.mode%>-for-disabled page-link" title="на страницу <%=n%>" page-num="<%=n%>" href="#"><%=n%></a></span>
+        <span class="page-span"><a class="page-for-disabled page-link" title="на страницу <%=n%>" page-num="<%=n%>" href="#"><%=n%></a></span>
     <% } %>
         <span class="page-dottes">...</span>
     <% for (var m = (model._numOfPages - cfg.numEnd + 1); m <=  model._numOfPages; m++) { %>
-        <span class="page-span"><a class="page-<%=cfg.mode%>-for-disabled page-link" title="на страницу <%=m%>" page-num="<%=m%>" href="#"><%=m%></a></span>
+        <span class="page-span"><a class="page-for-disabled page-link" title="на страницу <%=m%>" page-num="<%=m%>" href="#"><%=m%></a></span>
     <% } %>
 <% } %>
 <!-- right part -end -->
 
 <!-- next page -->
 <% if (model._currentPage < model._numOfPages) { %>
-    <span class="page-span"><a class="page-<%=cfg.mode%>-for-disabled page-link" title="на следующую страницу" page-num="<%=model.nextPage%>" href="#">&gt;</a></span>
+    <span class="page-span"><a class="page-for-disabled page-link" title="на следующую страницу" page-num="<%=model.nextPage%>" href="#">&gt;</a></span>
 <% } else { %>
 <!-- empty next page -->
 <% } %>
@@ -66,7 +66,7 @@
 
 <!-- last page -->
 <% if (model._currentPage < model._numOfPages) { %>
-    <span class="page-span"><a class="page-<%=cfg.mode%>-for-disabled page-link" title="в конец" page-num="<%=model._numOfPages%>" href="#">&gt;&gt;</a></span>
+    <span class="page-span"><a class="page-for-disabled page-link" title="в конец" page-num="<%=model._numOfPages%>" href="#">&gt;&gt;</a></span>
 <% } else { %>
 <!-- empty last page -->
 <% } %>
