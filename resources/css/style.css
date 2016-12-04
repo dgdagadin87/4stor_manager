@@ -132,3 +132,29 @@ body, html {
 .listbar-disabled {
     color: grey;
 }
+.page-refresh.page-disabled {
+    background:#eee;
+}
+.page-refresh {
+    cursor:pointer;
+    position:relative;
+    width:140px;
+    height:25px;
+    border: 1px solid #6188e2;
+    margin-left:60px;
+}
+.page-refresh .image {
+    position:absolute;
+    width:24px;
+    height:24px;
+    top:0;
+    left:15px;
+    background: #FFF url('../img/refresh.png') no-repeat;
+}
+.page-refresh .text {
+    position:absolute;
+    width:70px;
+    height:24px;
+    top:2px;
+    left:45px;
+}

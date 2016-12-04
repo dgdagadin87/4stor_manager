@@ -70,6 +70,7 @@ define([
     categoryController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
         this._meta.on('change', this._onMetaChanged.bind(this));
+        Application.on('category:refresh', this._onRefresh.bind(this));
         Application.on('category:page:change', this._onCategoryPageChange.bind(this));
         Application.on('category:sort:change', this._onCategorySortChange.bind(this));
     };
@@ -80,6 +81,10 @@ define([
             sortBy: 'storDate',
             sortType: 'DESC'
         };
+    };
+    
+    categoryController.prototype._onRefresh = function() {
+        this.loadData();
     };
     
     categoryController.prototype._onMetaChanged = function() {

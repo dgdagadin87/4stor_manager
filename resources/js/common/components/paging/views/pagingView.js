@@ -19,7 +19,8 @@ define(
             className: 'paging-container',
 
             events : {
-                'click .page-link' : 'onPageLinkClick'
+                'click .page-link'    : 'onPageLinkClick',
+                'click .page-refresh' : 'onPageRefreshClick'
             },
 
             initialize: function() {
@@ -35,6 +36,15 @@ define(
                     var page = current.attr('page-num');
                     var eventPrefix = this._eventPrefix || 'category';
                     Application.trigger(eventPrefix+':page:change', page);
+                }
+            },
+            
+            onPageRefreshClick: function(ev) {
+                ev.preventDefault();
+                var current = $(ev.currentTarget);
+                if (!current.hasClass('page-disabled')) {
+                    var eventPrefix = this._eventPrefix || 'category';
+                    Application.trigger(eventPrefix+':refresh');
                 }
             },
             
