@@ -106,6 +106,7 @@ define([
     searchController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
         this._meta.on('change', this._onMetaChanged.bind(this));
+        Application.on('search:refresh', this._onRefresh.bind(this));
         Application.on('search:form:submit', this._onSearchFormSubmit.bind(this));
         Application.on('search:page:change', this._onCategoryPageChange.bind(this));
         Application.on('search:sort:change', this._onCategorySortChange.bind(this));
@@ -244,6 +245,10 @@ define([
         }
         
         return [];
+    };
+
+    searchController.prototype._onRefresh = function() {
+        this.loadData(false);
     };
 
     searchController.prototype._onMetaChanged = function() {
