@@ -127,6 +127,10 @@ define([
     layoutController.prototype._onViewRendered = function() {
         this._isLayoutRendered = true;
         
+        $(document).on('click', function(){
+            $('.for-hidden').hide();
+        });
+        
         // диалоговое окно ошибки
         this._view['dialogMsgRegion'].onShow = function(view){
             var me = this;

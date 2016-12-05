@@ -14,7 +14,7 @@ define(
             el : '#main-body',
             
             template : _.template(template),
-            
+
             regions : {
                 headerRegion: '#header-region',
                 mainRegion: '#main-region',
