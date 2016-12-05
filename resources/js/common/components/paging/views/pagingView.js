@@ -20,7 +20,8 @@ define(
 
             events : {
                 'click .page-link'    : 'onPageLinkClick',
-                'click .page-refresh' : 'onPageRefreshClick'
+                'click .page-refresh' : 'onPageRefreshClick',
+                'click .page-goto'    : 'onPageGotoClick'
             },
 
             initialize: function() {
@@ -45,6 +46,13 @@ define(
                 if (!current.hasClass('page-disabled')) {
                     var eventPrefix = this._eventPrefix || 'category';
                     Application.trigger(eventPrefix+':refresh');
+                }
+            },
+            
+            onPageGotoClick: function(ev) {
+                var current = $(ev.currentTarget);
+                if (!current.hasClass('page-disabled')) {
+                    this.$('.page-goto-block').toggle();
                 }
             },
             

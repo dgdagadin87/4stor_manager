@@ -133,7 +133,11 @@ body, html {
 .listbar-disabled {
     color: grey;
 }
-.page-refresh.page-disabled {
+
+.paging-container {
+    position:relative;
+}
+.page-refresh.page-disabled, .page-goto.page-disabled {
     background:#eee;
 }
 .page-refresh {
@@ -142,7 +146,6 @@ body, html {
     width:140px;
     height:25px;
     border: 1px solid #6188e2;
-    margin-left:60px;
 }
 .page-refresh .image {
     position:absolute;
@@ -158,4 +161,43 @@ body, html {
     height:24px;
     top:2px;
     left:45px;
+}
+.page-goto {
+    cursor:pointer;
+    position:relative;
+    width:140px;
+    height:25px;
+    border: 1px solid #6188e2;
+}
+.page-goto .image {
+    position:absolute;
+    width:24px;
+    height:24px;
+    top:0;
+    left:15px;
+    background: #FFF url('../img/goto.png') no-repeat;
+}
+.page-goto .text {
+    position:absolute;
+    width:70px;
+    height:24px;
+    top:2px;
+    left:45px;
+}
+.page-goto-block {
+    border:1px solid black;
+    width:95px;
+    height:50px;
+    z-index:20;
+    position:absolute;
+    box-shadow:  0 0 3px rgba(0,0,0,0.5);
+    top:-55px;
+    right:205px;
+    background:#eee;
+}
+.page-goto-block .header {
+    margin-left:3px;
+}
+.page-goto-block .controls {
+    margin-left:3px;
 }
