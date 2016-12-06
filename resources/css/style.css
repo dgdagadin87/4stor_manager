@@ -137,6 +137,10 @@ body, html {
 .paging-container {
     position:relative;
 }
+.paging-container .error {
+    border:1px solid red;
+}
+
 .page-refresh.page-disabled, .page-goto.page-disabled {
     background:#eee;
 }

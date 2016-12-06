@@ -29,8 +29,8 @@ define([
             var me = this;
             var commonParams = {
                 dateFormat: 'dd.mm.yy',
-                showOn: "both",
-                buttonImage: "resources/img/calendar.png",
+                showOn: 'both',
+                buttonImage: 'resources/img/calendar.png',
                 buttonImageOnly: true,
                 buttonText: 'Выберите дату',
                 maxDate: '0'

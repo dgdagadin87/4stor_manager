@@ -60,7 +60,21 @@ define(
             },
             
             onPageGotoButtonClick: function(ev) {
-                console.log('click on button');
+                ev.preventDefault();
+                var input = this.$('.page-goto-input');
+                var value = parseInt(input.val());
+                var eventPrefix = this._eventPrefix || 'category';
+                var model = this.model;
+                input.removeClass('error');
+                if (isNaN(value) || value < 1 || value > model.get('_numOfPages')) {
+                    input.addClass('error');
+                }
+                else {
+                    if (value !== parseInt(model.get('_currentPage'))) {
+                        Application.trigger(eventPrefix+':page:change', value);
+                    }
+                    this.$('.page-goto-block').hide();
+                }
             },
             
             onPageGotoBlockClick: function(ev) {
