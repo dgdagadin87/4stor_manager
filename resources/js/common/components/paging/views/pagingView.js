@@ -19,10 +19,11 @@ define(
             className: 'paging-container',
 
             events : {
-                'click .page-link'      : 'onPageLinkClick',
-                'click .page-refresh'   : 'onPageRefreshClick',
-                'click .page-goto'      : 'onPageGotoClick',
-                'click .page-goto-block': 'onPageGotoBlockClick'
+                'click .page-link'       : 'onPageLinkClick',
+                'click .page-refresh'    : 'onPageRefreshClick',
+                'click .page-goto'       : 'onPageGotoClick',
+                'click .page-goto-button': 'onPageGotoButtonClick',
+                'click .page-goto-block' : 'onPageGotoBlockClick'
             },
 
             initialize: function() {
@@ -56,6 +57,10 @@ define(
                 if (!current.hasClass('page-disabled')) {
                     this.$('.page-goto-block').toggle();
                 }
+            },
+            
+            onPageGotoButtonClick: function(ev) {
+                console.log('click on button');
             },
             
             onPageGotoBlockClick: function(ev) {
