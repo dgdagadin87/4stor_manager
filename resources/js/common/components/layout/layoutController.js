@@ -127,9 +127,7 @@ define([
     layoutController.prototype._onViewRendered = function() {
         this._isLayoutRendered = true;
         
-        $(document).on('click', function(){
-            $('.for-hidden').hide();
-        });
+        CoreUtils.setHiddenOnClick();
         
         // диалоговое окно ошибки
         this._view['dialogMsgRegion'].onShow = function(view){

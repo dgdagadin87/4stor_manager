@@ -15,6 +15,12 @@ define([
 ) {
     return {
 
+        setHiddenOnClick: function(  ) {
+            $(document).on('click', function(){
+                $('.for-hidden').hide();
+            });
+        },
+
         getDate: function( element ) {
             var date;
             try {
