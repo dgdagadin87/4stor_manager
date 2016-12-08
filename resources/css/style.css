@@ -205,3 +205,8 @@ body, html {
 .page-goto-block .controls {
     margin-left:3px;
 }
+
+
+.main-page-title {
+    padding: 10px;
+}
