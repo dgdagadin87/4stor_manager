@@ -29,6 +29,10 @@ class indexModel extends abstractModel {
             return $laReturn;
         }
         $laReturn['data']['index'] = $index;
+        $laReturn['data']['pageMeta'] = array(
+            'pageCode' => 'index',
+            'pageTitle' => 'Главная страница'
+        );
         $laReturn['data']['breadcrumbs'] = $this->getBreadCrumbs();
         return $laReturn;
     }

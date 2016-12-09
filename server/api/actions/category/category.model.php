@@ -100,6 +100,10 @@ class categoryModel extends abstractModel {
         $laReturn['data']['category'] = $stors;
         $laReturn['data']['breadcrumbs'] = $this->getBreadCrumbs();
         $laReturn['data']['categoryName'] = $this->categoryName;
+        $laReturn['data']['pageMeta'] = array(
+            'pageCode' => 'category',
+            'pageTitle' => $this->categoryName
+        );
         $laReturn['data']['meta'] = array(
             '_currentPage' => $this->curPage,
             '_numOfStors' => $this->numOfStors,
