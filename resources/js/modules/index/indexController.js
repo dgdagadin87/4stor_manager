@@ -74,6 +74,7 @@ define([
                 var laData = data.data || [];
                 var indexData = laData.index || [];
                 var breadCrumbsData = laData.breadcrumbs || [];
+                var metaData = laData.pageMeta || {};
                 var lbSuccess = data.success || false;
                 var lsMessage = data.message || '';
                 
@@ -85,6 +86,7 @@ define([
                 else {
                     me._isDataLoaded = true;
                     me._breadCrumbs = breadCrumbsData;
+                    me._pageMeta = metaData;
                     me.getView().collection.set(indexData);
                     lfRender();
                 }

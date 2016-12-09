@@ -16,6 +16,7 @@ define([
         this._view = null;
         this._isAdded = false;
         this._isGlobalLoading = false;
+        this._pageMeta = {};
     };
 
     BaseController.prototype.destructor = function() {
@@ -28,12 +29,14 @@ define([
 
     BaseController.prototype.__renderContent = function() {
         Application.trigger('content:regions:hide');
+        Application.trigger('pagetitle:render', this._pageMeta.pageTitle, this._pageMeta.pageCode);
         Application.trigger('content:region:show', this._regionName);
         Application.trigger('breadcrumbs:show', this._breadCrumbs);
         Application.trigger('title:change', this._pageTitle);
     };
     
     BaseController.prototype.__renderSpinner = function() {
+        Application.trigger('pagetitle:render', '', '');
         Application.trigger('breadcrumbs:hide');
         Application.trigger('content:regions:hide');
         Application.trigger('spinner:large:show', 'Идет загрузка данных...');

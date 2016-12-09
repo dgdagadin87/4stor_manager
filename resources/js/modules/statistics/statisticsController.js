@@ -45,6 +45,11 @@ define([
             }
         ];
         
+        this._pageMeta = {
+            pageTitle: 'Статистика (таблица)',
+            pageCode: 'statistics'
+        };
+        
         this._model = new statisticsModel();
 
         this._view = new statisticsView();

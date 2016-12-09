@@ -210,3 +210,33 @@ body, html {
 .main-page-title {
     padding: 10px;
 }
+.main-page-title .icon {
+    display: inline-block;
+    width:24px;
+    height:24px;
+    vertical-align: middle;
+}
+.main-page-title .index {
+    background: #FFF url('../img/index.png') no-repeat;
+}
+.main-page-title .category {
+    background: #FFF url('../img/category.png') no-repeat;
+}
+.main-page-title .statistics {
+    background: #FFF url('../img/statistics.png') no-repeat;
+}
+.main-page-title .statchart {
+    background: #FFF url('../img/statchart.png') no-repeat;
+}
+.main-page-title .search {
+    background: #FFF url('../img/search.png') no-repeat;
+}
+.main-page-title .settings {
+    background: #FFF url('../img/settings.png') no-repeat;
+}
+.main-page-title .best {
+    background: #FFF url('../img/best.png') no-repeat;
+}
+.main-page-title .text {
+    display: inline-block;
+}

@@ -49,6 +49,11 @@ define([
             }
         ];
         
+        this._pageMeta = {
+            pageTitle: 'Статистика (диаграмма)',
+            pageCode: 'statchart'
+        };
+        
         this._model = new statchartModel();
 
         this._chartManager = new chartManager({

@@ -114,7 +114,6 @@ define([
             var categoryData = laData.category || [];
             var catName = laData.categoryName || '';
             var pagingData = laData.paging || {};
-            var metaData = laData.meta || {};
             var lbSuccess = data.success || false;
             var lsMessage = data.message || '';
             
@@ -207,6 +206,7 @@ define([
             var categoryData = laData.category || [];
             var catName = laData.categoryName || '';
             var breadCrumbsData = laData.breadcrumbs || [];
+            var pageMetaData = laData.pageMeta || {};
             var pagingData = laData.paging || {};
             var metaData = laData.meta || {};
             var lbSuccess = data.success || false;
@@ -220,6 +220,7 @@ define([
             }
             else {
                 me._breadCrumbs = breadCrumbsData;
+                me._pageMeta = pageMetaData;
                 me._categoryName = catName;
                 me._pageTitle = 'Категория "'+me._categoryName+'"';
 

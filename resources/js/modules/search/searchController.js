@@ -62,6 +62,11 @@ define([
                 url: 'search'
             }
         ];
+        
+        this._pageMeta = {
+            pageTitle: 'Поиск по историям',
+            pageCode: 'search'
+        };
 
         this._view = new searchView();
         
