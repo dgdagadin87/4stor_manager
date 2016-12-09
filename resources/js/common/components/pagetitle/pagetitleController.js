@@ -25,8 +25,8 @@ define([
         
         this._isPageTitleRendered = false;
         
-        this._model = new pagetitleView();
-        this._view = new pagetitleModel();
+        this._model = new pagetitleModel();
+        this._view = new pagetitleView();
         
         this._init();
         this._bindEvents();

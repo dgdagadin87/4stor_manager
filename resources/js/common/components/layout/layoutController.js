@@ -15,7 +15,8 @@ define([
     'common/components/crumbs/crumbsController',
     'common/components/catlist/catlistController',
     'common/components/content/contentController',
-    'common/components/spinner/spinnerController'
+    'common/components/spinner/spinnerController',
+    'common/components/pagetitle/pagetitleController'
 ], function (
     _,
     Backbone,
@@ -31,7 +32,8 @@ define([
     crumbsComponent,
     catlistComponent,
     contentController,
-    spinnerComponent
+    spinnerComponent,
+    pagetitleComponent
 ) {
     var layoutController = function() {
 
@@ -52,6 +54,7 @@ define([
         this._view = new mainLayoutView();
 
         this._headerComponent = new headerComponent();
+        this._pagetitleComponent = new pagetitleComponent();
         this._crumbsComponent = new crumbsComponent();
         this._catlistComponent = new catlistComponent();
         this._contentComponent = new contentController();
@@ -67,6 +70,7 @@ define([
 
     layoutController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
+        Application.on('pagetitle:render', this._onPageTitleRender.bind(this));
         Application.on('spinner:large:show', this._onLargeSpinnerShow.bind(this));
         Application.on('breadcrumbs:show', this._onBreadCrumbsShow.bind(this));
         Application.on('breadcrumbs:hide', this._onBreadCrumbsHide.bind(this));
@@ -79,12 +83,16 @@ define([
     layoutController.prototype._init = function() {
     };
 
+    layoutController.prototype._onContentRegionShow = function(regionName) {
+        this._regionManager.showRegionByName(regionName);
+    };
+
     layoutController.prototype._onContentRegionsHide = function() {
         this._regionManager.hideContentRegions();
     };
     
-    layoutController.prototype._onContentRegionShow = function(regionName) {
-        this._regionManager.showRegionByName(regionName);
+    layoutController.prototype._onPageTitleRender = function(pageTitle, pageCode) {
+        this._pagetitleComponent.showPageTitle(pageTitle, pageCode);
     };
 
     layoutController.prototype._onTitleChange = function(title) {
@@ -120,6 +128,7 @@ define([
     layoutController.prototype._renderComponents = function() {
         var params = this._urlParams;
         this._headerComponent.showHeader();
+        this._pagetitleComponent.showPageTitle('Страшные истории', 'default');
         this._catlistComponent.showCategoryList(this._commonData.categories);
         this._contentComponent.showContent(this._currentPage, params);
     };

@@ -13,7 +13,7 @@ define(
             className : 'pagetitleModel',
             defaults : {
                 pageCode  : '',
-                pageTitle :  ''
+                pageTitle : ''
             },
             initialize : function() {}
         });
