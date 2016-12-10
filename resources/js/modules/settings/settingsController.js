@@ -22,6 +22,23 @@ define([
         BaseController.call(this);
         
         this._isSettingsRendered = false;
+        this._breadCrumbs = [
+            {
+                isMain: true,
+                name: 'Главная страница',
+                url: ''
+            },
+            {
+                isMain: false,
+                name: 'Настройки',
+                url: 'settings'
+            }
+        ];
+        
+        this._pageMeta = {
+            pageTitle: 'Настройки',
+            pageCode: 'settings'
+        };
 
         this._view = new settingsView();
         
@@ -40,20 +57,16 @@ define([
     
     settingsController.prototype._onViewRendered = function() {
         this._isSettingsRendered = true;
-        this._setActiveHeader();
+        this.__renderContent();
     };
 
-    settingsController.prototype.showSettings = function() {
+    settingsController.prototype.showCurrentContent = function() {
         var mainLayout = Application.getMainLayout();
         mainLayout.getView().showChildView('settingsRegion', this.getView());
     };
 
     settingsController.prototype.renderView = function() {
         this.getView().render();
-    };
-    
-    settingsController.prototype.getModel = function() {
-        return this._model;
     };
 
     return settingsController;

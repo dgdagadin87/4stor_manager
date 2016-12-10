@@ -47,6 +47,8 @@ define(['underscore','jquery','coreUtils'], function(_,$,CoreUtils) {
                 return 'statistics-region';
             case 'statchartRegion':
                 return 'statchart-region';
+            case 'settingsRegion':
+                return 'settings-region';
         }
     };
     
