@@ -17,9 +17,12 @@ define([
     BaseController,
     settingsView
 ) {
-    var settingsController = function() {
+    var settingsController = function(poConfig) {
         
         BaseController.call(this);
+        
+        var loConfig = poConfig || {};
+        this._regionName = loConfig.regionName;
         
         this._isSettingsRendered = false;
         this._breadCrumbs = [
