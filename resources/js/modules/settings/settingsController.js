@@ -60,11 +60,11 @@ define([
     
     settingsController.prototype._onViewRendered = function() {
         this._isSettingsRendered = true;
-        this.__renderContent();
     };
 
     settingsController.prototype.showCurrentContent = function() {
         var mainLayout = Application.getMainLayout();
+        this.__renderContent();
         mainLayout.getView().showChildView('settingsRegion', this.getView());
     };
 
