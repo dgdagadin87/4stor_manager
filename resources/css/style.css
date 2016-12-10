@@ -240,3 +240,7 @@ body, html {
 .main-page-title .text {
     display: inline-block;
 }
+
+.catlist-best {
+    color: red;
+}
