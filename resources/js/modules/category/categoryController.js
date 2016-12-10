@@ -112,6 +112,7 @@ define([
         var afterSuccess = function(data) {
             var laData = data.data || [];
             var categoryData = laData.category || [];
+            var metaData = laData.meta || {};
             var catName = laData.categoryName || '';
             var pagingData = laData.paging || {};
             var lbSuccess = data.success || false;

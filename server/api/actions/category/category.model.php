@@ -101,7 +101,7 @@ class categoryModel extends abstractModel {
         $laReturn['data']['breadcrumbs'] = $this->getBreadCrumbs();
         $laReturn['data']['categoryName'] = $this->categoryName;
         $laReturn['data']['pageMeta'] = array(
-            'pageCode' => 'category',
+            'pageCode' => $this->categoryName === 'Лучшие Истории Сайта' ? 'best' : 'category',
             'pageTitle' => $this->categoryName
         );
         $laReturn['data']['meta'] = array(
