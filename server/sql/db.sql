@@ -57,3 +57,42 @@ CREATE TABLE cats2stories
 ) 
 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
 ENGINE = MYISAM;
+
+DROP TABLE settings;
+CREATE TABLE settings 
+(
+    settingId BIGINT AUTO_INCREMENT NOT NULL , 
+    settingName VARCHAR(100) NOT NULL , 
+    settingValue VARCHAR(100) NOT NULL ,
+  
+    PRIMARY KEY ( settingId ) , 
+    UNIQUE ( settingName )
+) 
+DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
+ENGINE = MYISAM;
+
+DROP TABLE sync_links;
+CREATE TABLE sync_links 
+(
+    linkId BIGINT AUTO_INCREMENT NOT NULL , 
+    linkName VARCHAR(100) NOT NULL , 
+    linkValue VARCHAR(100) NOT NULL ,
+  
+    PRIMARY KEY ( linkId ) , 
+    UNIQUE ( linkName )
+) 
+DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
+ENGINE = MYISAM;
+
+DROP TABLE queries;
+CREATE TABLE queries 
+(
+    queryId BIGINT AUTO_INCREMENT NOT NULL , 
+    queryName VARCHAR(100) NOT NULL , 
+    queryData LONGTEXT NOT NULL ,
+  
+    PRIMARY KEY ( queryId ) , 
+    UNIQUE ( queryName )
+) 
+DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
+ENGINE = MYISAM;
