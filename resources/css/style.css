@@ -244,3 +244,11 @@ body, html {
 .catlist-best {
     color: red;
 }
+
+.settings-link-form-container .title {
+    background:blue;
+    color:#fff;
+}
+.settings-link-form-container .settings-link-form-item {
+    margin:10px;
+}

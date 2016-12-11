@@ -7,7 +7,8 @@ define([
     'coreUtils',
     'Application',
     '_base/BaseController',
-    'modules/settings/views/settingsView'
+    'modules/settings/views/settingsView',
+    'modules/settings/components/form/formController'
 ], function (
     _,
     Backbone,
@@ -15,7 +16,8 @@ define([
     CoreUtils,
     Application,
     BaseController,
-    settingsView
+    settingsView,
+    formController
 ) {
     var settingsController = function(poConfig) {
         
@@ -45,6 +47,10 @@ define([
 
         this._view = new settingsView();
         
+        this._formComponent = new formController({
+            parentView: this._view
+        });
+        
         this._init();
         this._bindEvents();
     };
@@ -60,12 +66,17 @@ define([
     
     settingsController.prototype._onViewRendered = function() {
         this._isSettingsRendered = true;
+        this._renderComponents();
     };
 
     settingsController.prototype.showCurrentContent = function() {
         var mainLayout = Application.getMainLayout();
         this.__renderContent();
         mainLayout.getView().showChildView('settingsRegion', this.getView());
+    };
+    
+    settingsController.prototype._renderComponents = function() {
+        this._formComponent.showForm();
     };
 
     settingsController.prototype.renderView = function() {
