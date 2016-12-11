@@ -76,7 +76,7 @@ CREATE TABLE sync_links
 (
     linkId BIGINT AUTO_INCREMENT NOT NULL , 
     linkName VARCHAR(100) NOT NULL , 
-    linkValue VARCHAR(100) NOT NULL ,
+    linkHref VARCHAR(100) NOT NULL ,
   
     PRIMARY KEY ( linkId ) , 
     UNIQUE ( linkName )
