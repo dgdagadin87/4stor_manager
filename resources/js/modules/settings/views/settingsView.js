@@ -10,23 +10,15 @@ define(
         Application,
         template
     ) {
-        return Backbone.Marionette.ItemView.extend({
+        return Backbone.Marionette.LayoutView.extend({
             template : _.template(template),
 
             tagName: 'div',
             className: 'settings-container',
 
-            events : {
-            },
-
-            initialize: function() {
-            },
-            
-            onRender: function() {
-            },
-
-            templateHelpers : function() {
-                return {};
+            regions: {
+                formRegion: '.form-region',
+                gridRegion: '.grid-region'
             }
         });
     }
