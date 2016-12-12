@@ -275,13 +275,16 @@ body, html {
     font-weight: bold;
 }
 .settings-links .settings-grid-headers span.name {
-    width:30%;
+    width:25%;
 }
 .settings-links .settings-grid-headers span.href {
-    width:48%;
+    width:45%;
+}
+.settings-links .settings-grid-headers span.multipage {
+    width:18%;
 }
 .settings-links .settings-grid-headers span.controls {
-    width:20%;
+    width:10%;
 }
 
 .settings-grid-container {
