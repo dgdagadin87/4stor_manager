@@ -8,6 +8,7 @@ define([
     'Application',
     '_base/BaseController',
     'modules/settings/components/form/models/formModel',
+    'modules/settings/components/form/models/formStateModel',
     'modules/settings/components/form/views/formView'
 ], function (
     _,
@@ -17,6 +18,7 @@ define([
     Application,
     BaseController,
     formModel,
+    stateModel,
     formView
 ) {
     var formController = function(poConfig) {
@@ -29,6 +31,7 @@ define([
         this._isFormRendered = false;
 
         this._model = new formModel();
+        this._state = new stateModel();
 
         this._view = new formView();
         
@@ -44,6 +47,7 @@ define([
     
     formController.prototype._init = function() {
         this._view.model = this._model;
+        this._view.state = this._state;
     };
     
     formController.prototype._onViewRendered = function() {

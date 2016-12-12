@@ -1,13 +1,13 @@
-<div class="title"><%=submitValue%></div>
+<div class="title"><% if (state.mode == 'add') { %>Добавление<% }else { %>Редактирование<% } %> ссылки</div>
 <div class="errors" style="display:none;"></div>
 <div class="settings-link-form-item">
     Имя ссылки
-    <input type="text" class="link-name" value="<%=nameValue%>" placeholder="Введите имя ссылки" />
+    <input type="text" class="link-name" value="<%=model.linkName%>" placeholder="Введите имя ссылки" />
 </div>
 <div class="settings-link-form-item">
     Адрес ссылки
-    <input type="text" class="link-href" value="<%=hrefValue%>" placeholder="Введите адрес ссылки" />
+    <input type="text" class="link-href" value="<%=model.linkHref%>" placeholder="Введите адрес ссылки" />
 </div>
 <div class="settings-link-form-item">
-    <button class="link-submit"><%=submitValue%></button>
+    <button class="link-submit"><% if (state.mode == 'add') { %>Добавить<% }else { %>Редактировать<% } %> ссылку</button>
 </div>

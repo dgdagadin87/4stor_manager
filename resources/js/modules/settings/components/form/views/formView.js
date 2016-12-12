@@ -31,7 +31,10 @@ define(
             },
             
             templateHelpers : function() {
-                return this.model.toJSON();
+                return {
+                    model: this.model.toJSON(),
+                    state: this.state.toJSON()
+                }
             }
         });
     }

@@ -10,11 +10,9 @@ define(
         Backbone
     ) {
         return Backbone.Model.extend({
-            className : 'formModel',
+            className : 'formStateModel',
             defaults : {
-                linkId   : null,
-                linkName : '',
-                linkHref : ''
+                mode: 'add'
             },
             initialize : function() {
             }
