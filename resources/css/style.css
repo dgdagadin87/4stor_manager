@@ -100,6 +100,9 @@ body, html {
 .searchform-container {
     padding:10px 0;
 }
+.searchform-container .form-submit-button.disabled {
+    color: grey;
+}
 
 .search-error-block {
     border: 1px solid crimson;

@@ -51,7 +51,9 @@ define(
 
             onSubmitButtonClick: function(ev) {
                 ev.preventDefault();
-                Application.trigger('search:form:submit');
+                if (!this.$('.form-submit-button').hasClass('disabled')) {
+                    Application.trigger('search:form:submit');
+                }
             },
             
             templateHelpers : function() {

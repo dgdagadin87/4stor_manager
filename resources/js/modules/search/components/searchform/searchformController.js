@@ -40,17 +40,22 @@ define([
     
     searchformController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
+        Application.on('search:submit:disable', this._onSubmitDisable.bind(this));
+        Application.on('search:submit:enable', this._onSubmitEnable.bind(this));
     };
     
     searchformController.prototype._init = function() {
     };
     
-    searchformController.prototype._onSearchFormSubmit = function() {
-        console.log('submit button clicked');
-    };
-    
     searchformController.prototype._onViewRendered = function() {
         this._isSearchformRendered = true;
+    };
+    
+    searchformController.prototype._onSubmitDisable = function() {
+        this._view.$('.form-submit-button').addClass('disabled');
+    };
+    searchformController.prototype._onSubmitEnable = function() {
+        this._view.$('.form-submit-button').removeClass('disabled');
     };
 
     searchformController.prototype.showSearchForm = function() {

@@ -292,7 +292,7 @@ define([
                 Application.trigger('error:modal:show', lsMessage);
             }
             else {
-
+                Application.trigger('search:submit:enable');
                 me._listComponent.setData(searchData);
                 me._pagingComponent.setData(pagingData);
                 me._toolbarComponent.setData(metaData);
@@ -305,10 +305,10 @@ define([
             me._meta.set(me._metaDefault);
             me._showSearchSpinner();
         }
-        else {
-        }
+
         var chooseModel = me._chooseComponent.getModel().toJSON();
 
+        Application.trigger('search:submit:disable');
         Application.trigger('search:page:disable');
         Application.trigger('search:listbar:disable');
 
