@@ -8,7 +8,8 @@ define([
     'Application',
     '_base/BaseController',
     'modules/settings/views/settingsView',
-    'modules/settings/components/form/formController'
+    'modules/settings/components/form/formController',
+    'modules/settings/components/grid/gridController'
 ], function (
     _,
     Backbone,
@@ -17,7 +18,8 @@ define([
     Application,
     BaseController,
     settingsView,
-    formController
+    formController,
+    gridController
 ) {
     var settingsController = function(poConfig) {
         
@@ -50,6 +52,9 @@ define([
         this._formComponent = new formController({
             parentView: this._view
         });
+        this._gridComponent = new gridController({
+            parentView: this._view
+        });
         
         this._init();
         this._bindEvents();
@@ -77,6 +82,7 @@ define([
     
     settingsController.prototype._renderComponents = function() {
         this._formComponent.showForm();
+        this._gridComponent.showGrid();
     };
 
     settingsController.prototype.renderView = function() {

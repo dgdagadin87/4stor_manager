@@ -27,12 +27,9 @@ define(
             collection: new collection(),
 
             tagName: 'div',
-            className: 'categories',
+            className: 'settings-links',
 
             events : {
-            },
-            templateHelpers : function() {
-                return {};
             }
         });
     }
