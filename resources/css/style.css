@@ -245,10 +245,47 @@ body, html {
     color: red;
 }
 
-.settings-link-form-container .title {
+.settings-container .title {
     background:blue;
     color:#fff;
 }
 .settings-link-form-container .settings-link-form-item {
     margin:10px;
+}
+
+.grid-region, .form-region {
+    vertical-align:top;
+}
+.settings-links .grid-toolbar .item {
+    display:inline-block;
+    width:24px;
+    height:24px;
+    cursor:pointer;
+}
+.settings-links .grid-toolbar .add {
+    background: #FFF url('../img/add.png') no-repeat;
+}
+.settings-links .grid-toolbar .refresh {
+    background: #FFF url('../img/refresh2.png') no-repeat;
+}
+
+.settings-links .settings-grid-headers span.header {
+    display:inline-block;
+    height:25px;
+    font-weight: bold;
+}
+.settings-links .settings-grid-headers span.name {
+    width:30%;
+}
+.settings-links .settings-grid-headers span.href {
+    width:48%;
+}
+.settings-links .settings-grid-headers span.controls {
+    width:20%;
+}
+
+.settings-grid-container {
+    height:300px;
+    overflow-y: scroll;
+    border-top:1px solid black;
 }

@@ -1,11 +1,11 @@
 <div class="title"><% if (state.mode == 'add') { %>Добавление<% }else { %>Редактирование<% } %> ссылки</div>
 <div class="errors" style="display:none;"></div>
 <div class="settings-link-form-item">
-    Имя ссылки
+    Имя ссылки<br />
     <input type="text" class="link-name" value="<%=model.linkName%>" placeholder="Введите имя ссылки" />
 </div>
 <div class="settings-link-form-item">
-    Адрес ссылки
+    Адрес ссылки<br />
     <input type="text" class="link-href" value="<%=model.linkHref%>" placeholder="Введите адрес ссылки" />
 </div>
 <div class="settings-link-form-item">

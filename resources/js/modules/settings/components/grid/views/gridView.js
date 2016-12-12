@@ -30,6 +30,15 @@ define(
             className: 'settings-links',
 
             events : {
+                'click .add': 'onAddClick',
+                'click .refresh': 'onRefreshClick'
+            },
+            
+            onAddClick: function(){
+                console.log('add');
+            },
+            onRefreshClick: function(){
+                console.log('refresh');
             }
         });
     }
