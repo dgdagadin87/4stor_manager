@@ -49,9 +49,9 @@ define([
 
         this._view = new settingsView();
         
-        this._formComponent = new formController({
-            parentView: this._view
-        });
+//        this._formComponent = new formController({
+//            parentView: this._view
+//        });
         this._gridComponent = new gridController({
             parentView: this._view
         });
@@ -81,7 +81,7 @@ define([
     };
     
     settingsController.prototype._renderComponents = function() {
-        this._formComponent.showForm();
+        //this._formComponent.showForm();
         this._gridComponent.showGrid();
     };
 
