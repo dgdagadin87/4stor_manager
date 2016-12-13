@@ -118,6 +118,9 @@ define([
             var lbSuccess = data.success || false;
             var lsMessage = data.message || '';
             
+            Application.trigger('category:page:enable');
+            Application.trigger('category:listbar:enable');
+            
             if (!lbSuccess) {
                 Application.trigger('error:modal:show', lsMessage);
             }
@@ -217,6 +220,7 @@ define([
             $('.catlist-for-disabled').removeClass('catlist-disabled');
             
             if (!lbSuccess) {
+                Application.trigger('content:regions:hide');
                 Application.trigger('error:modal:show', lsMessage);
             }
             else {
