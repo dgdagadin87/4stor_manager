@@ -233,9 +233,9 @@ define([
         }
         
         // 4)Если минимальное к-во просмотров больше максимального
-        if (!CoreUtils.isEmpty(me._data.get('storWatchesFrom')) && !CoreUtils.isEmpty(me._data.get('storWatchesTo')) && (me._data.get('storWatchesFrom') > me._data.get('storWatchesTo'))) {
-            errors.push('Поля "Просмотров от" не должно быть больше поля "Просмотров до"');
-        }
+//        if (!CoreUtils.isEmpty(me._data.get('storWatchesFrom')) && !CoreUtils.isEmpty(me._data.get('storWatchesTo')) && (me._data.get('storWatchesFrom') > me._data.get('storWatchesTo'))) {
+//            errors.push('Поля "Просмотров от" не должно быть больше поля "Просмотров до"');
+//        }
         
         // 5)Если минимальное к-во комментариев больше максимального
         if (!CoreUtils.isEmpty(me._data.get('storCommentsFrom')) && !CoreUtils.isEmpty(me._data.get('storCommentsTo')) && (me._data.get('storCommentsFrom') > me._data.get('storCommentsTo'))) {
@@ -274,7 +274,6 @@ define([
         var me = this;
         
         var lfRender = function(){
-            me._hideSearchSpinner();
             me._renderListComponents({
                 toScroll: true
             });
@@ -288,11 +287,15 @@ define([
             var lbSuccess = data.success || false;
             var lsMessage = data.message || '';
 
+            Application.trigger('search:submit:enable');
+            Application.trigger('search:page:enable');
+            Application.trigger('search:listbar:enable');
+            me._hideSearchSpinner();
+
             if (!lbSuccess) {
                 Application.trigger('error:modal:show', lsMessage);
             }
             else {
-                Application.trigger('search:submit:enable');
                 me._listComponent.setData(searchData);
                 me._pagingComponent.setData(pagingData);
                 me._toolbarComponent.setData(metaData);

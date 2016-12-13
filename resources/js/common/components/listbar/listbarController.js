@@ -50,6 +50,9 @@ define([
         Application.on(me._eventPrefix+':listbar:disable', function(){
             me._view.$('.listbar-for-disabled').addClass('listbar-disabled');
         });
+        Application.on(me._eventPrefix+':listbar:ensable', function(){
+            me._view.$('.listbar-for-disabled').removeClass('listbar-disabled');
+        });
     };
     
     listbarController.prototype._init = function() {
