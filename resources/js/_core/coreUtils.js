@@ -36,7 +36,7 @@ define([
                     this.listenTo(view, 'dialog:close', closeDialog);
                     this.$el.dialog({
                         modal: true,
-                        title: 'Возникла ошибка',
+                        title: '',
                         width: 'auto',
                         close: function(e, ui){
                             closeDialog();
