@@ -138,45 +138,7 @@ define([
         
         CoreUtils.setHiddenOnClick();
         CoreUtils.setDialogsOnShow();
-        
-//        // диалоговое окно ошибки
-//        this._view['dialogMsgRegion'].onShow = function(view){
-//            var me = this;
-//            var closeDialog = function(){
-//                me.stopListening();
-//                me.empty();
-//                me.$el.dialog('destroy');
-//            };
-//            this.listenTo(view, 'dialog:close', closeDialog);
-//            this.$el.dialog({
-//                modal: true,
-//                title: 'Возникла ошибка',
-//                width: 'auto',
-//                close: function(e, ui){
-//                    closeDialog();
-//                }
-//            });
-//        };
-//            
-//        // диалоговое окно списка категорий
-//        this._view['dialogCtgRegion'].onShow = function(view){
-//            var me = this;
-//            var closeDialog = function(){
-//                me.stopListening();
-//                me.empty();
-//                me.$el.dialog('destroy');
-//            };
-//            this.listenTo(view, 'dialog:close', closeDialog);
-//            this.$el.dialog({
-//                modal: true,
-//                title: 'Выберите категории для поиска',
-//                width: 'auto',
-//                close: function(e, ui){
-//                    closeDialog();
-//                }
-//            });
-//        };
-            
+
         this._renderComponents();
     };
 
