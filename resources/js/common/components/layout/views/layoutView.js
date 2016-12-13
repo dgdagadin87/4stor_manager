@@ -23,7 +23,8 @@ define(
                 leftRegion: '#left-region',
                 footerRegion: '#footer-region',
                 dialogMsgRegion: '#dialog-message',
-                dialogCtgRegion: '#dialog-categories'
+                dialogCtgRegion: '#dialog-categories',
+                dialogFrmRegion: '#dialog-form'
             },
             
             initialize: function() {

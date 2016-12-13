@@ -15,9 +15,34 @@ define([
 ) {
     return {
 
-        setHiddenOnClick: function(  ) {
+        setHiddenOnClick: function() {
             $(document).on('click', function(){
                 $('.for-hidden').hide();
+            });
+        },
+        
+        setDialogsOnShow: function() {
+            var mainLayout = Application.getMainLayout();
+            var mainView = mainLayout.getView();
+            var dialogRegions = ['dialogMsgRegion','dialogCtgRegion','dialogFrmRegion'];
+            _.each(dialogRegions, function(region){
+                mainView[region].onShow = function(view){
+                    var me = this;
+                    var closeDialog = function(){
+                        me.stopListening();
+                        me.empty();
+                        me.$el.dialog('destroy');
+                    };
+                    this.listenTo(view, 'dialog:close', closeDialog);
+                    this.$el.dialog({
+                        modal: true,
+                        title: 'Возникла ошибка',
+                        width: 'auto',
+                        close: function(e, ui){
+                            closeDialog();
+                        }
+                    });
+                };
             });
         },
 
