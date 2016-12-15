@@ -75,6 +75,10 @@ define([
         mainLayout.getView().showChildView('settingsRegion', this.getView());
     };
     
+    settingsController.prototype.loadData = function() {
+        this._gridComponent.showGrid();
+    };
+    
     settingsController.prototype._renderComponents = function() {
         this._gridComponent.showGrid();
     };
