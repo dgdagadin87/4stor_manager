@@ -220,8 +220,7 @@ define([
             $('.catlist-for-disabled').removeClass('catlist-disabled');
             
             if (!lbSuccess) {
-                Application.trigger('content:regions:hide');
-                Application.trigger('error:modal:show', lsMessage);
+                me.__showGlobalError(lsMessage);
             }
             else {
                 me._breadCrumbs = breadCrumbsData;

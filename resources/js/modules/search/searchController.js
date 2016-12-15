@@ -293,7 +293,7 @@ define([
             me._hideSearchSpinner();
 
             if (!lbSuccess) {
-                Application.trigger('error:modal:show', lsMessage);
+                me.__showGlobalError(lsMessage);
             }
             else {
                 me._listComponent.setData(searchData);

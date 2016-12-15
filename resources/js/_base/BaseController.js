@@ -42,6 +42,11 @@ define([
         Application.trigger('spinner:large:show', 'Идет загрузка данных...');
         Application.trigger('title:change', 'Идет загрузка данных...');
     };
+    
+    BaseController.prototype.__showGlobalError = function(psMessage) {
+        Application.trigger('content:regions:hide');
+        Application.trigger('error:modal:show', psMessage);
+    };
 
     BaseController.prototype.getView = function() {
         return this._view;

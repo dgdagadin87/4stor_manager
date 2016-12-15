@@ -128,7 +128,7 @@ define([
                 me._isGlobalLoading = false;
                 
                 if (!lbSuccess) {
-                    Application.trigger('error:modal:show', lsMessage);
+                    me.__showGlobalError(lsMessage);
                 }
                 else {
                     me._isDataLoaded = true;
