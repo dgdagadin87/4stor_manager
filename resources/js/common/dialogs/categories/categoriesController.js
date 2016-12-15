@@ -7,8 +7,8 @@ define([
     'coreUtils',
     'Application',
     '_base/BaseController',
-    'modules/search/components/categories/views/categoriesView',
-    'modules/search/components/categories/models/categoriesModel'
+    './views/categoriesView',
+    './models/categoriesModel'
 ], function (
     _,
     Backbone,

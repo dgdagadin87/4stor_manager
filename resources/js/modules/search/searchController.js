@@ -8,7 +8,7 @@ define([
     'Application',
     'settings',
     '_base/BaseController',
-    'modules/search/components/categories/categoriesController',
+    'common/dialogs/categories/categoriesController',
     'modules/search/models/searchStateModel',
     'modules/search/models/searchDataModel',
     'common/components/storlist/storlistController',
