@@ -233,9 +233,9 @@ define([
         }
         
         // 4)Если минимальное к-во просмотров больше максимального
-//        if (!CoreUtils.isEmpty(me._data.get('storWatchesFrom')) && !CoreUtils.isEmpty(me._data.get('storWatchesTo')) && (me._data.get('storWatchesFrom') > me._data.get('storWatchesTo'))) {
-//            errors.push('Поля "Просмотров от" не должно быть больше поля "Просмотров до"');
-//        }
+        if (!CoreUtils.isEmpty(me._data.get('storWatchesFrom')) && !CoreUtils.isEmpty(me._data.get('storWatchesTo')) && (me._data.get('storWatchesFrom') > me._data.get('storWatchesTo'))) {
+            errors.push('Поля "Просмотров от" не должно быть больше поля "Просмотров до"');
+        }
         
         // 5)Если минимальное к-во комментариев больше максимального
         if (!CoreUtils.isEmpty(me._data.get('storCommentsFrom')) && !CoreUtils.isEmpty(me._data.get('storCommentsTo')) && (me._data.get('storCommentsFrom') > me._data.get('storCommentsTo'))) {
