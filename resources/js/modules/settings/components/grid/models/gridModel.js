@@ -10,11 +10,13 @@ define(
         Backbone
     ) {
         return Backbone.Model.extend({
-            className : 'formModel',
+            className : 'gridModel',
             defaults : {
                 linkId   : null,
                 linkName : '',
-                linkHref : ''
+                linkHref : '',
+                linkIsOn: true,
+                linkIsMultipage: true,
             },
             initialize : function() {
             }

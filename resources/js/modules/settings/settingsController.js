@@ -8,7 +8,6 @@ define([
     'Application',
     '_base/BaseController',
     'modules/settings/views/settingsView',
-    'modules/settings/components/form/formController',
     'modules/settings/components/grid/gridController'
 ], function (
     _,
@@ -18,7 +17,6 @@ define([
     Application,
     BaseController,
     settingsView,
-    formController,
     gridController
 ) {
     var settingsController = function(poConfig) {

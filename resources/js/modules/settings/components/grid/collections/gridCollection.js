@@ -3,7 +3,7 @@ define(
         'jquery',
         'underscore',
         'backbone',
-        'modules/settings/components/form/models/formModel'
+        '../models/gridModel'
     ],
     function(
         $,
