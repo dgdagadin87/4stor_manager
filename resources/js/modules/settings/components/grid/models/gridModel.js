@@ -16,7 +16,7 @@ define(
                 linkName : '',
                 linkHref : '',
                 linkIsOn: true,
-                linkIsMultipage: true,
+                linkIsMultipage: true
             },
             initialize : function() {
             }
