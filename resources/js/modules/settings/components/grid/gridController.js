@@ -54,6 +54,10 @@ define([
             this.renderView();
         }
     };
+    
+    gridController.prototype.setData = function(data) {
+        this.getView().collection.set(data);
+    };
 
     gridController.prototype.renderView = function() {
         this.getView().render();
