@@ -16,14 +16,22 @@ define(
             template: _.template(template),
             
             events : {
+                'click': 'highlightRow',
                 'click .edit-button': 'onEditClick',
                 'click .delete-button': 'onDeleteClick'
             },
             
-            onEditClick: function(){
+            highlightRow: function(ev){
+                ev.preventDefault();
+                this.$el.toggleClass('highlight');
+            },
+            
+            onEditClick: function(ev){
+                ev.preventDefault();
                 console.log('onEditClick');
             },
-            onDeleteClick: function(){
+            onDeleteClick: function(ev){
+                ev.preventDefault();
                 console.log('onDeleteClick');
             },
 
