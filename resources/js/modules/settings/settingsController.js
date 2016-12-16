@@ -6,6 +6,7 @@ define([
     'jquery',
     'coreUtils',
     'Application',
+    'settings',
     '_base/BaseController',
     'modules/settings/views/settingsView',
     'modules/settings/components/grid/gridController'
@@ -15,6 +16,7 @@ define([
     $,
     CoreUtils,
     Application,
+    Settings,
     BaseController,
     settingsView,
     gridController
@@ -70,13 +72,64 @@ define([
     };
 
     settingsController.prototype.showCurrentContent = function() {
-        var mainLayout = Application.getMainLayout();
-        this.__renderContent();
-        mainLayout.getView().showChildView('settingsRegion', this.getView());
+        if (!this._isDataLoaded) {
+            this._isGlobalLoading = true;
+            this.__renderSpinner();
+            
+            CoreUtils.axajQuery({
+                url: Settings.url.getLinksData
+            },
+            {
+                afterSuccess: this._afterSuccess,
+                afterError: this._afterError
+            });
+        }
+        else {
+            this._renderFunction();
+        }
     };
     
     settingsController.prototype.loadData = function() {
-        this._gridComponent.showGrid();
+    };
+    
+    settingsController.prototype._afterSuccess = function(data) {
+        var me = this;
+        var laData = data.data || [];
+        var indexData = laData.index || [];
+        var breadCrumbsData = laData.breadcrumbs || [];
+        var metaData = laData.pageMeta || {};
+        var lbSuccess = data.success || false;
+        var lsMessage = data.message || '';
+
+        me._isGlobalLoading = false;
+
+        if (!lbSuccess) {
+            me.__showGlobalError(lsMessage);
+        }
+        else {
+            me._isDataLoaded = true;
+            me._breadCrumbs = breadCrumbsData;
+            me._pageMeta = metaData;
+            me.getView().collection.set(indexData);
+            this._renderFunction();
+        }
+    };
+    
+    settingsController.prototype._afterError = function(data) {
+        var lsMessage = data.message || '';
+        this._isGlobalLoading = false;
+        Application.trigger('error:modal:show', lsMessage);
+    };
+    
+    settingsController.prototype._renderFunction = function() {
+        var mainLayout = Application.getMainLayout();
+        this.__renderContent();
+        if (!this._isSettingsRendered) {
+            mainLayout.getView()[this._regionName].show(this.getView());
+        }
+        else {
+            this._renderComponents();
+        }
     };
     
     settingsController.prototype._renderComponents = function() {
