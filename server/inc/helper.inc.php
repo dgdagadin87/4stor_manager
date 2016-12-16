@@ -21,7 +21,8 @@ class Helper {
             'category',
             'search',
             'statistics',
-            'statchart'
+            'statchart',
+            'synclinks'
         );
     }
     
