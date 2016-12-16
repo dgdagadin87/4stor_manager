@@ -142,7 +142,7 @@ define([
         Application.trigger('category:page:disable');
         Application.trigger('category:listbar:disable');
         
-        CoreUtils.axajQuery({
+        CoreUtils.ajaxQuery({
             url: Settings.url.getCategoryData,
             data: {
                 catId   : me._categoryId,
@@ -240,7 +240,7 @@ define([
         $('.catlist-for-disabled').addClass('catlist-disabled');
         this.__renderSpinner();
         
-        CoreUtils.axajQuery({
+        CoreUtils.ajaxQuery({
             url: Settings.url.getCategoryData,
             data: {
                 catId   : me._categoryId,

@@ -123,7 +123,7 @@ define([
             return object;
         },
         
-        axajQuery: function(config, functions){
+        ajaxQuery: function(config, functions){
             var loConf = config || {};
             var BeforeSend    = this.isEmpty(functions.beforeSend)    || !$.isFunction(functions.beforeSend)    ? this.emptyFunction : functions.beforeSend;
             var AfterSuccess  = this.isEmpty(functions.afterSuccess)  || !$.isFunction(functions.afterSuccess)  ? this.emptyFunction : functions.afterSuccess;

@@ -315,7 +315,7 @@ define([
         Application.trigger('search:page:disable');
         Application.trigger('search:listbar:disable');
 
-        CoreUtils.axajQuery({
+        CoreUtils.ajaxQuery({
             url: Settings.url.getSearchData,
             data: {
                 page    : me._meta.get('page'),

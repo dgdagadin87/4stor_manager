@@ -117,7 +117,7 @@ define([
             this._isGlobalLoading = true;
             this.__renderSpinner();
             
-            CoreUtils.axajQuery({
+            CoreUtils.ajaxQuery({
                 url: Settings.url.getStatisticsData
             },
             {

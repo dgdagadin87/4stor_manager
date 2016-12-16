@@ -178,7 +178,7 @@ define([
             showParts(me._commonData);
         }
         else {
-            CoreUtils.axajQuery({
+            CoreUtils.ajaxQuery({
                 url: Settings.url.getCommonData
             },
             {
