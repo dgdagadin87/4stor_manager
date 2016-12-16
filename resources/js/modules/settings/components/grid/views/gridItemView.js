@@ -22,7 +22,6 @@ define(
             },
             
             highlightRow: function(ev){
-                ev.preventDefault();
                 this.$el.toggleClass('highlight');
             },
             
