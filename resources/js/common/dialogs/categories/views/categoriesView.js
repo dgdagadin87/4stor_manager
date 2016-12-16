@@ -61,7 +61,9 @@ define(
                     }
                 });
                 if (checked.length < 1) {
-                    alert('Хотя бы одна категория должна быть выбрана');
+                    this.onSetAllClick(false);
+                    var message = 'Хотя бы одна категория должна быть выбрана';
+                    Application.trigger('error:modal:show', message);
                 }
                 else {
                     me.model.set('checkedCategories', checked);
@@ -75,7 +77,7 @@ define(
             },
             
             onSetAllClick: function(ev) {
-                ev.preventDefault();
+                ev && ev.preventDefault();
                 var me = this;
                 _.each(this.$('.category-item-checkbox'), function(item){
                     var current = me.$(item);
