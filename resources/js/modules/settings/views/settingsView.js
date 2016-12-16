@@ -17,7 +17,7 @@ define(
             className: 'settings-container',
 
             regions: {
-                //formRegion: '.form-region',
+                pagingRegion: '.paging-region',
                 gridRegion: '.grid-region'
             }
         });

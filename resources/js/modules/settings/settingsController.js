@@ -7,6 +7,7 @@ define([
     'coreUtils',
     'Application',
     'settings',
+    'modules/settings/models/settingsStateModel',
     '_base/BaseController',
     'modules/settings/views/settingsView',
     'modules/settings/components/grid/gridController'
@@ -17,6 +18,7 @@ define([
     CoreUtils,
     Application,
     Settings,
+    metaModel,
     BaseController,
     settingsView,
     gridController
@@ -24,6 +26,8 @@ define([
     var settingsController = function(poConfig) {
         
         BaseController.call(this);
+        
+        this._meta = new metaModel();
         
         var loConfig = poConfig || {};
         this._regionName = loConfig.regionName;
@@ -52,6 +56,11 @@ define([
         this._gridComponent = new gridController({
             parentView: this._view
         });
+        this._pagingComponent = new pagingController({
+            parentView  : this._view,
+            regionName  : 'pagingRegion',
+            eventPrefix : 'synclinks'
+        });
         
         this._init();
         this._bindEvents();
@@ -61,9 +70,24 @@ define([
     
     settingsController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
+        this._meta.on('change', this._onMetaChanged.bind(this));
+        Application.on('settings:refresh', this._onRefresh.bind(this));
+        Application.on('settings:page:change', this._onSettingsPageChange.bind(this));
     };
     
     settingsController.prototype._init = function() {
+    };
+    
+    settingsController.prototype._onRefresh = function() {
+        this.loadData();
+    };
+    
+    settingsController.prototype._onMetaChanged = function() {
+        this.loadData();
+    };
+    
+    settingsController.prototype._onSettingsPageChange = function(page) {
+        this._meta.set('page', page);
     };
     
     settingsController.prototype._onViewRendered = function() {
@@ -96,6 +120,7 @@ define([
         var me = this;
         var laData = data.data || [];
         var linksData = laData.links || [];
+        var pagingData = laData.paging || {};
         var lbSuccess = data.success || false;
         var lsMessage = data.message || '';
 
@@ -107,6 +132,7 @@ define([
         else {
             me._isDataLoaded = true;
             this._gridComponent.setData(linksData);
+            me._pagingComponent.setData(pagingData);
             this._renderFunction();
         }
     };
