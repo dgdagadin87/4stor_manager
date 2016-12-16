@@ -95,7 +95,7 @@ define([
     settingsController.prototype._afterSuccess = function(data) {
         var me = this;
         var laData = data.data || [];
-        var indexData = laData.index || [];
+        var linksData = laData.links || [];
         var breadCrumbsData = laData.breadcrumbs || [];
         var metaData = laData.pageMeta || {};
         var lbSuccess = data.success || false;
@@ -110,7 +110,7 @@ define([
             me._isDataLoaded = true;
             me._breadCrumbs = breadCrumbsData;
             me._pageMeta = metaData;
-            me.getView().collection.set(indexData);
+            me.getView().collection.set(linksData);
             this._renderFunction();
         }
     };

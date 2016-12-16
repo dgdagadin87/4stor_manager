@@ -1,1 +1,23 @@
-qwerty
+<td>
+    <input type="checkbox" class="delete-checkbox" />
+</td>
+<td>
+    <%=linkId%>
+</td>
+<td>
+    <%=linkName%>
+</td>
+<td>
+    <%=linkHref%>
+</td>
+<td>
+    <%= linkIsOn == true ? 'Да' : 'Нет' %>
+</td>
+<td>
+    <%= linkIsMultipage == true ? 'Да' : 'Нет' %>
+</td>
+<td>
+    <a class="edit-button" href="#" title="Редактировать ссылку">Ред.</a>
+    &nbsp;
+    <a class="delete-button" href="#" title="Удалить ссылку">Уд.</a>
+</td>

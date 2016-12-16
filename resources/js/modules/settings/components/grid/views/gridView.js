@@ -22,7 +22,7 @@ define(
             emptyView: GridEmptyView,
 
             childView: GridItemView,
-            childViewContainer: ".settings-grid-container",
+            childViewContainer: "tbody",
 
             collection: new collection(),
 

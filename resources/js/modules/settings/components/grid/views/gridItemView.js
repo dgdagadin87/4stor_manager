@@ -11,11 +11,20 @@ define(
         template
     ) {
         return Backbone.Marionette.ItemView.extend({
-            tagName: "div",
-            className: 'grid-item',
+            tagName: "tr",
+            className: 'grid-row',
             template: _.template(template),
             
-            events: {
+            events : {
+                'click .edit-button': 'onEditClick',
+                'click .delete-button': 'onDeleteClick'
+            },
+            
+            onEditClick: function(){
+                console.log('onEditClick');
+            },
+            onDeleteClick: function(){
+                console.log('onDeleteClick');
             },
 
             templateHelpers: function(){
