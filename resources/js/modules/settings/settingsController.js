@@ -10,6 +10,7 @@ define([
     'modules/settings/models/settingsStateModel',
     '_base/BaseController',
     'modules/settings/views/settingsView',
+    'common/components/paging/pagingController',
     'modules/settings/components/grid/gridController'
 ], function (
     _,
@@ -21,6 +22,7 @@ define([
     metaModel,
     BaseController,
     settingsView,
+    pagingController,
     gridController
 ) {
     var settingsController = function(poConfig) {
@@ -104,8 +106,8 @@ define([
                 url: Settings.url.getLinksData
             },
             {
-                afterSuccess: this._afterSuccess,
-                afterError: this._afterError
+                afterSuccess: this._afterSuccess.bind(this),
+                afterError: this._afterError.bind(this)
             });
         }
         else {
@@ -156,6 +158,7 @@ define([
     
     settingsController.prototype._renderComponents = function() {
         this._gridComponent.showGrid();
+        this._pagingComponent.showPaging();
     };
 
     settingsController.prototype.renderView = function() {
