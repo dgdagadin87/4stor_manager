@@ -129,25 +129,30 @@ define([
             var AfterSuccess  = this.isEmpty(functions.afterSuccess)  || !$.isFunction(functions.afterSuccess)  ? this.emptyFunction : functions.afterSuccess;
             var AfterError    = this.isEmpty(functions.afterError)    || !$.isFunction(functions.afterError)    ? this.emptyFunction : functions.afterError;
             var AfterComplete = this.isEmpty(functions.afterComplete) || !$.isFunction(functions.afterComplete) ? this.emptyFunction : functions.afterComplete;
-                
+
+            var callbackParams = arguments[2] || {};
+            var beforeSendParams = callbackParams['beforeSend'] || {};
+            var afterSuccessParams = callbackParams['afterSuccess'] || {};
+            var afterErrorParams = callbackParams['afterError'] || {};
+            var afterCompleteParams = callbackParams['afterComplete'] || {};
+
             var queryConfig = {
                     type: 'GET',
                     async: true,
                     cache: false,
                     dataType: 'json',
-                    headers: {
-                    },
+                    headers: {},
                     beforeSend: function(jqXHR, settings){
-                        BeforeSend(jqXHR, settings);
+                        BeforeSend(jqXHR, settings, beforeSendParams);
                     },
                     success: function(data, textStatus, jqXHR){
-                        AfterSuccess(data, textStatus, jqXHR);
+                        AfterSuccess(data, textStatus, jqXHR, afterSuccessParams);
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
-                        AfterError(jqXHR, textStatus, errorThrown);
+                        AfterError(jqXHR, textStatus, errorThrown, afterErrorParams);
                     },
                     complete: function(jqXHR, textStatus){
-                        AfterComplete(jqXHR, textStatus);
+                        AfterComplete(jqXHR, textStatus, afterCompleteParams);
                     }
                 };
             var cfg = this.applyParams(loConf, queryConfig);

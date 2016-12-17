@@ -80,8 +80,8 @@ define([
     settingsController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
         this._meta.on('change', this._onMetaChanged.bind(this));
-        Application.on('settings:refresh', this._onRefresh.bind(this));
-        Application.on('settings:page:change', this._onSettingsPageChange.bind(this));
+        Application.on('synclinks:refresh', this._onRefresh.bind(this));
+        Application.on('synclinks:page:change', this._onSettingsPageChange.bind(this));
     };
     
     settingsController.prototype._init = function() {
@@ -105,6 +105,11 @@ define([
     };
 
     settingsController.prototype.showCurrentContent = function() {
+        if (this._isGlobalLoading === true) {
+            this__renderSpinner();
+            return false;
+        }
+        
         if (!this._isDataLoaded) {
             this._isGlobalLoading = true;
             this.__renderSpinner();
@@ -123,6 +128,23 @@ define([
     };
     
     settingsController.prototype.loadData = function() {
+        Application.trigger('synclinks:page:disable');
+        
+        CoreUtils.ajaxQuery({
+            url: Settings.url.getLinksData,
+            data: {
+                page: this._meta.get('page')
+            }
+        },
+        {
+            afterSuccess: this._afterSuccess.bind(this),
+            afterError: this._afterError.bind(this)
+        },
+        {
+            afterSuccess: {
+                isLoad: true
+            }
+        });
     };
     
     settingsController.prototype._afterSuccess = function(data) {
@@ -132,17 +154,28 @@ define([
         var pagingData = laData.paging || {};
         var lbSuccess = data.success || false;
         var lsMessage = data.message || '';
+        
+        var params = arguments[3] || {};
+        var isDataLoad = params['isLoad'] || false;
+        
+        if (!isDataLoad) {
+            me._isGlobalLoading = false;
+        }
 
-        me._isGlobalLoading = false;
+        if (isDataLoad) {
+            Application.trigger('synclinks:page:enable');
+        }
 
         if (!lbSuccess) {
-            me.__showGlobalError(lsMessage);
+            if (!isDataLoad) {
+                me.__showGlobalError(lsMessage);
+            }
         }
         else {
             me._isDataLoaded = true;
-            this._gridComponent.setData(linksData);
+            me._gridComponent.setData(linksData);
             me._pagingComponent.setData(pagingData);
-            this._renderFunction();
+            me._renderFunction();
         }
     };
     
