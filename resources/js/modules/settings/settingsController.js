@@ -34,6 +34,8 @@ define([
         var loConfig = poConfig || {};
         this._regionName = loConfig.regionName;
         
+        this._pageTitle = 'Настройки';
+        
         this._isSettingsRendered = false;
         this._breadCrumbs = [
             {

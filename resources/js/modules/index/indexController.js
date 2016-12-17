@@ -79,7 +79,7 @@ define([
                 var lsMessage = data.message || '';
                 
                 me._isGlobalLoading = false;
-                
+
                 if (!lbSuccess) {
                     me.__showGlobalError(lsMessage);
                 }
@@ -99,7 +99,7 @@ define([
 
             this._isGlobalLoading = true;
             this.__renderSpinner();
-            
+
             CoreUtils.ajaxQuery({
                 url: Settings.url.getIndexData
             },
