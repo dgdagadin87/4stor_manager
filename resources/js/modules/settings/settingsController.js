@@ -11,7 +11,8 @@ define([
     '_base/BaseController',
     'modules/settings/views/settingsView',
     'common/components/paging/pagingController',
-    'modules/settings/components/grid/gridController'
+    'modules/settings/components/grid/gridController',
+    'modules/settings/components/toolbar/toolbarController'
 ], function (
     _,
     Backbone,
@@ -23,19 +24,20 @@ define([
     BaseController,
     settingsView,
     pagingController,
-    gridController
+    gridController,
+    toolbarController
 ) {
     var settingsController = function(poConfig) {
-        
+
         BaseController.call(this);
-        
+
         this._meta = new metaModel();
-        
+
         var loConfig = poConfig || {};
         this._regionName = loConfig.regionName;
-        
+
         this._pageTitle = 'Настройки';
-        
+
         this._isSettingsRendered = false;
         this._breadCrumbs = [
             {
@@ -49,7 +51,7 @@ define([
                 url: 'settings'
             }
         ];
-        
+
         this._pageMeta = {
             pageTitle: 'Настройки',
             pageCode: 'settings'
@@ -57,6 +59,9 @@ define([
 
         this._view = new settingsView();
 
+        this._toolbarComponent = new toolbarController({
+            parentView: this._view
+        });
         this._gridComponent = new gridController({
             parentView: this._view
         });
@@ -65,11 +70,11 @@ define([
             regionName  : 'pagingRegion',
             eventPrefix : 'synclinks'
         });
-        
+
         this._init();
         this._bindEvents();
     };
- 
+
     settingsController.prototype = Object.create(BaseController.prototype);
     
     settingsController.prototype._bindEvents = function() {
@@ -159,6 +164,7 @@ define([
     };
     
     settingsController.prototype._renderComponents = function() {
+        this._toolbarComponent.showToolbar();
         this._gridComponent.showGrid();
         this._pagingComponent.showPaging();
     };

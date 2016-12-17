@@ -160,7 +160,7 @@ body, html {
     height:24px;
     top:0;
     left:15px;
-    background: #FFF url('../img/refresh.png') no-repeat;
+    background: url('../img/refresh.png') no-repeat;
 }
 .page-refresh .text {
     position:absolute;
@@ -182,7 +182,7 @@ body, html {
     height:24px;
     top:0;
     left:15px;
-    background: #FFF url('../img/goto.png') no-repeat;
+    background: url('../img/goto.png') no-repeat;
 }
 .page-goto .text {
     position:absolute;
@@ -208,7 +208,6 @@ body, html {
 .page-goto-block .controls {
     margin-left:3px;
 }
-
 
 .main-page-title {
     padding: 10px;
@@ -259,18 +258,6 @@ body, html {
 .grid-region, .form-region {
     vertical-align:top;
 }
-.settings-links .grid-toolbar .item {
-    display:inline-block;
-    width:24px;
-    height:24px;
-    cursor:pointer;
-}
-.settings-links .grid-toolbar .add {
-    background: #FFF url('../img/add.png') no-repeat;
-}
-.settings-links .grid-toolbar .refresh {
-    background: #FFF url('../img/refresh2.png') no-repeat;
-}
 
 .settings-links .settings-grid-headers span.header {
     display:inline-block;
@@ -296,4 +283,33 @@ body, html {
 
 .settings-table-container tbody > tr.highlight td {
     background: #fcf8e3;
+}
+
+.grid-toolbar .tbar-button {
+    display:inline-block;
+    cursor:pointer;
+    position:relative;
+    width:115px;
+    height:25px;
+    border: 1px solid #6188e2;
+}
+.grid-toolbar .tbar-button > .image {
+    display:inline-block;
+    position:absolute;
+    width:16px;
+    height:16px;
+    top:0;
+    left:15px;
+}
+.grid-toolbar .tbar-button > .text {
+    display:inline-block;
+    position:absolute;
+    top:2px;
+    left:45px;
+}
+.grid-toolbar .add {
+    background: url('../img/add.png') no-repeat;
+}
+.grid-toolbar .delete {
+    background: url('../img/delete.png') no-repeat;
 }

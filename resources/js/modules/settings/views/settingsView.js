@@ -17,6 +17,7 @@ define(
             className: 'settings-container',
 
             regions: {
+                toolbarRegion: '.toolbar-region',
                 pagingRegion: '.paging-region',
                 gridRegion: '.grid-region'
             }
