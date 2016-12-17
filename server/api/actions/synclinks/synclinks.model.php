@@ -20,7 +20,7 @@ class synclinksModel extends abstractModel {
             return 'Ошибка при получении количества ссылок для синхронизации';
         }
         $numLinks = DB_Result ('mysql', $Query, 0, 0);
-        $numPages = $numLinks > 0 ? ceil ($numLinks / 1) : 1;
+        $numPages = $numLinks > 0 ? ceil ($numLinks / 20) : 1;
         
         $page = !isset ($_GET['page']) || !ctype_digit ($_GET['page']) ? 1 : intval ($_GET['page']);
         if ($page < 1) {
@@ -68,7 +68,7 @@ class synclinksModel extends abstractModel {
     
     public function getSyncLinks () {
         $Return = array();
-        $SQL = 'SELECT * FROM sync_links sl ORDER BY sl.linkName ASC LIMIT ' . 1*($this->curPage - 1) . ', 1';
+        $SQL = 'SELECT * FROM sync_links sl ORDER BY sl.linkName ASC LIMIT ' . 20*($this->curPage - 1) . ', 20';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
             return 'Ошибка при получении ссылок для синхронизации';
