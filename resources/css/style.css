@@ -290,8 +290,6 @@ body, html {
     width:10%;
 }
 
-.settings-grid-container {
-    height:300px;
-    overflow-y: scroll;
-    border-top:1px solid black;
+.settings-table-container tr.highlight td {
+    background: #fcf8e3;
 }
