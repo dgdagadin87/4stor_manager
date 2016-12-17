@@ -290,6 +290,10 @@ body, html {
     width:10%;
 }
 
-.settings-table-container tr.highlight td {
+.settings-table-container thead td {
+    font-weight: bold;
+}
+
+.settings-table-container tbody > tr.highlight td {
     background: #fcf8e3;
 }
