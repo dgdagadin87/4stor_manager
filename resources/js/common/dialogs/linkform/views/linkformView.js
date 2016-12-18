@@ -17,7 +17,8 @@ define(
             className: 'settings-link-form-container',
 
             events : {
-                'click .link-submit' : 'onSubmitClick'
+                'click .link-submit' : 'onSubmitClick',
+                'click .link-cancel' : 'onCancelClick'
             },
 
             initialize: function() {
