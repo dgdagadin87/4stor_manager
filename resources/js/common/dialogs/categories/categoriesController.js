@@ -46,9 +46,12 @@ define([
             checkedIds.push(category.categoryId);
         });
         this._model.set('checkedCategories', checkedIds);
-    }
+    };
     
     categoriesController.prototype.getViewForDialog = function() {
+        if (this._view) {
+            this._view.destroy();
+        }
         this._view = new categoriesView();
         this._view.model = this._model;
         return this._view;
