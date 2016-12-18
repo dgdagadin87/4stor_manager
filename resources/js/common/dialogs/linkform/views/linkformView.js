@@ -41,7 +41,7 @@ define(
                 return {
                     model: this.model.toJSON(),
                     state: this.state.toJSON()
-                }
+                };
             }
         });
     }
