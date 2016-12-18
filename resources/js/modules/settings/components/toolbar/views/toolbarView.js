@@ -2,11 +2,13 @@ define(
     [
         'underscore',
         'backbone',
+        'Application',
         'marionette',
         'text!modules/settings/components/toolbar/templates/toolbarTemplate.html'
     ], function (
         _,
         Backbone,
+        Application,
         Marionette,
         template
     ) {
@@ -22,7 +24,13 @@ define(
 
             onAddClick: function(ev){
                 ev.preventDefault();
-                console.log('onAddClick');
+                Application.trigger('linkform:dialog:open', {
+                    linkId   : null,
+                    linkName : '',
+                    linkHref : '',
+                    linkIsOn: true,
+                    linkIsMultipage: true
+                }, 'add');
             },
             onDeleteClick: function(ev){
                 ev.preventDefault();

@@ -10,12 +10,12 @@ define(
         Backbone
     ) {
         return Backbone.Model.extend({
-            className : 'formStateModel',
+            className : 'linkformStateModel',
             defaults : {
-                mode: 'add'
+                title: '',
+                submit: ''
             },
-            initialize : function() {
-            }
+            initialize : function() {}
         });
     }
 );

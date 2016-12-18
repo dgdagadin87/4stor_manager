@@ -8,11 +8,13 @@ define([
     'Application',
     'settings',
     'modules/settings/models/settingsStateModel',
+    'modules/settings/components/grid/models/gridModel',
     '_base/BaseController',
     'modules/settings/views/settingsView',
     'common/components/paging/pagingController',
     'modules/settings/components/grid/gridController',
-    'modules/settings/components/toolbar/toolbarController'
+    'modules/settings/components/toolbar/toolbarController',
+    'common/dialogs/linkform/linkformController'
 ], function (
     _,
     Backbone,
@@ -21,17 +23,20 @@ define([
     Application,
     Settings,
     metaModel,
+    dataModel,
     BaseController,
     settingsView,
     pagingController,
     gridController,
-    toolbarController
+    toolbarController,
+    formController
 ) {
     var settingsController = function(poConfig) {
 
         BaseController.call(this);
 
         this._meta = new metaModel();
+        this._data = new dataModel();
 
         var loConfig = poConfig || {};
         this._regionName = loConfig.regionName;
@@ -70,6 +75,7 @@ define([
             regionName  : 'pagingRegion',
             eventPrefix : 'synclinks'
         });
+        this._formComponent = new formController();
 
         this._init();
         this._bindEvents();
@@ -82,9 +88,16 @@ define([
         this._meta.on('change', this._onMetaChanged.bind(this));
         Application.on('synclinks:refresh', this._onRefresh.bind(this));
         Application.on('synclinks:page:change', this._onSettingsPageChange.bind(this));
+        Application.on('linkform:dialog:open', this._onModalFormOpen.bind(this));
     };
     
     settingsController.prototype._init = function() {
+    };
+    
+    settingsController.prototype._onModalFormOpen = function(data, mode) {
+        this._prepareData(data);
+        var formView = this._formComponent.getViewForDialog(this._data, mode);
+        Application.getMainLayout().getView()['dialogFrmRegion'].show(formView);
     };
     
     settingsController.prototype._onRefresh = function() {
@@ -204,6 +217,10 @@ define([
 
     settingsController.prototype.renderView = function() {
         this.getView().render();
+    };
+    
+    settingsController.prototype._prepareData = function(data) {
+        this._data.set(data);
     };
 
     return settingsController;

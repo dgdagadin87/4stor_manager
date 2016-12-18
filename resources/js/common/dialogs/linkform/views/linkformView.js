@@ -3,7 +3,7 @@ define(
         'backbone',
         'marionette',
         'Application',
-        'text!modules/settings/components/form/templates/formTemplate.html'
+        'text!common/dialogs/linkform/templates/linkformTemplate.html'
     ], function(
         Backbone,
         Marionette,
@@ -27,7 +27,13 @@ define(
             },
             
             onSubmitClick: function(ev) {
-                console.log('clicked');
+                ev.preventDefault();
+                console.log('submit');
+            },
+            
+            onCancelClick: function(ev) {
+                ev.preventDefault();
+                this.trigger('dialog:close');
             },
             
             templateHelpers : function() {

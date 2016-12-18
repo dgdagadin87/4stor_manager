@@ -1,0 +1,22 @@
+<div class="title"><%=state.title%></div>
+<div class="errors" style="display:none;"></div>
+<div class="settings-link-form-item">
+    Имя ссылки<br />
+    <input type="text" class="link-name" value="<%=model.linkName%>" placeholder="Введите имя ссылки" />
+</div>
+<div class="settings-link-form-item">
+    Адрес ссылки<br />
+    <input type="text" class="link-href" value="<%=model.linkHref%>" placeholder="Введите адрес ссылки" />
+</div>
+<div class="settings-link-form-item">
+    <input type="checkbox" class="link-using" checked="<%=model.linkIsOn?'checked':'false'%>" />
+    Включена
+</div>
+<div class="settings-link-form-item">
+    <input type="checkbox" class="link-multi" checked="<%=model.linkIsMultipage?'checked':'false'%>" />
+    Многостраничность
+</div>
+<div class="settings-link-form-item">
+    <button class="link-submit"><%=state.submit%></button>
+    <button class="link-cancel">Отмена</button>
+</div>
