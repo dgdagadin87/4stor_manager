@@ -9,11 +9,11 @@
     <input type="text" class="link-href" value="<%=model.linkHref%>" placeholder="Введите адрес ссылки" />
 </div>
 <div class="settings-link-form-item">
-    <input type="checkbox" class="link-using" checked="<%=model.linkIsOn?'checked':'false'%>" />
+    <input type="checkbox" class="link-using" <%=model.linkIsOn?'checked="checked"':''%> />
     Включена
 </div>
 <div class="settings-link-form-item">
-    <input type="checkbox" class="link-multi" checked="<%=model.linkIsMultipage?'checked':'false'%>" />
+    <input type="checkbox" class="link-multi" <%=model.linkIsMultipage?'checked="checked"':''%> />
     Многостраничность
 </div>
 <div class="settings-link-form-item">

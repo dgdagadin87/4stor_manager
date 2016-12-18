@@ -3,11 +3,13 @@ define(
         'underscore',
         'backbone',
         'marionette',
+        'Application',
         'text!modules/settings/components/grid/templates/gridItemTemplate.html'
     ], function (
         _,
         Backbone,
         Marionette,
+        Application,
         template
     ) {
         return Backbone.Marionette.ItemView.extend({
@@ -27,7 +29,13 @@ define(
             
             onEditClick: function(ev){
                 ev.preventDefault();
-                console.log('onEditClick');
+                Application.trigger('linkform:dialog:open', {
+                    linkId   : this.model.get('linkId'),
+                    linkName : this.model.get('linkName'),
+                    linkHref : this.model.get('linkHref'),
+                    linkIsOn : this.model.get('linkIsOn'),
+                    linkIsMultipage: this.model.get('linkIsMultipage')
+                }, 'edit');
             },
             onDeleteClick: function(ev){
                 ev.preventDefault();
