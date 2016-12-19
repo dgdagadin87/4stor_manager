@@ -24,7 +24,7 @@ define([
             this._view.destroy();
             delete this._view;
         }
-        console.log('Module destructor');
+        console.log('Module destructor _');
     };
 
     BaseController.prototype.__renderContent = function() {
