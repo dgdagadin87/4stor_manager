@@ -28,6 +28,8 @@ define([
         
         BaseController.call(this);
         
+        this._moduleCode = 'statistics';
+        
         this._pageTitle = 'Статистика';
         
         this._isStatisticsRendered = false;
