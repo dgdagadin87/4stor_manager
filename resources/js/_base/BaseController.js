@@ -4,12 +4,14 @@ define([
     'underscore',
     'backbone', 
     'jquery',
-    'Application'
+    'Application',
+    'coreUtils'
 ], function (
     _,
     Backbone,
     $,
-    Application
+    Application,
+    CoreUtils
 ) {
     var BaseController = function() {
 
@@ -28,19 +30,43 @@ define([
     };
 
     BaseController.prototype.__renderContent = function() {
-        Application.trigger('content:regions:hide');
-        Application.trigger('pagetitle:render', this._pageMeta.pageTitle, this._pageMeta.pageCode);
-        Application.trigger('content:region:show', this._regionName);
-        Application.trigger('breadcrumbs:show', this._breadCrumbs);
-        Application.trigger('title:change', this._pageTitle);
+        var isCurrentModule = CoreUtils.isCurrentModule(this._moduleCode);
+        
+        // hide all content regions
+        isCurrentModule && Application.trigger('content:regions:hide');
+        
+        // pagetitle widget render
+        var title = this._pageMeta.pageTitle;
+        var code = this._pageMeta.pageCode;
+        isCurrentModule && Application.trigger('pagetitle:render', title, code);
+        
+        // show current module region
+        isCurrentModule && Application.trigger('content:region:show', this._regionName);
+        
+        // show current module breadcrumbs
+        isCurrentModule && Application.trigger('breadcrumbs:show', this._breadCrumbs);
+        
+        // change title html tag
+        isCurrentModule && Application.trigger('title:change', this._pageTitle);
     };
     
     BaseController.prototype.__renderSpinner = function() {
-        Application.trigger('pagetitle:render', '', '');
-        Application.trigger('breadcrumbs:hide');
-        Application.trigger('content:regions:hide');
-        Application.trigger('spinner:large:show', 'Идет загрузка данных...');
-        Application.trigger('title:change', 'Идет загрузка данных...');
+        var isCurrentModule = CoreUtils.isCurrentModule(this._moduleCode);
+        
+        // pagetitle widget render
+        isCurrentModule && Application.trigger('pagetitle:render', '', '');
+        
+        // hide breadcrumbs to show spinner
+        isCurrentModule && Application.trigger('breadcrumbs:hide');
+        
+        // hide all content regions to show spinner
+        isCurrentModule && Application.trigger('content:regions:hide');
+        
+        // show spinner
+        isCurrentModule && Application.trigger('spinner:large:show', 'Идет загрузка данных...');
+        
+        // change title html tag to "loading" title
+        isCurrentModule && Application.trigger('title:change', 'Идет загрузка данных...');
     };
     
     BaseController.prototype.__showGlobalError = function(psMessage) {
