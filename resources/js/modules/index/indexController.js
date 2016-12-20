@@ -27,6 +27,7 @@ define([
         BaseController.call(this);
         
         this._pageTitle = 'Главная страница';
+        this._moduleCode = 'index';
         
         this._isIndexRendered = false;
         this._isDataLoaded = false;
@@ -56,9 +57,7 @@ define([
         var mainLayout = Application.getMainLayout();
         var layoutView = mainLayout.getView();
         var lfRender = function(){
-            
             me.__renderContent();
-            
             if (!me._isIndexRendered) {
                 layoutView[me._regionName].show(me.getView());
             }
