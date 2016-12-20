@@ -15,6 +15,17 @@ define([
 ) {
     return {
 
+        isCurrentModule: function(moduleName) {
+            var params = this.getURIParams();
+            var currentModule = params[0] || 'index';
+            if (moduleName === currentModule) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        },
+
         setHiddenOnClick: function() {
             $(document).on('click', function(){
                 $('.for-hidden').hide();
