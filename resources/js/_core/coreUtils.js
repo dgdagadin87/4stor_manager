@@ -15,10 +15,10 @@ define([
 ) {
     return {
 
-        isCurrentModule: function(moduleName) {
+        isCurrentModule: function(moduleCode) {
             var params = this.getURIParams();
             var currentModule = params[0] || 'index';
-            if (moduleName === currentModule) {
+            if (moduleCode === currentModule) {
                 return true;
             }
             else {
