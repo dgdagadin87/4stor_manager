@@ -44,6 +44,8 @@ define([
         
         BaseController.call(this);
         
+        this._moduleCode = 'search';
+        
         this._meta = new metaModel();
         this._data = new dataModel();
         
