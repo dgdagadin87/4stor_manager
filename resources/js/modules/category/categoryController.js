@@ -34,6 +34,8 @@ define([
         
         BaseController.call(this);
         
+        this._moduleCode = 'category';
+        
         this._meta = new metaModel();
         
         this._categoryId = null;
@@ -189,9 +191,7 @@ define([
         var mainLayout = Application.getMainLayout();
         var layoutView = mainLayout.getView();
         var lfRender = function(){
-
             me.__renderContent();
-
             if (!me._isCategoryRendered) {
                 layoutView[me._regionName].show(me.getView());
             }
