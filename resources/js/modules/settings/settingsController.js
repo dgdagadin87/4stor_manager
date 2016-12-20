@@ -121,7 +121,7 @@ define([
 
     settingsController.prototype.showCurrentContent = function() {
         if (this._isGlobalLoading === true) {
-            this__renderSpinner();
+            this.__renderSpinner();
             return false;
         }
         
