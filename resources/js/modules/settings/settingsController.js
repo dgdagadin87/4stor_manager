@@ -35,6 +35,8 @@ define([
 
         BaseController.call(this);
 
+        this._moduleCode = 'settings';
+
         this._meta = new metaModel();
         this._data = new dataModel();
 
