@@ -7,7 +7,7 @@ define([
     'coreUtils',
     'Application',
     'settings',
-    '_base/BaseController',
+    '_base/BaseModule',
     'modules/index/views/indexView'
 ], function (
     _,
@@ -16,7 +16,7 @@ define([
     CoreUtils,
     Application,
     Settings,
-    BaseController,
+    BaseModule,
     indexView
 ) {
     var indexController = function(poConfig) {
@@ -24,7 +24,7 @@ define([
         var loConfig = poConfig || {};
         this._regionName = loConfig.regionName;
         
-        BaseController.call(this);
+        BaseModule.call(this);
         
         this._pageTitle = 'Главная страница';
         this._moduleCode = 'index';
@@ -39,7 +39,7 @@ define([
         this._bindEvents();
     };
  
-    indexController.prototype = Object.create(BaseController.prototype);
+    indexController.prototype = Object.create(BaseModule.prototype);
     
     indexController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));

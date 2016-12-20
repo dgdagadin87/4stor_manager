@@ -8,7 +8,7 @@ define([
     'Application',
     'chartManager',
     'settings',
-    '_base/BaseController',
+    '_base/BaseModule',
     'modules/statchart/models/statchartModel',
     'modules/statchart/views/statchartView',
     'modules/statchart/views/diagramView'
@@ -20,7 +20,7 @@ define([
     Application,
     chartManager,
     Settings,
-    BaseController,
+    BaseModule,
     statchartModel,
     statchartView,
     diagramView
@@ -30,7 +30,7 @@ define([
         var loConfig = poConfig || {};
         this._regionName = loConfig.regionName;
 
-        BaseController.call(this);
+        BaseModule.call(this);
 
         this._moduleCode = 'statchart';
         
@@ -76,7 +76,7 @@ define([
         this._bindEvents();
     };
  
-    statchartController.prototype = Object.create(BaseController.prototype);
+    statchartController.prototype = Object.create(BaseModule.prototype);
     
     statchartController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));

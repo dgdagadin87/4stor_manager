@@ -7,7 +7,7 @@ define([
     'coreUtils',
     'Application',
     'settings',
-    '_base/BaseController',
+    '_base/BaseModule',
     'modules/statistics/models/statisticsModel',
     'modules/statistics/views/statisticsView'
 ], function (
@@ -17,7 +17,7 @@ define([
     CoreUtils,
     Application,
     Settings,
-    BaseController,
+    BaseModule,
     statisticsModel,
     statisticsView
 ) {
@@ -26,7 +26,7 @@ define([
         var loConfig = poConfig || {};
         this._regionName = loConfig.regionName;
         
-        BaseController.call(this);
+        BaseModule.call(this);
         
         this._moduleCode = 'statistics';
         
@@ -60,7 +60,7 @@ define([
         this._bindEvents();
     };
  
-    statisticsController.prototype = Object.create(BaseController.prototype);
+    statisticsController.prototype = Object.create(BaseModule.prototype);
     
     statisticsController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));

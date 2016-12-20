@@ -7,7 +7,7 @@ define([
     'coreUtils',
     'Application',
     'settings',
-    '_base/BaseController',
+    '_base/BaseModule',
     'common/dialogs/categories/categoriesController',
     'modules/search/models/searchStateModel',
     'modules/search/models/searchDataModel',
@@ -25,7 +25,7 @@ define([
     CoreUtils,
     Application,
     Settings,
-    BaseController,
+    BaseModule,
     chooseCategoriesController,
     metaModel,
     dataModel,
@@ -42,7 +42,7 @@ define([
         var loConfig = poConfig || {};
         this._regionName = loConfig.regionName;
         
-        BaseController.call(this);
+        BaseModule.call(this);
         
         this._moduleCode = 'search';
         
@@ -108,7 +108,7 @@ define([
         this._bindEvents();
     };
 
-    searchController.prototype = Object.create(BaseController.prototype);
+    searchController.prototype = Object.create(BaseModule.prototype);
     
     searchController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));

@@ -9,7 +9,7 @@ define([
     'settings',
     'modules/settings/models/settingsStateModel',
     'modules/settings/components/grid/models/gridModel',
-    '_base/BaseController',
+    '_base/BaseModule',
     'modules/settings/views/settingsView',
     'common/components/paging/pagingController',
     'modules/settings/components/grid/gridController',
@@ -24,7 +24,7 @@ define([
     Settings,
     metaModel,
     dataModel,
-    BaseController,
+    BaseModule,
     settingsView,
     pagingController,
     gridController,
@@ -33,7 +33,7 @@ define([
 ) {
     var settingsController = function(poConfig) {
 
-        BaseController.call(this);
+        BaseModule.call(this);
 
         this._moduleCode = 'settings';
 
@@ -83,7 +83,7 @@ define([
         this._bindEvents();
     };
 
-    settingsController.prototype = Object.create(BaseController.prototype);
+    settingsController.prototype = Object.create(BaseModule.prototype);
     
     settingsController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));

@@ -7,7 +7,7 @@ define([
     'coreUtils',
     'Application',
     'settings',
-    '_base/BaseController',
+    '_base/BaseModule',
     'modules/category/models/categoryStateModel',
     'common/components/storlist/storlistController',
     'common/components/paging/pagingController',
@@ -20,7 +20,7 @@ define([
     CoreUtils,
     Application,
     Settings,
-    BaseController,
+    BaseModule,
     metaModel,
     storlistController,
     pagingController,
@@ -32,7 +32,7 @@ define([
         var loConfig = poConfig || {};
         this._regionName = loConfig.regionName;
         
-        BaseController.call(this);
+        BaseModule.call(this);
         
         this._moduleCode = 'category';
         
@@ -67,7 +67,7 @@ define([
         this._bindEvents();
     };
  
-    categoryController.prototype = Object.create(BaseController.prototype);
+    categoryController.prototype = Object.create(BaseModule.prototype);
     
     categoryController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
