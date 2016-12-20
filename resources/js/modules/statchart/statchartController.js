@@ -26,14 +26,16 @@ define([
     diagramView
 ) {
     var statchartController = function(poConfig) {
-        
+
         var loConfig = poConfig || {};
         this._regionName = loConfig.regionName;
-        
+
         BaseController.call(this);
+
+        this._moduleCode = 'statchart';
         
         this._pageTitle = 'Статистика (диагамма)';
-        
+
         this._isStatchartRendered = false;
         this._isDataLoaded = false;
         this._breadCrumbs = [
@@ -101,9 +103,7 @@ define([
         var mainLayout = Application.getMainLayout();
         var layoutView = mainLayout.getView();
         var lfRender = function(){
-            
             me.__renderContent();
-            
             if (!me._isStatchartRendered) {
                 layoutView[me._regionName].show(me._view);
             }
