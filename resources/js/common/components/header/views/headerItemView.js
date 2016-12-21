@@ -3,7 +3,7 @@ define(
         'backbone',
         'marionette',
         'Application',
-        'text!common/components/header/templates/headerTemplate.html'
+        'text!common/components/header/templates/headerItemTemplate.html'
     ], function(
         Backbone,
         Marionette,

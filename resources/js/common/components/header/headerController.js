@@ -47,7 +47,7 @@ define([
     headerController.prototype.showHeader = function() {
         var mainLayout = Application.getMainLayout();
         var headerData = Application.request('header:get:data');
-        this.getView.collection.set(headerData);
+        this.getView().collection.set(headerData);
         if (!this._isHeaderRendered) {
             mainLayout.getView().showChildView('headerRegion', this.getView());
         }
