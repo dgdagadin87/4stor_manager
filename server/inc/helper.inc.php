@@ -32,5 +32,11 @@ class Helper {
         return $return;
     }
     
+    public static function Main_Validate() {
+        if (!defined('_VALIDATION_')) {
+            exit('Error code: 1');
+        }
+    }
+    
 }
 
