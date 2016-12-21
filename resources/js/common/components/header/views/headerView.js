@@ -3,37 +3,29 @@ define(
         'backbone',
         'marionette',
         'Application',
+        './headerItemView',
+        '../collections/headerCollection',
         'text!common/components/header/templates/headerTemplate.html'
     ], function(
         Backbone,
         Marionette,
         Application,
+        HeaderItemView,
+        collection,
         template
     ) {
-        return Backbone.Marionette.ItemView.extend({
+        return Backbone.Marionette.CompositeView.extend({
             template : _.template(template),
 
             tagName: 'div',
             className: 'header-menu',
+            
+            childView: HeaderItemView,
+            childViewContainer: ".header-menu-container",
 
-            events : {
-                'click .header-menu-item' : 'onHeaderMenuClick'
-            },
+            collection: new collection(),
 
-            initialize: function() {
-            },
-            
-            onRender: function() {
-            },
-            
-            onHeaderMenuClick: function(ev) {
-                this.$('.header-menu-item').removeClass('active');
-                this.$(ev.currentTarget).addClass('active');
-            },
-            
-            templateHelpers : function() {
-                return {};
-            }
+            templateHelpers : function(){return {};}
         });
     }
 );

@@ -70,6 +70,8 @@ define([
 
     layoutController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
+        
+        /* events */
         Application.on('pagetitle:render', this._onPageTitleRender.bind(this));
         Application.on('spinner:large:show', this._onLargeSpinnerShow.bind(this));
         Application.on('breadcrumbs:show', this._onBreadCrumbsShow.bind(this));
@@ -78,11 +80,15 @@ define([
         Application.on('content:regions:hide', this._onContentRegionsHide.bind(this));
         Application.on('content:region:show', this._onContentRegionShow.bind(this));
         Application.on('error:modal:show', this._onModalErrorShow.bind(this));
+        
+        /* reqres */
+        Application.reqres.setHandler('header:get:data', this._onHeaderGetData.bind(this));
     };
 
     layoutController.prototype._init = function() {
     };
 
+    /* events START */
     layoutController.prototype._onContentRegionShow = function(regionName) {
         this._regionManager.showRegionByName(regionName);
     };
@@ -124,12 +130,22 @@ define([
         });
         this._largeSpinnerComponent.showSpinner();
     };
+    /* events END */
+    
+    /* reqres START */
+    layoutController.prototype._onHeaderGetData = function() {
+        var headerData = this._commonData.headers || [];
+        return headerData;
+    };
+    /* reqres END */
 
     layoutController.prototype._renderComponents = function() {
         var params = this._urlParams;
-        this._headerComponent.showHeader();
+        var categories = this._commonData.categories || [];
+        var headers = this._commonData.headers || [];
+        this._headerComponent.showHeader(headers);
         this._pagetitleComponent.showPageTitle('Страшные истории', 'default');
-        this._catlistComponent.showCategoryList(this._commonData.categories);
+        this._catlistComponent.showCategoryList(categories);
         this._contentComponent.showContent(this._currentPage, params);
     };
 
