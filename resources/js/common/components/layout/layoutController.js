@@ -142,8 +142,7 @@ define([
     layoutController.prototype._renderComponents = function() {
         var params = this._urlParams;
         var categories = this._commonData.categories || [];
-        var headers = this._commonData.headers || [];
-        this._headerComponent.showHeader(headers);
+        this._headerComponent.showHeader();
         this._pagetitleComponent.showPageTitle('Страшные истории', 'default');
         this._catlistComponent.showCategoryList(categories);
         this._contentComponent.showContent(this._currentPage, params);
