@@ -83,7 +83,6 @@ define([
         
         /* reqres */
         Application.reqres.setHandler('header:get:data', this._onHeaderGetData.bind(this));
-        Application.reqres.setHandler('url:get:data', this._onURLGetData.bind(this));
         Application.reqres.setHandler('catlist:get:data', this._onCatlistGetData.bind(this));
     };
 
@@ -138,10 +137,6 @@ define([
     layoutController.prototype._onHeaderGetData = function() {
         var headerData = this._commonData.headers || [];
         return headerData;
-    };
-    layoutController.prototype._onURLGetData = function() {
-        var urlData = this._urlParams || [];
-        return urlData;
     };
     layoutController.prototype._onCatlistGetData = function() {
         var categoriesData = this._commonData.categories || [];
