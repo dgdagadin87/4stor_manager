@@ -21,7 +21,9 @@ class commonModel {
             $laReturn['message'] = $categories;
             return $laReturn;
         }
+        $headers = $this->getHeaders();
         $laReturn['data']['categories'] = $categories;
+        $laReturn['data']['headers'] = $headers;
         return $laReturn;
     }
     
@@ -41,6 +43,46 @@ class commonModel {
             $categories[] = $category;
         }
         return $categories;
+    }
+    
+    public function getHeaders() {
+        return array(
+            array(
+                'headerId' => 1,
+                'headerName' => 'Главная',
+                'headerURL' => '',
+                'selected' => false,
+                'outer' => false
+            ),
+            array(
+                'headerId' => 2,
+                'headerName' => 'Поиск',
+                'headerURL' => 'search',
+                'selected' => false,
+                'outer' => false
+            ),
+            array(
+                'headerId' => 3,
+                'headerName' => 'Статистика',
+                'headerURL' => 'statistics',
+                'selected' => false,
+                'outer' => false
+            ),
+            array(
+                'headerId' => 4,
+                'headerName' => 'Настройки',
+                'headerURL' => 'settings',
+                'selected' => false,
+                'outer' => false
+            ),
+            array(
+                'headerId' => 1,
+                'headerName' => '4stor.ru',
+                'headerURL' => 'http://4stor.ru',
+                'selected' => false,
+                'outer' => true
+            )
+        );
     }
     
     public function connect () {
