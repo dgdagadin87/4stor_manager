@@ -16,7 +16,8 @@ define(
                 'headerName' : '',
                 'headerURL'  : '',
                 'selected'   : false,
-                'outer'      : false
+                'outer'      : false,
+                'forActive'  : []
             },
             initialize : function() {}
         });

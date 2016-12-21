@@ -52,35 +52,50 @@ class commonModel {
                 'headerName' => 'Главная',
                 'headerURL' => '',
                 'selected' => false,
-                'outer' => false
+                'outer' => false,
+                'forActive' => array(
+                    '',
+                    'category'
+                )
             ),
             array(
                 'headerId' => 2,
                 'headerName' => 'Поиск',
                 'headerURL' => 'search',
                 'selected' => false,
-                'outer' => false
+                'outer' => false,
+                'forActive' => array(
+                    'search'
+                )
             ),
             array(
                 'headerId' => 3,
                 'headerName' => 'Статистика',
                 'headerURL' => 'statistics',
                 'selected' => false,
-                'outer' => false
+                'outer' => false,
+                'forActive' => array(
+                    'statistics',
+                    'statchart'
+                )
             ),
             array(
                 'headerId' => 4,
                 'headerName' => 'Настройки',
                 'headerURL' => 'settings',
                 'selected' => false,
-                'outer' => false
+                'outer' => false,
+                'forActive' => array(
+                    'settings'
+                )
             ),
             array(
-                'headerId' => 1,
+                'headerId' => 5,
                 'headerName' => '4stor.ru',
                 'headerURL' => 'http://4stor.ru',
                 'selected' => false,
-                'outer' => true
+                'outer' => true,
+                'forActive' => array()
             )
         );
     }
