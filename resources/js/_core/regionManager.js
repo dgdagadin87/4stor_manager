@@ -33,23 +33,7 @@ define(['underscore','jquery','coreUtils'], function(_,$,CoreUtils) {
     };
     
     RegionManager.prototype.getRegionIdByName = function(regionName) {
-        switch (regionName) {
-            case 'indexRegion':
-            default:
-                return 'index-region';
-            case 'categoryRegion':
-                return 'category-region';
-            case 'spinnerRegion':
-                return 'spinner-region';
-            case 'searchRegion':
-                return 'search-region';
-            case 'statisticsRegion':
-                return 'statistics-region';
-            case 'statchartRegion':
-                return 'statchart-region';
-            case 'settingsRegion':
-                return 'settings-region';
-        }
+        return regionName + '-region';
     };
     
     RegionManager.prototype._addRegionToCache = function(regionName) {

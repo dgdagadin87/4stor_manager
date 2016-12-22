@@ -6,6 +6,7 @@ define([
     'jquery',
     'jquery_ui',
     'Application'
+    
 ], function (
     _,
     Backbone,
@@ -14,6 +15,30 @@ define([
     Application
 ) {
     return {
+
+        getConstructorRegion: function(psAction) {
+            var lsClassPrefix = 'index';
+            if (psAction === 'index') {
+                lsClassPrefix = 'index';
+            }
+            else if (psAction === 'category') {
+                lsClassPrefix = 'category';
+            }
+            else if (psAction === 'search') {
+                lsClassPrefix = 'search';
+            }
+            else if (psAction === 'statistics') {
+                lsClassPrefix = 'statistics';
+            }
+            else if (psAction === 'statchart') {
+                lsClassPrefix = 'statchart';
+            }
+            else if (psAction === 'settings') {
+                lsClassPrefix = 'settings';
+            }
+            var regionName = lsClassPrefix;
+            return regionName;
+        },
 
         isCurrentModule: function(moduleCode) {
             var params = this.getURIParams();

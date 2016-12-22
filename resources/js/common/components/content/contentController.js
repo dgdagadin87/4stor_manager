@@ -4,24 +4,23 @@ define([
     'underscore',
     'backbone', 
     'jquery',
-    'coreUtils',
     'Application',
+    'coreUtils',
     '_base/BaseController',
-    'settings',
     'modules/index/indexController',
     'modules/category/categoryController',
     'modules/search/searchController',
     'modules/statistics/statisticsController',
     'modules/statchart/statchartController',
     'modules/settings/settingsController'
+    
 ], function (
     _,
     Backbone,
     $,
-    CoreUtils,
     Application,
+    CoreUtils,
     BaseController,
-    Settings,
     indexModule,
     categoryModule,
     searchModule,
@@ -39,18 +38,9 @@ define([
     
     contentController.prototype = Object.create(BaseController.prototype);
     
-    contentController.prototype._bindEvents = function() {
-    };
+    contentController.prototype._bindEvents = function() {};
     
     contentController.prototype._init = function() {
-        this._contentConstructors = {
-            index: indexModule,
-            category: categoryModule,
-            search: searchModule,
-            statistics: statisticsModule,
-            statchart: statchartModule,
-            settings: settingsModule
-        };
     };
     
     
@@ -58,34 +48,16 @@ define([
         var me = this;
         var loParams = params || {};
         var _regionManager = Application.getMainLayout()._regionManager || {};
-        var lsClassPrefix = 'index';
-        var componentName, className;
-        if (psAction === 'index') {
-            lsClassPrefix = 'index';
-        }
-        else if (psAction === 'category') {
-            lsClassPrefix = 'category';
-        }
-        else if (psAction === 'search') {
-            lsClassPrefix = 'search';
-        }
-        else if (psAction === 'statistics') {
-            lsClassPrefix = 'statistics';
-        }
-        else if (psAction === 'statchart') {
-            lsClassPrefix = 'statchart';
-        }
-        else if (psAction === 'settings') {
-            lsClassPrefix = 'settings';
-        }
-        var regionName = lsClassPrefix+'Region';
-
-        className = lsClassPrefix;
-        componentName = '_'+lsClassPrefix+'Component';
+        
+        var regionName = CoreUtils.getConstructorRegion(psAction);
+        var componentName = componentName = '_'+regionName+'Component';
+        var componentConstructor;
+        var evalString = 'componentConstructor = '+regionName+'Module;';
+        eval(evalString);
 
         // 1)set module
         if (!me[componentName]) {
-            me[componentName] = new this._contentConstructors[className]({
+            me[componentName] = new componentConstructor({
                 regionName: regionName
             });
         }
