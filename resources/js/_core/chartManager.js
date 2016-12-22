@@ -68,7 +68,6 @@ define([
         var colors = model.get('colorData');
         var radius = config.radius;
         var background = config.background;
-        var canvasId = config.canvasId;
 
         var centerWidth = background.width*.5;
         var centerHeight = background.height*.5;
@@ -81,14 +80,9 @@ define([
         var prevAngle = 0; 
         for(var i = 0; i < data.length; i++) {
             
-//            var sliceGradient = c.createRadialGradient( centerWidth, centerWidth, 1, centerWidth, centerWidth, radius );
-//            sliceGradient.addColorStop( 0, '#eee' );
-//            sliceGradient.addColorStop( 1, colors[i] );
-            
             var fraction = data[i]/total; 
             var angle = prevAngle + fraction*Math.PI*2; 
 
-            //c.fillStyle = sliceGradient;
             c.fillStyle = colors[i];
 
             c.beginPath(); 
