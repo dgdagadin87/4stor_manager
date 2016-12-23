@@ -230,18 +230,18 @@ define([
         }
         
         // 3)Если минимальный рейтинг больше максимального
-        if (!CoreUtils.isEmpty(me._data.get('storRateStart')) && !CoreUtils.isEmpty(me._data.get('storRateEnd')) && (me._data.get('storRateStart') > me._data.get('storRateEnd'))) {
-            errors.push('Поля "Рейтинг от" не должно быть больше поля "Рейтинг до"');
+        if (!CoreUtils.isEmpty(me._data.get('storRateStart')) && !CoreUtils.isEmpty(me._data.get('storRateEnd')) && (parseInt(me._data.get('storRateStart')) > parseInt(me._data.get('storRateEnd')))) {
+            errors.push('Поле "Рейтинг от" не должно быть больше поля "Рейтинг до"');
         }
         
         // 4)Если минимальное к-во просмотров больше максимального
-        if (!CoreUtils.isEmpty(me._data.get('storWatchesFrom')) && !CoreUtils.isEmpty(me._data.get('storWatchesTo')) && (me._data.get('storWatchesFrom') > me._data.get('storWatchesTo'))) {
-            errors.push('Поля "Просмотров от" не должно быть больше поля "Просмотров до"');
+        if (!CoreUtils.isEmpty(me._data.get('storWatchesFrom')) && !CoreUtils.isEmpty(me._data.get('storWatchesTo')) && (parseInt(me._data.get('storWatchesFrom')) > parseInt(me._data.get('storWatchesTo')))) {
+            errors.push('Поле "Просмотров от" не должно быть больше поля "Просмотров до"');
         }
         
         // 5)Если минимальное к-во комментариев больше максимального
-        if (!CoreUtils.isEmpty(me._data.get('storCommentsFrom')) && !CoreUtils.isEmpty(me._data.get('storCommentsTo')) && (me._data.get('storCommentsFrom') > me._data.get('storCommentsTo'))) {
-            errors.push('Поля "Комментариев от" не должно быть больше поля "Комментариев до"');
+        if (!CoreUtils.isEmpty(me._data.get('storCommentsFrom')) && !CoreUtils.isEmpty(me._data.get('storCommentsTo')) && (parseInt(me._data.get('storCommentsFrom')) > parseInt(me._data.get('storCommentsTo')))) {
+            errors.push('Поле "Комментариев от" не должно быть больше поля "Комментариев до"');
         }
         
         // 6)Еще не мешало бы сравнить даты
@@ -319,6 +319,7 @@ define([
 
         CoreUtils.ajaxQuery({
             url: Settings.url.getSearchData,
+            method: 'POST',
             data: {
                 page    : me._meta.get('page'),
                 sortBy  : me._meta.get('sortBy'),

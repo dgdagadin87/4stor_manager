@@ -62,68 +62,73 @@ class indexModel extends abstractModel {
     }
 
     public function getCatStors() {
-        $SQL = ''
-            . '(SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE c2s.catId IN (' . $this->lifeHistoriesId . ') ORDER BY s.storDate DESC LIMIT 5) '
-            . 'UNION '
-            . '(SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE c2s.catId IN (' . $this->artHistoriesId . ') ORDER BY s.storDate DESC LIMIT 5) '
-            . 'UNION '
-            . '(SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE c2s.catId IN (' . $this->natHistoriesId . ') ORDER BY s.storDate DESC LIMIT 5)';
-        $Query = DB_Query ('mysql', $SQL, $this->connection);
-        if (!$Query) {
-            return 'Ошибка при получении данных главной страницы';
-        }
-        $tmpIndex = array();
-        $authorIds = array();
-        
-        $storIds = array();
-        
-        while($Data = DB_FetchAssoc ('mysql', $Query)) {
-            $catId = $Data['cid'];
-            $storId = $Data['storId'];
-            $storIds[] = $storId;
-            if (!array_key_exists($Data['storAuthorId'], $authorIds)) {
-                $authorIds[] = $Data['storAuthorId'];
-            }
-            if (!isset($tmpIndex[$catId])) {
-                $tmpIndex[$catId] = array(
-                    'categoryId' => $Data['cid'],
-                    'categoryName' => $Data['catName'],
-                    'categoryUrl'  => $Data['catHref'],
-                    'stors' => array()
-                );
-            }
-            if (!isset($tmpIndex[$catId]['stors'][$storId])) {
-                $tmpIndex[$catId]['stors'][$storId] = array(
-                    'storId'         => $storId,
-                    'storName'       => $Data['storName'],
-                    'storHref'       => $Data['storHref'],
-                    'storShortDesc'  => $Data['storDesc'],
-                    'storAuthorId'   => $Data['storAuthorId'],
-                    'storAuthorName' => '',
-                    'storAuthorHref' => '',
-                    'storRate'       => $Data['storRate'],
-                    'storDate'       => $Data['storDate'],
-                    'storWatches'    => $Data['storWatches'],
-                    'storComments'   => $Data['storComments'],
-                    'storCats'       => array()
-                );
+        $laSQL = array();
+        foreach (array($this->lifeHistoriesId, $this->artHistoriesId, $this->natHistoriesId) as $historyId) {
+            if (!is_null($historyId)) {
+                $laSQL[] = '(SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE c2s.catId IN (' . $historyId . ') ORDER BY s.storDate DESC LIMIT 5) ';
             }
         }
         
-        $cats = $this->getFullStorCatList($storIds);
-        $authors = $this->getAuthors($authorIds);
+        if (sizeof($laSQL) > 0) {
+            $SQL = implode(' UNION ', $laSQL);
+            $Query = DB_Query ('mysql', $SQL, $this->connection);
+            if (!$Query) {
+                return 'Ошибка при получении данных главной страницы';
+            }
+            $tmpIndex = array();
+            $authorIds = array();
 
-        $tmpIndex = array_values($tmpIndex);
-        foreach ($tmpIndex as $indexKey=>$indexValue) {
-            $tmpIndex[$indexKey]['stors'] = array_values($indexValue['stors']);
-            foreach ($tmpIndex[$indexKey]['stors'] as $k=>$v) {
-                $tmpIndex[$indexKey]['stors'][$k]['storAuthorName'] = $authors[$v['storAuthorId']]['authorName'];
-                $tmpIndex[$indexKey]['stors'][$k]['storAuthorHref'] = $authors[$v['storAuthorId']]['authorHref'];
-                $tmpIndex[$indexKey]['stors'][$k]['storCats'] = $cats[$v['storId']];
+            $storIds = array();
+
+            while($Data = DB_FetchAssoc ('mysql', $Query)) {
+                $catId = $Data['cid'];
+                $storId = $Data['storId'];
+                $storIds[] = $storId;
+                if (!array_key_exists($Data['storAuthorId'], $authorIds)) {
+                    $authorIds[] = $Data['storAuthorId'];
+                }
+                if (!isset($tmpIndex[$catId])) {
+                    $tmpIndex[$catId] = array(
+                        'categoryId' => $Data['cid'],
+                        'categoryName' => $Data['catName'],
+                        'categoryUrl'  => $Data['catHref'],
+                        'stors' => array()
+                    );
+                }
+                if (!isset($tmpIndex[$catId]['stors'][$storId])) {
+                    $tmpIndex[$catId]['stors'][$storId] = array(
+                        'storId'         => $storId,
+                        'storName'       => $Data['storName'],
+                        'storHref'       => $Data['storHref'],
+                        'storShortDesc'  => $Data['storDesc'],
+                        'storAuthorId'   => $Data['storAuthorId'],
+                        'storAuthorName' => '',
+                        'storAuthorHref' => '',
+                        'storRate'       => $Data['storRate'],
+                        'storDate'       => $Data['storDate'],
+                        'storWatches'    => $Data['storWatches'],
+                        'storComments'   => $Data['storComments'],
+                        'storCats'       => array()
+                    );
+                }
             }
+
+            $cats = $this->getFullStorCatList($storIds);
+            $authors = $this->getAuthors($authorIds);
+
+            $tmpIndex = array_values($tmpIndex);
+            foreach ($tmpIndex as $indexKey=>$indexValue) {
+                $tmpIndex[$indexKey]['stors'] = array_values($indexValue['stors']);
+                foreach ($tmpIndex[$indexKey]['stors'] as $k=>$v) {
+                    $tmpIndex[$indexKey]['stors'][$k]['storAuthorName'] = $authors[$v['storAuthorId']]['authorName'];
+                    $tmpIndex[$indexKey]['stors'][$k]['storAuthorHref'] = $authors[$v['storAuthorId']]['authorHref'];
+                    $tmpIndex[$indexKey]['stors'][$k]['storCats'] = $cats[$v['storId']];
+                }
+            }
+
+            return ($tmpIndex);
         }
-        
-        return ($tmpIndex);
+        return array();
     }
     
     public function getBreadCrumbs () {

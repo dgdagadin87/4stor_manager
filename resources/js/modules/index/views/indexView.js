@@ -4,6 +4,7 @@ define(
         'marionette',
         'Application',
         './indexItemView',
+        './indexEmptyView',
         '../collections/indexCollection',
         'text!modules/index/templates/indexTemplate.html'
     ], function(
@@ -11,11 +12,14 @@ define(
         Marionette,
         Application,
         ItemView,
+        EmptyView,
         collection,
         template
     ) {
         return Backbone.Marionette.CompositeView.extend({
             template : _.template(template),
+
+            emptyView: EmptyView,
 
             childView: ItemView,
             childViewContainer: ".index-list-container",

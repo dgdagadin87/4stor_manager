@@ -29,22 +29,22 @@ class searchModel extends abstractModel {
     
     public function getMeta() {
         // сортировка
-        $sortBy = isset($_GET['sortBy']) && in_array($_GET['sortBy'], $this->getSortByArray()) ? $_GET['sortBy'] : 'storDate';
-        $sortType = isset($_GET['sortType']) && in_array($_GET['sortType'], $this->getSortTypeArray()) ? $_GET['sortType'] : 'DESC';
+        $sortBy = isset($_POST['sortBy']) && in_array($_POST['sortBy'], $this->getSortByArray()) ? $_POST['sortBy'] : 'storDate';
+        $sortType = isset($_POST['sortType']) && in_array($_POST['sortType'], $this->getSortTypeArray()) ? $_POST['sortType'] : 'DESC';
         
         // критерии поиска
-        $storName = isset($_GET['storName']) && !empty($_GET['storName']) ? trim($_GET['storName']) : null;
-        $storRateStart = isset($_GET['storRateStart']) && !empty($_GET['storRateStart']) ? intval($_GET['storRateStart']) : null;
-        $storRateEnd = isset($_GET['storRateEnd']) && !empty($_GET['storRateEnd']) ? intval($_GET['storRateEnd']) : null;
-        $storDateFrom = isset($_GET['storDateFrom']) && !empty($_GET['storDateFrom']) ? $_GET['storDateFrom'] : null;
-        $storDateTo = isset($_GET['storDateTo']) && !empty($_GET['storDateTo']) ? $_GET['storDateTo'] : null;
-        $storWatchesFrom = isset($_GET['storWatchesFrom']) && !empty($_GET['storWatchesFrom']) ? intval($_GET['storWatchesFrom']) : null;
-        $storWatchesTo = isset($_GET['storWatchesTo']) ? $_GET['storWatchesTo'] : null;
-        $storCommentsFrom = isset($_GET['storCommentsFrom']) && !empty($_GET['storCommentsFrom']) ? intval($_GET['storCommentsFrom']) : null;
-        $storCommentsTo = isset($_GET['storCommentsFrom']) ? $_GET['storCommentsFrom'] : null;
+        $storName = isset($_POST['storName']) && !empty($_POST['storName']) ? trim($_POST['storName']) : null;
+        $storRateStart = isset($_POST['storRateStart']) && !empty($_POST['storRateStart']) ? intval($_POST['storRateStart']) : null;
+        $storRateEnd = isset($_POST['storRateEnd']) && !empty($_POST['storRateEnd']) ? intval($_POST['storRateEnd']) : null;
+        $storDateFrom = isset($_POST['storDateFrom']) && !empty($_POST['storDateFrom']) ? $_POST['storDateFrom'] : null;
+        $storDateTo = isset($_POST['storDateTo']) && !empty($_POST['storDateTo']) ? $_POST['storDateTo'] : null;
+        $storWatchesFrom = isset($_POST['storWatchesFrom']) && !empty($_POST['storWatchesFrom']) ? intval($_POST['storWatchesFrom']) : null;
+        $storWatchesTo = isset($_POST['storWatchesTo']) ? $_POST['storWatchesTo'] : null;
+        $storCommentsFrom = isset($_POST['storCommentsFrom']) && !empty($_POST['storCommentsFrom']) ? intval($_POST['storCommentsFrom']) : null;
+        $storCommentsTo = isset($_POST['storCommentsFrom']) ? $_POST['storCommentsFrom'] : null;
         
         // категории
-        $catsList = isset($_GET['categories']) && is_array($_GET['categories']) ? $_GET['categories'] : array();
+        $catsList = isset($_POST['categories']) && is_array($_POST['categories']) ? $_POST['categories'] : array();
         
         // если пустые категории
         if (sizeof($catsList) < 1) {
@@ -109,7 +109,7 @@ class searchModel extends abstractModel {
         $numStores = DB_Result ('mysql', $Query, 0, 0);
         $numPages = $numStores > 0 ? ceil ($numStores / 10) : 1;
         
-        $page = !isset ($_GET['page']) || !ctype_digit ($_GET['page']) ? 1 : intval ($_GET['page']);
+        $page = !isset ($_POST['page']) || !ctype_digit ($_POST['page']) ? 1 : intval ($_POST['page']);
         if ($page < 1) {
             $page = 1;
         }
