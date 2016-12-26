@@ -50,8 +50,7 @@ define([
         this._data = new dataModel();
         
         this._pageTitle = 'Поиск по историям';
-        
-        this._isSearchRendered = false;
+
         this._breadCrumbs = [
             {
                 isMain: true,
@@ -345,7 +344,7 @@ define([
     };
 
     searchController.prototype._onViewRendered = function() {
-        this._isSearchRendered = true;
+        this.setComponentRendered(true);
         this._renderBaseComponents();
     };
 
@@ -355,7 +354,7 @@ define([
         var layoutView = mainLayout.getView();
         var lfRender = function(){
             me.__renderContent();
-            if (!me._isSearchRendered) {
+            if (!me.isComponentRendered()) {
                 layoutView[me._regionName].show(me.getView());
             }
         };

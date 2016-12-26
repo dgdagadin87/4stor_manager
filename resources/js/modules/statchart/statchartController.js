@@ -36,7 +36,6 @@ define([
         
         this._pageTitle = 'Статистика (диагамма)';
 
-        this._isStatchartRendered = false;
         this._isDataLoaded = false;
         this._breadCrumbs = [
             {
@@ -88,14 +87,12 @@ define([
     };
     
     statchartController.prototype._onViewRendered = function() {
-        this._isStatchartRendered = true;
+        this.setComponentRendered(true);
         this._view.showChildView('diagramRegion', this._diaView);
     };
     
     statchartController.prototype._onDiaViewRendered = function() {
-
         this._chartManager.drawColumn(this._diaView.el);
-        //this._chartManager.drawCircle(this._diaView.el);
     };
 
     statchartController.prototype.showCurrentContent = function() {
@@ -104,7 +101,7 @@ define([
         var layoutView = mainLayout.getView();
         var lfRender = function(){
             me.__renderContent();
-            if (!me._isStatchartRendered) {
+            if (!me.isComponentRendered()) {
                 layoutView[me._regionName].show(me._view);
             }
         };

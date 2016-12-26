@@ -24,8 +24,6 @@ define([
         var loConfig = poConfig || {};
 
         BaseController.call(this);
-        
-        this._isSearchformRendered = false;
 
         this._regionName = loConfig.regionName || 'searchformRegion';
         this._parentView = loConfig.parentView || {};
@@ -48,7 +46,7 @@ define([
     };
     
     searchformController.prototype._onViewRendered = function() {
-        this._isSearchformRendered = true;
+        this.setComponentRendered(true);
     };
     
     searchformController.prototype._onSubmitDisable = function() {
@@ -60,7 +58,7 @@ define([
 
     searchformController.prototype.showSearchForm = function() {
 
-        if (!this._isSearchformRendered) {
+        if (!this.isComponentRendered()) {
             this._parentView.showChildView(this._regionName, this._view);
         }
     };

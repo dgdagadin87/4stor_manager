@@ -40,8 +40,7 @@ define([
         
         this._categoryId = null;
         this._categoryName = null;
-        
-        this._isCategoryRendered = false;
+
         this._breadCrumbs = [];
 
         this._view = new categoryView();
@@ -160,7 +159,7 @@ define([
     };
     
     categoryController.prototype._onViewRendered = function() {
-        this._isCategoryRendered = true;
+        this.setComponentRendered(true);
         this._renderComponents();
     };
     
@@ -192,7 +191,7 @@ define([
         var layoutView = mainLayout.getView();
         var lfRender = function(){
             me.__renderContent();
-            if (!me._isCategoryRendered) {
+            if (!me.isComponentRendered()) {
                 layoutView[me._regionName].show(me.getView());
             }
             else {

@@ -45,8 +45,6 @@ define([
 
         this._currentPage = '';
         
-        this._isLayoutRendered = false;
-        
         this._isDataLoaded = false;
         
         this._commonData = {};
@@ -154,7 +152,7 @@ define([
     };
 
     layoutController.prototype._onViewRendered = function() {
-        this._isLayoutRendered = true;
+        this.setComponentRendered(true);
         
         CoreUtils.setHiddenOnClick();
         CoreUtils.setDialogsOnShow();
@@ -167,7 +165,7 @@ define([
         var loParams = params || {};
         me._urlParams = loParams;
         var showParts = function() {
-            if (me._isLayoutRendered) {
+            if (me.isComponentRendered()) {
                 me._renderComponents();
             }
             else {

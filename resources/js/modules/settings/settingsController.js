@@ -45,7 +45,6 @@ define([
 
         this._pageTitle = 'Настройки';
 
-        this._isSettingsRendered = false;
         this._breadCrumbs = [
             {
                 isMain: true,
@@ -115,7 +114,7 @@ define([
     };
     
     settingsController.prototype._onViewRendered = function() {
-        this._isSettingsRendered = true;
+        this.setComponentRendered(true);
         this._renderComponents();
     };
 
@@ -203,7 +202,7 @@ define([
     settingsController.prototype._renderFunction = function() {
         var mainLayout = Application.getMainLayout();
         this.__renderContent();
-        if (!this._isSettingsRendered) {
+        if (!this.isComponentRendered()) {
             mainLayout.getView()[this._regionName].show(this.getView());
         }
         else {

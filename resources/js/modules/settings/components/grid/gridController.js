@@ -23,8 +23,6 @@ define([
         
         var loConfig = poConfig || {};
         this._parentView = loConfig.parentView || {};
-        
-        this._isGridRendered = false;
 
         this._view = new gridView();
         
@@ -42,12 +40,12 @@ define([
     };
     
     gridController.prototype._onViewRendered = function() {
-        this._isGridRendered = true;
+        this.setComponentRendered(true);
     };
 
     gridController.prototype.showGrid = function() {
         var layout = this._parentView;
-        if (!this._isGridRendered) {
+        if (!this.isComponentRendered()) {
             layout.showChildView('gridRegion', this.getView());
         }
         else {

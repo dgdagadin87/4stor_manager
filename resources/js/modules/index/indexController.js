@@ -28,8 +28,7 @@ define([
         
         this._pageTitle = 'Главная страница';
         this._moduleCode = 'index';
-        
-        this._isIndexRendered = false;
+
         this._isDataLoaded = false;
         this._breadCrumbs = [];
 
@@ -49,7 +48,7 @@ define([
     };
     
     indexController.prototype._onViewRendered = function() {
-        this._isIndexRendered = true;
+        this.setComponentRendered(true);
     };
 
     indexController.prototype.showCurrentContent = function() {
@@ -58,7 +57,7 @@ define([
         var layoutView = mainLayout.getView();
         var lfRender = function(){
             me.__renderContent();
-            if (!me._isIndexRendered) {
+            if (!me.isComponentRendered()) {
                 layoutView[me._regionName].show(me.getView());
             }
         };

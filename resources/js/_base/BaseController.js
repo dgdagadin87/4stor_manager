@@ -14,7 +14,7 @@ define([
     CoreUtils
 ) {
     var BaseController = function() {
-
+        this._isComponentRendered = false;
     };
 
     BaseController.prototype.destructor = function() {
@@ -27,6 +27,14 @@ define([
 
     BaseController.prototype.getView = function() {
         return this._view;
+    };
+    
+    BaseController.prototype.isComponentRendered = function() {
+        return this._isComponentRendered;
+    };
+    
+    BaseController.prototype.setComponentRendered = function(rendered) {
+        this._isComponentRendered = rendered;
     };
     
     return BaseController;

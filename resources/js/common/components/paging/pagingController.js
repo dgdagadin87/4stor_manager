@@ -31,8 +31,6 @@ define([
         this._numRight = loConfig.numRight || Settings.defaults.numRight;
         
         BaseController.call(this);
-        
-        this._isPagingRendered = false;
 
         this._regionName = loConfig.regionName || 'pagingRegion';
         this._parentView = loConfig.parentView || {};
@@ -71,7 +69,7 @@ define([
     };
     
     pagingController.prototype._onViewRendered = function() {
-        this._isPagingRendered = true;
+        this.setComponentRendered(true);
     };
 
     pagingController.prototype.setData = function(poConf) {
@@ -106,7 +104,7 @@ define([
 
         this._shapePaging();
         
-        if (!this._isPagingRendered) {
+        if (!this.isComponentRendered()) {
             this._parentView.showChildView(this._regionName, this._view);
         }
         else {

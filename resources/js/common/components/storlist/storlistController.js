@@ -28,7 +28,6 @@ define([
         
         BaseController.call(this);
 
-        this._isStorlistRendered = false;
         this._needScroll = false;
 
         this._view = new storlistView();
@@ -47,7 +46,7 @@ define([
     };
     
     storlistController.prototype._onViewRendered = function() {
-        this._isStorlistRendered = true;
+        this.setComponentRendered(true);
         if (this._needScroll) {
             CoreUtils.scrollToElement(this._toScrollId);
         }
@@ -62,7 +61,7 @@ define([
             this._needScroll = false;
         }
         
-        if (!this._isStorlistRendered) {
+        if (!this.isComponentRendered()) {
             this._parentView[this._regionName].show(this.getView());
         }
         else {

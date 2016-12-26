@@ -24,8 +24,6 @@ define([
         this._parentView = loConf.parentView || {};
         
         BaseController.call(this);
-        
-        this._isStartRendered = false;
 
         this._view = new startMessageView();
         
@@ -43,7 +41,7 @@ define([
     };
     
     startmessageController.prototype._onViewRendered = function() {
-        this._isStartRendered = true;
+        this.setComponentRendered(true);
     };
 
     startmessageController.prototype.showStartMessage = function() {

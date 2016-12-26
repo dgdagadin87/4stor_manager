@@ -22,9 +22,7 @@ define([
     var pagetitleController = function() {
         
         BaseController.call(this);
-        
-        this._isPageTitleRendered = false;
-        
+
         this._model = new pagetitleModel();
         this._view = new pagetitleView();
         
@@ -43,8 +41,8 @@ define([
     };
     
     pagetitleController.prototype._onViewRendered = function() {
-        if (!this._isPageTitleRendered) {
-            this._isPageTitleRendered = true;
+        if (!this.isComponentRendered()) {
+            this.setComponentRendered(true);
         }
     };
 
@@ -61,7 +59,7 @@ define([
             'pageCode': code,
             'pageTitle': title
         });
-        if (!this._isPageTitleRendered) {
+        if (!this.isComponentRendered()) {
             mainLayout._regionManager.showRegionByName('pagetitleRegion');
             mainLayout.getView()['pagetitleRegion'].show(view);
         }

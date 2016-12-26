@@ -33,11 +33,11 @@ require.config({
             exports : '_'
         },
         'backbone' : {
-            deps : [ 'underscore', 'jquery_src' ],
+            deps : [ 'underscore', 'jquery' ],
             exports : 'Backbone'
         },
         'marionette' : {
-            'deps' : [ 'underscore', 'backbone', 'jquery_src' ],
+            'deps' : [ 'underscore', 'backbone', 'jquery' ],
             'exports' : 'Marionette'
         }
     },

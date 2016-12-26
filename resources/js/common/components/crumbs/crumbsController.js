@@ -23,8 +23,6 @@ define([
         
         BaseController.call(this);
         
-        this._isBreadCrumbsRendered = false;
-        
         this._model = new crumbsModel();
         this._view = new crumbsView();
         
@@ -43,8 +41,8 @@ define([
     };
     
     crumbsController.prototype._onViewRendered = function() {
-        if (!this._isBreadCrumbsRendered) {
-            this._isBreadCrumbsRendered = true;
+        if (!this.isComponentRendered()) {
+            this.setComponentRendered(true);
         }
     };
 
@@ -53,7 +51,7 @@ define([
     };
     
     crumbsController.prototype.showBreadCrumbs = function(paData) {
-        //if (!this._isBreadCrumbsRendered) {
+        //if (!this.isComponentRendered()) {
             var mainLayout = Application.getMainLayout();
             var view = this.getView();
             view.collection.set(paData);

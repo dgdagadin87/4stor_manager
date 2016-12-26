@@ -26,8 +26,6 @@ define([
         var loConfig = poConfig || {};
 
         BaseController.call(this);
-        
-        this._isListbarRendered = false;
 
         this._regionName = loConfig.regionName || 'listbarRegion';
         this._parentView = loConfig.parentView || {};
@@ -60,7 +58,7 @@ define([
     };
     
     listbarController.prototype._onViewRendered = function() {
-        this._isListbarRendered = true;
+        this.setComponentRendered(true);
     };
 
     listbarController.prototype.setData = function(poConf) {
@@ -70,7 +68,7 @@ define([
 
     listbarController.prototype.showToolbar = function() {
 
-        if (!this._isListbarRendered) {
+        if (!this.isComponentRendered()) {
             this._parentView.showChildView(this._regionName, this._view);
         }
         else {

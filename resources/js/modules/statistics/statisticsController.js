@@ -31,8 +31,7 @@ define([
         this._moduleCode = 'statistics';
         
         this._pageTitle = 'Статистика';
-        
-        this._isStatisticsRendered = false;
+
         this._isDataLoaded = false;
         this._breadCrumbs = [
             {
@@ -71,7 +70,7 @@ define([
     };
     
     statisticsController.prototype._onViewRendered = function() {
-        this._isStatisticsRendered = true;
+        this.setComponentRendered(true);
     };
 
     statisticsController.prototype.showCurrentContent = function() {
@@ -82,7 +81,7 @@ define([
             
             me.__renderContent();
             
-            if (!me._isStatisticsRendered) {
+            if (!me.isComponentRendered()) {
                 layoutView[me._regionName].show(me.getView());
             }
         };

@@ -20,8 +20,6 @@ define([
     var headerController = function() {
         
         BaseController.call(this);
-        
-        this._isHeaderRendered = false;
 
         this._view = new headerView();
         
@@ -39,7 +37,7 @@ define([
     };
     
     headerController.prototype._onViewRendered = function() {
-        this._isHeaderRendered = true;
+        this.setComponentRendered(true);
     };
 
     headerController.prototype.showHeader = function() {
@@ -49,7 +47,7 @@ define([
         var mainParam = urlData[0] || '';
         this.getView().collection.set(headerData);
         this._setActiveHeader(mainParam);
-        if (!this._isHeaderRendered) {
+        if (!this.isComponentRendered()) {
             mainLayout.getView().showChildView('headerRegion', this.getView());
         }
         else {

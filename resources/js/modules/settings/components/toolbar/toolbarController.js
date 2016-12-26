@@ -23,8 +23,6 @@ define([
         
         var loConfig = poConfig || {};
         this._parentView = loConfig.parentView || {};
-        
-        this._isToolbarRendered = false;
 
         this._view = new toolbarView();
         
@@ -42,12 +40,12 @@ define([
     };
     
     toolbarController.prototype._onViewRendered = function() {
-        this._isToolbarRendered = true;
+        this.setComponentRendered(true);
     };
 
     toolbarController.prototype.showToolbar = function() {
         var layout = this._parentView;
-        if (!this._isToolbarRendered) {
+        if (!this.isComponentRendered()) {
             layout.showChildView('toolbarRegion', this.getView());
         }
         else {

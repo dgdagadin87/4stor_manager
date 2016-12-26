@@ -21,8 +21,6 @@ define([
 ) {
     var catlistController = function() {
         
-        this._isCategoriesRendered = false;
-        
         BaseController.call(this);
 
         this._view = new catlistView();
@@ -42,7 +40,7 @@ define([
     };
     
     catlistController.prototype._onViewRendered = function() {
-        this._isCategoriesRendered = true;
+        this.setComponentRendered(true);
     };
 
     catlistController.prototype._setActiveCategory = function() {
@@ -69,7 +67,7 @@ define([
     };
     
     catlistController.prototype.showCategoryList = function(paData) {
-        if (!this._isCategoriesRendered) {
+        if (!this.isComponentRendered()) {
             var view = this.getView();
             var mainLayout = Application.getMainLayout();
             view.collection.set(paData);

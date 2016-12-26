@@ -32,8 +32,6 @@ define([
         
         this._view = new spinnerView();
         
-        this._isSpinnerRendered = false;
-        
         this._init();
         this._bindEvents();
     };
@@ -49,11 +47,11 @@ define([
     };
     
     spinnerController.prototype._onViewRendered = function() {
-        this._isSpinnerRendered = true;
+        this.setComponentRendered(true);
     };
 
     spinnerController.prototype.isRendered = function() {
-        return this._isSpinnerRendered;
+        return this._isComponentRendered;
     };
 
     spinnerController.prototype.renderView = function() {
