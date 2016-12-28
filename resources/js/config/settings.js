@@ -7,12 +7,12 @@ define({
         "numRight" : 2
     },
     "url": {
-        "getCommonData": "http://4stor.local/server/api/json.php?action=common",
-        "getIndexData": "http://4stor.local/server/api/json.php?action=index",
-        "getCategoryData": "http://4stor.local/server/api/json.php?action=category",
-        "getSearchData": "http://4stor.local/server/api/json.php?action=search",
-        "getStatisticsData": "http://4stor.local/server/api/json.php?action=statistics",
-        "getStatchartData": "http://4stor.local/server/api/json.php?action=statchart",
-        "getLinksData": "http://4stor.local/server/api/json.php?action=synclinks"
+        "getCommonData": "/server/api/json.php?action=common",
+        "getIndexData": "/server/api/json.php?action=index",
+        "getCategoryData": "/server/api/json.php?action=category",
+        "getSearchData": "/server/api/json.php?action=search",
+        "getStatisticsData": "/server/api/json.php?action=statistics",
+        "getStatchartData": "/server/api/json.php?action=statchart",
+        "getLinksData": "/server/api/json.php?action=synclinks"
     }
 });
