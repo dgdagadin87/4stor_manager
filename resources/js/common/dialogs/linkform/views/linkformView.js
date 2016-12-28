@@ -29,7 +29,7 @@ define(
             
             onSubmitClick: function(ev) {
                 ev.preventDefault();
-                console.log('submit');
+                Application.trigger('linkform:submit', this.model);
             },
             
             onCancelClick: function(ev) {

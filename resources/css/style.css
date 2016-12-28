@@ -108,7 +108,7 @@ body, html {
     color: grey;
 }
 
-.search-error-block {
+.search-error-block, .link-form-error-block {
     border: 1px solid crimson;
     color: red;
     padding: 10px;
