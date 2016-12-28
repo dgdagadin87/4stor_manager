@@ -72,6 +72,7 @@ define([
                     this.listenTo(view, 'dialog:close', closeDialog);
                     this.$el.dialog({
                         modal: true,
+                        closeOnEscape: false,
                         title: '',
                         width: 'auto',
                         close: function(e, ui){
