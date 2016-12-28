@@ -13,6 +13,10 @@ define({
         "getSearchData": "/server/api/json.php?action=search",
         "getStatisticsData": "/server/api/json.php?action=statistics",
         "getStatchartData": "/server/api/json.php?action=statchart",
-        "getLinksData": "/server/api/json.php?action=synclinks"
+        "getLinksData": "/server/api/json.php?action=synclinks",
+        
+        "addLink": "/server/api/json.php?action=addlink",
+        "editLink": "/server/api/json.php?action=editlink",
+        "deleteLink": "/server/api/json.php?action=dellink"
     }
 });

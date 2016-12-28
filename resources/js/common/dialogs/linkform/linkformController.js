@@ -5,6 +5,7 @@ define([
     'backbone', 
     'jquery',
     'coreUtils',
+    'settings',
     'Application',
     '_base/BaseController',
     './views/linkformView',
@@ -14,6 +15,7 @@ define([
     Backbone,
     $,
     CoreUtils,
+    Settings,
     Application,
     BaseController,
     formView,
@@ -45,13 +47,13 @@ define([
         // 1. Инициализация
         var linkId = model.get('linkId');
         var mode = _.isEmpty(linkId) ? 'ADD' : 'EDIT';
-        
+
         // 2. Очистка ошибок
         this._clearErrors();
         
         // 3. Биндинг
         this._bindData();
-        
+
         // 3. Вывод ошибок (если есть)
         var errors = this._validateErrors();
         if (errors.length > 0) {
@@ -60,8 +62,55 @@ define([
         }
         
         // 4. Отправка данных
-
+        var methodname = '_' + ( mode === 'ADD' ? 'add' : 'edit' ) + 'Link';
+        this[methodname]();
         
+    };
+    
+    formController.prototype._validateErrors = function() {
+        
+        var errors = [];
+        var me = this;
+        
+        // 1)Название - не пустое
+        if (CoreUtils.isEmpty(me._model.get('linkName'))) {
+            errors.push('Поле "Имя ссылки" не должно быть пустым');
+        }
+        
+        // 2)Ссылка - не пустое
+        if (CoreUtils.isEmpty(me._model.get('linkHref'))) {
+            errors.push('Поле "Адрес ссылки" не должно быть пустым');
+        }
+
+        if (errors.length > 0) {
+            return errors;
+        }
+        
+        return [];
+    };
+    
+    formController.prototype._addLink = function() {
+        var me = this;
+        var afterSuccess = function(data){
+            
+        };
+        var afterError = function(data){
+            
+        };
+        
+        this._showPreloader();
+        
+        CoreUtils.ajaxQuery({
+            url: Settings.url.addLink,
+            method: 'POST',
+            data: {
+                model: me._model.toJSON()
+            }
+        },
+        {
+            afterSuccess: afterSuccess,
+            afterError: afterError
+        });
     };
     
     formController.prototype._clearErrors = function() {
@@ -86,7 +135,6 @@ define([
             linkIsMultipage: this._view.$('.link-multi').attr('checked') ? true : false
         };
         this._model.set(data);
-        console.log(this.model);
     };
 
     formController.prototype.getViewForDialog = function(model, mode) {
@@ -104,6 +152,18 @@ define([
             submit: submit
         });
         return this._view;
+    };
+
+    formController.prototype._showPreloader = function() {
+        this.getView().$('.message-container').hide();
+        this.getView().$('.form-container').hide();
+        this.getView().$('.preloader-container').show();
+    };
+    
+    formController.prototype._showMessage = function() {
+        this.getView().$('.preloader-container').hide();
+        this.getView().$('.form-container').hide();
+        this.getView().$('.message-container').show();
     };
 
     return formController;
