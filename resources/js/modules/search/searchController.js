@@ -180,7 +180,7 @@ define([
         $('.search-error-block').show();
     };
 
-	searchController.prototype._bindSearchData = function() {
+    searchController.prototype._bindSearchData = function() {
         var data = {
             storName         : $('#search-name').val(),
             storRateStart    : $('#search-rate-from').val(),
