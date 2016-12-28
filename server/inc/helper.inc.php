@@ -22,7 +22,10 @@ class Helper {
             'search',
             'statistics',
             'statchart',
-            'synclinks'
+            'synclinks',
+            'addlink',
+            'editlink',
+            'dellink'
         );
     }
     
