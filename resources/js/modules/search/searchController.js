@@ -294,7 +294,12 @@ define([
             me._hideSearchSpinner();
 
             if (!lbSuccess) {
-                me.__showGlobalError(lsMessage);
+                if (isGlobal) {
+                    me.__showGlobalError(lsMessage);
+                }
+                else {
+                    Application.trigger('error:modal:show', lsMessage);
+                }
             }
             else {
                 me._listComponent.setData(searchData);
