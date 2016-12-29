@@ -92,7 +92,9 @@ define([
     formController.prototype._addLink = function() {
         var me = this;
         var afterSuccess = function(data){
-            
+            var lbSuccess = data.success || false;
+            var lsMessage = data.message || '';
+            me._showMessage(lsMessage, lbSuccess);
         };
         var afterError = function(data){
             
@@ -160,10 +162,15 @@ define([
         this.getView().$('.preloader-container').show();
     };
     
-    formController.prototype._showMessage = function() {
+    formController.prototype._showMessage = function(message, success) {
+        
+        var messageClass = success ? 'success' : 'error';
+        
         this.getView().$('.preloader-container').hide();
         this.getView().$('.form-container').hide();
         this.getView().$('.message-container').show();
+        this.getView().$('.message-text').addClass(messageClass);
+        this.getView().$('.message-text').text(message);
     };
 
     return formController;
