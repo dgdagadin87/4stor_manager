@@ -19,11 +19,36 @@ class addLinkModel extends abstractModel {
             $laReturn['message'] = $result;
             return $laReturn;
         }
+        $laReturn['message'] = 'Ссылка для синхронизации успешно добавлена';
         return $laReturn;
     }
     
     public function addSyncLink () {
-        var_dump($_POST);
+        $model = isset($_POST['model']) && is_array($_POST['model']) ? $_POST['model'] : array();
+        
+        $linkName = isset($model['linkName']) && trim($model['linkName']) <> '' ? trim($model['linkName']) : null;
+        $linkHref = isset($model['linkHref']) && trim($model['linkHref']) <> '' ? trim($model['linkHref']) : null;
+        $linkIsOn = isset($model['linkIsOn']) && (bool)$model['linkIsOn'] === true ? 't' : 'f';
+        $linkIsMulti = isset($model['linkIsMultipage']) && (bool)$model['linkIsMultipage'] === true ? 't' : 'f';
+        
+        if (is_null($linkName)) {
+            return ('Поле "Имя ссылки" не должно быть пустым');
+        }
+        
+        if (is_null($linkHref)) {
+            return ('Поле "Адрес ссылки" не должно быть пустым');
+        }
+        
+        $linkName = DB_EscapeString('mysql', $this->connection, $linkName);
+        $linkHref = DB_EscapeString('mysql', $this->connection, $linkHref);
+        
+        $SQL = 'INSERT INTO sync_links (linkName, LinkHref, linkIsOn, linkIsMultipage) VALUES (\'' . $linkName . '\', \'' . $linkName . '\', \'' . $linkIsOn . '\', \'' . $linkIsMulti . '\')';
+        $Query = DB_Query ('mysql', $SQL, $this->connection);
+        if (!$Query) {
+            return 'Ошибка при добавлении ссылки для синхронизации';
+        }
+        
+        return (true);
     }
     
 }
