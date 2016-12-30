@@ -28,8 +28,8 @@ class addLinkModel extends abstractModel {
         
         $linkName = isset($model['linkName']) && trim($model['linkName']) <> '' ? trim($model['linkName']) : null;
         $linkHref = isset($model['linkHref']) && trim($model['linkHref']) <> '' ? trim($model['linkHref']) : null;
-        $linkIsOn = isset($model['linkIsOn']) && (bool)$model['linkIsOn'] === true ? 't' : 'f';
-        $linkIsMulti = isset($model['linkIsMultipage']) && (bool)$model['linkIsMultipage'] === true ? 't' : 'f';
+        $linkIsOn = isset($model['linkIsOn']) && Helper::Main_StringToBool($model['linkIsOn']) === true ? 'y' : 'n';
+        $linkIsMulti = isset($model['linkIsMultipage']) && Helper::Main_StringToBool($model['linkIsMultipage']) === true ? 'y' : 'n';
         
         if (is_null($linkName)) {
             return ('Поле "Имя ссылки" не должно быть пустым');

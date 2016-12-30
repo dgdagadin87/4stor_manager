@@ -41,5 +41,14 @@ class Helper {
         }
     }
     
+    public static function Main_StringToBool($string) {
+        if ($string === 'false') {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+    
 }
 
