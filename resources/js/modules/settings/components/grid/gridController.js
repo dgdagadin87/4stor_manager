@@ -33,7 +33,14 @@ define([
     gridController.prototype = Object.create(BaseController.prototype);
     
     gridController.prototype._bindEvents = function() {
+        var me= this;
         this._view.on('render', this._onViewRendered.bind(this));
+        Application.on('synclinks:controls:disable', function(){
+            me._view.$('.grid-for-disabled').addClass('grid-disabled');
+        });
+        Application.on('synclinks:controls:enable', function(){
+            me._view.$('.grid-for-disabled').addClass('grid-disabled');
+        });
     };
     
     gridController.prototype._init = function() {

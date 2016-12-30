@@ -41,7 +41,7 @@ define([
         this._view = new pagingView({
             eventPrefix: this._eventPrefix
         });
-        this._view._eventPrefix = this._eventPrefix
+        this._view._eventPrefix = this._eventPrefix;
         
         this._init();
         this._bindEvents();

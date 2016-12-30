@@ -143,6 +143,7 @@ define([
     
     settingsController.prototype.loadData = function() {
         Application.trigger('synclinks:page:disable');
+        Application.trigger('synclinks:controls:disable');
         
         CoreUtils.ajaxQuery({
             url: Settings.url.getLinksData,
@@ -178,6 +179,7 @@ define([
 
         if (isDataLoad) {
             Application.trigger('synclinks:page:enable');
+            Application.trigger('synclinks:controls:enable');
         }
 
         if (!lbSuccess) {

@@ -33,7 +33,14 @@ define([
     toolbarController.prototype = Object.create(BaseController.prototype);
     
     toolbarController.prototype._bindEvents = function() {
+        var me = this;
         this._view.on('render', this._onViewRendered.bind(this));
+        Application.on('synclinks:controls:disable', function(){
+            me._view.$('.toolbar-for-disabled').addClass('toolbar-disabled');
+        });
+        Application.on('synclinks:controls:enable', function(){
+            me._view.$('.toolbar-for-disabled').addClass('toolbar-disabled');
+        });
     };
     
     toolbarController.prototype._init = function() {

@@ -29,17 +29,23 @@ define(
             
             onEditClick: function(ev){
                 ev.preventDefault();
-                Application.trigger('linkform:dialog:open', {
-                    linkId   : this.model.get('linkId'),
-                    linkName : this.model.get('linkName'),
-                    linkHref : this.model.get('linkHref'),
-                    linkIsOn : this.model.get('linkIsOn'),
-                    linkIsMultipage: this.model.get('linkIsMultipage')
-                }, 'edit');
+                var current = $(ev.currentTarget);
+                if (!current.hasClass('grid-disabled')) {
+                    Application.trigger('linkform:dialog:open', {
+                        linkId   : this.model.get('linkId'),
+                        linkName : this.model.get('linkName'),
+                        linkHref : this.model.get('linkHref'),
+                        linkIsOn : this.model.get('linkIsOn'),
+                        linkIsMultipage: this.model.get('linkIsMultipage')
+                    }, 'edit');
+                }
             },
             onDeleteClick: function(ev){
                 ev.preventDefault();
-                console.log('onDeleteClick');
+                var current = $(ev.currentTarget);
+                if (!current.hasClass('grid-disabled')) {
+                    console.log('onDeleteClick');
+                }
             },
 
             templateHelpers: function(){

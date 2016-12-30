@@ -34,6 +34,7 @@ define(
             
             onCancelClick: function(ev) {
                 ev.preventDefault();
+                Application.trigger('synclinks:refresh');
                 this.trigger('dialog:close');
             },
             

@@ -24,17 +24,23 @@ define(
 
             onAddClick: function(ev){
                 ev.preventDefault();
-                Application.trigger('linkform:dialog:open', {
-                    linkId   : null,
-                    linkName : '',
-                    linkHref : '',
-                    linkIsOn: true,
-                    linkIsMultipage: true
-                }, 'add');
+                var current = $(ev.currentTarget);
+                if (!current.hasClass('toolbar-disabled')) {
+                    Application.trigger('linkform:dialog:open', {
+                        linkId   : null,
+                        linkName : '',
+                        linkHref : '',
+                        linkIsOn: true,
+                        linkIsMultipage: true
+                    }, 'add');
+                }
             },
             onDeleteClick: function(ev){
                 ev.preventDefault();
-                console.log('onDeleteClick');
+                var current = $(ev.currentTarget);
+                if (!current.hasClass('toolbar-disabled')) {
+                    console.log('onDeleteClick');
+                }
             }
         });
     }
