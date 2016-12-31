@@ -62,8 +62,7 @@ define([
         }
         
         // 4. Отправка данных
-        var methodname = '_' + ( mode === 'ADD' ? 'add' : 'edit' ) + 'Link';
-        this[methodname]();
+        this['_addOrEditLink'](mode);
         
     };
     
@@ -88,7 +87,7 @@ define([
         return [];
     };
     
-    formController.prototype._addLink = function() {
+    formController.prototype._addOrEditLink = function(mode) {
         var me = this;
         var afterSuccess = function(data){
             var lbSuccess = data.success || false;
@@ -103,7 +102,7 @@ define([
         this._showPreloader();
         
         CoreUtils.ajaxQuery({
-            url: Settings.url.addLink,
+            url: Settings.url[( mode === 'ADD' ? 'add' : 'edit' ) + 'Link'],
             method: 'POST',
             data: {
                 model: me._model.toJSON()
