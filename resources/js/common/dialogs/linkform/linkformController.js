@@ -68,7 +68,6 @@ define([
     };
     
     formController.prototype._validateErrors = function() {
-        
         var errors = [];
         var me = this;
         
@@ -133,8 +132,8 @@ define([
             linkId  : this._view.$('.link-id').val(),
             linkName: this._view.$('.link-name').val(),
             linkHref: this._view.$('.link-href').val(),
-            linkIsOn: this._view.$('.link-using').attr('checked') ? true : false,
-            linkIsMultipage: this._view.$('.link-multi').attr('checked') ? true : false
+            linkIsOn: this._view.$('.link-using').prop('checked') ? true : false,
+            linkIsMultipage: this._view.$('.link-multi').prop('checked') ? true : false
         };
         this._model.set(data);
     };
@@ -163,9 +162,7 @@ define([
     };
     
     formController.prototype._showMessage = function(message, success) {
-        
         var messageClass = success ? 'success' : 'error';
-        
         this.getView().$('.preloader-container').hide();
         this.getView().$('.form-container').hide();
         this.getView().$('.message-container').show();

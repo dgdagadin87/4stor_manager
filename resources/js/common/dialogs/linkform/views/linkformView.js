@@ -18,7 +18,8 @@ define(
 
             events : {
                 'click .link-submit' : 'onSubmitClick',
-                'click .link-cancel' : 'onCancelClick'
+                'click .link-cancel' : 'onCancelClick',
+                'click .link-ok' : 'onOkClick'
             },
 
             initialize: function() {
@@ -33,6 +34,11 @@ define(
             },
             
             onCancelClick: function(ev) {
+                ev.preventDefault();
+                this.trigger('dialog:close');
+            },
+            
+            onOkClick: function(ev) {
                 ev.preventDefault();
                 Application.trigger('synclinks:refresh');
                 this.trigger('dialog:close');
