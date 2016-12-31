@@ -96,7 +96,8 @@ define([
             me._showMessage(lsMessage, lbSuccess);
         };
         var afterError = function(data){
-            
+            var lsMessage = data.message || '';
+            Application.trigger('error:modal:show', lsMessage);
         };
         
         this._showPreloader();
