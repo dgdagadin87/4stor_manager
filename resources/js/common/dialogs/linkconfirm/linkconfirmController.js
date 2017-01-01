@@ -94,14 +94,14 @@ define([
 
     confirmController.prototype._showPreloader = function() {
         this.getView().$('.message-container').hide();
-        this.getView().$('.form-container').hide();
+        this.getView().$('.confirm-container').hide();
         this.getView().$('.preloader-container').show();
     };
     
     confirmController.prototype._showMessage = function(message, success) {
         var messageClass = success ? 'success' : 'error';
         this.getView().$('.preloader-container').hide();
-        this.getView().$('.form-container').hide();
+        this.getView().$('.confirm-container').hide();
         this.getView().$('.message-container').show();
         this.getView().$('.message-text').addClass(messageClass);
         this.getView().$('.message-text').text(message);
