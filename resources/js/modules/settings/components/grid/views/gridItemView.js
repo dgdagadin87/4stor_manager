@@ -44,7 +44,10 @@ define(
                 ev.preventDefault();
                 var current = $(ev.currentTarget);
                 if (!current.hasClass('grid-disabled')) {
-                    console.log('onDeleteClick');
+                    Application.trigger('linkconfirm:dialog:open', {
+                        linkId   : this.model.get('linkId'),
+                        linkName : this.model.get('linkName')
+                    });
                 }
             },
 

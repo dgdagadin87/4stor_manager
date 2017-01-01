@@ -5,23 +5,21 @@ define([
     'backbone', 
     'jquery',
     'coreUtils',
+    'settings',
     'Application',
     '_base/BaseController',
-    './views/categoriesView',
-    './models/categoriesModel'
+    './views/linkconfirmView'
 ], function (
     _,
     Backbone,
     $,
     CoreUtils,
+    Settings,
     Application,
     BaseController,
-    categoriesView,
-    categoriesModel
+    confirmView
 ) {
-    var categoriesController = function() {
-        
-        this._model = new categoriesModel();
+    var confirmController = function() {
         
         BaseController.call(this);
 
@@ -29,37 +27,85 @@ define([
         this._bindEvents();
     };
  
-    categoriesController.prototype = Object.create(BaseController.prototype);
+    confirmController.prototype = Object.create(BaseController.prototype);
     
-    categoriesController.prototype._bindEvents = function() {
+    confirmController.prototype._bindEvents = function() {
+        Application.on('confirmform:submit', this._onLinkConfirmSubmit.bind(this));
     };
     
-    categoriesController.prototype._init = function() {
+    confirmController.prototype._init = function() {
     };
     
-    categoriesController.prototype.setCategoriesData = function() {
-        var mainLayout = Application.getMainLayout();
-        var commonData = mainLayout.getCommonData();
-        var categories = commonData.categories || [];
-        var checkedIds = [];
-        _.each(categories, function(category){
-            checkedIds.push(category.categoryId);
+    confirmController.prototype._onViewRendered = function() {
+    };
+    
+    confirmController.prototype._onLinkConfirmSubmit = function() {
+        // 1. Биндинг
+        this._bindData();
+        
+        // 2. Отправка данных
+        this['_deleteLink']();
+        
+    };
+
+    confirmController.prototype._bindData = function() {
+        var data = {
+            linkId  : this._view.$('.link-id').val()
+        };
+        this._model.set(data);
+    };
+
+    confirmController.prototype._deleteLink = function() {
+        var me = this;
+        var afterSuccess = function(data){
+            var lbSuccess = data.success || false;
+            var lsMessage = data.message || '';
+            me._showMessage(lsMessage, lbSuccess);
+        };
+        var afterError = function(data){
+            var lsMessage = data.message || '';
+            Application.trigger('error:modal:show', lsMessage);
+        };
+        
+        this._showPreloader();
+        
+        CoreUtils.ajaxQuery({
+            url: Settings.url['deleteLink'],
+            method: 'POST',
+            data: {
+                model: me._model.toJSON()
+            }
+        },
+        {
+            afterSuccess: afterSuccess,
+            afterError: afterError
         });
-        this._model.set('checkedCategories', checkedIds);
     };
-    
-    categoriesController.prototype.getViewForDialog = function() {
-        if (this._view) {
+
+    confirmController.prototype.getViewForDialog = function(model) {
+        if (!_.isEmpty(this._view)) {
             this._view.destroy();
         }
-        this._view = new categoriesView();
+        this._view = new confirmView();
+        this._model = model;
         this._view.model = this._model;
         return this._view;
     };
 
-    categoriesController.prototype.getModel = function() {
-        return this._model;
+    confirmController.prototype._showPreloader = function() {
+        this.getView().$('.message-container').hide();
+        this.getView().$('.form-container').hide();
+        this.getView().$('.preloader-container').show();
+    };
+    
+    confirmController.prototype._showMessage = function(message, success) {
+        var messageClass = success ? 'success' : 'error';
+        this.getView().$('.preloader-container').hide();
+        this.getView().$('.form-container').hide();
+        this.getView().$('.message-container').show();
+        this.getView().$('.message-text').addClass(messageClass);
+        this.getView().$('.message-text').text(message);
     };
 
-    return categoriesController;
+    return confirmController;
 });

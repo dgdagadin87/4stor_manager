@@ -3,7 +3,7 @@ define(
         'backbone',
         'marionette',
         'Application',
-        'text!common/dialogs/message/templates/dialogMessageTemplate.html'
+        'text!common/dialogs/linkconfirm/templates/linkconfirmTemplate.html'
     ], function(
         Backbone,
         Marionette,
@@ -14,15 +14,12 @@ define(
             template : _.template(template),
 
             tagName: 'div',
-            className: 'message-container',
-            
-            events: {
-                'click .message-ok': 'onOkButtonClick'
-            },
+            className: 'settings-link-confirm-container',
 
-            onOkButtonClick: function(ev) {
-                ev.preventDefault();
-                this.trigger('dialog:close');
+            events : {
+                'click .link-submit' : 'onSubmitClick',
+                'click .link-cancel' : 'onCancelClick',
+                'click .link-ok' : 'onOkClick'
             },
 
             initialize: function() {
@@ -31,10 +28,24 @@ define(
             onRender: function() {
             },
             
+            onSubmitClick: function(ev) {
+                ev.preventDefault();
+                Application.trigger('confirmform:submit', this.model);
+            },
+            
+            onCancelClick: function(ev) {
+                ev.preventDefault();
+                this.trigger('dialog:close');
+            },
+            
+            onOkClick: function(ev) {
+                ev.preventDefault();
+                Application.trigger('synclinks:refresh');
+                this.trigger('dialog:close');
+            },
+            
             templateHelpers : function() {
-                return {
-                    message: this._message
-                };
+                return this.model.toJSON();
             }
         });
     }

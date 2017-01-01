@@ -14,7 +14,8 @@ define([
     'common/components/paging/pagingController',
     'modules/settings/components/grid/gridController',
     'modules/settings/components/toolbar/toolbarController',
-    'common/dialogs/linkform/linkformController'
+    'common/dialogs/linkform/linkformController',
+    'common/dialogs/linkconfirm/linkconfirmController'
 ], function (
     _,
     Backbone,
@@ -29,7 +30,8 @@ define([
     pagingController,
     gridController,
     toolbarController,
-    formController
+    formController,
+    confirmController
 ) {
     var settingsController = function(poConfig) {
 
@@ -77,6 +79,7 @@ define([
             eventPrefix : 'synclinks'
         });
         this._formComponent = new formController();
+        this._confirmComponent = new confirmController();
 
         this._init();
         this._bindEvents();
@@ -90,6 +93,7 @@ define([
         Application.on('synclinks:refresh', this._onRefresh.bind(this));
         Application.on('synclinks:page:change', this._onSettingsPageChange.bind(this));
         Application.on('linkform:dialog:open', this._onModalFormOpen.bind(this));
+        Application.on('linkconfirm:dialog:open', this._onModalConfirmOpen.bind(this));
     };
     
     settingsController.prototype._init = function() {
@@ -99,6 +103,12 @@ define([
         this._prepareData(data);
         var formView = this._formComponent.getViewForDialog(this._data, mode);
         Application.getMainLayout().getView()['dialogFrmRegion'].show(formView);
+    };
+    
+    settingsController.prototype._onModalConfirmOpen = function(data) {
+        this._prepareData(data);
+        var confirmView = this._confirmComponent.getViewForDialog(this._data);
+        Application.getMainLayout().getView()['dialogMsgRegion'].show(confirmView);
     };
     
     settingsController.prototype._onRefresh = function() {
