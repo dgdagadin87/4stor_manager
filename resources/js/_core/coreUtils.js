@@ -16,6 +16,23 @@ define([
 ) {
     return {
 
+        showListPreloader: function(view) {
+            var selector = '#__CONTENT_CONTAINER__';
+            var position = $(selector).position();
+            var outerWidth = $(selector).outerWidth();
+            var leftPosition = parseInt(position.left) + parseInt(outerWidth)/2;
+            var loader = view.$('.preloader');
+            loader.css({
+                'left': leftPosition+'px'
+            });
+            loader.show();
+        },
+        
+        hideListPreloader: function(view) {
+            var loader = view.$('.preloader');
+            loader.hide();
+        },
+
         getConstructorRegion: function(psAction) {
             var lsClassPrefix = 'index';
             if (psAction === 'index') {

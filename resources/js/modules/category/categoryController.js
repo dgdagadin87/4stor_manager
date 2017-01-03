@@ -121,7 +121,8 @@ define([
             
             Application.trigger('category:page:enable');
             Application.trigger('category:listbar:enable');
-            
+            Application.trigger('category:loader:hide');
+
             if (!lbSuccess) {
                 Application.trigger('error:modal:show', lsMessage);
             }
@@ -142,6 +143,7 @@ define([
         
         Application.trigger('category:page:disable');
         Application.trigger('category:listbar:disable');
+        Application.trigger('category:loader:show');
         
         CoreUtils.ajaxQuery({
             url: Settings.url.getCategoryData,

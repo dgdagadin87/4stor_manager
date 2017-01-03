@@ -25,6 +25,7 @@ define([
         this._regionName = loConfig.regionName;
         this._parentView = loConfig.parentView;
         this._toScrollId = loConfig.toScrollId;
+        this._eventPrefix = loConfig.eventPrefix || 'category';
         
         BaseController.call(this);
 
@@ -39,7 +40,14 @@ define([
     storlistController.prototype = Object.create(BaseController.prototype);
     
     storlistController.prototype._bindEvents = function() {
+        var me = this;
         this._view.on('render', this._onViewRendered.bind(this));
+        Application.on(me._eventPrefix+':loader:show', function(){
+            CoreUtils.showListPreloader(me._view);
+        });
+        Application.on(me._eventPrefix+':loader:hide', function(){
+            CoreUtils.hideListPreloader(me._view);
+        });
     };
     
     storlistController.prototype._init = function() {

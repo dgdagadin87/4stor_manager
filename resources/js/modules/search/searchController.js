@@ -92,6 +92,7 @@ define([
         this._listComponent = new storlistController({
             parentView: this._view,
             regionName: 'storlistRegion',
+            eventPrefix: 'search',
             toScrollId: 'searchListRegion'
         });
         this._pagingComponent = new pagingController({
@@ -291,6 +292,7 @@ define([
             Application.trigger('search:submit:enable');
             Application.trigger('search:page:enable');
             Application.trigger('search:listbar:enable');
+            Application.trigger('search:loader:hide');
             me._hideSearchSpinner();
 
             if (!lbSuccess) {
@@ -320,6 +322,7 @@ define([
         Application.trigger('search:submit:disable');
         Application.trigger('search:page:disable');
         Application.trigger('search:listbar:disable');
+        Application.trigger('search:loader:show');
 
         CoreUtils.ajaxQuery({
             url: Settings.url.getSearchData,
