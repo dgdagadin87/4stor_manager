@@ -75,7 +75,7 @@ body, html {
 .storlist-common-container {
     position: relative;
 }
-.storlist-common-container .preloader {
+.storlist-common-container .preloader, .settings-container .preloader {
     position: fixed;
     bottom:10px;
     background: #fff;

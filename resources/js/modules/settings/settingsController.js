@@ -88,12 +88,19 @@ define([
     settingsController.prototype = Object.create(BaseModule.prototype);
     
     settingsController.prototype._bindEvents = function() {
+        var me = this;
         this._view.on('render', this._onViewRendered.bind(this));
         this._meta.on('change', this._onMetaChanged.bind(this));
         Application.on('synclinks:refresh', this._onRefresh.bind(this));
         Application.on('synclinks:page:change', this._onSettingsPageChange.bind(this));
         Application.on('linkform:dialog:open', this._onModalFormOpen.bind(this));
         Application.on('linkconfirm:dialog:open', this._onModalConfirmOpen.bind(this));
+        Application.on('synclinks:loader:show', function(){
+            CoreUtils.showListPreloader(me._view);
+        });
+        Application.on('synclinks:loader:hide', function(){
+            CoreUtils.hideListPreloader(me._view);
+        });
     };
     
     settingsController.prototype._init = function() {
@@ -154,6 +161,7 @@ define([
     settingsController.prototype.loadData = function() {
         Application.trigger('synclinks:page:disable');
         Application.trigger('synclinks:controls:disable');
+        Application.trigger('synclinks:loader:show');
         
         CoreUtils.ajaxQuery({
             url: Settings.url.getLinksData,
@@ -190,6 +198,7 @@ define([
         if (isDataLoad) {
             Application.trigger('synclinks:page:enable');
             Application.trigger('synclinks:controls:enable');
+            Application.trigger('synclinks:loader:hide');
         }
 
         if (!lbSuccess) {
