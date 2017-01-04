@@ -42,7 +42,7 @@ class addLinkModel extends abstractModel {
         $linkName = DB_EscapeString('mysql', $this->connection, $linkName);
         $linkHref = DB_EscapeString('mysql', $this->connection, $linkHref);
 
-        $SQL = 'INSERT INTO sync_links (linkName, linkHref, linkIsOn, linkIsMultipage) VALUES (\'' . $linkName . '\', \'' . $linkName . '\', \'' . $linkIsOn . '\', \'' . $linkIsMulti . '\')';
+        $SQL = 'INSERT INTO sync_links (linkName, linkHref, linkIsOn, linkIsMultipage) VALUES (\'' . $linkName . '\', \'' . $linkHref . '\', \'' . $linkIsOn . '\', \'' . $linkIsMulti . '\')';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
             return 'Ошибка при добавлении ссылки для синхронизации';

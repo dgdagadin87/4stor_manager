@@ -47,7 +47,7 @@ class editLinkModel extends abstractModel {
         $linkName = DB_EscapeString('mysql', $this->connection, $linkName);
         $linkHref = DB_EscapeString('mysql', $this->connection, $linkHref);
 
-        $SQL = 'UPDATE sync_links SET linkName = \'' . $linkName . '\', linkHref = \'' . $linkName . '\', linkIsOn = \'' . $linkIsOn . '\', linkIsMultipage = \'' . $linkIsMulti . '\' WHERE linkId = ' . $linkId . '';
+        $SQL = 'UPDATE sync_links SET linkName = \'' . $linkName . '\', linkHref = \'' . $linkHref . '\', linkIsOn = \'' . $linkIsOn . '\', linkIsMultipage = \'' . $linkIsMulti . '\' WHERE linkId = ' . $linkId . '';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
             return 'Ошибка при редактировании ссылки для синхронизации';
