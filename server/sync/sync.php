@@ -10,7 +10,6 @@ require (__DIR__ . '/sync.model.php');
 set_time_limit(0);
 
 $sync = new serverSync(array(
-    'model'   => new serverSyncModel(),
-    'href'    => $argv[1]
+    'model' => new serverSyncModel()
 ));
 $sync->synchronize();

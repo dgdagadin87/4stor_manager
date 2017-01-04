@@ -4,8 +4,11 @@ class serverSyncModel {
     
     public $connection = null;
     
-    public function run ($paData) {
+    public function __construct () {
         $this->syncConnect();
+    }
+    
+    public function run ($paData) {
         foreach ($paData as $storId=>$storData) {
             $this->insertStor($storId, $storData);
         }
@@ -124,6 +127,25 @@ class serverSyncModel {
                 }
             }
         }
+    }
+    
+    public function getSyncLinks () {
+        $Return = array();
+        $SQL = 'SELECT * FROM sync_links sl WHERE linkIsOn = \'y\' ORDER BY sl.linkName ASC';
+        $Query = DB_Query ('mysql', $SQL, $this->connection);
+        if (!$Query) {
+            exit ($SQL . "\r\n" . DB_Error ('mysql', $this->connection));
+        }
+        while($Data = DB_FetchAssoc ('mysql', $Query)) {
+            $Return[] = array(
+                'linkId' => $Data['linkId'],
+                'linkName' => $Data['linkName'],
+                'linkHref' => $Data['linkHref'],
+                'linkIsOn' => $Data['linkIsOn'] === 'y' ? true : false,
+                'linkIsMultipage' => $Data['linkIsMultipage'] === 'y' ? true : false
+            );
+        }
+        return ($Return);
     }
     
     public function syncConnect () {

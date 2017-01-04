@@ -8,13 +8,29 @@ class serverSync {
     public $data;
     
     public function __construct($paConf) {
-        $this->href = $paConf['href'];
         $this->model = $paConf['model'];
     }
     
     public function synchronize() {
-        for ($i = 1; $i < 1000000; $i++) {
-            $this->_syncronizePage($this->href . 'page/' . $i . '/');
+        $syncLinks = $this->model->getSyncLinks();
+        foreach ($syncLinks as $linkData) {
+            $this->_syncronizeLink($linkData);
+        }
+    }
+    
+    public function _syncronizeLink($linkData) {
+        if ($linkData['linkIsMultipage'] === true) {
+            for ($i = 1; $i < 1000000; $i++) {
+                $syncPageResult = $this->_syncronizePage($linkData['linkHref'] . 'page/' . $i . '/');
+                if ($syncPageResult === false) {
+                    echo 'Link "' . $linkData['linkHref'] . '" is already synchronized';
+                    break;
+                }
+            }
+        }
+        else {
+            $this->_syncronizePage($linkData['linkHref']);
+            echo 'Link "' . $linkData['linkHref'] . '" is already synchronized';
         }
     }
     
@@ -47,7 +63,7 @@ class serverSync {
         
         // if is empty
         if (sizeof($laIds) < 1) {
-            exit('All stories of this category are synchronized.');
+            return false;
         }
         
         // Rating
