@@ -1,4 +1,4 @@
-DROP TABLE categories;
+DROP TABLE IF EXISTS categories;
 CREATE TABLE categories 
 (
     catId INT AUTO_INCREMENT NOT NULL , 
@@ -12,7 +12,7 @@ CREATE TABLE categories
 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
 ENGINE = MYISAM;
 
-DROP TABLE authors;
+DROP TABLE IF EXISTS authors;
 CREATE TABLE authors 
 (
     authorId INT AUTO_INCREMENT NOT NULL , 
@@ -26,7 +26,7 @@ CREATE TABLE authors
 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
 ENGINE = MYISAM;
 
-DROP TABLE stories;
+DROP TABLE IF EXISTS stories;
 CREATE TABLE stories 
 (
     storId BIGINT NOT NULL , 
@@ -45,7 +45,7 @@ CREATE TABLE stories
 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
 ENGINE = MYISAM;
 
-DROP TABLE cats2stories;
+DROP TABLE IF EXISTS cats2stories;
 CREATE TABLE cats2stories 
 (
     cat2storId BIGINT AUTO_INCREMENT NOT NULL , 
@@ -58,7 +58,7 @@ CREATE TABLE cats2stories
 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
 ENGINE = MYISAM;
 
-DROP TABLE settings;
+DROP TABLE IF EXISTS settings;
 CREATE TABLE settings 
 (
     settingId BIGINT AUTO_INCREMENT NOT NULL , 
@@ -71,7 +71,7 @@ CREATE TABLE settings
 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
 ENGINE = MYISAM;
 
-DROP TABLE sync_links;
+DROP TABLE IF EXISTS sync_links;
 CREATE TABLE sync_links 
 (
     linkId BIGINT AUTO_INCREMENT NOT NULL , 
@@ -86,7 +86,7 @@ CREATE TABLE sync_links
 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
 ENGINE = MYISAM;
 
-DROP TABLE queries;
+DROP TABLE IF EXISTS queries;
 CREATE TABLE queries 
 (
     queryId BIGINT AUTO_INCREMENT NOT NULL , 
