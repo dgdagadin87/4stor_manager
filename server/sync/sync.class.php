@@ -60,7 +60,7 @@ class serverSync {
                 $lnCnt++;
             }
         }
-        
+
         // if is empty
         if (sizeof($laIds) < 1) {
             return false;
@@ -106,16 +106,21 @@ class serverSync {
             $laCurCats = $catList->length < 1 ? array() : $this->_getStorCats($catList->item(0));
             $laCats[$_Cnt] = $laCurCats;
         }
-
-        $this->data = $this->_getStorArray($laIds, $laNames, $laLinks, $laRates, $laDescs, $laAuthors, $laCats, $laDates, $laWatches, $laComments);
         
+        $this->data = $this->_getStorArray($laIds, $laNames, $laLinks, $laRates, $laDescs, $laAuthors, $laCats, $laDates, $laWatches, $laComments);
+        //$this->_ouputDebug();
         $this->_putPageIntoDB();
     }
     
     private function _getStorId($element) {
         $link = $element->getAttribute('href');
-        preg_match('/\/(([\d]{1,100})-[\-a-zA-Z]+?)\.html$/ui', $link, $match);
-        $lnId = isset($match[2]) ? $match[2] : 0;
+        //preg_match('/\/(([\d]{1,100})-[\-a-zA-Z]+?)\.html$/ui', $link, $match);
+        //$lnId = isset($match[2]) ? $match[2] : 0;
+        $linkArray = explode('/', $link);
+        $lastElementIndex = sizeof($linkArray) - 1;
+        $lastElement = $linkArray[$lastElementIndex];
+        $lastArray = explode('-', $lastElement);
+        $lnId = $lastArray[0];
         return ($lnId);
     }
     
@@ -213,6 +218,7 @@ class serverSync {
     }
     
     private function _ouputDebug () {
+        header('Content-Type: text/html; charset=utf-8');
         echo '<pre>';
         var_dump($this->data);
         exit;
