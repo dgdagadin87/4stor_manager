@@ -65,98 +65,137 @@ class serverSync {
         if (sizeof($laIds) < 1) {
             return false;
         }
-        
-        // Rating
-        $elements = $this->xpath->query(".//*[@class='story_item']/header/h2/div[@class='rate']/span");
-        if (!is_null($elements)) {
-            $lnCnt = 0;
-            foreach ($elements as $element) {
-                $lnRate = $this->_getStorRate($element);
-                
-                $laRates[$lnCnt] = $lnRate;
-                
-                $lnCnt++;
-            }
+
+        for ($_Cnt = 0; $_Cnt < sizeof($laIds); $_Cnt++) {
+            
+            // xpath counter
+            $xpathCnt = $_Cnt + 1;
+            
+            // Rating
+            $ratingList = $this->xpath->query(".//*[@id='dle-content']/section[" . $xpathCnt . "]/header/h2/div/span");
+            $lnRate = $ratingList->length < 1 ? "0" : $this->_getStorRate($ratingList->item(0));
+            $laRates[$_Cnt] = $lnRate;
+            
+            // Num watches
+            $watchesList = $this->xpath->query(".//*[@id='dle-content']/section[" . $xpathCnt . "]/footer/span/span[2]");
+            $lnWatches = $watchesList->length < 1 ? 0 : $this->_getNumWatches($watchesList->item(0));
+            $laWatches[$_Cnt] = $lnWatches;
+            
+            // Num comments
+            $commentsList = $this->xpath->query(".//*[@id='dle-content']/section[" . $xpathCnt . "]/footer/span/span[3]/a/span");
+            $lnComments = $commentsList->length < 1 ? 0 : $this->_getNumComments($commentsList->item(0));
+            $laComments[$_Cnt] = $lnComments;
+            
+            // Short desc
+            $descList = $this->xpath->query(".//*[@id='dle-content']/section[" . $xpathCnt . "]/div[@class='desc']/p");
+            $lsDesc = $descList->length < 1 ? '' : $this->_getStorDesc($descList->item(0));
+            $laDescs[$_Cnt] = $lsDesc;
+
+            // Date
+            $dateList = $this->xpath->query(".//*[@id='dle-content']/section[" . $xpathCnt . "]/footer/span[@class='white']");
+            $lsDate = $dateList->length < 1 ? '' : $this->_getStorDate($dateList->item(0));
+            $laDates[$_Cnt] = $lsDate;
+            
+            // Author
+            $authorList = $this->xpath->query(".//*[@id='dle-content']/section[" . $xpathCnt . "]/footer/span[@class='white']/span[@class='autor']/a");
+            $laCurAuthor = $authorList->length < 1 ? array() : $this->_getStorAuthor($authorList->item(0));
+            $laAuthors[$_Cnt] = $laCurAuthor;
+            
+            // Cats
+            $catList = $this->xpath->query(".//*[@id='dle-content']/section[" . $xpathCnt . "]/header/div[@class='parent']");
+            $laCurCats = $catList->length < 1 ? array() : $this->_getStorAuthor($catList->item(0));
+            $laCats[$_Cnt] = $laCurCats;
         }
+//        $elements = $this->xpath->query(".//*[@class='story_item']/header/h2/div[@class='rate']/span");
+//        if (!is_null($elements)) {
+//            $lnCnt = 0;
+//            foreach ($elements as $element) {
+//                $lnRate = $this->_getStorRate($element);
+//                
+//                $laRates[$lnCnt] = $lnRate;
+//                
+//                $lnCnt++;
+//            }
+//        }
         
         // Num watches
-        $elements = $this->xpath->query(".//*[@class='story_item']/footer/span/span[2]");
-        if (!is_null($elements)) {
-            $lnCnt = 0;
-            foreach ($elements as $element) {
-                $lnWatches = $this->_getNumWatches($element);
-                
-                $laWatches[$lnCnt] = $lnWatches;
-                
-                $lnCnt++;
-            }
-        }
+//        $elements = $this->xpath->query(".//*[@class='story_item']/footer/span/span[2]");
+//        if (!is_null($elements)) {
+//            $lnCnt = 0;
+//            foreach ($elements as $element) {
+//                $lnWatches = $this->_getNumWatches($element);
+//                
+//                $laWatches[$lnCnt] = $lnWatches;
+//                
+//                $lnCnt++;
+//            }
+//        }
         
         // Num comments
-        $elements = $this->xpath->query(".//*[@class='story_item']/footer/span/span[3]/a/span");
-        if (!is_null($elements)) {
-            $lnCnt = 0;
-            foreach ($elements as $element) {
-                $lnComments = $this->_getNumComments($element);
-                
-                $laComments[$lnCnt] = $lnComments;
-                
-                $lnCnt++;
-            }
-        }
+//        $elements = $this->xpath->query(".//*[@class='story_item']/footer/span/span[3]/a/span");
+//        if (!is_null($elements)) {
+//            $lnCnt = 0;
+//            foreach ($elements as $element) {
+//                $lnComments = $this->_getNumComments($element);
+//                
+//                $laComments[$lnCnt] = $lnComments;
+//                
+//                $lnCnt++;
+//            }
+//        }
         
         // Short desc
-        $elements = $this->xpath->query(".//*[@class='story_item']/div[@class='desc']/p");
-        if (!is_null($elements)) {
-            $lnCnt = 0;
-            foreach ($elements as $element) {
-                $lsDesc = $this->_getStorDesc($element);
-                
-                $laDescs[$lnCnt] = $lsDesc;
-                
-                $lnCnt++;
-            }
-        }
+//        $elements = $this->xpath->query(".//*[@class='story_item']/div[@class='desc']/p");
+//        if (!is_null($elements)) {
+//            $lnCnt = 0;
+//            foreach ($elements as $element) {
+//                $lsDesc = $this->_getStorDesc($element);
+//                
+//                $laDescs[$lnCnt] = $lsDesc;
+//                
+//                $lnCnt++;
+//            }
+//        }
         
         // Date
-        $elements = $this->xpath->query(".//*[@class='story_item']/footer/span[@class='white']");
-        if (!is_null($elements)) {
-            $lnCnt = 0;
-            foreach ($elements as $element) {
-                $lsDate = $this->_getStorDate($element);
-                
-                $laDates[$lnCnt] = $lsDate;
-                
-                $lnCnt++;
-            }
-        }
-        
+//        $elements = $this->xpath->query(".//*[@class='story_item']/footer/span[@class='white']");
+//        if (!is_null($elements)) {
+//            $lnCnt = 0;
+//            foreach ($elements as $element) {
+//                $lsDate = $this->_getStorDate($element);
+//
+//                $laDates[$lnCnt] = $lsDate;
+//
+//                $lnCnt++;
+//            }
+//        }
+
         // Author
-        $elements = $this->xpath->query(".//*[@class='story_item']/footer/span[@class='white']/span[@class='autor']/a");
-        if (!is_null($elements)) {
-            $lnCnt = 0;
-            foreach ($elements as $element) {
-                $laCurAuthor = $this->_getStorAuthor($element);
-                
-                $laAuthors[$lnCnt] = $laCurAuthor;
-                
-                $lnCnt++;
-            }
-        }
+//        $elements = $this->xpath->query(".//*[@class='story_item']/footer/span[@class='white']/span[@class='autor']/a");
+//        if (!is_null($elements)) {
+//            $lnCnt = 0;
+//            foreach ($elements as $element) {
+//                $laCurAuthor = $this->_getStorAuthor($element);
+//
+//                $laAuthors[$lnCnt] = $laCurAuthor;
+//                
+//                $lnCnt++;
+//            }
+//        }
         
         // Cats
-        $elements = $this->xpath->query(".//*[@class='story_item']/header/div[@class='parent']");
-        if (!is_null($elements)) {
-            $lnCnt = 0;
-            foreach ($elements as $element) {
-                $laCurCats = $this->_getStorCats($element);
-                
-                $laCats[$lnCnt] = $laCurCats;
-                
-                $lnCnt++;
-            }
-        }
-        
+//        $elements = $this->xpath->query(".//*[@class='story_item']/header/div[@class='parent']");
+//        if (!is_null($elements)) {
+//            $lnCnt = 0;
+//            foreach ($elements as $element) {
+//                $laCurCats = $this->_getStorCats($element);
+//                
+//                $laCats[$lnCnt] = $laCurCats;
+//                
+//                $lnCnt++;
+//            }
+//        }
+
         $this->data = $this->_getStorArray($laIds, $laNames, $laLinks, $laRates, $laDescs, $laAuthors, $laCats, $laDates, $laWatches, $laComments);
         
         $this->_putPageIntoDB();
@@ -217,7 +256,6 @@ class serverSync {
     private function _getNumComments($element) {
         $value = $element->nodeValue;
         $value = empty($value) ? '0' : intval($value);
-        if ($element->nodeValue=='') {var_dump($value);exit;}
         return ($value);
     }
     
@@ -242,13 +280,14 @@ class serverSync {
     private function _getStorArray($paIds, $paNames, $paLinks, $paRates, $paDescs, $paAuthors, $paCats, $paDates, $paWatches, $paComments) {
         $laReturn = array();
         $lnSizeof = sizeof($paIds);
+
         for ($i = 0; $i < $lnSizeof; $i++) {
             $laCurStor = array(
                 'name'    => $paNames[$i],
                 'link'    => $paLinks[$i],
                 'rate'    => $paRates[$i],
                 'watches' => $paWatches[$i],
-                'comments'=> $paComments[$i],
+                'comments'=> !isset($paComments[$i]) ? 0 : intval($paComments[$i]),
                 'date'    => $paDates[$i],
                 'desc'    => $paDescs[$i],
                 'author'  => $paAuthors[$i],
