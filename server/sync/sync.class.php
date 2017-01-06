@@ -103,7 +103,7 @@ class serverSync {
             
             // Cats
             $catList = $this->xpath->query(".//*[@id='dle-content']/section[" . $xpathCnt . "]/header/div[@class='parent']");
-            $laCurCats = $catList->length < 1 ? array() : $this->_getStorAuthor($catList->item(0));
+            $laCurCats = $catList->length < 1 ? array() : $this->_getStorCats($catList->item(0));
             $laCats[$_Cnt] = $laCurCats;
         }
 
