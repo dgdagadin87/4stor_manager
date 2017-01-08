@@ -269,8 +269,17 @@ body, html {
     display: inline-block;
 }
 
-.catlist-best {
+.categories-container .category-list-item {
+    margin: 2px 0;
+}
+.categories-container .catlist-item {
+    display: block;
+}
+.categories-container .catlist-best {
     color: red;
+}
+.categories-container .category-important {
+    background: #eee;
 }
 
 .settings-container .title {

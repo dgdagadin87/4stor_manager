@@ -12,6 +12,8 @@ CREATE TABLE categories
 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
 ENGINE = MYISAM;
 
+ALTER TABLE `categories` ADD `catImportant` VARCHAR(1) NOT NULL DEFAULT 'n' ;
+
 DROP TABLE IF EXISTS authors;
 CREATE TABLE authors 
 (

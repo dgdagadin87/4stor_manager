@@ -28,7 +28,7 @@ class commonModel {
     }
     
     public function getCategories() {
-        $SQL = 'SELECT *, (SELECT COUNT(*) FROM `cats2stories` WHERE categories.catId = cats2stories.catId) AS numStors FROM `categories`';
+        $SQL = 'SELECT *, (SELECT COUNT(*) FROM `cats2stories` WHERE categories.catId = cats2stories.catId) AS numStors FROM `categories` ORDER BY catImportant DESC';
         $Query = DB_Query ('mysql', $SQL, $this->connection);
         if (!$Query) {
             return 'Ошибка при получении списка категорий';
@@ -40,6 +40,7 @@ class commonModel {
             $category['categoryName'] = $catData['catName'];
             $category['categoryHref'] = $catData['catHref'];
             $category['categoryStors'] = $catData['numStors'];
+            $category['categoryImportant'] = $catData['catImportant'];
             $categories[] = $category;
         }
         return $categories;
