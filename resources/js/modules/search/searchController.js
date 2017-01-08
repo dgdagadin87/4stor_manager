@@ -210,9 +210,9 @@ define([
                 return false;
             }
         });
-        if (isAllEmpty) {
-            errors.push('Хотя бы один критерий поиска должен быть заполнен');
-        }
+        //if (isAllEmpty) {
+        //    errors.push('Хотя бы один критерий поиска должен быть заполнен');
+        //}
         if (errors.length > 0) {
             return errors;
         }

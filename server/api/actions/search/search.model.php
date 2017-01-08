@@ -34,14 +34,14 @@ class searchModel extends abstractModel {
         
         // критерии поиска
         $storName = isset($_POST['storName']) && !empty($_POST['storName']) ? trim($_POST['storName']) : null;
-        $storRateStart = isset($_POST['storRateStart']) && !empty($_POST['storRateStart']) ? intval($_POST['storRateStart']) : null;
-        $storRateEnd = isset($_POST['storRateEnd']) && !empty($_POST['storRateEnd']) ? intval($_POST['storRateEnd']) : null;
+        $storRateStart = isset($_POST['storRateStart']) && ctype_digit($_POST['storRateStart']) ? intval($_POST['storRateStart']) : null;
+        $storRateEnd = isset($_POST['storRateEnd']) && ctype_digit($_POST['storRateEnd']) ? intval($_POST['storRateEnd']) : null;
         $storDateFrom = isset($_POST['storDateFrom']) && !empty($_POST['storDateFrom']) ? $_POST['storDateFrom'] : null;
         $storDateTo = isset($_POST['storDateTo']) && !empty($_POST['storDateTo']) ? $_POST['storDateTo'] : null;
-        $storWatchesFrom = isset($_POST['storWatchesFrom']) && !empty($_POST['storWatchesFrom']) ? intval($_POST['storWatchesFrom']) : null;
-        $storWatchesTo = isset($_POST['storWatchesTo']) ? $_POST['storWatchesTo'] : null;
-        $storCommentsFrom = isset($_POST['storCommentsFrom']) && !empty($_POST['storCommentsFrom']) ? intval($_POST['storCommentsFrom']) : null;
-        $storCommentsTo = isset($_POST['storCommentsFrom']) ? $_POST['storCommentsFrom'] : null;
+        $storWatchesFrom = isset($_POST['storWatchesFrom']) && ctype_digit($_POST['storWatchesFrom']) ? intval($_POST['storWatchesFrom']) : null;
+        $storWatchesTo = isset($_POST['storWatchesTo']) && ctype_digit($_POST['storWatchesTo']) ? intval($_POST['storWatchesTo']) : null;
+        $storCommentsFrom = isset($_POST['storCommentsFrom']) && ctype_digit($_POST['storCommentsFrom']) ? intval($_POST['storCommentsFrom']) : null;
+        $storCommentsTo = isset($_POST['storCommentsTo']) && ctype_digit($_POST['storCommentsTo']) ? intval($_POST['storCommentsTo']) : null;
         
         // категории
         $catsList = isset($_POST['categories']) && is_array($_POST['categories']) ? $_POST['categories'] : array();
@@ -50,11 +50,11 @@ class searchModel extends abstractModel {
         if (sizeof($catsList) < 1) {
             return 'Хотя бы одна категория должна быть выбрана';
         }
-        
+
         // все критерии пустые
-        if (empty($storName) && empty($storRateStart) && empty($storRateEnd) && empty($storDateFrom) && empty($storDateTo) && empty($storWatchesFrom) && empty($storWatchesTo) && empty($storCommentsFrom) && empty($storCommentsTo)) {
-            return 'Хотя бы один критерий для поиска должен быть заполнен';
-        }
+        //if (empty($storName) && empty($storRateStart) && empty($storRateEnd) && empty($storDateFrom) && empty($storDateTo) && empty($storWatchesFrom) && empty($storWatchesTo) && empty($storCommentsFrom) && empty($storCommentsTo)) {
+        //    return 'Хотя бы один критерий для поиска должен быть заполнен';
+        //}
         
         // Если минимальный рейтинг больше максимального
         if (!empty($storRateStart) && !empty($storRateEnd) && ($storRateStart > $storRateEnd)) {
@@ -213,28 +213,28 @@ class searchModel extends abstractModel {
             $laConditions[] = 's.storName LIKE "%' . DB_EscapeString('mysql', $this->connection, $this->storName) . '%"';
         }
         
-        if (!empty($this->storRateStart)) {
+        if (!is_null($this->storRateStart)) {
             $laConditions[] = 's.storRate >= ' . $this->storRateStart . '';
         }
         
-        if (!empty($this->storRateEnd)) {
+        if (!is_null($this->storRateEnd)) {
             $laConditions[] = 's.storRate <= ' . $this->storRateEnd . '';
         }
         
-        if (!empty($this->storWatchesFrom)) {
+        if (!is_null($this->storWatchesFrom)) {
             $laConditions[] = 's.storWatches >= ' . $this->storWatchesFrom . '';
         }
         
-        if (!empty($this->storWatchesTo)) {
+        if (!is_null($this->storWatchesTo)) {
             $laConditions[] = 's.storWatches <= ' . $this->storWatchesTo . '';
         }
         
-        if (!empty($this->storCommentsFrom)) {
+        if (!is_null($this->storCommentsFrom)) {
             $laConditions[] = 's.storComments >= ' . $this->storCommentsFrom . '';
         }
         
-        if (!empty($this->storCommentsFrom)) {
-            $laConditions[] = 's.storComments <= ' . $this->storCommentsFrom . '';
+        if (!is_null($this->storCommentsTo)) {
+            $laConditions[] = 's.storComments <= ' . $this->storCommentsTo . '';
         }
         
         if (!empty($this->storDateFrom)) {
