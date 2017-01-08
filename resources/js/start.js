@@ -5,7 +5,6 @@ require.config({
         jquery         : 'library/jquery/jquery',
         jquery_ui          : 'library/jquery/jquery-ui',
         jquery_migrate     : 'library/jquery/jquery-migrate.min',
-        //jquery             : 'library/jquery/jquery-wrapper',
         underscore         : 'library/underscore/underscore',
         backbone           : 'library/backbone/backbone',
         marionette         : 'library/backbone/backbone.marionette',
@@ -23,9 +22,6 @@ require.config({
         chartManager       : '_core/chartManager'
     },
     shim : {
-//        'jquery_migrate' : {
-//            deps : [ 'jquery_src' ]
-//        },
         'jquery_ui' : {
             deps : [ 'jquery' ]
         },
