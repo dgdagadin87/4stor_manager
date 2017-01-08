@@ -30,7 +30,7 @@ class serverSync {
         }
         else {
             $this->_syncronizePage($linkData['linkHref']);
-            echo 'Link "' . $linkData['linkHref'] . '" is already synchronized' . "\n\r";
+            echo 'Link "' . $linkData['linkHref'] . '" is already synchronized' . "\r\n";
         }
     }
     
