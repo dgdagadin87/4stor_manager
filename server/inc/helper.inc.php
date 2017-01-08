@@ -29,10 +29,22 @@ class Helper {
         );
     }
     
-    public static function Main_ConvertDate($psDate) {
-        $paDate = explode('.', $psDate);
-        $return = $paDate[2] . '.' . $paDate[1] . '.' . $paDate[0];
-        return $return;
+    public static function Main_ConvertDate($psDate, $psMode='BASE') {
+        if ($psMode === 'BASE') {
+            $paDate = explode('.', $psDate);
+            $return = $paDate[2] . '.' . $paDate[1] . '.' . $paDate[0];
+            return $return;
+        }
+        if ($psMode === 'OUTPUT') {
+            $paDate = explode(' ', $psDate);
+            $psFirst = $paDate[0];
+            $paFirst = explode('-', $psFirst);
+            $dayMonthYear = $paFirst[2] . '.' . $paFirst[1] . '.' . $paFirst[0];
+            $psSecond = $paDate[1];
+            $paSecond = explode(':', $psSecond);
+            $hourMinute = $paSecond[0] . ':' . $paSecond[1];
+            return ($dayMonthYear . ' в ' . $hourMinute);
+        }
     }
     
     public static function Main_Validate() {

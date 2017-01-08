@@ -105,7 +105,7 @@ class indexModel extends abstractModel {
                         'storAuthorName' => '',
                         'storAuthorHref' => '',
                         'storRate'       => $Data['storRate'],
-                        'storDate'       => $Data['storDate'],
+                        'storDate'       => Helper::Main_ConvertDate($Data['storDate'], 'OUTPUT'),
                         'storWatches'    => $Data['storWatches'],
                         'storComments'   => $Data['storComments'],
                         'storCats'       => array()
