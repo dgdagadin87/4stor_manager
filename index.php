@@ -1,3 +1,19 @@
+<?php
+
+require ('server/cfg/config.php');
+require ('server/inc/db.inc.php');
+require ('server/inc/helper.inc.php');
+require ('server/abstract/abstract.model.php');
+
+set_time_limit(0);
+
+$mode = Helper::Main_GetMode();
+
+header('Content-Type: text/html; charset=utf-8');
+
+if ($mode === 'gui') {
+   
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="ru">
     <head>
@@ -16,3 +32,11 @@
         <div class="spinner-message">Подождите, идет загрузка общих компонентов...</div>
     </body>
 </html>
+<?php
+
+}
+else if ($mode === 'json') {
+    require('server/actions/json.php');
+}
+
+?>

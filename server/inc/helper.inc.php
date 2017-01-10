@@ -53,6 +53,17 @@ class Helper {
         }
     }
     
+    public static function Main_GetMode() {
+        $mode = isset($_GET['mode']) ? $_GET['mode'] : 'gui';
+        switch($mode){
+            case 'gui':
+            default:
+                return 'gui';
+            case 'json':
+                return 'json';
+        }
+    }
+    
     public static function Main_StringToBool($string) {
         if ($string === 'false') {
             return false;

@@ -7,16 +7,16 @@ define({
         "numRight" : 2
     },
     "url": {
-        "getCommonData": "/server/api/json.php?action=common",
-        "getIndexData": "/server/api/json.php?action=index",
-        "getCategoryData": "/server/api/json.php?action=category",
-        "getSearchData": "/server/api/json.php?action=search",
-        "getStatisticsData": "/server/api/json.php?action=statistics",
-        "getStatchartData": "/server/api/json.php?action=statchart",
-        "getLinksData": "/server/api/json.php?action=synclinks",
+        "getCommonData": "/index.php?mode=json&action=common",
+        "getIndexData": "/index.php?mode=json&action=index",
+        "getCategoryData": "/index.php?mode=json&action=category",
+        "getSearchData": "/index.php?mode=json&action=search",
+        "getStatisticsData": "/index.php?mode=json&action=statistics",
+        "getStatchartData": "/index.php?mode=json&action=statchart",
+        "getLinksData": "/index.php?mode=json&action=synclinks",
         
-        "addLink": "/server/api/json.php?action=addlink",
-        "editLink": "/server/api/json.php?action=editlink",
-        "deleteLink": "/server/api/json.php?action=dellink"
+        "addLink": "/index.php?mode=json&action=addlink",
+        "editLink": "/index.php?mode=json&action=editlink",
+        "deleteLink": "/index.php?mode=json&action=dellink"
     }
 });
