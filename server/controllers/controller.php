@@ -3,7 +3,14 @@
 class Controller {
 
     public static function Login(){
-        
+        if (!isset($_POST['login']) || empty($_POST['login']) || !isset($_POST['pass']) || empty($_POST['pass'])) {
+            echo (json_encode(array(
+                'success' => false,
+                'message' => 'Не заполнен логин и/или пароль',
+                'data' => array()
+            )));
+            exit();
+        }
     }
     public static function JSON(){
         if (Session::CheckToken()) {
