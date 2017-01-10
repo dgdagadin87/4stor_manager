@@ -3,23 +3,23 @@ require.config({
     urlArgs: "bust=" + (new Date()).getTime(),
     paths : {
         jquery         : 'library/jquery/jquery',
-        jquery_ui          : 'library/jquery/jquery-ui',
-        jquery_migrate     : 'library/jquery/jquery-migrate.min',
-        underscore         : 'library/underscore/underscore',
-        backbone           : 'library/backbone/backbone',
-        marionette         : 'library/backbone/backbone.marionette',
-        Chartist           : 'library/chartist/chartist.min',
+        jquery_ui      : 'library/jquery/jquery-ui',
+        jquery_migrate : 'library/jquery/jquery-migrate.min',
+        underscore     : 'library/underscore/underscore',
+        backbone       : 'library/backbone/backbone',
+        marionette     : 'library/backbone/backbone.marionette',
+        Chartist       : 'library/chartist/chartist.min',
 
-        text               : 'library/require/text',
+        text           : 'library/require/text',
 		
-        Application        : 'application/Application',
-        Router             : 'application/Router',
-        MainController     : 'application/MainController',
+        Application    : 'application/Application',
+        Router         : 'application/Router',
+        MainController : 'application/MainController',
 		
-        settings           : 'config/settings',
-        coreUtils          : '_core/coreUtils',
-        regionManager      : '_core/regionManager',
-        chartManager       : '_core/chartManager'
+        settings       : 'config/settings',
+        coreUtils      : '_core/coreUtils',
+        regionManager  : '_core/regionManager',
+        chartManager   : '_core/chartManager'
     },
     shim : {
         'jquery_ui' : {

@@ -112,21 +112,5 @@ class Helper {
         }
     }
     
-    public static function Main_Login(){
-        
-    }
-    public static function Main_JSON(){
-        if (Session::CheckToken()) {
-            require('server/actions/json.php');
-        }
-        else {
-            
-        }
-    }
-    public static function Main_GUI(){
-        Session::CheckToken() ? Tpl::loadMain() : Tpl::loadLogin();
-    }
-    
-    
 }
 

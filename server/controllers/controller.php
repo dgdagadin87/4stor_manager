@@ -15,8 +15,8 @@ class Controller {
     public static function JSON(){
         if (Session::CheckToken()) {
             $lsAction = isset($_GET['action']) && in_array($_GET['action'], Helper::Main_GetActions()) ? $_GET['action'] : 'index';
-            require 'server/actions/' . $lsAction . '/' . $lsAction . '.model.php';
-            require 'server/actions/' . $lsAction . '/' . $lsAction . '.php';
+            require __DIR__ . '/../api/actions/' . $lsAction . '/' . $lsAction . '.model.php';
+            require __DIR__ . '/../api/actions/' . $lsAction . '/' . $lsAction . '.php';
         }
         else {
             echo (json_encode(array(

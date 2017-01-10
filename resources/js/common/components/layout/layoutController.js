@@ -187,7 +187,7 @@ define([
             }
         };
         var afterError = function(){
-            Application.trigger('error:modal:show', 'Ошибка на севере');
+            alert('Ошибка на севере');
         };
         
         me._currentPage = action;

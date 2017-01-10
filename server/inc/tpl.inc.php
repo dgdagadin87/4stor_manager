@@ -3,11 +3,11 @@
 class Tpl {
     
     public static function loadMain() {
-        include 'templates/main.tpl.php';
+        include __DIR__ . '/../templates/main.tpl.php';
     }
     
     public static function loadLogin() {
-        include 'templates/login.tpl.php';
+        include __DIR__ . '/../templates/login.tpl.php';
     }
     
 }
