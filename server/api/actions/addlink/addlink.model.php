@@ -3,7 +3,6 @@
 class addLinkModel extends abstractModel {
 
     public function run () {
-        $this->connect();
         return $this->addLink();
     }
     

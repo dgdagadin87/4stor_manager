@@ -23,7 +23,6 @@ class searchModel extends abstractModel {
     public $categoryList = array();
     
     public function run () {
-        $this->connect();
         return $this->getSearch();
     }
     

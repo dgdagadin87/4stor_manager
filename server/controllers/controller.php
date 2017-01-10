@@ -2,7 +2,7 @@
 
 class Controller {
 
-    public static function Login(){
+    public static function actionLogin(){
         if (!isset($_POST['login']) || empty($_POST['login']) || !isset($_POST['pass']) || empty($_POST['pass'])) {
             echo (json_encode(array(
                 'success' => false,
@@ -12,7 +12,7 @@ class Controller {
             exit();
         }
     }
-    public static function JSON(){
+    public static function actionJSON(){
         if (Session::CheckToken()) {
             $lsAction = isset($_GET['action']) && in_array($_GET['action'], Helper::Main_GetActions()) ? $_GET['action'] : 'index';
             require __DIR__ . '/../api/actions/' . $lsAction . '/' . $lsAction . '.model.php';
@@ -27,7 +27,7 @@ class Controller {
             exit();
         }
     }
-    public static function GUI(){
+    public static function actionGUI(){
         Session::CheckToken() ? Tpl::loadMain() : Tpl::loadLogin();
     }
 

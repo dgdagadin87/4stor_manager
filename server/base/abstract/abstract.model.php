@@ -8,6 +8,10 @@ abstract class abstractModel {
     
     abstract function run();
 
+    public function __construct() {
+        $this->connection = DbConnection::getInstance()->getConnection();
+    }
+    
     public function getFullStorCatList ($storIds) {
         $laStors = array();
         $SQL = 'SELECT catId, storId FROM cats2stories WHERE storId IN (' . implode(',', $storIds) . ')';
@@ -61,13 +65,6 @@ abstract class abstractModel {
             'ASC',
             'DESC'
         );
-    }
-    
-    public function connect () {
-        if (is_null($this->connection)) {
-            $this->connection = DB_Connect('mysql');
-        }
-        DB_SetUTF8($this->connection, 'mysql');
     }
     
 }

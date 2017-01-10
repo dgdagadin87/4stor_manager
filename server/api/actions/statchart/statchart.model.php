@@ -3,7 +3,6 @@
 class statchartModel extends abstractModel {
     
     public function run () {
-        $this->connect();
         return $this->getStatchart();
     }
     

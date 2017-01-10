@@ -1,11 +1,8 @@
 <?php
 
-class commonModel {
-    
-    public $connection = null;
+class commonModel extends abstractModel {
     
     public function run () {
-        $this->connect();
         return $this->getCommon();
     }
     
@@ -101,12 +98,4 @@ class commonModel {
         );
     }
     
-    public function connect () {
-        if (is_null($this->connection)) {
-            $this->connection = DB_Connect('mysql');
-        }
-        DB_SetUTF8($this->connection, 'mysql');
-    }
-    
 }
-

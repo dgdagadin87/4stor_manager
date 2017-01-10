@@ -3,7 +3,6 @@
 class statisticsModel extends abstractModel {
     
     public function run () {
-        $this->connect();
         return $this->getStatistics();
     }
     

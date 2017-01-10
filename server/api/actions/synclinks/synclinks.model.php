@@ -8,7 +8,6 @@ class synclinksModel extends abstractModel {
     public $numOfLinks = 0;
     
     public function run () {
-        $this->connect();
         return $this->getLinks();
     }
     

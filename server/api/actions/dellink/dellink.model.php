@@ -3,7 +3,6 @@
 class delLinkModel extends abstractModel {
 
     public function run () {
-        $this->connect();
         return $this->delLink();
     }
 

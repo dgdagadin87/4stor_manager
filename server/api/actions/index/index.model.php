@@ -2,8 +2,6 @@
 
 class indexModel extends abstractModel {
     
-    public $connection = null;
-    
     public $categories = array();
     
     public $lifeHistoriesId = null;
@@ -11,7 +9,6 @@ class indexModel extends abstractModel {
     public $natHistoriesId  = null;
     
     public function run () {
-        $this->connect();
         $this->setCatsIdByName();
         return $this->getIndex();
     }

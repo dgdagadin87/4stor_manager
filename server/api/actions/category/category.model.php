@@ -14,7 +14,6 @@ class categoryModel extends abstractModel {
     public $sortType = '';
     
     public function run () {
-        $this->connect();
         return $this->getCategory();
     }
     
