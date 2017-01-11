@@ -12,19 +12,16 @@ class Session {
         session_start();
     }
     
-    public static function CheckToken() {
-        return true;
-        if (!isset($_SESSION['_token'])) {
+    public static function CheckAuth() {
+        if (!isset($_SESSION['token'])) {
             return false;
         }
-        if (!isset($_SERVER['_token'])) {
-            return false;
-        }
-        if ($_SESSION['_token'] <> $_SERVER['_token']) {
+        if (!isset($_SESSION['user'])) {
             return false;
         }
         return true;
     }
+    
     
     public static function GetSessionId() {
         return (session_id());

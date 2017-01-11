@@ -13,7 +13,7 @@ class Controller {
         }
     }
     public static function actionJSON(){
-        if (Session::CheckToken()) {
+        if (Session::CheckAuth()) {
             $lsAction = isset($_GET['action']) && in_array($_GET['action'], Helper::Main_GetActions()) ? $_GET['action'] : 'index';
             require __DIR__ . '/../api/actions/' . $lsAction . '/' . $lsAction . '.model.php';
             require __DIR__ . '/../api/actions/' . $lsAction . '/' . $lsAction . '.php';
@@ -28,7 +28,7 @@ class Controller {
         }
     }
     public static function actionGUI(){
-        Session::CheckToken() ? Tpl::loadMain() : Tpl::loadLogin();
+        Session::CheckAuth() ? Tpl::loadMain() : Tpl::loadLogin();
     }
 
 }
