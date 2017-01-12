@@ -23,3 +23,6 @@ else if (Helper::Main_GetMode() === 'json') {
 else if (Helper::Main_GetMode() === 'login') {
     Controller::actionLogin();
 }
+else if (Helper::Main_GetMode() === 'logout') {
+    Controller::actionLogout();
+}
