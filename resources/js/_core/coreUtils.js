@@ -191,24 +191,24 @@ define([
             var afterCompleteParams = callbackParams['afterComplete'] || {};
 
             var queryConfig = {
-                    type: 'GET',
-                    async: true,
-                    cache: false,
-                    dataType: 'json',
-                    headers: {},
-                    beforeSend: function(jqXHR, settings){
-                        BeforeSend(jqXHR, settings, beforeSendParams);
-                    },
-                    success: function(data, textStatus, jqXHR){
-                        AfterSuccess(data, textStatus, jqXHR, afterSuccessParams);
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        AfterError(jqXHR, textStatus, errorThrown, afterErrorParams);
-                    },
-                    complete: function(jqXHR, textStatus){
-                        AfterComplete(jqXHR, textStatus, afterCompleteParams);
-                    }
-                };
+                type: 'GET',
+                async: true,
+                cache: false,
+                dataType: 'json',
+                headers: {},
+                beforeSend: function(jqXHR, settings){
+                    BeforeSend(jqXHR, settings, beforeSendParams);
+                },
+                success: function(data, textStatus, jqXHR){
+                    AfterSuccess(data, textStatus, jqXHR, afterSuccessParams);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    AfterError(jqXHR, textStatus, errorThrown, afterErrorParams);
+                },
+                complete: function(jqXHR, textStatus){
+                    AfterComplete(jqXHR, textStatus, afterCompleteParams);
+                }
+            };
             var cfg = this.applyParams(loConf, queryConfig);
             
             $.ajax(cfg);
