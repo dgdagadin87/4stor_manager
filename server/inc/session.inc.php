@@ -29,6 +29,11 @@ class Session {
         );
     }
     
+    public static function DeleteUserSession() {
+        if (isset($_SESSION['user'])) {
+            unset($_SESSION['user']);
+        }
+    }
     
     public static function GetSessionId() {
         return (session_id());

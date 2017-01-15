@@ -43,6 +43,7 @@ class Controller {
             )));
             exit();
     }
+
     public static function actionJSON(){
         if (Session::CheckAuth()) {
             $lsAction = isset($_GET['action']) && in_array($_GET['action'], Helper::Main_GetActions()) ? $_GET['action'] : 'index';
@@ -59,8 +60,14 @@ class Controller {
             exit();
         }
     }
+
     public static function actionGUI(){
         Session::CheckAuth() ? Tpl::loadMain() : Tpl::loadLogin();
+    }
+    
+    public static function actionLogout(){
+        Session::DeleteUserSession();
+        Tpl::loadLogin();
     }
 
 }

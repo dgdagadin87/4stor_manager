@@ -63,6 +63,8 @@ class Helper {
                 return 'json';
             case 'login':
                 return 'login';
+            case 'logout':
+                return 'logout';
         }
     }
     
