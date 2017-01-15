@@ -38,7 +38,7 @@ class Controller {
         Session::CreateUserSession($userData);
         echo (json_encode(array(
                 'success' => true,
-                'message' => 'ь',
+                'message' => '',
                 'data' => array()
             )));
             exit();
@@ -53,6 +53,7 @@ class Controller {
             echo (json_encode(array(
                 'success' => false,
                 'message' => 'Войдите в систему',
+                'errorCode' => 'NOT_AUTH',
                 'data' => array()
             )));
             exit();

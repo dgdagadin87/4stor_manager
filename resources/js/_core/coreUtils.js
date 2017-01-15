@@ -200,6 +200,11 @@ define([
                     BeforeSend(jqXHR, settings, beforeSendParams);
                 },
                 success: function(data, textStatus, jqXHR){
+                    var errorCode = data.errorCode || '';
+                    if (errorCode === 'NOT_AUTH') {
+                        window.href.location = '/';
+                        return false;
+                    }
                     AfterSuccess(data, textStatus, jqXHR, afterSuccessParams);
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
