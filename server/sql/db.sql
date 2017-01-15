@@ -100,3 +100,17 @@ CREATE TABLE queries
 ) 
 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
 ENGINE = MYISAM;
+
+DROP TABLE IF EXISTS system_users;
+CREATE TABLE system_users 
+(
+    userId BIGINT AUTO_INCREMENT NOT NULL , 
+    userLogin VARCHAR(100) NOT NULL , 
+    userName VARCHAR(100) NOT NULL , 
+    userPassword VARCHAR(100) NOT NULL ,
+  
+    PRIMARY KEY ( userId ) , 
+    UNIQUE ( userName )
+) 
+DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
+ENGINE = MYISAM;

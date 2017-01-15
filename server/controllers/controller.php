@@ -11,6 +11,37 @@ class Controller {
             )));
             exit();
         }
+
+        $connection = DbConnection::getInstance()->getConnection();
+        $userName = DB_EscapeString('mysql', $connection, $_POST['login']);
+        $userPass = Helper::Hash($_POST['pass']);
+        $SQL = 'SELECT * FROM system_users WHERE userLogin = \'' . $userName . '\' AND userPassword = \'' . $userPass . '\'';
+        $Query = DB_Query ('mysql', $SQL, $connection);
+        if (!$Query) {
+            echo (json_encode(array(
+                'success' => false,
+                'message' => 'Ошибка. Обратитесь к администратору',
+                'data' => array()
+            )));
+            exit();
+        }
+        $numUsers = DB_NumRows ('mysql', $Query);
+        if ($numUsers < 1) {
+            echo (json_encode(array(
+                'success' => false,
+                'message' => 'Неправильно введен логин/пароль',
+                'data' => array()
+            )));
+            exit();
+        }
+        $userData = DB_FetchAssoc ('mysql', $Query);
+        Session::CreateUserSession($userData);
+        echo (json_encode(array(
+                'success' => true,
+                'message' => 'ь',
+                'data' => array()
+            )));
+            exit();
     }
     public static function actionJSON(){
         if (Session::CheckAuth()) {

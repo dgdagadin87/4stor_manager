@@ -15,8 +15,29 @@
                 clearErrors: function(){
                     $('#errors').hide();
                 },
-                showErrors: function(){
+                showErrors: function(errors){
+                    var errorString = '';
+                    $.each(errors, function(key, error){
+                        errorString += '<div>'+error+'</div>';
+                    });
+                    $('#errors').html(errorString);
                     $('#errors').show();
+                },
+                afterSuccess: function(data, textStatus, jqXHR){
+                    var success = data.success || false;
+                    var message = data.message || 'Ошибка';
+                    if (!success) {
+                        this.showErrors([message]);
+                        return false;
+                    }
+                    window.location.href = '/';
+                },
+                afterError: function(jqXHR, textStatus, errorThrown){
+                    console.log(errorThrown);
+                },
+                afterComplete: function(jqXHR, textStatus){
+                    $('#submit').removeAttr('disabled');
+                    $('#reset').removeAttr('disabled');;
                 }
             };
             $(document).ready(function() {
@@ -27,29 +48,55 @@
                     functionObject.clearErrors();
                     
                     if (functionObject.isEmpty(login) || functionObject.isEmpty(password)) {
-                        functionObject.showErrors();
+                        functionObject.showErrors(['Введите логин и пароль']);
                         return false;
                     }
+ 
+                    $('#submit').attr('disabled', 'disabled');
+                    $('#reset').attr('disabled', 'disabled');
+ 
+                    var queryConfig = {
+                        url: '/index.php?mode=login',
+                        type: 'POST',
+                        async: true,
+                        cache: false,
+                        dataType: 'json',
+                        data: {
+                            login: login,
+                            pass: password
+                        },
+                        headers: {},
+                        success: function(data, textStatus, jqXHR){
+                            functionObject.afterSuccess(data, textStatus, jqXHR);
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            functionObject.afterError(jqXHR, textStatus, errorThrown);
+                        },
+                        complete: function(jqXHR, textStatus){
+                            functionObject.afterComplete(jqXHR, textStatus);
+                        }
+                    };
+                    $.ajax(queryConfig);
+                    
                 });
                 $('#reset').click(function(event) {
-                    alert("reset");
+                    $('#login').val('');
+                    $('#password').val('');
                 });
 }           );
         </script>
     </head>
     <body>
         <div class="login-container">
-            <div id="errors" class="errors" style="display:none;">
-                <span>Введите логин и пароль</span>
-            </div>
+            <div id="errors" class="errors" style="display:none;"></div>
             <div class="height-saver">
                 <p class="login">
                     <label>Логин</label>
-                    <input type="text" id="login" name="login" value="" />
+                    <input type="text" id="login" name="login" value="" placeholder="Введите логин" />
                 </p>
                 <p class="pass">
                     <label>Пароль</label>
-                    <input type="password" id="password" name="password" value="" />
+                    <input type="password" id="password" name="password" value="" placeholder="Введите пароль" />
                 </p>
             </div>
             <p class="buttons">

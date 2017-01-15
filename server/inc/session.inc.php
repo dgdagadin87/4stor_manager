@@ -13,13 +13,20 @@ class Session {
     }
     
     public static function CheckAuth() {
-        if (!isset($_SESSION['token'])) {
-            return false;
-        }
         if (!isset($_SESSION['user'])) {
             return false;
         }
         return true;
+    }
+    
+    public static function CreateUserSession($userData) {
+        if (isset($_SESSION['user'])) {
+            unset($_SESSION['user']);
+        }
+        $_SESSION['user'] = array(
+            'login' => $userData['userLogin'],
+            'name' => $userData['userName']
+        );
     }
     
     
