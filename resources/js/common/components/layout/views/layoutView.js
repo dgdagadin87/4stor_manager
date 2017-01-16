@@ -18,6 +18,7 @@ define(
             regions : {
                 headerRegion: '#header-region',
                 pagetitleRegion: '#page-title-region',
+                userinfoRegion: '#user-info-region',
                 mainRegion: '#main-region',
                 crumbsRegion: '#crumbs-region',
                 leftRegion: '#left-region',

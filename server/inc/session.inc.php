@@ -39,4 +39,14 @@ class Session {
         return (session_id());
     }
     
+    public static function GetData($dataIndex) {
+        switch($dataIndex){
+            case 'userLogin':
+            default:
+                return $_SESSION['user']['login'];
+            case 'userName':
+                return $_SESSION['user']['name'];
+        }
+    }
+    
 }

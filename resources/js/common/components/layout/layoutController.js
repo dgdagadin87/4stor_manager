@@ -12,6 +12,7 @@ define([
     'common/dialogs/message/views/dialogMessageView',
     'common/components/layout/views/layoutView',
     'common/components/header/headerController',
+    'common/components/userinfo/userinfoController',
     'common/components/crumbs/crumbsController',
     'common/components/catlist/catlistController',
     'common/components/content/contentController',
@@ -29,6 +30,7 @@ define([
     dialogMessageView,
     mainLayoutView,
     headerComponent,
+    userinfoComponent,
     crumbsComponent,
     catlistComponent,
     contentController,
@@ -44,14 +46,15 @@ define([
         this._urlParams = {};
 
         this._currentPage = '';
-        
+
         this._isDataLoaded = false;
-        
+
         this._commonData = {};
 
         this._view = new mainLayoutView();
 
         this._headerComponent = new headerComponent();
+        this._userinfoComponent = new userinfoComponent();
         this._pagetitleComponent = new pagetitleComponent();
         this._crumbsComponent = new crumbsComponent();
         this._catlistComponent = new catlistComponent();
@@ -68,7 +71,7 @@ define([
 
     layoutController.prototype._bindEvents = function() {
         this._view.on('render', this._onViewRendered.bind(this));
-        
+
         /* events */
         Application.on('pagetitle:render', this._onPageTitleRender.bind(this));
         Application.on('spinner:large:show', this._onLargeSpinnerShow.bind(this));
@@ -78,8 +81,9 @@ define([
         Application.on('content:regions:hide', this._onContentRegionsHide.bind(this));
         Application.on('content:region:show', this._onContentRegionShow.bind(this));
         Application.on('error:modal:show', this._onModalErrorShow.bind(this));
-        
+
         /* reqres */
+        Application.reqres.setHandler('user:get:data', this._onUserGetData.bind(this));
         Application.reqres.setHandler('header:get:data', this._onHeaderGetData.bind(this));
         Application.reqres.setHandler('catlist:get:data', this._onCatlistGetData.bind(this));
     };
@@ -132,6 +136,10 @@ define([
     /* events END */
     
     /* reqres START */
+    layoutController.prototype._onUserGetData = function() {
+        var userData = this._commonData.user || [];
+        return userData;
+    };
     layoutController.prototype._onHeaderGetData = function() {
         var headerData = this._commonData.headers || [];
         return headerData;
@@ -146,6 +154,7 @@ define([
         var params = this._urlParams;
         var categories = this._commonData.categories || [];
         this._headerComponent.showHeader();
+        this._userinfoComponent.showUserInfo();
         this._pagetitleComponent.showPageTitle('Страшные истории', 'default');
         this._catlistComponent.showCategoryList(categories);
         this._contentComponent.showContent(this._currentPage, params);

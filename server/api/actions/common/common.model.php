@@ -19,8 +19,10 @@ class commonModel extends abstractModel {
             return $laReturn;
         }
         $headers = $this->getHeaders();
+        $user = $this->getUser();
         $laReturn['data']['categories'] = $categories;
         $laReturn['data']['headers'] = $headers;
+        $laReturn['data']['user'] = $user;
         return $laReturn;
     }
     
@@ -42,7 +44,7 @@ class commonModel extends abstractModel {
         }
         return $categories;
     }
-    
+
     public function getHeaders() {
         return array(
             array(
@@ -95,6 +97,13 @@ class commonModel extends abstractModel {
                 'outer' => true,
                 'forActive' => array()
             )
+        );
+    }
+
+    public function getUser() {
+        return array(
+            'userLogin' => Session::GetData('userLogin'),
+            'userName'  => Session::GetData('userName')
         );
     }
     
