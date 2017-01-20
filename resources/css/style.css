@@ -264,7 +264,7 @@ body {
 .fs--main-container {
     display: table;
     height: 100%;
-    width:1200px;
+    width:1000px;
     margin: 0 auto;
     font-family: "Helvetica New",Arial,sans-serif;
     font-size:14px;
@@ -287,7 +287,7 @@ body {
     text-align:left;
     height:30px;
     vertical-align:middle;
-    font-size:15px;
+    font-size:14px;
 }
 .fs--top-header-menu-td .header-menu-item-div {
     display: inline-block;
@@ -296,7 +296,7 @@ body {
 .fs--top-header-menu-td a {
     color: #009ec5;
     text-decoration: underline;
-    margin-right: 25px;
+    margin-right: 15px;
 }
 .fs--top-header-menu-td a:hover {
     text-decoration: none;
@@ -318,30 +318,25 @@ body {
     width: 16px;
     background: url('../img/user.png') no-repeat;
     vertical-align: middle;
+    border-radius:5px;
 }
 .fs--top-header-user-td .user-name{
     display:inline-block;
     vertical-align: middle;
-    color: #cf1557;
-    font-size: 15px;
-    border-bottom: 1px #cf1557 dashed;
+    color: rgb(51,​ 51,​ 51);
+    font-size: 14px;
+    margin-left:0px;
 }
 .fs--top-header-user-td .user-logout{
     display:inline-block;
     vertical-align: middle;
-    text-decoration: none;
-    background: #fff;
-    font-weight:normal;
-    color: #009ec5;
-    font-size: 13px;
-    margin-left: 6px;
-    padding: 4px 8px;
-    border: 1px solid #009ec5;
-    border-radius: 4px;
+    text-decoration:underline;
+    color:#cf1557;
+    font-size:14px;
+    margin-left:3px;
 }
 .fs--top-header-user-td .user-logout:hover{
-    background: #009ec5;
-    color: #fff;
+    text-decoration:none;
 }
 
 .fs--main-footer {
