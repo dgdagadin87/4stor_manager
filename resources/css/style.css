@@ -1,28 +1,3 @@
-.main-sidebar{
-    padding:10px;
-    background-color:#fff;
-    width:200px;
-    float:left;
-}
-.main-content{
-    padding: 10px;
-    padding-left: 20px;
-    background-color:#fff;
-    margin-left:202px;
-}
-
-.header-menu a {
-    margin-right: 10px;
-}
-
-.header-menu .active {
-    font-weight: bold;
-}
-
-.header-menu-item-div {
-    display: inline-block;
-}
-
 .large {
     width:80px;
     height:80px;
@@ -291,6 +266,7 @@ html, body {
     font-family: "Helvetica New",Arial,sans-serif;
     font-size:14px;
     color: rgb(51,​ 51,​ 51);
+    margin-top:5px;
 }
 .fs--main-center {
     display: table-row;
@@ -309,12 +285,57 @@ html, body {
     text-align:left;
     height:30px;
     vertical-align:middle;
+    font-size:15px;
 }
-.fs--top-header-user-td{
-    width:300px;
+.fs--top-header-menu-td .header-menu-item-div {
+    display: inline-block;
+    padding:15px 0;
+}
+.fs--top-header-menu-td a {
+    color: #009ec5;
+    text-decoration: underline;
+    margin-right: 25px;
+}
+.fs--top-header-menu-td a:hover {
+    text-decoration: none;
+    color: #cf1557;
+}
+.fs--top-header-menu-td a.active {
+    color: #cf1557;
+}
+
+.fs--top-header-user-td {
+    width:200px;
     text-align:right;
     height:30px;
     vertical-align:middle;
+}
+.fs--top-header-user-td .user-icon{
+    display:inline-block;
+    height: 16px;
+    width: 16px;
+    background: url('../img/user.png') no-repeat;
+    vertical-align: middle;
+}
+.fs--top-header-user-td .user-name{
+    display:inline-block;
+    vertical-align: middle;
+    color: #cf1557;
+    font-size: 15px;
+    border-bottom: 1px #cf1557 dashed;
+}
+.fs--top-header-user-td .user-logout{
+    display:inline-block;
+    vertical-align: middle;
+    text-decoration: none;
+    background: #fff;
+    font-weight:normal;
+    color: #009ec5;
+    font-size: 13px;
+    margin-left: 6px;
+    padding: 4px 8px;
+    border: 1px solid #009ec5;
+    border-radius: 4px;
 }
 
 .fs--main-footer {
