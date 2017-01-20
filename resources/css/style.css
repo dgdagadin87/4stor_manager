@@ -206,40 +206,6 @@
     margin-left:3px;
 }
 
-.main-page-title {
-    padding: 10px;
-}
-.main-page-title .icon {
-    display: inline-block;
-    width:24px;
-    height:24px;
-    vertical-align: middle;
-}
-.main-page-title .index {
-    background: #FFF url('../img/index.png') no-repeat;
-}
-.main-page-title .category {
-    background: #FFF url('../img/category.png') no-repeat;
-}
-.main-page-title .statistics {
-    background: #FFF url('../img/statistics.png') no-repeat;
-}
-.main-page-title .statchart {
-    background: #FFF url('../img/statchart.png') no-repeat;
-}
-.main-page-title .search {
-    background: #FFF url('../img/search.png') no-repeat;
-}
-.main-page-title .settings {
-    background: #FFF url('../img/settings.png') no-repeat;
-}
-.main-page-title .best {
-    background: #FFF url('../img/best.png') no-repeat;
-}
-.main-page-title .text {
-    display: inline-block;
-}
-
 .settings-container .title {
     background:blue;
     color:#fff;
@@ -322,34 +288,42 @@ html, body {
     height: 100%;
     width:1200px;
     margin: 0 auto;
-    font: 14px/20px Arial, sans-serif;
-    border-left:1px solid #AAA;
-    border-right:1px solid #AAA;
+    font-family: "Helvetica New",Arial,sans-serif;
+    font-size:14px;
+    color: rgb(51,​ 51,​ 51);
 }
 .fs--main-center {
     display: table-row;
     height: 100%;
     position:relative;
-    padding:0 5px;
 }
 
 .fs--main-header {
-    width:1190px;
     margin:0 auto;
 }
-.fs--top-header {
-    /*background:#3f3f3f;*/
+.fs--top-header {}
+.fs--top-header-table {
+    width:100%;
+}
+.fs--top-header-menu-td{
+    text-align:left;
+    height:30px;
+    vertical-align:middle;
+}
+.fs--top-header-user-td{
+    width:300px;
+    text-align:right;
+    height:30px;
+    vertical-align:middle;
 }
 
 .fs--main-footer {
     height: 40px;
 }
 .under-footer {
-    height: 40px;
-    background:#3f3f3f;
-    width:1190px;
-    color:#fff;
-    margin:auto;
+    height: 30px;
+    background:#fff;
+    border-top: 1px solid #ddd;
 }
 
 
@@ -357,16 +331,12 @@ html, body {
     width:250px;
     float: left;
 }
-.categories-container {
-    margin-left:5px;
-}
+.categories-container {}
 .categories-container .active {
     font-weight:bold;
     color:#AA0000;
 }
-.categories-container .category-list-item {
-    margin: 2px 0;
-}
+.categories-container .category-list-item {}
 .categories-container .catlist-item {
     display: block;
 }
