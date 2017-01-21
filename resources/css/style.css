@@ -282,6 +282,7 @@ body {
 .fs--top-header {}
 .fs--top-header-table {
     width:100%;
+    margin-bottom:20px;
 }
 .fs--top-header-menu-td{
     text-align:left;
@@ -323,7 +324,7 @@ body {
 .fs--top-header-user-td .user-name{
     display:inline-block;
     vertical-align: middle;
-    color: rgb(51,​ 51,​ 51);
+    color: #555;
     font-size: 14px;
     margin-left:0px;
 }
@@ -353,20 +354,43 @@ body {
     width:250px;
     float: left;
 }
+.fs--main-sidebar .catlist-header {
+    margin-bottom: 10px;
+}
+.fs--main-sidebar .catlist-header h3 {
+    color:#000;
+    font-size:13px;
+}
 .categories-container {}
 .categories-container .active {
     font-weight:bold;
-    color:#AA0000;
 }
-.categories-container .category-list-item {}
-.categories-container .catlist-item {
-    display: block;
+.categories-container .category-list-item {
+    background: #FFF url('../img/item.png') 0 50% no-repeat;
+    padding-left:16px;
+    padding-right:10px;
+    margin-bottom: 10px;
+    font-size:13px;
 }
-.categories-container .catlist-best {
-    color: red;
+.categories-container a.catlist-item {
+    display: inline-block;
+    color: #009ec5;
 }
-.categories-container .category-important {
-    background: #eee;
+.categories-container a.catlist-item:hover {
+    text-decoration: none;
+}
+.categories-container .catlist-best {}
+.categories-container a.category-important {
+    color: green;
+}
+.categories-container span.catlist-num-stors {
+    color: #666;
+    margin-left:5px;
+    font-size:13px;
+    text-decoration: underline;
+    display:inline-block;
+    font-weight: normal;
+    
 }
 
 .fs--main-content{
