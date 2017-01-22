@@ -321,7 +321,7 @@ body {
 .fs--top-header-user-td .user-name{
     display:inline-block;
     vertical-align: middle;
-    color: #555;
+    color: #333;
     font-size: 13px;
     margin-left:0px;
 }
@@ -403,6 +403,14 @@ body {
 fs--main-content .breadcrumbs-separator {
     color:#333;
     margin:0 5px;
+    font-weight: bold;
+}
+
+.fs--main-content .page-title {
+    color:#333;
+    margin:10px 0px;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .fs--main-footer {
