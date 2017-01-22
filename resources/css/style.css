@@ -267,7 +267,7 @@ body {
 .fs--top-header-table {
     width:100%;
     margin-bottom:20px;
-    border-bottom:1px dotted #ddd;
+    border-bottom:1px dotted #ccc;
 }
 .fs--top-header-search-td{
     text-align:right;
