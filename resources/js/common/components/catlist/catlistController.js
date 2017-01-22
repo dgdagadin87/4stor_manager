@@ -55,7 +55,7 @@ define([
                 var href = current.attr('href');
                 var hrefArray = href.split('/');
                 var curCatId = hrefArray[2] || 0;
-                if (curCatId == secParam) {
+                if (curCatId === secParam) {
                     current.parent().addClass('active');
                     return false;
                 }
