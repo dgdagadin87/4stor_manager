@@ -86,6 +86,8 @@ define([
         Application.reqres.setHandler('user:get:data', this._onUserGetData.bind(this));
         Application.reqres.setHandler('header:get:data', this._onHeaderGetData.bind(this));
         Application.reqres.setHandler('catlist:get:data', this._onCatlistGetData.bind(this));
+        Application.reqres.setHandler('catlist:get:important', this._onCatlistGetImportant.bind(this));
+        Application.reqres.setHandler('catlist:get:other', this._onCatlistGetOther.bind(this));
     };
 
     layoutController.prototype._init = function() {
@@ -147,6 +149,26 @@ define([
     layoutController.prototype._onCatlistGetData = function() {
         var categoriesData = this._commonData.categories || [];
         return categoriesData;
+    };
+    layoutController.prototype._onCatlistGetImportant = function() {
+        var important = [];
+        var categoriesData = this._commonData.categories || [];
+        _.each(categoriesData, function(category){
+            if (category.categoryImportant === 'y') {
+                important.push(category);
+            }
+        });
+        return important;
+    };
+    layoutController.prototype._onCatlistGetOther = function() {
+        var other = [];
+        var categoriesData = this._commonData.categories || [];
+        _.each(categoriesData, function(category){
+            if (category.categoryImportant === 'n') {
+                other.push(category);
+            }
+        });
+        return other;
     };
     /* reqres END */
 

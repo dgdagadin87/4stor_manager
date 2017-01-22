@@ -47,9 +47,10 @@ define([
         var params = CoreUtils.getURIParams();
         var rootParam = params[0] || 'main';
         var secParam  = params[1] || 0;
-        $('.category-list-item').removeClass('active');
+        var view = this.getView();
+        view.$('.category-list-item').removeClass('active');
         if (rootParam === 'category') {
-            $.each($('.catlist-item'), function(key, item){
+            $.each(view.$('.catlist-item'), function(key, item){
                 var current = $(item);
                 var href = current.attr('href');
                 var hrefArray = href.split('/');
@@ -66,11 +67,10 @@ define([
         this.getView().render();
     };
     
-    catlistController.prototype.showCategoryList = function(paData) {
+    catlistController.prototype.showCategoryList = function() {
         if (!this.isComponentRendered()) {
             var view = this.getView();
             var mainLayout = Application.getMainLayout();
-            view.collection.set(paData);
             mainLayout.getView().showChildView('leftRegion', view);
         }
         Application.trigger('category:setactive');

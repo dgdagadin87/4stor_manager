@@ -1,4 +1,35 @@
+<% if (importantCats.length > 0) { %>
 <div class="catlist-header">
-    <h3>Список категорий</h3>
+    <h3>Важные категорий</h3>
 </div>
-<div class="categories-container"></div>
+<div class="categories-container">
+<% _.each(importantCats, function(category){ %>
+    <div class="category-list-item">
+        <a class="catlist-item catlist-for-disabled<% if (category.categoryName == 'Лучшие Истории Сайта') { %> catlist-best<% } %><% if (category.categoryImportant === 'y') { %> category-important<% } %>" href="/#category/<%=category.categoryId%>">
+            <%=category.categoryName%>
+        </a>
+        <span class="catlist-num-stors">(<%=category.categoryStors%>)</span>
+    </div>
+<% }); %>    
+</div>
+<% } %>
+<% if (otherCats.length > 0) { %>
+<div class="catlist-header catlist-other">
+    <h3>Прочие категорий</h3>
+</div>
+<div class="categories-container">
+<% _.each(otherCats, function(category){ %>
+    <div class="category-list-item">
+        <a class="catlist-item catlist-for-disabled<% if (category.categoryName == 'Лучшие Истории Сайта') { %> catlist-best<% } %><% if (category.categoryImportant === 'y') { %> category-important<% } %>" href="/#category/<%=category.categoryId%>">
+            <%=category.categoryName%>
+        </a>
+        <span class="catlist-num-stors">(<%=category.categoryStors%>)</span>
+    </div>
+<% }); %>    
+</div>
+<% } %>
+<% if (importantCats.length < 1 && otherCats.length < 1) { %>
+    <div class="catlist-header">
+        <p>Категорий нет</p>
+    </div>
+<% } %>

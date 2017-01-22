@@ -3,32 +3,35 @@ define(
         'backbone',
         'marionette',
         'Application',
-        'common/components/catlist/views/catlistItemView',
-        'common/components/catlist/collections/catlistCollection',
         'text!common/components/catlist/templates/catlistTemplate.html'
     ], function(
         Backbone,
         Marionette,
         Application,
-        CatsItemView,
-        collection,
         template
     ) {
-        return Backbone.Marionette.CompositeView.extend({
+        return Backbone.Marionette.ItemView.extend({
             template : _.template(template),
-
-            childView: CatsItemView,
-            childViewContainer: ".categories-container",
-
-            collection: new collection(),
 
             tagName: 'div',
             className: 'categories',
 
-            events : {
+            events: {
+                'click .catlist-item': 'onCatlistItemClick'
             },
+            
+            onCatlistItemClick: function(ev) {
+                var current = this.$(ev.currentTarget);
+                if (current.hasClass('catlist-disabled')) {
+                    ev.preventDefault();
+                }
+            },
+
             templateHelpers : function() {
-                return {};
+                return {
+                    importantCats: Application.request('catlist:get:important'),
+                    otherCats: Application.request('catlist:get:other')
+                };
             }
         });
     }
