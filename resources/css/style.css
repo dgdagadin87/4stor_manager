@@ -337,16 +337,6 @@ body {
     text-decoration:none;
 }
 
-.fs--main-footer {
-    height: 40px;
-}
-.under-footer {
-    height: 30px;
-    background:#fff;
-    border-top: 1px solid #ddd;
-}
-
-
 .fs--main-sidebar{
     width:250px;
     float: left;
@@ -398,4 +388,25 @@ body {
 
 .fs--main-content{
     margin-left: 250px;
+}
+
+.fs--main-content .breadcrumbs {
+    font-size:13px;
+}
+.fs--main-content .breadcrumbs a {
+    color: #091B9F;
+    text-decoration: underline;
+}
+.fs--main-content .breadcrumbs a:hover {
+    text-decoration: none;
+}
+
+
+.fs--main-footer {
+    height: 40px;
+}
+.under-footer {
+    height: 30px;
+    background:#fff;
+    border-top: 1px solid #ddd;
 }
