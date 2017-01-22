@@ -382,7 +382,7 @@ body {
 }
 .categories-container div.category-list-item.active a {
     color:#cf1557;
-    font-weight:bold;
+    font-weight:normal;
 }
 .categories-container a.catlist-disabled {
     color: grey;
