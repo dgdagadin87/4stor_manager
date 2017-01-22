@@ -55,16 +55,6 @@
     color:red;
 }
 
-.list-toolbar .sort-active {
-    font-weight:bold;
-}
-.list-toolbar .sort-asc {
-    color:red;
-}
-.list-toolbar .sort-desc {
-    color:green;
-}
-
 .searchform-container {
     padding:10px 0;
 }
@@ -91,9 +81,6 @@
 }
 
 .page-disabled {
-    color: grey;
-}
-.listbar-disabled {
     color: grey;
 }
 .toolbar-disabled {
@@ -280,7 +267,7 @@ body {
 .fs--top-header-table {
     width:100%;
     margin-bottom:20px;
-    border-bottom:1px solid #ddd;
+    border-bottom:1px dotted #ddd;
 }
 .fs--top-header-search-td{
     text-align:right;
@@ -295,7 +282,7 @@ body {
     outline: medium none;
     padding: 2px 12px;
     width: 200px;
-    border: 1px solid #999;
+    border: 1px solid #aaa;
 }
 .fs--top-header-menu-td{
     text-align:left;
@@ -427,6 +414,60 @@ fs--main-content .breadcrumbs-separator {
     margin:10px 0px;
     font-weight: bold;
     font-size: 15px;
+}
+
+.fs--main-content .listbar-container {
+    width:100%;
+    font-size:13px;
+    border: 0px solid #333;
+    border-radius:3px;
+    margin-bottom:10px;
+}
+.fs--main-content .listbar-info {
+    width:230px;
+    text-align:left;
+    padding-bottom: 5px;
+}
+.fs--main-content .listbar-controls {
+    text-align:right;
+    padding-bottom: 5px;
+}
+.fs--main-content .listbar-numstors,
+.fs--main-content .listbar-current-page,
+.fs--main-content .listbar-meta{
+    display:inline-block;
+}
+.fs--main-content .listbar-numstors,
+.fs--main-content .listbar-current-page {
+    font-weight: bold;
+    color:#000;
+}
+.fs--main-content .listbar-meta{}
+.fs--main-content .listbar-controls a {
+    color: #091b9f;
+    text-decoration:underline;
+    margin-left:5px;
+    display:inline-block;
+    font-size:13px;
+}
+.fs--main-content .listbar-controls a:hover {
+    text-decoration:none;
+}
+.fs--main-content .listbar-controls .sort-active {
+    font-weight:normal;
+    color:#cf1557;
+    vertical-align: middle;
+    color:#cf1557;
+    font-size:13px;
+    display:inline-block;
+    
+}
+.fs--main-content span.sort-type {
+    margin-left:-5px;
+    text-decoration:underline;
+}
+.fs--main-content .listbar-controls a.listbar-disabled {
+    color: grey;
 }
 
 .fs--main-footer {
