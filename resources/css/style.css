@@ -274,14 +274,14 @@ body {
     height:30px;
     vertical-align:middle;
     font-size:13px;
-    width:210px;
+    width:180px;
 }
 .fs--top-header-search-td input{
     border-radius: 3px;
     height: auto;
     outline: medium none;
     padding: 2px 12px;
-    width: 200px;
+    width: 170px;
     border: 1px solid #aaa;
 }
 .fs--top-header-menu-td{
@@ -425,11 +425,11 @@ fs--main-content .breadcrumbs-separator {
 }
 .fs--main-content .listbar-info {
     width:230px;
-    text-align:left;
+    text-align:right;
     padding-bottom: 5px;
 }
 .fs--main-content .listbar-controls {
-    text-align:right;
+    text-align:left;
     padding-bottom: 5px;
 }
 .fs--main-content .listbar-numstors,
