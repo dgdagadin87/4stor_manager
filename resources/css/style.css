@@ -400,7 +400,10 @@ body {
 .fs--main-content .breadcrumbs a:hover {
     text-decoration: none;
 }
-
+fs--main-content .breadcrumbs-separator {
+    color:#333;
+    margin:0 5px;
+}
 
 .fs--main-footer {
     height: 40px;
