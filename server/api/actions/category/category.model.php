@@ -40,7 +40,7 @@ class categoryModel extends abstractModel {
             $this->categories[$catId] = $catName;
             
             if ($categoryId == $catId) {
-                $this->categoryName = $catName;
+                $this->categoryName = 'Категория "' . $catName . '"';
             }
         }
         if (is_null($this->categoryName)) {

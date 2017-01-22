@@ -128,7 +128,7 @@ define([
             }
             else {
                 me._categoryName = catName;
-                me._pageTitle = 'Категория "'+me._categoryName+'"';
+                me._pageTitle = me._categoryName;
                 if (pagingData._currentPage > 1) {
                     me._pageTitle += ' (страница '+pagingData._currentPage+')';
                 }
