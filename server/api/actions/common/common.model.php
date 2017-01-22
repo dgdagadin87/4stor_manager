@@ -91,6 +91,16 @@ class commonModel extends abstractModel {
             ),
             array(
                 'headerId' => 5,
+                'headerName' => 'О программе',
+                'headerURL' => 'info',
+                'selected' => false,
+                'outer' => false,
+                'forActive' => array(
+                    'info'
+                )
+            ),
+            array(
+                'headerId' => 5,
                 'headerName' => '4stor.ru',
                 'headerURL' => 'http://4stor.ru',
                 'selected' => false,
