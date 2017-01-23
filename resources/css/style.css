@@ -248,10 +248,10 @@ body {
 .fs--main-container {
     display: table;
     height: 100%;
-    width:1000px;
+    width:1030px;
     margin: 0 auto;
     font-family: "Helvetica New",Arial,sans-serif;
-    font-size:14px;
+    font-size:15px;
     color: #333;
 }
 .fs--main-center {
@@ -356,14 +356,13 @@ body {
 }
 .categories-container {}
 .categories-container .category-list-item {
-    padding-right:15px;
+    padding-right:30px;
     margin-bottom: 10px;
-    font-size:13px;
+    font-size:14px;
     background: #FFF url('../img/item.png') 0 0 no-repeat;
     padding-left:16px;
 }
 .categories-container a.catlist-item {
-    display: inline-block;
     color: #091B9F;
 }
 .categories-container a.catlist-item:hover {
@@ -385,7 +384,6 @@ body {
     margin-left:3px;
     font-size:13px;
     text-decoration: underline;
-    display:inline-block;
     font-weight: normal;
 }
 
@@ -394,7 +392,7 @@ body {
 }
 
 .fs--main-content .breadcrumbs {
-    font-size:13px;
+    font-size:14px;
 }
 .fs--main-content .breadcrumbs a {
     color: #1727A1;
@@ -413,7 +411,7 @@ fs--main-content .breadcrumbs-separator {
     color:#333;
     margin:13px 0px 10px;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 17px;
 }
 
 .fs--main-content .listbar-container {
