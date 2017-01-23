@@ -6,6 +6,9 @@
         <meta content="ie=edge" http-equiv="x-ua-compatible">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="resources/css/style.css" rel="stylesheet"/>
+        <!--[if IE]>
+        <link href="resources/css/ie.css" rel="stylesheet"/>
+        <![endif]-->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
         <script type="text/javascript">
             var functionObject = {

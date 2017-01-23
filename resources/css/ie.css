@@ -1,0 +1,19 @@
+.fs--top-header-menu-td a {
+    color: #45818E;
+}
+.fs--top-header-user-td .user-logout{
+    color:green;
+}
+.categories-container a.category-important {
+    color: #45818E;
+}
+.fs--main-content .breadcrumbs a {
+    color: #45818E;
+}
+.fs--main-content .listbar-controls a {
+    color: #45818E;
+}
+
+.categories-container .category-list-item {
+    margin-bottom: 11px;
+}

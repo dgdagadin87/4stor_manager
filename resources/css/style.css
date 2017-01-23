@@ -248,7 +248,7 @@ body {
 .fs--main-container {
     display: table;
     height: 100%;
-    width:1030px;
+    width:1000px;
     margin: 0 auto;
     font-family: "Helvetica New",Arial,sans-serif;
     font-size:15px;
@@ -295,7 +295,7 @@ body {
     padding:15px 0;
 }
 .fs--top-header-menu-td a {
-    color: #091B9F;
+    color: #091b9f;
     text-decoration: underline;
     margin-right: 15px;
 }
@@ -317,7 +317,6 @@ body {
     display:inline-block;
     height: 16px;
     width: 16px;
-    background: url('../img/user.png') no-repeat;
     vertical-align: middle;
     border-radius:5px;
 }
@@ -332,7 +331,7 @@ body {
     display:inline-block;
     vertical-align: middle;
     text-decoration:underline;
-    color:#091B9F;
+    color:#091b9f;
     font-size:13px;
     margin-left:3px;
 }
@@ -358,19 +357,19 @@ body {
 .categories-container .category-list-item {
     padding-right:30px;
     margin-bottom: 10px;
-    font-size:14px;
+    font-size:13px;
     background: #FFF url('../img/item.png') 0 0 no-repeat;
     padding-left:16px;
 }
 .categories-container a.catlist-item {
-    color: #091B9F;
+    color: #091b9f;
 }
 .categories-container a.catlist-item:hover {
     text-decoration: none;
 }
 .categories-container .catlist-best {}
 .categories-container a.category-important {
-    color: #091B9F;
+    color: #091b9f;
 }
 .categories-container div.category-list-item.active a {
     color:#cf1557;
@@ -392,10 +391,10 @@ body {
 }
 
 .fs--main-content .breadcrumbs {
-    font-size:14px;
+    font-size:13px;
 }
 .fs--main-content .breadcrumbs a {
-    color: #1727A1;
+    color: #091b9f;
     text-decoration: underline;
 }
 .fs--main-content .breadcrumbs a:hover {
@@ -411,7 +410,7 @@ fs--main-content .breadcrumbs-separator {
     color:#333;
     margin:13px 0px 10px;
     font-weight: bold;
-    font-size: 17px;
+    font-size: 16px;
 }
 
 .fs--main-content .listbar-container {
@@ -442,7 +441,7 @@ fs--main-content .breadcrumbs-separator {
 }
 .fs--main-content .listbar-meta{}
 .fs--main-content .listbar-controls a {
-    color: #1727A1;
+    color: #091b9f;
     text-decoration:underline;
     margin-left:5px;
     display:inline-block;

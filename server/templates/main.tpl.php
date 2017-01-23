@@ -9,6 +9,9 @@
         <link rel="stylesheet" href="resources/css/jquery-ui.css"/>
         <link rel="stylesheet" href="resources/css/chartist.min.css"/>
         <link href="resources/css/style.css" rel="stylesheet"/>
+        <!--[if IE]>
+        <link href="resources/css/ie.css" rel="stylesheet"/>
+        <![endif]-->
     </head>
     <body id="main-body">
         <div class="spinner-title">Загрузка</div>
