@@ -3,7 +3,7 @@
     <head>
         <title>4stor - войти</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <meta content="ie=edge" http-equiv="x-ua-compatible">
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="resources/css/style.css" rel="stylesheet"/>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
