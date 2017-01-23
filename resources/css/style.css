@@ -357,7 +357,7 @@ body {
 .categories-container {}
 .categories-container .category-list-item {
     padding-right:15px;
-    margin-bottom: 7px;
+    margin-bottom: 10px;
     font-size:13px;
     background: #FFF url('../img/item.png') 0 0 no-repeat;
     padding-left:16px;
@@ -397,7 +397,7 @@ body {
     font-size:13px;
 }
 .fs--main-content .breadcrumbs a {
-    color: #091B9F;
+    color: #1727A1;
     text-decoration: underline;
 }
 .fs--main-content .breadcrumbs a:hover {
@@ -411,7 +411,7 @@ fs--main-content .breadcrumbs-separator {
 
 .fs--main-content .page-title {
     color:#333;
-    margin:10px 0px;
+    margin:13px 0px 10px;
     font-weight: bold;
     font-size: 15px;
 }
@@ -444,7 +444,7 @@ fs--main-content .breadcrumbs-separator {
 }
 .fs--main-content .listbar-meta{}
 .fs--main-content .listbar-controls a {
-    color: #091b9f;
+    color: #1727A1;
     text-decoration:underline;
     margin-left:5px;
     display:inline-block;
@@ -457,7 +457,6 @@ fs--main-content .breadcrumbs-separator {
     font-weight:normal;
     color:#cf1557;
     vertical-align: middle;
-    color:#cf1557;
     font-size:13px;
     display:inline-block;
     
