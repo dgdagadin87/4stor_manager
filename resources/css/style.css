@@ -40,20 +40,6 @@
     border:1px solid black;
     text-align:center;
 }
-.storlist-stor-item {
-    margin-top:10px;
-    padding:0px;
-    border:1px solid #000;
-}
-.storlist-stor-item .storlist-stor-bottom {
-    border-top:1px solid #000;
-}
-.storlist-stor-item .storlist-stor-bottom .plus-rate {
-    color:green;
-}
-.storlist-stor-item .storlist-stor-bottom .minus-rate {
-    color:red;
-}
 
 .searchform-container {
     padding:10px 0;
@@ -464,6 +450,86 @@ fs--main-content .breadcrumbs-separator {
 }
 .fs--main-content .listbar-controls a.listbar-disabled {
     color: grey;
+}
+
+.fs--main-content .storlist-stor-item {
+    margin-top:12px;
+    padding:0px;
+    border-radius: 2px;
+    border:1px solid #888;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-title,
+.fs--main-content .storlist-stor-item .storlist-stor-short-desc,
+.fs--main-content .storlist-stor-item .storlist-stor-categories {
+    padding:7px;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-title {
+    margin-bottom:2px;
+    padding-top:0;
+    padding-bottom: 0px;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-title .rate {
+    display:inline-block;
+    padding:2px 4px;
+    color:#fff;
+    font: bold 11px/14px Arial,Helvetica,sans-serif !important;
+    border-radius:3px;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-title .plus-rate {
+    background:#46a600;
+    border:0px solid #46a600;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-title .minus-rate {
+    background:#b20000;
+    border:0px solid #b20000;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-title a {
+    font-size:15px;
+    color: #0000ee;
+    text-decoration: underline;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-categories {
+    font-size:13px;
+    padding-top:0px;
+    padding-bottom:0px;
+    margin-top: 10px;
+    margin-bottom: 7px;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-categories span {
+    display:inline-block;
+    color: #555;
+    font-weight: bold;
+    font-size:12px;
+    margin-right: 3px;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-categories a {
+    display:inline-block;
+    color: #337ab7;
+    font-weight: normal;
+    text-decoration: underline;
+    margin-right: 3px;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-title a:hover {
+    text-decoration: none;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-short-desc {
+    text-align:justify;
+    font-size:14px;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-short-desc a {
+    color:#091b9f;
+    font-size:13px;
+    text-decoration: underline;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-short-desc a:hover {
+    text-decoration: none;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-bottom {
+    border-top:1px solid #888;
+/*    background: #f2f2f2;*/
+    padding:3px;
+    font-size:13px;
+    color: #555;
 }
 
 .fs--main-footer {
