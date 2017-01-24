@@ -356,7 +356,7 @@ body {
 .categories-container {}
 .categories-container .category-list-item {
     padding-right:30px;
-    margin-bottom: 10px;
+    margin-bottom: 7px;
     font-size:13px;
     background: #FFF url('../img/item.png') 0 0 no-repeat;
     padding-left:16px;

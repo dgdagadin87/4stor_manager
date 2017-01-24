@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="resources/css/jquery-ui.css"/>
         <link rel="stylesheet" href="resources/css/chartist.min.css"/>
         <link href="resources/css/style.css" rel="stylesheet"/>
+        <link href="resources/css/ie.hack.css" rel="stylesheet"/>
         <!--[if IE]>
         <link href="resources/css/ie.css" rel="stylesheet"/>
         <![endif]-->
