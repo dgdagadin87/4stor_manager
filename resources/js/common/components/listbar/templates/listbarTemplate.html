@@ -1,5 +1,10 @@
 <table cellspacing="0" cellpadding="0" class="listbar-container">
     <tr>
+        <td class="listbar-info">
+            <span class="listbar-numstors"><%=_numOfStors%></span>
+            <span class="listbar-meta">историй - страница</span>
+            <span class="listbar-current-page"><%=_currentPage%></span>
+        </td>
         <td class="listbar-controls">
             <span class="listbar-meta">сортировать по:</span>
             <span class="sort-span">
@@ -77,11 +82,6 @@
                     <span class="sort-active sort-type"><%=_sortType === 'ASC'?'▲':'▼'%></span>
                 <% } %>
             </span>
-        </td>
-        <td class="listbar-info">
-            <span class="listbar-numstors"><%=_numOfStors%></span>
-            <span class="listbar-meta">историй - страница</span>
-            <span class="listbar-current-page"><%=_currentPage%></span>
         </td>
     </tr>
 </table>
