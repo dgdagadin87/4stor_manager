@@ -48,7 +48,7 @@ class Helper {
     }
     
     public static function Main_ConvertDesc($psDesc, $psHref) {
-        return preg_replace('/(<\/p>\s*)$/ui', '<a class="read-more" href="' . $psHref . '">читать далее</a>', $psDesc);
+        return preg_replace('/(<\/p>\s*)$/ui', '<a class="read-more" href="' . $psHref . '">читать далее...</a>', $psDesc);
     }
     
     public static function Main_Validate() {
