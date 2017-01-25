@@ -1,7 +1,7 @@
-<table cellcpacing="0" cellpadding="0" style="width:100%">
+<table cellspacing="0" cellpadding="0">
     <tr>
-        <td>
-            <span class="page-num-pgs"><%=model._numOfPages%> страниц</span>
+        <td class="pages-container">
+<!--            <span class="page-num-pgs"><%=model._numOfPages%> страниц</span>-->
 
             <!-- start page -->
             <% if (model._currentPage > 1) { %>
@@ -75,17 +75,9 @@
             <% } %>
             <!-- last page -end -->
         </td>
-        <td style="width:150px;">
-            <div class="page-goto page-for-disabled">
-                <div class="image"><!-- --></div>
-                <div class="text">Перейти</div>
-            </div>
-        </td>
-        <td style="width:150px;">
-            <div class="page-refresh page-for-disabled">
-                <div class="image"><!-- --></div>
-                <div class="text">Обновить</div>
-            </div>
+        <td class="buttons-container">
+            <div title="Перейти на страницу" class="page-button page-goto page-for-disabled"></div>
+            <div title="Обновить данные" class="page-button page-refresh page-for-disabled"></div>
         </td>
     </tr>
 </table>
