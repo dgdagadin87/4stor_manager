@@ -1,10 +1,10 @@
 <div class="storlist-stor-item">
     <div class="storlist-stor-title">
-        <span class="rate <% if(storRate > 0){ %>plus<% }else{ %>minus<% } %>-rate"><% if(storRate > 0){ %>+<% } %><%=storRate%></span>&nbsp;
+        <!--<span class="rate <% if(storRate > 0){ %>plus<% }else{ %>minus<% } %>-rate"><% if(storRate > 0){ %>+<% } %><%=storRate%></span>&nbsp;-->
         <a class="title" target="_blank" title="<%=storHref%>" href="<%=storHref%>"><%=storName%></a>
     </div>
     <div class="storlist-stor-categories">
-<!--        <span>Категории:</span>-->
+        <span>Категории:</span>
         <% _.each(storCats, function(cat){ %>
             <a title="<%=cat.catName%>" href="#category/<%=cat.catId%>"><%=cat.catName%></a>
         <% }); %>

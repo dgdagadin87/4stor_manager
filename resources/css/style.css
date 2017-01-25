@@ -234,7 +234,7 @@ body {
 .fs--main-container {
     display: table;
     height: 100%;
-    width:1000px;
+    width:900px;
     margin: 0 auto;
     font-family: "Helvetica New",Arial,sans-serif;
     font-size:15px;
@@ -402,16 +402,16 @@ fs--main-content .breadcrumbs-separator {
 .fs--main-content .listbar-container {
     font-size:13px;
     margin-bottom:17px;
+    width:100%;
 }
 .fs--main-content .listbar-info {
     text-align:left;
     padding-bottom: 5px;
-    width: 230px;
+    width: 180px;
 }
 .fs--main-content .listbar-controls {
     text-align:right;
     padding-bottom: 5px;
-    width:470px;
 }
 .fs--main-content .listbar-numstors,
 .fs--main-content .listbar-current-page,
@@ -450,20 +450,28 @@ fs--main-content .breadcrumbs-separator {
     color: grey;
 }
 
+.fs--main-content .storlist-list-container {
+    border:1px solid #ddd;
+    padding:10px
+}
+
 .fs--main-content .storlist-stor-item {
-/*    margin-top:12px;*/
     padding:0px;
     border-radius: 0px;
-    border:1px solid #ccc;
+    border:1px solid #ddd;
     border-right: 0;
     border-left:0;
     border-top:0;
-    margin:10px 0 25px;
+    margin:0 0 10px;
+}
+.fs--main-content .storlist-list-container > div:last-child > div {
+    border:0;
+    margin:0 !important;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-title,
 .fs--main-content .storlist-stor-item .storlist-stor-short-desc,
 .fs--main-content .storlist-stor-item .storlist-stor-categories {
-    padding:0px;
+    padding:7px;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-title {
     margin-bottom:2px;
@@ -472,28 +480,27 @@ fs--main-content .breadcrumbs-separator {
 }
 .fs--main-content .storlist-stor-item .storlist-stor-title a {
     font-size:20px;
-/*    color: #23527c;*/
     color:#000;
-    text-decoration: none;
+    text-decoration: underline;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-title a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-title .rate {
     display:inline-block;
     padding:2px 4px 1px;
     color:#fff;
     vertical-align: middle;
-    font: bold 12px/14px Arial,Helvetica,sans-serif !important;
+    font: bold 16px/14px Arial,Helvetica,sans-serif !important;
     border-radius:2px;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-title .plus-rate {
-    background:#46a600;
-    border:0px solid #46a600;
+    color:#46a600;
+/*    border:0px solid #46a600;*/
 }
 .fs--main-content .storlist-stor-item .storlist-stor-title .minus-rate {
-    background:#b20000;
-    border:0px solid #b20000;
+    color:#b20000;
+/*    border:0px solid #b20000;*/
 }
 
 .fs--main-content .storlist-stor-item .storlist-stor-categories {
@@ -505,20 +512,17 @@ fs--main-content .breadcrumbs-separator {
 }
 .fs--main-content .storlist-stor-item .storlist-stor-categories span {
     display:inline-block;
-    color: #555;
+    color: #777;
     font-weight: bold;
-    font-size:11px;
+    font-size:12px;
     margin-right: 3px;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-categories a {
     display:inline-block;
     color: #cf1557;
-/*    border:1px solid #ccc;
-    background: #f5f5f5;*/
     font-weight: normal;
     text-decoration: underline;
     font-size: 13px;
-    /*text-transform: uppercase;*/
     padding:5px 0px 4px 0px;
     margin-right: 3px;
     border-radius:3px;
@@ -528,14 +532,21 @@ fs--main-content .breadcrumbs-separator {
 }
 .fs--main-content .storlist-stor-item .storlist-stor-short-desc {
     text-align:justify;
-    font-size:14px;
+    font-size:15px;
     margin-top:7px;
     margin-bottom:36px;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-short-desc a {
     color:#091b9f;
-    font-size:13px;
+    font-size:14px;
     text-decoration: underline;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-short-desc a.read-more {
+    color:#091b9f;
+    padding-left: 7px;
+    font-size:11px;
+    text-decoration: underline;
+    text-transform: uppercase;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-short-desc a:hover {
     text-decoration: none;
