@@ -47,6 +47,10 @@ class Helper {
         }
     }
     
+    public static function Main_ConvertDesc($psDesc, $psHref) {
+        return preg_replace('/(<\/p>\s*)$/ui', '<a class="read-more" href="' . $psHref . '">читать далее</a>', $psDesc);
+    }
+    
     public static function Main_Validate() {
         if (!defined('_VALIDATION_')) {
             exit('Error code: 1');

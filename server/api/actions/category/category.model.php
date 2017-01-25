@@ -134,7 +134,7 @@ class categoryModel extends abstractModel {
                 'storId'         => $Data['storId'],
                 'storName'       => $Data['storName'],
                 'storHref'       => $Data['storHref'],
-                'storShortDesc'  => $Data['storDesc'],
+                'storShortDesc'  => Helper::Main_ConvertDesc($Data['storDesc'], $Data['storHref']),
                 'storAuthorId'   => $Data['storAuthorId'],
                 'storAuthorName' => '',
                 'storAuthorHref' => '',
