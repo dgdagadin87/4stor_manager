@@ -546,6 +546,24 @@ fs--main-content .breadcrumbs-separator {
     border:1px solid red;
 }
 
+.fs--main-container .paging-container .pages-container span {
+    font-size: 15px;
+    color:#333;
+    margin-left: 3px;
+}
+.fs--main-container .paging-container .pages-container first.span {
+    margin-left: 0px;
+}
+.fs--main-container .paging-container .pages-container a {
+    font-size: 16px;
+    color:#091b9f;
+    text-decoration: underline;
+}
+.fs--main-container .paging-container .pages-container a:hover {
+    color:#cf1557;
+    text-decoration: none;
+}
+
 .fs--main-footer {
     height: 40px;
 }

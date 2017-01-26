@@ -1,13 +1,11 @@
 <table cellspacing="0" cellpadding="0">
     <tr>
         <td class="pages-container">
-<!--            <span class="page-num-pgs"><%=model._numOfPages%> страниц</span>-->
-
             <!-- start page -->
             <% if (model._currentPage > 1) { %>
-                <span class="page-span"><a class="page-for-disabled page-link" title="в начало" page-num="1" href="#">&lt;&lt;</a></span>
+                <span class="first page-span"><a class="page-for-disabled page-link" title="в начало" page-num="1" href="#">&lt;&lt;</a></span>
             <% } else { %>
-            <!-- empty start page -->
+                <span class="first page-span current">&lt;&lt;</span>
             <% } %>
             <!-- start page -end -->
 
@@ -15,7 +13,7 @@
             <% if (model._currentPage > 1) { %>
                 <span class="page-span"><a class="page-for-disabled page-link" title="на предыдущую страницу" page-num="<%=model.prevPage%>" href="#">&lt;</a></span>
             <% } else { %>
-            <!-- empty prev page -->
+                <span class="page-span current">&lt;</span>
             <% } %>
             <!-- prev page -end -->
 
@@ -63,7 +61,7 @@
             <% if (model._currentPage < model._numOfPages) { %>
                 <span class="page-span"><a class="page-for-disabled page-link" title="на следующую страницу" page-num="<%=model.nextPage%>" href="#">&gt;</a></span>
             <% } else { %>
-            <!-- empty next page -->
+                <span class="page-span current">&gt;</span>
             <% } %>
             <!-- next page -end -->
 
@@ -71,7 +69,7 @@
             <% if (model._currentPage < model._numOfPages) { %>
                 <span class="page-span"><a class="page-for-disabled page-link" title="в конец" page-num="<%=model._numOfPages%>" href="#">&gt;&gt;</a></span>
             <% } else { %>
-            <!-- empty last page -->
+                <span class="page-span current">&gt;&gt;</span>
             <% } %>
             <!-- last page -end -->
         </td>
