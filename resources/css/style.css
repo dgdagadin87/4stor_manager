@@ -27,20 +27,6 @@
     color:red;
 }
 
-.storlist-common-container {
-    position: relative;
-}
-.storlist-common-container .preloader, .settings-container .preloader {
-    position: fixed;
-    bottom:10px;
-    background: #fff;
-    z-index:25;
-    padding:5px 0;
-    width:200px;
-    border:1px solid black;
-    text-align:center;
-}
-
 .searchform-container {
     padding:10px 0;
 }
@@ -380,6 +366,21 @@ fs--main-content .breadcrumbs-separator {
     color: grey;
 }
 
+.fs--main-content .storlist-common-container {
+    position: relative;
+}
+.fs--main-content .storlist-common-container .preloader,
+.fs--main-content  .settings-container .preloader {
+    position: fixed;
+    bottom:10px;
+    background: #fff;
+    z-index:25;
+    padding:5px 0;
+    width:200px;
+    border:1px solid black;
+    text-align:center;
+}
+
 .fs--main-content .storlist-list-container {
     border:1px solid #ddd;
     padding:10px;
@@ -436,10 +437,10 @@ fs--main-content .breadcrumbs-separator {
 
 .fs--main-content .storlist-stor-item .storlist-stor-categories {
     font-size:13px;
-    padding-top:0px;
+    padding-top:4px;
     padding-bottom:0px;
-    margin-top: 0px;
-    margin-bottom: 5px;
+    margin-top: 4px;
+    margin-bottom: 1px;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-categories span {
     display:inline-block;
@@ -450,21 +451,23 @@ fs--main-content .breadcrumbs-separator {
 }
 .fs--main-content .storlist-stor-item .storlist-stor-categories a {
     display:inline-block;
-    color: #009ec5;
-    font-weight: normal;
-    text-decoration: underline;
-    font-size: 13px;
-    padding:5px 0px 4px 0px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #fff;
+    background:#bcbcbc;
+    font-size: 12px;
+    padding:4px;
     margin-right: 3px;
-    border-radius:3px;
+    border-radius:2px;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-categories a:hover {
-    text-decoration: underline;
+    color: #ffffff;
+    background:#cf1557;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-short-desc {
     text-align:justify;
     font-size:15px;
-    margin-top:7px;
+    margin-top:4px;
     margin-bottom:36px;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-short-desc a {
