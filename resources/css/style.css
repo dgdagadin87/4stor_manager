@@ -402,7 +402,8 @@ fs--main-content .breadcrumbs-separator {
 }
 .fs--main-content .storlist-stor-item .storlist-stor-title,
 .fs--main-content .storlist-stor-item .storlist-stor-short-desc,
-.fs--main-content .storlist-stor-item .storlist-stor-categories {
+.fs--main-content .storlist-stor-item .storlist-stor-categories,
+.fs--main-content .storlist-stor-item .storlist-stor-bottom{
     padding:7px;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-title {
@@ -443,18 +444,18 @@ fs--main-content .breadcrumbs-separator {
     margin-bottom: 1px;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-categories span {
+    vertical-align: middle;
     display:inline-block;
-    color: #777;
-    font-weight: bold;
-    font-size:12px;
-    margin-right: 3px;
+    height:15px;
+    width:15px;
+    background: #fff url('../img/tag.png') no-repeat 0px 0px;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-categories a {
     display:inline-block;
     font-weight: bold;
     text-decoration: none;
     color: #fff;
-    background:#bcbcbc;
+    background:#bbbbbb;
     font-size: 12px;
     padding:4px;
     margin-right: 3px;
@@ -468,7 +469,7 @@ fs--main-content .breadcrumbs-separator {
     text-align:justify;
     font-size:15px;
     margin-top:4px;
-    margin-bottom:36px;
+    margin-bottom:10px;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-short-desc a {
     color:#091b9f;
@@ -486,11 +487,42 @@ fs--main-content .breadcrumbs-separator {
     text-decoration: none;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-bottom {
-/*    border:1px solid #eee;
-    background: #f2f2f2;*/
-/*    padding:3px;*/
-    font-size:13px;
-    color: #555;
+    font-size:14px;
+    color: #94999e;
+    margin-bottom:12px;
+    font-family: 'PT Sans', sans-serif;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-bottom a {
+    font-size:14px;
+    color: #383e47;
+    font-weight:600;
+    text-decoration:none;
+    display: inline-block;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-bottom a:hover {
+    color: #238FF5;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-bottom span {
+    display: inline-block;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-bottom .date-title {
+    width:12px;
+    height:12px;
+    background: #fff url('../img/date.png') no-repeat;
+    margin-left:20px;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-bottom .watches-title {
+    width:16px;
+    height:10px;
+    background: #fff url('../img/watches.png') no-repeat;
+    margin-left:20px;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-bottom .comments-title {
+    width:16px;
+    height:16px;
+    background: #fff url('../img/comments.png') no-repeat;
+    margin-left:20px;
+    vertical-align:middle;
 }
 
 .fs--main-content .paging-container table {

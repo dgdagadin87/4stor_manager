@@ -43,7 +43,7 @@ class Helper {
             $psSecond = $paDate[1];
             $paSecond = explode(':', $psSecond);
             $hourMinute = $paSecond[0] . ':' . $paSecond[1];
-            return ($dayMonthYear . ' в ' . $hourMinute);
+            return ($dayMonthYear . ' ' . $hourMinute);
         }
     }
     

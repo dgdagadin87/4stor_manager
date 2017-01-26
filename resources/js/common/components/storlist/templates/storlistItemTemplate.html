@@ -4,7 +4,6 @@
         <a class="title" target="_blank" title="<%=storHref%>" href="<%=storHref%>"><%=storName%></a>
     </div>
     <div class="storlist-stor-categories">
-<!--        <span>Категории</span>-->
         <% _.each(storCats, function(cat){ %>
             <a title="<%=cat.catName%>" href="#category/<%=cat.catId%>"><%=cat.catName%></a>
         <% }); %>
@@ -19,4 +18,14 @@
         комментариев: <a target="_blank" class="comments" href="<%=storHref%>#comment"><%=storComments%></a>
         <a class="goto-site" target="_blank" href="<%=storHref%>">на сайт...</a>
     </div>-->
+    <div class="storlist-stor-bottom">
+        <span class="author-title">Автор:</span>
+        <a target="_blank" class="author-value" href="<%=storAuthorHref%>"><%=storAuthorName%></a>
+        <span class="date-title"></span>
+        <span class="date-value"><%=storDate%></span>
+        <span class="watches-title"></span>
+        <span class="watches-value"><%=storWatches%></span>
+        <span class="comments-title"></span>
+        <a target="_blank" class="comments-value" href="<%=storHref%>#comment"><%=storComments%></a>
+    </div>
 </div>
