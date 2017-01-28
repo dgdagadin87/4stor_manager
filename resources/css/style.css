@@ -572,9 +572,6 @@ fs--main-content .breadcrumbs-separator {
 .fs--main-content .paging-container .page-button:hover {
     border-color: #999;
 }
-.fs--main-content .paging-container .page-disabled {
-    color: #66767c;
-}
 .fs--main-content .page-refresh.page-disabled, .fs--main-content .page-goto.page-disabled {
     background-color:#e1e6e6;
 }
@@ -640,6 +637,13 @@ fs--main-content .breadcrumbs-separator {
 .fs--main-container .paging-container .pages-container a:hover {
     color:#cf1557;
     text-decoration: none;
+}
+.fs--main-content .paging-container a.page-disabled {
+    color: #66767c;
+}
+.fs--main-content .paging-container a.page-disabled:hover {
+    color: #66767c;
+    text-decoration: underline;
 }
 
 .fs--main-footer {
