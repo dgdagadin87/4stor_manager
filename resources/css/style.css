@@ -409,7 +409,7 @@ fs--main-content .breadcrumbs-separator {
 .fs--main-content .storlist-stor-item .storlist-stor-title {
     margin-bottom:0px;
     padding-top:4px;
-    padding-bottom: 4px;
+    padding-bottom: 8px;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-title a {
     font-size:20px;
@@ -419,29 +419,12 @@ fs--main-content .breadcrumbs-separator {
 .fs--main-content .storlist-stor-item .storlist-stor-title a:hover {
     text-decoration: none;
 }
-.fs--main-content .storlist-stor-item .storlist-stor-title .rate {
-    display:inline-block;
-    padding:2px 4px 1px;
-    color:#fff;
-    vertical-align: middle;
-    font: bold 16px/14px Arial,Helvetica,sans-serif !important;
-    border-radius:2px;
-}
-.fs--main-content .storlist-stor-item .storlist-stor-title .plus-rate {
-    color:#46a600;
-/*    border:0px solid #46a600;*/
-}
-.fs--main-content .storlist-stor-item .storlist-stor-title .minus-rate {
-    color:#b20000;
-/*    border:0px solid #b20000;*/
-}
-
 .fs--main-content .storlist-stor-item .storlist-stor-categories {
     font-size:13px;
     padding-top:4px;
     padding-bottom:0px;
     margin-top: 4px;
-    margin-bottom: 1px;
+    margin-bottom: 5px;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-categories span {
     vertical-align: middle;
@@ -469,7 +452,7 @@ fs--main-content .breadcrumbs-separator {
     text-align:justify;
     font-size:15px;
     margin-top:4px;
-    margin-bottom:10px;
+    margin-bottom:4px;
 }
 .fs--main-content .storlist-stor-item .storlist-stor-short-desc a {
     color:#091b9f;
@@ -505,11 +488,31 @@ fs--main-content .breadcrumbs-separator {
 .fs--main-content .storlist-stor-item .storlist-stor-bottom span {
     display: inline-block;
 }
+.fs--main-content .storlist-stor-item .storlist-stor-bottom .rate-title {
+    width:16px;
+    height:16px;
+    background: #fff url('../img/rate.png') no-repeat;
+    vertical-align:top;
+    margin-left:20px;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-bottom .rate {
+    font-weight:bold;
+/*    width:43px;*/
+}
+.fs--main-content .storlist-stor-item .storlist-stor-bottom .plus-rate {
+    color:#46a600;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-bottom .minus-rate {
+    color:#b20000;
+}
 .fs--main-content .storlist-stor-item .storlist-stor-bottom .date-title {
     width:12px;
     height:12px;
     background: #fff url('../img/date.png') no-repeat;
     margin-left:20px;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-bottom .date-value {
+/*    width:106px;*/
 }
 .fs--main-content .storlist-stor-item .storlist-stor-bottom .watches-title {
     width:16px;
@@ -517,12 +520,21 @@ fs--main-content .breadcrumbs-separator {
     background: #fff url('../img/watches.png') no-repeat;
     margin-left:20px;
 }
+.fs--main-content .storlist-stor-item .storlist-stor-bottom .watches-value {
+/*    width:50px;*/
+}
 .fs--main-content .storlist-stor-item .storlist-stor-bottom .comments-title {
     width:16px;
     height:16px;
     background: #fff url('../img/comments.png') no-repeat;
-    margin-left:20px;
     vertical-align:middle;
+    opacity: 0.4;
+}
+.fs--main-content .storlist-stor-item .storlist-stor-bottom .comments-value {
+/*    width:25px;*/
+}
+.fs--main-content .storlist-stor-item .storlist-stor-bottom .author-title {
+    margin-left:20px;
 }
 
 .fs--main-content .paging-container table {
@@ -582,7 +594,7 @@ fs--main-content .breadcrumbs-separator {
 }
 
 .fs--main-container .paging-container .pages-container span {
-    font-size: 15px;
+    font-size: 16px;
     color:#333;
     margin-left: 3px;
 }
