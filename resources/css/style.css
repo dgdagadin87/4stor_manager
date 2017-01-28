@@ -148,21 +148,26 @@ body {
     overflow-y: scroll;
 }
 .fs--main-container {
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+    border-left:1px solid #ccc;
+    border-right:1px solid #ccc;
     display: table;
     height: 100%;
-    width:900px;
+    width:1000px;
     margin: 0 auto;
     font-family: "Helvetica New",Arial,sans-serif;
     font-size:15px;
     color: #333;
 }
 .fs--main-center {
+    width:1000px;
     display: table-row;
     height: 100%;
     position:relative;
 }
 
 .fs--main-header {
+    padding:0 50px;
     margin:0 auto;
 }
 .fs--top-header {}
@@ -242,7 +247,7 @@ body {
 }
 
 .fs--main-sidebar{
-    width:250px;
+    width:300px;
     float: left;
 }
 .fs--main-sidebar .catlist-header {
@@ -254,6 +259,10 @@ body {
 .fs--main-sidebar .catlist-header h3 {
     color:#000;
     font-size:13px;
+}
+.categories {
+    width:250px;
+    margin-left:50px;
 }
 .categories-container {}
 .categories-container .category-list-item {
@@ -289,11 +298,12 @@ body {
 }
 
 .fs--main-content{
-    margin-left: 250px;
+    margin-left: 300px;
 }
 
 .fs--main-content .breadcrumbs {
     font-size:13px;
+    width:650px;
 }
 .fs--main-content .breadcrumbs a {
     color: #091b9f;
@@ -313,6 +323,11 @@ fs--main-content .breadcrumbs-separator {
     margin:13px 0px 10px;
     font-weight: bold;
     font-size: 16px;
+    width:650px;
+}
+
+.fs--main-content .fs--content-container {
+    width:650px;
 }
 
 .fs--main-content .listbar-container {
@@ -632,6 +647,8 @@ fs--main-content .breadcrumbs-separator {
     height: 40px;
 }
 .under-footer {
+    width:900px;
+    margin:auto;
     height: 40px;
     background:#fff;
     border-top: 1px solid #ddd;
@@ -648,7 +665,7 @@ fs--main-content .breadcrumbs-separator {
     text-decoration: none;
 }
 .under-footer .left-one {
-    height: 40px;
+    height: 35px;
     background:#fff;
     position: absolute;
     width:300px;
@@ -663,7 +680,7 @@ fs--main-content .breadcrumbs-separator {
     text-align:right;
 }
 .under-footer .right-one {
-    height: 40px;
+    height: 35px;
     background:#fff;
     position: absolute;
     width:250px;
