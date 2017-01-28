@@ -628,10 +628,45 @@ fs--main-content .breadcrumbs-separator {
 }
 
 .fs--main-footer {
+    margin-top:20px;
     height: 40px;
 }
 .under-footer {
-    height: 30px;
+    height: 40px;
     background:#fff;
     border-top: 1px solid #ddd;
+    font-size: 13px;
+    position: relative;
+    color:#777;
+}
+.under-footer a {
+    color: #091b9f;
+    text-decoration: underline;
+}
+.under-footer a:hover {
+    color: #cf1557;
+    text-decoration: none;
+}
+.under-footer .left-one {
+    height: 40px;
+    background:#fff;
+    position: absolute;
+    width:300px;
+    left:5px;
+    top:5px;
+}
+.under-footer .left-one > div,
+.under-footer .right-one > div {
+    margin-top:3px;
+}
+.under-footer .right-one > div {
+    text-align:right;
+}
+.under-footer .right-one {
+    height: 40px;
+    background:#fff;
+    position: absolute;
+    width:500px;
+    right:5px;
+    top:5px;
 }
