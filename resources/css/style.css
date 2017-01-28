@@ -635,7 +635,7 @@ fs--main-content .breadcrumbs-separator {
     height: 40px;
     background:#fff;
     border-top: 1px solid #ddd;
-    font-size: 13px;
+    font-size: 12px;
     position: relative;
     color:#777;
 }
@@ -666,7 +666,13 @@ fs--main-content .breadcrumbs-separator {
     height: 40px;
     background:#fff;
     position: absolute;
-    width:500px;
+    width:250px;
     right:5px;
     top:5px;
+}
+.under-footer .center-one {
+    background:#fff;
+    width:100px;
+    text-align:center;
+    margin:15px auto 0;
 }
