@@ -627,6 +627,7 @@ fs--main-content .breadcrumbs-separator {
 .fs--main-content .index-category-item .storlist-list-container {
     border:1px solid #ddd;
     padding:10px;
+    border-radius: 0;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
     margin-bottom: 20px;
