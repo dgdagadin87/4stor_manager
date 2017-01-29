@@ -148,9 +148,9 @@ body {
     overflow-y: scroll;
 }
 .fs--main-container {
-    box-shadow: 0 0 2px rgba(0,0,0,0.5);
-    border-left:1px solid #ccc;
-    border-right:1px solid #ccc;
+    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    border-left:1px solid #ffffff;
+    border-right:1px solid #ffffff;
     display: table;
     height: 100%;
     width:1000px;
