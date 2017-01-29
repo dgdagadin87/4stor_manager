@@ -5,9 +5,7 @@
 <div class="categories-container">
 <% _.each(importantCats, function(category){ %>
     <div class="category-list-item">
-        <a class="catlist-item catlist-for-disabled<% if (category.categoryName == 'Лучшие Истории Сайта') { %> catlist-best<% } %><% if (category.categoryImportant === 'y') { %> category-important<% } %>" href="/#category/<%=category.categoryId%>">
-            <%=category.categoryName%>
-        </a>
+        <a class="catlist-item catlist-for-disabled<% if (category.categoryName == 'Лучшие Истории Сайта') { %> catlist-best<% } %><% if (category.categoryImportant === 'y') { %> category-important<% } %>" href="/#category/<%=category.categoryId%>"><%=category.categoryName%></a>
         <span class="catlist-num-stors">(<%=category.categoryStors%>)</span>
     </div>
 <% }); %>    
