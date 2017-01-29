@@ -62,7 +62,7 @@ class indexModel extends abstractModel {
         $laSQL = array();
         foreach (array($this->lifeHistoriesId, $this->artHistoriesId, $this->natHistoriesId) as $historyId) {
             if (!is_null($historyId)) {
-                $laSQL[] = '(SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE c2s.catId IN (' . $historyId . ') ORDER BY s.storDate DESC LIMIT 5) ';
+                $laSQL[] = '(SELECT c.*, c2s.catId as cid,s.* FROM cats2stories c2s LEFT JOIN stories s ON c2s.storId = s.storId LEFT JOIN categories c ON c2s.catId = c.catId WHERE c2s.catId IN (' . $historyId . ') ORDER BY s.storDate DESC LIMIT 3) ';
             }
         }
         
