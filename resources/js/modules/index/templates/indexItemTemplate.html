@@ -1,29 +1,33 @@
 <div class="index-category-title">
-    <a class="title" href="/#category/<%=categoryId%>"><%=categoryName%></a>&nbsp;
-    <a href="<%=categoryUrl%>" target="_blank" class="show-original">На сайт</a>
+    <span class="cats-title">Категории</span>
+    <span class="separator">/</span>
+    <a class="title" href="/#category/<%=categoryId%>"><%=categoryName%></a>
 </div>
-<div class="index-category-stors">
+<div class="storlist-list-container">
     <% _.each(stors, function(stor){ %>
-        <div class="index-stor-item">
-            <div class="index-stor-title">
-                <a class="title" href="/#stories/<%=stor.storId%>"><%=stor.storName%></a>
+        <div class="storlist-stor-item">
+            <div class="storlist-stor-title">
+                <a class="title" target="_blank" title="<%=stor.storHref%>" href="<%=stor.storHref%>"><%=stor.storName%></a>
             </div>
-            <div class="index-stor-short-desc">
-                <%=stor.storShortDesc%>
-            </div>
-            <div class="index-stor-categories">
-                <small>Категории:</small>
+            <div class="storlist-stor-categories">
                 <% _.each(stor.storCats, function(cat){ %>
-                    <a href="#category/<%=cat.catId%>"><%=cat.catName%></a>&nbsp;
+                    <a title="<%=cat.catName%>" href="#category/<%=cat.catId%>"><%=cat.catName%></a>
                 <% }); %>
             </div>
-            <div class="index-stor-bottom">
-                Добавлено <span class="date"><%=stor.storDate%></span>
-                от <a target="_blank" class="author" href="<%=stor.storAuthorHref%>"><%=stor.storAuthorName%></a>&nbsp;
-                <span class="<% if(stor.storRate > 0){ %>plus<% }else{ %>minus<% } %>-rate"><%=stor.storRate%></span>&nbsp;
-                просмотров: <span class="watches"><%=stor.storWatches%></span>&nbsp;
-                комментариев: <a target="_blank" class="comments" href="<%=stor.storHref%>#comment"><%=stor.storComments%></a>
-                <a class="goto-site" target="_blank" href="<%=stor.storHref%>">на сайт...</a>
+            <div class="storlist-stor-short-desc">
+                <%=stor.storShortDesc%>
+            </div>
+            <div class="storlist-stor-bottom">
+                <span class="comments-title"></span>
+                <a target="_blank" class="comments-value" href="<%=stor.storHref%>#comment"><%=stor.storComments%></a>
+                <span class="rate-title"></span>
+                <span class="rate <% if(stor.storRate > 0){ %>plus<% }else{ %>minus<% } %>-rate"><% if(stor.storRate > 0){ %>+<% } %><%=stor.storRate%></span>
+                <span class="date-title"></span>
+                <span class="date-value"><%=stor.storDate%></span>
+                <span class="watches-title"></span>
+                <span class="watches-value"><%=stor.storWatches%></span>
+                <span class="author-title">Автор:</span>
+                <a target="_blank" class="author-value" href="<%=stor.storAuthorHref%>"><%=stor.storAuthorName%></a>
             </div>
         </div>
     <% }); %>
