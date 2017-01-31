@@ -2,12 +2,10 @@ define(
     [
         'backbone',
         'marionette',
-        'Application',
         'text!modules/search/templates/searchTemplate.html'
     ], function(
         Backbone,
         Marionette,
-        Application,
         template
     ) {
         return Backbone.Marionette.LayoutView.extend({
@@ -26,10 +24,6 @@ define(
             },
             
             onRender: function() {
-            },
-            
-            templateHelpers : function() {
-                return {};
             }
         });
     }
