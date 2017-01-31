@@ -655,7 +655,8 @@ fs--main-content .breadcrumbs-separator {
     border-right: 1px solid #dddddd;
     padding: 10px;
     background: #f5f5f5;
-    color: #777;
+    color: #555;
+    font-size:14px;
 }
 .search-form-table .field-name {
     border-right: 1px solid #dddddd;
@@ -680,19 +681,27 @@ fs--main-content .breadcrumbs-separator {
 .searchform-container .form-submit-button.disabled {
     color: grey;
 }
-.search-form-table input {
+.search-form-table input[type="text"] {
     padding: 3px;
+    border: 1px solid #aaaaaa;
+    background: #ffffff;
+}
+.search-form-table input[type="text"]:focus {
+    border: 1px solid #29B0D9;
 }
 .search-form-table img {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 13px;
+    top: 2px;
+    z-index: 15;
 }
-.search-form-table img {
-    position: absolute;
+.search-form-table .search-date-from,
+.search-form-table .search-date-to {
+    font-size:11px;
 }
-.search-form-table img:last-child {
-    position: absolute;
+
+.search-start-message {
+    margin-top:15px;
 }
 
 .search-error-block, .link-form-error-block {
