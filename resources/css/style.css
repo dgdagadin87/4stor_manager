@@ -645,11 +645,54 @@ fs--main-content .breadcrumbs-separator {
     text-decoration: none;
 }
 
+.search-form-table {
+    width: 100%;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+}
+.search-form-table .label-name {
+    border-bottom: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+    padding: 10px;
+    background: #f5f5f5;
+    color: #777;
+}
+.search-form-table .field-name {
+    border-right: 1px solid #dddddd;
+    padding: 10px;
+}
+.search-form-table .field-name.name {
+    vertical-align: top;
+}
+.search-form-table .field-name div {
+    position:relative;
+}
+.search-form-table .field-name div:last-child {
+    margin-top: 4px;
+}
+.search-form-table .label-name:last-child,
+.search-form-table .field-name:last-child{
+    border-right: 0;
+}
 .searchform-container {
     padding:10px 0;
 }
 .searchform-container .form-submit-button.disabled {
     color: grey;
+}
+.search-form-table input {
+    padding: 3px;
+}
+.search-form-table img {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.search-form-table img {
+    position: absolute;
+}
+.search-form-table img:last-child {
+    position: absolute;
 }
 
 .search-error-block, .link-form-error-block {

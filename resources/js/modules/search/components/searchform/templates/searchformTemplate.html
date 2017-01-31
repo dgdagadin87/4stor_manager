@@ -1,47 +1,63 @@
 <!--<div class="searchform-container">-->
 <div class="search-error-block" style="display:none;"></div>
-<table cellspacing="0" cellpadding="3" style="border:1px solid black;margin-top:10px;width:100%;">
+<table class="search-form-table" cellspacing="0" cellpadding="0">
     <tr>
-        <td class="label-name" style="border-bottom:1px solid black;">
+        <td class="label-name name">
             <span>Название</span>
         </td>
-        <td class="label-name" style="border-left:1px solid black; border-bottom:1px solid black;">
+        <td class="label-name rating">
             <span>Рейтинг</span>
         </td>
-        <td class="label-name" style="border-left:1px solid black; border-bottom:1px solid black;">
+        <td class="label-name date">
             <span>Дата</span>
         </td>
-        <td class="label-name" style="border-left:1px solid black; border-bottom:1px solid black;">
+        <td class="label-name watches">
             <span>Просмотров</span>
         </td>
-        <td class="label-name" style="border-left:1px solid black; border-bottom:1px solid black;">
-            <span>Комментариев</span>
+        <td class="label-name comments">
+            <span>Комм-риев</span>
         </td>
-        <td class="label-name" style="border-left:1px solid black; border-bottom:0px solid black;">
-            <span><a class="search-choose-categories" href="#" title="Выбрать категории">Выбрать категории</a></span>
+        <td class="label-name get-cats">
+            <span><a class="search-choose-categories" href="#" title="Выбрать категории">Категории</a></span>
         </td>
     </tr>
     <tr>
-        <td class="field-name">
+        <td class="field-name name">
             <input type="text" name="search-name" class="search-name" id="search-name" placeholder="Введите имя" style="width:120px;" />
         </td>
-        <td class="field-name" style="border-left:1px solid black;">
-            <input type="text" name="search-rate-from" class="search-rate-from" id="search-rate-from" placeholder="от" style="width:30px;" />
-            <input type="text" name="search-rate-to" class="search-rate-to" id="search-rate-to" placeholder="до" style="width:30px;" />
+        <td class="field-name rating">
+            <div>
+                <input type="text" name="search-rate-from" class="search-rate-from" id="search-rate-from" placeholder="от" style="width:50px;" />
+            </div>
+            <div>
+                <input type="text" name="search-rate-to" class="search-rate-to" id="search-rate-to" placeholder="до" style="width:50px;" />
+            </div>
         </td>
-        <td class="field-name" style="border-left:1px solid black;">
-            <input type="text" name="search-date-from" class="search-date-from" id="search-date-from" placeholder="от" style="width:70px;" />
-            <input type="text" name="search-date-to" class="search-date-to" id="search-date-to" placeholder="до" style="width:70px;" />
+        <td class="field-name date">
+            <div>
+                <input type="text" name="search-date-from" class="search-date-from" id="search-date-from" placeholder="от" style="width:65px;" />
+            </div>
+            <div>
+                <input type="text" name="search-date-to" class="search-date-to" id="search-date-to" placeholder="до" style="width:65px;" />
+            </div>
         </td>
-        <td class="field-name" style="border-left:1px solid black;">
-            <input type="text" name="search-watches-from" class="search-watches-from" id="search-watches-from" placeholder="от" style="width:40px;" />
-            <input type="text" name="search-watches-to" class="search-watches-to" id="search-watches-to" placeholder="до" style="width:40px;" />
+        <td class="field-name watches">
+            <div>
+                <input type="text" name="search-watches-from" class="search-watches-from" id="search-watches-from" placeholder="от" style="width:80px;" />
+            </div>
+            <div>
+                <input type="text" name="search-watches-to" class="search-watches-to" id="search-watches-to" placeholder="до" style="width:80px;" />
+            </div>
         </td>
-        <td class="field-name" style="border-left:1px solid black;">
-            <input type="text" name="search-comments-from" class="search-comments-from" id="search-comments-from" placeholder="от" style="width:30px;" />
-            <input type="text" name="search-comments-to" class="search-comments-to" id="search-comments-to" placeholder="до" style="width:30px;" />
+        <td class="field-name get-cats">
+            <div>
+                <input type="text" name="search-comments-from" class="search-comments-from" id="search-comments-from" placeholder="от" style="width:75px;" />
+            </div>
+            <div>
+                <input type="text" name="search-comments-to" class="search-comments-to" id="search-comments-to" placeholder="до" style="width:75px;" />
+            </div>
         </td>
-        <td class="field-name" style="border-left:1px solid black;">
+        <td class="field-name">
             <input type="button" class="form-submit-button" name="form-submit-button" value="Поиск" />
         </td>
     </tr>
