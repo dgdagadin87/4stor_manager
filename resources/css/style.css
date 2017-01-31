@@ -626,11 +626,12 @@ fs--main-content .breadcrumbs-separator {
     border:1px solid #ddd;
     border-bottom: 0;
     margin-top: 15px;
-    font-family: "PT Sans",sans-serif;
+/*    font-family: "PT Sans",sans-serif;*/
 }
 .fs--main-content .index-category-title span.cats-title {
     font-weight: bold;
     color:#337ab7;
+    font-size: 14px;
 }
 .fs--main-content .index-category-title span.separator {
     color:#555;
@@ -638,7 +639,8 @@ fs--main-content .breadcrumbs-separator {
 }
 .fs--main-content .index-category-title a {
     font-weight: bold;
-    color:#cf1557;
+    color:#337ab7;
+    font-size: 14px;
     text-decoration: none;
 }
 .fs--main-content .index-category-title a:hover {
