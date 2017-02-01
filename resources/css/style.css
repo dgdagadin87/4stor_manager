@@ -684,6 +684,9 @@ fs--main-content .breadcrumbs-separator {
 .searchform-container {
     padding:10px 0;
 }
+.search-error-block {
+    
+}
 .searchform-container .form-submit-button.disabled {
     cursor: url("../img/wait.png"), auto;
 }
@@ -742,11 +745,18 @@ fs--main-content .breadcrumbs-separator {
 }
 
 .search-error-block, .link-form-error-block {
-    border: 1px solid crimson;
-    color: red;
+    border: 1px solid #AA0000;
+    color: #AA0000;
+    background: #ffe6e6;
     padding: 10px;
-    margin-top:10px;
     margin-bottom: 10px;
+    border-radius: 3px;
+}
+.search-error-block div.error {
+    margin-top:7px;
+}
+.search-error-block div.error:first-child {
+    margin-top:0;
 }
 
 .fs--main-footer {
