@@ -37,9 +37,9 @@ class statisticsModel extends abstractModel {
                 'catId'      => $Data['catId'],
                 'catName'    => $Data['catName'],
                 'catHref'    => $Data['catHref'],
-                'maxRate'    => number_format ($Data['maxRate'], 0, '.', ' '),
-                'avgRate'    => number_format ($Data['avgRate'], 2, '.', ' '),
-                'minRate'    => number_format ($Data['minRate'], 0, '.', ' '),
+                'maxRate'    => number_format ($Data['maxRate'], 0, '.', ''),
+                'avgRate'    => number_format ($Data['avgRate'], 0, '.', ''),
+                'minRate'    => number_format ($Data['minRate'], 0, '.', ''),
                 'numOfStors' => number_format ($Data['numOfStors'], 0, '.', ' ')
             );
         }
