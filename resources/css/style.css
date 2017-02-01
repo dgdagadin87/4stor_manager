@@ -752,10 +752,12 @@ fs--main-content .breadcrumbs-separator {
     margin-top:10px;
 }
 .statistics-container .plus-rate {
-    color:green;
+    color:#46a600;
+    font-weight:bold;
 }
 .statistics-container .minus-rate {
-    color:red;
+    color:#b20000;
+    font-weight:bold;
 }
 .statistics-container .tabs {
     margin-bottom:20px;
