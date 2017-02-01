@@ -758,7 +758,7 @@ fs--main-content .breadcrumbs-separator {
     color:red;
 }
 .statistics-container .tabs {
-    margin-bottom:15px;
+    margin-bottom:20px;
 }
 .statistics-container .tabs span {
     font-weight:bold;
@@ -787,7 +787,7 @@ fs--main-content .breadcrumbs-separator {
     color:#333;
     font-size: 14px;
     font-weight: normal;
-    padding:5px 5px;
+    padding:5px 10px;
     border-right: 1px solid #dddddd;
     border-bottom: 1px solid #dddddd;
 }
@@ -809,11 +809,22 @@ fs--main-content .breadcrumbs-separator {
     text-align: right;
     font-size:14px;
 }
+statistics-container .statistics-table .table-cell.max-rate{
+    width: 40px;
+}
+statistics-container .statistics-table .table-cell.avg-rate{
+    width: 40px;
+}
+statistics-container .statistics-table .table-cell.min-rate{
+    width: 40px;
+}
 statistics-container .statistics-table .table-cell.stor-count{
     color: #333;
+    width: 50px;
 }
 .statistics-container .statistics-table .table-cell.outer-link {
     text-align: center;
+    width: 50px;
 }
 .statistics-container .statistics-table .table-cell.outer-link a {
     color: #091b9f;
@@ -832,6 +843,9 @@ statistics-container .statistics-table .table-cell.stor-count{
 }
 .statistics-container .statistics-table .table-cell.name a:hover {
     text-decoration: none;
+}
+.statistics-container .statistics-table tr:hover .table-cell {
+    background: #f5f5f5;
 }
 
 .fs--main-footer {
