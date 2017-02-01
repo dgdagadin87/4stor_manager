@@ -651,6 +651,7 @@ fs--main-content .breadcrumbs-separator {
     width: 100%;
     border: 1px solid #dddddd;
     border-radius: 3px;
+    margin-bottom: 10px;
 }
 .search-form-table .label-name {
     border-bottom: 1px solid #dddddd;
@@ -677,11 +678,14 @@ fs--main-content .breadcrumbs-separator {
 .search-form-table .field-name:last-child{
     border-right: 0;
 }
+.search-form-table .field-name.controls {
+    text-align: center;
+}
 .searchform-container {
     padding:10px 0;
 }
 .searchform-container .form-submit-button.disabled {
-    color: grey;
+    cursor: url("../img/wait.png"), auto;
 }
 .search-form-table input[type="text"] {
     padding: 3px;
@@ -690,6 +694,37 @@ fs--main-content .breadcrumbs-separator {
 }
 .search-form-table input[type="text"]:focus {
     border: 1px solid #29B0D9;
+}
+.search-form-table .form-submit-button {
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 17px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    color: #fff;
+    text-decoration: none;
+}
+.search-form-table .form-submit-button:hover {
+    background-color: #286090;
+    border-color: #122b40;
+    color: #fff;
+}
+.search-form-table .search-choose-categories {
+    color: #337ab7;
+    text-decoration: underline;
+    font-size: 13px;
+}
+.search-form-table .search-choose-categories:hover {
+    color: #23527c;
+    text-decoration: none;
 }
 .search-form-table img {
     position: absolute;
