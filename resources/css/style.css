@@ -628,7 +628,7 @@ fs--main-content .breadcrumbs-separator {
 }
 .fs--main-content .index-category-title a {
     font-weight: normal;
-    color:#337ab7;
+    color:#333;
     font-size: 14px;
     text-decoration: underline;
 }
