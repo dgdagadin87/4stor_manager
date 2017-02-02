@@ -9,6 +9,8 @@ require.config({
         backbone       : 'library/backbone/backbone',
         marionette     : 'library/backbone/backbone.marionette',
         Chartist       : 'library/chartist/chartist.min',
+        
+        mediaPolyfill  : 'library/chartist/machmedia.polyfill',
 
         text           : 'library/require/text',
 		
@@ -35,6 +37,9 @@ require.config({
         'marionette' : {
             'deps' : [ 'underscore', 'backbone', 'jquery' ],
             'exports' : 'Marionette'
+        },
+        'Chartist' : {
+            'deps' : [ 'mediaPolyfill' ]
         }
     },
     waitSeconds : 60
