@@ -618,8 +618,8 @@ fs--main-content .breadcrumbs-separator {
 /*    font-family: "PT Sans",sans-serif;*/
 }
 .fs--main-content .index-category-title span.cats-title {
-    font-weight: bold;
-    color:#337ab7;
+    font-weight: normal;
+    color:#333;
     font-size: 14px;
 }
 .fs--main-content .index-category-title span.separator {
@@ -627,10 +627,10 @@ fs--main-content .breadcrumbs-separator {
     padding: 0 5px;
 }
 .fs--main-content .index-category-title a {
-    font-weight: bold;
+    font-weight: normal;
     color:#337ab7;
     font-size: 14px;
-    text-decoration: none;
+    text-decoration: underline;
 }
 .fs--main-content .index-category-title a:hover {
     text-decoration: none;
