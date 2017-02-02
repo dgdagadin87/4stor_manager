@@ -881,7 +881,6 @@ statistics-container .statistics-table .table-cell.stor-count{
     font-size: 14px;
     font-weight: normal;
     padding:10px 10px;
-    border-right: 1px solid #dddddd;
     border-bottom: 1px solid #dddddd;
 }
 .statchart-container .statchart-table .table-header .total-value {
