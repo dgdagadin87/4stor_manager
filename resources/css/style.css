@@ -896,7 +896,7 @@ statistics-container .statistics-table .table-cell.stor-count{
 }
 .statchart-container .statchart-table .chart-legend {
     text-align: center;
-    padding: 20px 10px;
+    padding: 20px 10px 40px;
 }
 .statchart-container .statchart-table .legend-item-container {
     display: inline-block;
