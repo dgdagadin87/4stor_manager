@@ -1,20 +1,25 @@
 <div class="tabs">
     <a href="#statistics">Таблица</a>
-    <strong>Диаграмма</strong>
+    <span>Диаграмма</span>
 </div>
-<table cellspacing="0" cellpadding="10" style="border:1px solid black;width:100%;">
+<table class="statchart-table" cellspacing="0" cellpadding="0">
     <tr>
-        <td class="chart-total" colspan="2">
+        <td class="table-header" colspan="2">
             <span class="total-label">Всего рассказов:</span>
             <span class="total-value"><%=total%></span>
         </td>
     </tr>
     <tr>
-        <td style="height:250px;vertical-align:top" class="chart-diagram"></td>
-        <td style="width:300px;vertical-align:top;padding-top:80px;" class="chart-legend">
+        <td class="margin-cell">&nbsp;</td>
+    </tr>
+    <tr>
+        <td class="chart-diagram"></td>
+    </tr>
+    <tr>
+        <td class="chart-legend">
         <% _.each(chartData, function(numStors, key){ %>
             <div class="legend-item-container">
-                <span style="display:inline-block;width:15px;background:<%=colorData[key]%>;" class="legend-color">&nbsp;</span>
+                <span style="background:<%=colorData[key]%>;" class="legend-color">&nbsp;</span>
                 <span style="display:inline-block;" title="<%=numStors%> рассказов" class="legend-label"><%=labelData[key]%> <%=catData[key]%></span>
             </div>
         <% }); %>

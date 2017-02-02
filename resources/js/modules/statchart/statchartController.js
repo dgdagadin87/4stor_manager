@@ -62,7 +62,7 @@ define([
             radius: 150,
             canvasId: 'categoryChart',
             background: {
-                height: 300,
+                height: 400,
                 width: 300,
                 color: 'white'
             }

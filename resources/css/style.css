@@ -850,6 +850,68 @@ statistics-container .statistics-table .table-cell.stor-count{
     background: #f5f5f5;
 }
 
+.statchart-container .statchart-table {
+    width:100%;
+    border:1px solid #cccccc;
+    border-radius: 3px;
+    margin-bottom: 20px;
+}
+.statchart-container .tabs {
+    margin-bottom:20px;
+}
+.statchart-container .tabs span {
+    font-weight:bold;
+    color:#333;
+    font-size:15px;
+    margin-left:10px;
+}
+.statchart-container .tabs a {
+    font-weight:normal;
+    font-size:15px;
+    color: #091b9f;
+    text-decoration: underline;
+}
+.statchart-container .tabs a:hover {
+    color: #cf1557;
+    text-decoration: none;
+}
+.statchart-container .statchart-table .table-header {
+    background: #f5f5f5;
+    color:#333;
+    font-size: 14px;
+    font-weight: normal;
+    padding:10px 10px;
+    border-right: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+.statchart-container .statchart-table .table-header .total-value {
+    font-weight: bold;
+}
+.statchart-container .statchart-table .margin-cell {
+    height:20px;
+}
+.statchart-container .statchart-table .chart-diagram {
+    margin-top: 20px;
+    height:350px;
+    vertical-align: top;
+}
+.statchart-container .statchart-table .chart-legend {
+    text-align: center;
+    padding: 20px 10px;
+}
+.statchart-container .statchart-table .legend-item-container {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+.statchart-container .statchart-table .legend-color {
+    display:inline-block;
+    width:15px;
+    height: 15px;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+
 .fs--main-footer {
     margin-top:20px;
     height: 40px;
