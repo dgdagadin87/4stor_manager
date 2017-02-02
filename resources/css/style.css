@@ -883,15 +883,16 @@ statistics-container .statistics-table .table-cell.stor-count{
     padding:10px 10px;
     border-bottom: 1px solid #dddddd;
 }
-.statchart-container .statchart-table .table-header .total-value {
+.statchart-container .statchart-table .total-value {
     font-weight: bold;
 }
 .statchart-container .statchart-table .margin-cell {
-    height:20px;
+    padding: 10px 0;
+    text-align: center;
 }
 .statchart-container .statchart-table .chart-diagram {
     margin-top: 20px;
-    height:350px;
+    height:300px;
     vertical-align: top;
 }
 .statchart-container .statchart-table .chart-legend {
