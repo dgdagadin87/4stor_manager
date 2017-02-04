@@ -115,18 +115,79 @@ body {
     vertical-align: middle;
 }
 .fs--login-block {
-    width: 400px; margin: auto;
+    width: 400px;
+    margin: auto;
     border: 1px solid #ccc;
     border-radius: 3px;
+}
+.fs--login-block .label {
+    color:#444;
+    margin-bottom: 2px;
+}
+.fs--login-block .password {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 .fs--login-header {
     background: #f5f5f5;
     padding: 10px 15px;
-    color: #555;
+    color: #444444;
     border-bottom: 1px solid #ccc;
+    font-weight: bold;
+    font-size:16px;
 }
 .fs--login-container .controls-container {
+    padding: 10px 20px 10px 17px;
+}
+.fs--login-container .buttons {
+    margin-bottom: 10px;
+}
+.fs--login-container .buttons a {
+    display: inline-block;
+    background: #f0f0f0;
+    color: #000;
+    border: 1px solid #aaaaaa;
+    text-decoration: none;
+    padding: 4px 35px;
+}
+.fs--login-container .buttons a:hover {
+    border: 1px solid #333333;
+}
+.fs--login-container .buttons a.disabled {
+    display: inline-block;
+    background: #f0f0f0;
+    color: #aaa;
+    border: 1px solid #eee;
+    text-decoration: none;
+    padding: 4px 35px;
+}
+.fs--login-container .controls-container input[type="text"],
+.fs--login-container .controls-container input[type="password"]{
+    display: block;
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+    background: #ffffff;
+    border: 1px solid #888;
+    padding-left:3px;
+}
+.fs--login-container .controls-container input[type="text"]:focus,
+.fs--login-container .controls-container input[type="password"]:focus {
+    border: 1px solid #29B0D9;
+}
+.login-error-block {
+    border: 1px solid #AA0000;
+    color: #AA0000;
+    background: #ffe6e6;
     padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+.login-error-block div.error {
+    margin-top:7px;
+}
+.login-error-block div.error:first-child {
+    margin-top:0;
 }
 
 .fs--main-container {
