@@ -202,7 +202,7 @@ define([
                 success: function(data, textStatus, jqXHR){
                     var errorCode = data.errorCode || '';
                     if (errorCode === 'NOT_AUTH') {
-                        window.href.location = '/';
+                        window.location.href = '/';
                         return false;
                     }
                     AfterSuccess(data, textStatus, jqXHR, afterSuccessParams);
