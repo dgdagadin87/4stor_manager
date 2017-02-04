@@ -92,22 +92,29 @@
         </script>
     </head>
     <body>
-        <div class="login-container">
-            <div id="errors" class="errors" style="display:none;"></div>
-            <div class="height-saver">
-                <p class="login">
-                    <label>Логин</label>
-                    <input type="text" id="login" name="login" value="" placeholder="Введите логин" />
-                </p>
-                <p class="pass">
-                    <label>Пароль</label>
-                    <input type="password" id="password" name="password" value="" placeholder="Введите пароль" />
-                </p>
+        <div class="fs--login-container">
+            <div class="fs--login-center">
+                <div class="fs--login-block">
+                    <div class="fs--login-header">
+                        Войти в систему
+                    </div>
+                    <div id="errors" class="errors" style="display:none;"></div>
+                    <div class="controls-container">
+                        <div class="login">
+                            <label>Логин</label>
+                            <input type="text" id="login" name="app-login" value="" placeholder="Введите логин" />
+                        </div>
+                        <div class="password">
+                            <label>Пароль</label>
+                            <input type="password" id="password" name="app-password" value="" placeholder="Введите пароль" />
+                        </div>
+                        <div class="buttons">
+                            <button id="submit">войти</button>
+                            <button id="reset">очистить</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p class="buttons">
-                <button id="submit">войти</button>
-                <button id="reset">очистить</button>
-            </p>
         </div>
     </body>
 </html>
