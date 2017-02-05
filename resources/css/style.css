@@ -701,7 +701,7 @@ fs--main-content .breadcrumbs-separator {
     cursor: pointer;
     display: inline-block;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: bold;
     line-height: 1.42857;
     margin-bottom: 0;
     padding: 6px 17px;
@@ -958,37 +958,6 @@ statistics-container .statistics-table .table-cell.stor-count{
 .settings-container .tbar-button.toolbar-disabled {
     background:#eee;
 }
-.settings-container .title {
-    background:blue;
-    color:#fff;
-}
-.settings-link-form-container .settings-link-form-item {
-    margin:10px;
-}
-
-.settings-container .grid-region, .settings-container .form-region {
-    vertical-align:top;
-}
-.settings-links .settings-grid-headers span.header {
-    display:inline-block;
-    height:25px;
-    font-weight: bold;
-}
-.settings-links .settings-grid-headers span.name {
-    width:25%;
-}
-.settings-links .settings-grid-headers span.href {
-    width:45%;
-}
-.settings-links .settings-grid-headers span.multipage {
-    width:18%;
-}
-.settings-links .settings-grid-headers span.controls {
-    width:10%;
-}
-.settings-table-container thead td {
-    font-weight: bold;
-}
 .settings-table-container tbody > tr.highlight td {
     background: #fcf8e3;
 }
@@ -998,15 +967,15 @@ statistics-container .statistics-table .table-cell.stor-count{
     position:relative;
     width:97px;
     height:25px;
-    border: 1px solid #999999;
-    border-radius: 3px;
+    border: 1px solid #d4d9d9;
+    border-radius: 0px;
 }
 .grid-toolbar .tbar-button:hover {
-    border: 1px solid #333333;
+    border: 1px solid #999999;
 }
 .grid-toolbar .tbar-button:last-child {
     width:90px;
-    margin-left:10px;
+    margin-left:2px;
 }
 .grid-toolbar .tbar-button > .image {
     display:inline-block;
@@ -1030,6 +999,111 @@ statistics-container .statistics-table .table-cell.stor-count{
     background: url('../img/delete.png') no-repeat;
     top:4px;
     left:3px;
+}
+
+.settings-sync-table {
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #dddddd;
+}
+.settings-sync-table a {
+    color: #091b9f;
+    text-decoration: underline;
+}
+.settings-sync-table a:hover {
+    text-decoration: none;
+}
+.settings-sync-table .radio-class {
+    width: 16px;
+    height: 16px;
+    margin: auto;
+}
+.settings-sync-table .radio-class.yes {
+    background: url('../img/yes.png') no-repeat;
+}
+.settings-sync-table .radio-class.no {
+    background: url('../img/no.png') no-repeat;
+}
+.settings-sync-table thead td {
+    background: #f5f5f5;
+    color:#333;
+    font-size: 14px;
+    font-weight: normal;
+    padding:10px 10px;
+    border-bottom: 1px solid #dddddd;
+    border-right: 1px solid #ddd;
+}
+.settings-sync-table thead td:last-child {
+    border-right: 0;
+}
+.settings-sync-table thead td.checkbox-cell,
+.settings-sync-table tbody td.checkbox-item-cell{
+    width: 25px;
+    padding:5px 0;
+    text-align: center;
+    vertical-align: middle;
+}
+.settings-sync-table thead td.name-cell,
+.settings-sync-table tbody td.name-item-cell{
+    width: 70px;
+    padding:5px;
+    text-align: left;
+}
+.settings-sync-table thead td.href-cell,
+.settings-sync-table tbody td.href-item-cell{
+    padding: 7px;
+    text-align: left;
+}
+.settings-sync-table thead td.switch-cell,
+.settings-sync-table tbody td.switch-item-cell {
+    width: 35px;
+    padding: 5px 0;
+    text-align: center;
+}
+.settings-sync-table thead td.multi-cell,
+.settings-sync-table tbody td.multi-item-cell {
+    width: 35px;
+    padding: 5px 0;
+    text-align: center;
+}
+.settings-sync-table thead td.controls-cell,
+.settings-sync-table tbody td.controls-item-cell{
+    width: 80px;
+    padding: 5px 0;
+    text-align: center;
+}
+.settings-sync-table tbody td.controls-item-cell a:first-child{
+    color: #0000ee;
+}
+.settings-sync-table tbody td.controls-item-cell a:last-child{
+    color: #cf1557;
+}
+.settings-sync-table tbody td.controls-item-cell a.grid-disabled {
+    color: grey;
+    text-decoration: underline;
+}
+.settings-sync-table tbody tr:hover td {
+    background: #f5f5f5;
+}
+.settings-table-container tbody > tr.highlight:hover td {
+    background: #fcf8e3;
+}
+.settings-sync-table thead td input {
+    vertical-align: middle;
+}
+.settings-sync-table tbody tr td {
+    background: #ffffff;
+    color:#333;
+    font-size: 14px;
+    font-weight: normal;
+    border-bottom: 1px solid #dddddd;
+    border-right: 1px solid #ddd;
+}
+.settings-sync-table tbody tr td:last-child {
+    border-right: 0;
+}
+.settings-sync-table tbody tr:last-child td {
+    border-bottom: 0;
 }
 
 .fs--main-footer {

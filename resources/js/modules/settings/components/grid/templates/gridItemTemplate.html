@@ -1,23 +1,19 @@
-<td>
+<td class="checkbox-item-cell">
     <input type="checkbox" class="delete-checkbox" />
 </td>
-<td>
-    <%=linkId%>
-</td>
-<td>
+<td class="name-item-cell">
     <%=linkName%>
 </td>
-<td>
+<td class="href-item-cell">
     <a target="_blank" href="<%=linkHref%>"><%=linkHref%></a>
 </td>
-<td>
-    <%= linkIsOn == true ? 'Да' : 'Нет' %>
+<td class="switch-item-cell">
+    <div title="Ссылка <%= linkIsOn == true ? 'включена' : 'отключена' %>" class="radio-class <%= linkIsOn == true ? 'yes' : 'no' %>"></div>
 </td>
-<td>
-    <%= linkIsMultipage == true ? 'Да' : 'Нет' %>
+<td class="multi-item-cell">
+    <div title="Многостраничность <%= linkIsMultipage == true ? 'включена' : 'отключена' %>" class="radio-class <%= linkIsMultipage == true ? 'yes' : 'no' %>"></div>
 </td>
-<td>
+<td class="controls-item-cell">
     <a class="edit-button grid-for-disabled" href="#" title="Редактировать ссылку">Ред.</a>
-    &nbsp;
-    <a class="delete-button grid-for-disabled" href="#" title="Удалить ссылку">Уд.</a>
+    <a class="delete-button grid-for-disabled" href="#" title="Удалить ссылку">Удл.</a>
 </td>
