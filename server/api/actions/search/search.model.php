@@ -20,6 +20,8 @@ class searchModel extends abstractModel {
     public $storCommentsFrom = null;
     public $storCommentsTo = null;
     
+    public $searchInShortDesc = true;
+    
     public $categoryList = array();
     
     public function run () {
@@ -41,6 +43,8 @@ class searchModel extends abstractModel {
         $storWatchesTo = isset($_POST['storWatchesTo']) && ctype_digit($_POST['storWatchesTo']) ? intval($_POST['storWatchesTo']) : null;
         $storCommentsFrom = isset($_POST['storCommentsFrom']) && ctype_digit($_POST['storCommentsFrom']) ? intval($_POST['storCommentsFrom']) : null;
         $storCommentsTo = isset($_POST['storCommentsTo']) && ctype_digit($_POST['storCommentsTo']) ? intval($_POST['storCommentsTo']) : null;
+        
+        $searchInShortDesc = isset($_POST['searchInShortDesc']) && Helper::Main_StringToBool($_POST['searchInShortDesc']) === true ? true : false;
         
         // категории
         $catsList = isset($_POST['categories']) && is_array($_POST['categories']) ? $_POST['categories'] : array();
@@ -84,6 +88,8 @@ class searchModel extends abstractModel {
         $this->storWatchesTo = $storWatchesTo;
         $this->storCommentsFrom = $storCommentsFrom;
         $this->storCommentsTo = $storCommentsTo;
+
+        $this->searchInShortDesc = $searchInShortDesc;
         
         $this->categoryList = $catsList;
 
@@ -209,7 +215,12 @@ class searchModel extends abstractModel {
         $laConditions[] = 'c2s.catId IN (' . implode(',', $this->categoryList) . ')';
         
         if (!empty($this->storName)) {
-            $laConditions[] = 's.storName LIKE "%' . DB_EscapeString('mysql', $this->connection, $this->storName) . '%"';
+            $storName = DB_EscapeString('mysql', $this->connection, $this->storName);
+            $likeString = 's.storName LIKE "%' . $storName . '%"';
+            if ($this->searchInShortDesc) {
+                $likeString .= ' OR s.storDesc LIKE "%' . $storName . '%"';
+            }
+            $laConditions[] = $likeString;
         }
         
         if (!is_null($this->storRateStart)) {

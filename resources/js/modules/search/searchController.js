@@ -183,15 +183,16 @@ define([
 
     searchController.prototype._bindSearchData = function() {
         var data = {
-            storName         : $('#search-name').val(),
-            storRateStart    : $('#search-rate-from').val(),
-            storRateEnd      : $('#search-rate-to').val(),
-            storDateFrom     : $('#search-date-from').val(),
-            storDateTo       : $('#search-date-to').val(),
-            storWatchesFrom  : $('#search-watches-from').val(),
-            storWatchesTo    : $('#search-watches-to').val(),
-            storCommentsFrom : $('#search-comments-from').val(),
-            storCommentsTo   : $('#search-comments-to').val()
+            storName          : $('#search-name').val(),
+            searchInShortDesc : $('#search-in-desc').prop('checked'),
+            storRateStart     : $('#search-rate-from').val(),
+            storRateEnd       : $('#search-rate-to').val(),
+            storDateFrom      : $('#search-date-from').val(),
+            storDateTo        : $('#search-date-to').val(),
+            storWatchesFrom   : $('#search-watches-from').val(),
+            storWatchesTo     : $('#search-watches-to').val(),
+            storCommentsFrom  : $('#search-comments-from').val(),
+            storCommentsTo    : $('#search-comments-to').val()
         };
         this._data.set(data);
     };
@@ -333,6 +334,7 @@ define([
                 sortType: me._meta.get('sortType'),
                 
                 storName         : me._data.get('storName'),
+                searchInShortDesc: me._data.get('searchInShortDesc'),
                 storRateStart    : me._data.get('storRateStart'),
                 storRateEnd      : me._data.get('storRateEnd'),
                 storDateFrom     : me._data.get('storDateFrom'),
