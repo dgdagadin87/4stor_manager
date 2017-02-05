@@ -4,89 +4,6 @@
     background: #FFF url('../img/large-preloader.gif') no-repeat;
 }
 
-.toolbar-disabled {
-    color: grey;
-}
-.grid-disabled {
-    color: grey;
-}
-
-
-
-.tbar-button.toolbar-disabled {
-    background:#eee;
-}
-
-
-.settings-container .title {
-    background:blue;
-    color:#fff;
-}
-.settings-link-form-container .settings-link-form-item {
-    margin:10px;
-}
-
-.grid-region, .form-region {
-    vertical-align:top;
-}
-
-.settings-links .settings-grid-headers span.header {
-    display:inline-block;
-    height:25px;
-    font-weight: bold;
-}
-.settings-links .settings-grid-headers span.name {
-    width:25%;
-}
-.settings-links .settings-grid-headers span.href {
-    width:45%;
-}
-.settings-links .settings-grid-headers span.multipage {
-    width:18%;
-}
-.settings-links .settings-grid-headers span.controls {
-    width:10%;
-}
-
-.settings-table-container thead td {
-    font-weight: bold;
-}
-
-.settings-table-container tbody > tr.highlight td {
-    background: #fcf8e3;
-}
-
-.grid-toolbar .tbar-button {
-    display:inline-block;
-    cursor:pointer;
-    position:relative;
-    width:115px;
-    height:25px;
-    border: 1px solid #6188e2;
-}
-.grid-toolbar .tbar-button > .image {
-    display:inline-block;
-    position:absolute;
-    width:16px;
-    height:16px;
-    top:0;
-    left:15px;
-}
-.grid-toolbar .tbar-button > .text {
-    display:inline-block;
-    position:absolute;
-    top:2px;
-    left:45px;
-}
-.grid-toolbar .add {
-    background: url('../img/add.png') no-repeat;
-}
-.grid-toolbar .delete {
-    background: url('../img/delete.png') no-repeat;
-}
-
-
-
 /******** !!! NEW !!! ********/
 * {
     margin: 0;
@@ -1008,6 +925,111 @@ statistics-container .statistics-table .table-cell.stor-count{
     height: 15px;
     border-radius: 3px;
     vertical-align: middle;
+}
+
+.settings-container .toolbar-region {
+    margin-bottom:7px;
+}
+.settings-container .tabs {
+    margin-bottom:20px;
+}
+.settings-container .tabs span {
+    font-weight:bold;
+    color:#333;
+    font-size:15px;
+}
+.settings-container .tabs a {
+    font-weight:normal;
+    font-size:15px;
+    color: #091b9f;
+    text-decoration: underline;
+    margin-left:10px;
+}
+.settings-container .tabs a:hover {
+    color: #cf1557;
+    text-decoration: none;
+}
+.settings-container .toolbar-disabled {
+    color: grey;
+}
+.settings-container .grid-disabled {
+    color: grey;
+}
+.settings-container .tbar-button.toolbar-disabled {
+    background:#eee;
+}
+.settings-container .title {
+    background:blue;
+    color:#fff;
+}
+.settings-link-form-container .settings-link-form-item {
+    margin:10px;
+}
+
+.settings-container .grid-region, .settings-container .form-region {
+    vertical-align:top;
+}
+.settings-links .settings-grid-headers span.header {
+    display:inline-block;
+    height:25px;
+    font-weight: bold;
+}
+.settings-links .settings-grid-headers span.name {
+    width:25%;
+}
+.settings-links .settings-grid-headers span.href {
+    width:45%;
+}
+.settings-links .settings-grid-headers span.multipage {
+    width:18%;
+}
+.settings-links .settings-grid-headers span.controls {
+    width:10%;
+}
+.settings-table-container thead td {
+    font-weight: bold;
+}
+.settings-table-container tbody > tr.highlight td {
+    background: #fcf8e3;
+}
+.grid-toolbar .tbar-button {
+    display:inline-block;
+    cursor:pointer;
+    position:relative;
+    width:97px;
+    height:25px;
+    border: 1px solid #999999;
+    border-radius: 3px;
+}
+.grid-toolbar .tbar-button:hover {
+    border: 1px solid #333333;
+}
+.grid-toolbar .tbar-button:last-child {
+    width:90px;
+    margin-left:10px;
+}
+.grid-toolbar .tbar-button > .image {
+    display:inline-block;
+    position:absolute;
+    width:16px;
+    height:16px;
+    background-color: inherit;
+}
+.grid-toolbar .tbar-button > .text {
+    display:inline-block;
+    position:absolute;
+    top:3px;
+    left:23px;
+}
+.grid-toolbar .add {
+    background: url('../img/add.png') no-repeat;
+    top:5px;
+    left:3px;
+}
+.grid-toolbar .delete {
+    background: url('../img/delete.png') no-repeat;
+    top:4px;
+    left:3px;
 }
 
 .fs--main-footer {
