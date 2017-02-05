@@ -810,15 +810,21 @@ fs--main-content .breadcrumbs-separator {
     color: #23527c;
     text-decoration: none;
 }
-.search-form-table img {
-    position: absolute;
-    right: 13px;
-    top: 2px;
-    z-index: 15;
+.search-form-table .label-div {
+    padding-top:5px;
+}
+.search-form-table label {
+    font-size:12px;
+}
+.search-form-table input[type="checkbox"] {
+    vertical-align: middle;
 }
 .search-form-table .search-date-from,
 .search-form-table .search-date-to {
-    font-size:11px;
+    font-size:13px;
+}
+.search-form-table img {
+    display:inline-block;
 }
 
 .search-start-message {
@@ -1054,4 +1060,10 @@ statistics-container .statistics-table .table-cell.stor-count{
     width:100px;
     text-align:center;
     margin:15px auto 0;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .search-form-table img {
+        vertical-align: middle;
+    }
 }
