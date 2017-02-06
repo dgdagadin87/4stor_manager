@@ -12,7 +12,8 @@ define([
     'modules/search/searchController',
     'modules/statistics/statisticsController',
     'modules/statchart/statchartController',
-    'modules/settings/settingsController'
+    'modules/settings/settingsController',
+    'modules/about/aboutController'
     
 ], function (
     _,
@@ -26,7 +27,8 @@ define([
     searchModule,
     statisticsModule,
     statchartModule,
-    settingsModule
+    settingsModule,
+    aboutModule
 ) {
     var contentController = function() {
         

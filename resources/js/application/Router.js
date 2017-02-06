@@ -4,7 +4,7 @@ define(
         'marionette'
     ], function(
         Backbone,
-		Marionette
+        Marionette
     ) {
         return Backbone.Marionette.AppRouter.extend({
             appRoutes : {
@@ -13,7 +13,8 @@ define(
                 "search"       : "search",
                 "settings"     : "settings",
                 "statistics"   : "statistics",
-                "statchart"    : "statchart"
+                "statchart"    : "statchart",
+                "about"        : "about"
             }
         });
     }

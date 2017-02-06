@@ -92,11 +92,11 @@ class commonModel extends abstractModel {
             array(
                 'headerId' => 5,
                 'headerName' => 'О программе',
-                'headerURL' => 'info',
+                'headerURL' => 'about',
                 'selected' => false,
                 'outer' => false,
                 'forActive' => array(
-                    'info'
+                    'about'
                 )
             ),
             array(

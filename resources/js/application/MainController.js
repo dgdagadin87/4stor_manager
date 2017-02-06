@@ -25,6 +25,10 @@ define(
                 this._layout.showComponents('index', {});
             },
             
+            about : function() {
+                this._layout.showComponents('about', {});
+            },
+            
             search : function() {
                 this._layout.showComponents('search', {});
             },
