@@ -1113,7 +1113,7 @@ statistics-container .statistics-table .table-cell.stor-count{
 .under-footer {
     width:900px;
     margin:auto;
-    height: 40px;
+    height: 39px;
     background:#fff;
     border-top: 1px solid #ddd;
     font-size: 12px;
@@ -1129,7 +1129,7 @@ statistics-container .statistics-table .table-cell.stor-count{
     text-decoration: none;
 }
 .under-footer .left-one {
-    height: 35px;
+    height: 34px;
     background:#fff;
     position: absolute;
     width:300px;
@@ -1138,13 +1138,13 @@ statistics-container .statistics-table .table-cell.stor-count{
 }
 .under-footer .left-one > div,
 .under-footer .right-one > div {
-    margin-top:3px;
+/*    margin-top:3px;*/
 }
 .under-footer .right-one > div {
     text-align:right;
 }
 .under-footer .right-one {
-    height: 35px;
+    height: 34px;
     background:#fff;
     position: absolute;
     width:250px;
