@@ -3,12 +3,14 @@
     &nbsp;&nbsp;
     <a href="#" class="category-choose-unset-all">Убрать выделеное</a>
 </div>
-<% _.each(categories, function(category){ %>
-<div class="category-chose-list-item">
-    <input class="category-item-checkbox" data-cat-id="<%=category.categoryId%>" name="category-item-<%=category.categoryId%>" type="checkbox" <% if (checkedCategories.indexOf(category.categoryId) !== -1) { %>checked="checked"<% } %> />
-    <%=category.categoryName%>
+<div class="categories-overflow">
+    <% _.each(categories, function(category){ %>
+    <div class="category-chose-list-item">
+        <input class="category-item-checkbox" data-cat-id="<%=category.categoryId%>" name="category-item-<%=category.categoryId%>" type="checkbox" <% if (checkedCategories.indexOf(category.categoryId) !== -1) { %>checked="checked"<% } %> />
+        <%=category.categoryName%>
+    </div>
+    <% }); %>
 </div>
-<% }); %>
 <div class="button-container">
     <input type="button" class="categories-apply" value="Применить" />
     <input type="button" class="categories-cancel" value="Отмена" />

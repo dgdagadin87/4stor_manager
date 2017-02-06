@@ -1172,6 +1172,23 @@ statistics-container .statistics-table .table-cell.stor-count{
     margin:15px auto 0;
 }
 
+/******** !!! DIALOGS !!! ********/
+.ui-dialog {
+    font-family: "Helvetica New",Arial,sans-serif;
+    background: #ffffff;
+    border-color: #ffffff;
+}
+.ui-dialog .ui-dialog-titlebar {
+    display: none;
+}
+.ui-dialog > .ui-dialog-content, .ui-dialog > .ui-resizable-handle {
+    background: #ffffff;
+}
+.ui-widget-overlay {
+    background: #666666;
+    opacity: 0.5;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .search-form-table img {
         vertical-align: middle;
