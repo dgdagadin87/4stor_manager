@@ -17,10 +17,8 @@ define([
     return {
 
         showListPreloader: function(view) {
-            var selector = '#__CONTENT_CONTAINER__';
-            var position = $(selector).position();
-            var outerWidth = $(selector).outerWidth();
-            var leftPosition = parseInt(position.left) + parseInt(outerWidth)/2;
+            var documentWidth = $(document).width();
+            var leftPosition = parseInt(documentWidth)/2 - 100;
             var loader = view.$('.preloader');
             loader.css({
                 'left': leftPosition+'px'

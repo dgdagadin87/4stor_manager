@@ -347,13 +347,27 @@ fs--main-content .breadcrumbs-separator {
 .fs--main-content .storlist-common-container .preloader,
 .fs--main-content  .settings-container .preloader {
     position: fixed;
-    bottom:10px;
+    top:30px;
     background: #fff;
     z-index:25;
     padding:5px 0;
     width:200px;
-    border:1px solid black;
+    border:1px solid #aaaaaa;
+    box-shadow: 0 0 3px rgba(0,0,0,0.5);
+    border-radius: 3px;
     text-align:center;
+}
+.fs--main-content .storlist-common-container .preloader .image,
+.fs--main-content  .settings-container .preloader .image {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: transparent url('../img/pre-mini.gif') no-repeat;
+    vertical-align: middle;
+}
+.fs--main-content .storlist-common-container .preloader .text,
+.fs--main-content  .settings-container .preloader .text {
+    display: inline-block;
 }
 
 .fs--main-content .storlist-list-container {
