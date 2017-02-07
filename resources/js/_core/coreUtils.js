@@ -92,6 +92,7 @@ define([
                         modal: true,
                         closeOnEscape: false,
                         title: '',
+                        resizable: false,
                         width: 'auto',
                         close: function(e, ui){
                             closeDialog();
