@@ -1178,7 +1178,8 @@ statistics-container .statistics-table .table-cell.stor-count{
     background: #ffffff;
     border-color: #ffffff;
     padding: 0px;
-    border: 1px solid #ffffff;;
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.9);
 }
 .ui-dialog .ui-dialog-titlebar {
     display: none;
@@ -1195,6 +1196,19 @@ statistics-container .statistics-table .table-cell.stor-count{
 }
 
 
+.category-choose {
+    width: 300px;
+}
+.category-chose-toolbar {
+    text-align: center;
+    border-bottom: 1px solid #091b9f;
+    padding-bottom: 4px;
+}
+.category-chose-toolbar a {
+    color: #091b9f;
+    font-size: 14px;
+    text-decoration: underline;
+}
 .categories-dialog-header {
     background: #337ab7;
     padding: 5px;
@@ -1206,12 +1220,17 @@ statistics-container .statistics-table .table-cell.stor-count{
 .categories-overflow {
     margin: 2px;
     padding: 2px;
-    border: 1px solid #aaa;
+    border: 1px solid #ffffff;
     height: auto;
-    max-height: 400px;
+    max-height: 300px;
     overflow-y: auto;
     font-size: 14px;
     color: #333;
+}
+.category-chose-list-item {
+/*    border: 1px solid #bbbbbb;*/
+    padding: 5px 2px;
+    margin: 2px;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
