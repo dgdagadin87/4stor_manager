@@ -1177,6 +1177,8 @@ statistics-container .statistics-table .table-cell.stor-count{
     font-family: "Helvetica New",Arial,sans-serif;
     background: #ffffff;
     border-color: #ffffff;
+    padding: 0px;
+    border: 1px solid #ffffff;;
 }
 .ui-dialog .ui-dialog-titlebar {
     display: none;
@@ -1184,9 +1186,32 @@ statistics-container .statistics-table .table-cell.stor-count{
 .ui-dialog > .ui-dialog-content, .ui-dialog > .ui-resizable-handle {
     background: #ffffff;
 }
+.ui-dialog > .ui-dialog-content {
+    padding: 0;
+}
 .ui-widget-overlay {
     background: #666666;
     opacity: 0.5;
+}
+
+
+.categories-dialog-header {
+    background: #337ab7;
+    padding: 5px;
+    font-size: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #ffffff;
+}
+.categories-overflow {
+    margin: 2px;
+    padding: 2px;
+    border: 1px solid #aaa;
+    height: auto;
+    max-height: 400px;
+    overflow-y: auto;
+    font-size: 14px;
+    color: #333;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
