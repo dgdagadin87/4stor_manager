@@ -1181,6 +1181,12 @@ statistics-container .statistics-table .table-cell.stor-count{
     border: 1px solid #ffffff;
     box-shadow: 0 0 5px rgba(0,0,0,0.9);
 }
+.ui-dialog.ui-corner-all {
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
 .ui-dialog .ui-dialog-titlebar {
     display: none;
 }
@@ -1197,12 +1203,11 @@ statistics-container .statistics-table .table-cell.stor-count{
 
 
 .category-choose {
-    width: 300px;
+    width: 320px;
 }
 .category-chose-toolbar {
     text-align: center;
-    border-bottom: 1px solid #091b9f;
-    padding-bottom: 4px;
+    padding: 7px 0;
 }
 .category-chose-toolbar a {
     color: #091b9f;
@@ -1211,26 +1216,56 @@ statistics-container .statistics-table .table-cell.stor-count{
 }
 .categories-dialog-header {
     background: #337ab7;
-    padding: 5px;
-    font-size: 15px;
+    padding: 10px;
+    font-size: 16px;
     text-align: center;
     font-weight: bold;
     color: #ffffff;
+    border-radius: 4px;
 }
 .categories-overflow {
-    margin: 2px;
-    padding: 2px;
-    border: 1px solid #ffffff;
+    margin: 2px auto;
+    border: 1px solid #bbbbbb;
     height: auto;
-    max-height: 300px;
+    width: 300px;
+    max-height: 350px;
     overflow-y: auto;
     font-size: 14px;
     color: #333;
 }
 .category-chose-list-item {
-/*    border: 1px solid #bbbbbb;*/
-    padding: 5px 2px;
-    margin: 2px;
+    border-bottom: 1px solid #bbbbbb;
+    padding: 5px 4px;
+}
+.category-chose-list-item:last-child {
+    border-bottom: 0px solid #bbbbbb;
+}
+.category-chose-list-item input[type="checkbox"] {
+    vertical-align: middle;
+}
+.category-choose .button-container {
+    padding: 8px 0;
+    text-align: center;
+}
+.category-choose .button-container input[type="button"] {
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    background-color: #fff;
+    color: #333;
+}
+.category-choose .button-container input[type="button"]:hover {
+    background-color: #eee;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
