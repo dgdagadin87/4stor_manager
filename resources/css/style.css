@@ -1243,11 +1243,12 @@ statistics-container .statistics-table .table-cell.stor-count{
 .category-chose-list-item input[type="checkbox"] {
     vertical-align: middle;
 }
-.category-choose .button-container {
+.category-choose .button-container, .message-container .button-container {
     padding: 8px 0;
     text-align: center;
 }
-.category-choose .button-container input[type="button"] {
+.category-choose .button-container input[type="button"],
+.message-container .button-container input[type="button"] {
     background-image: none;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -1264,8 +1265,23 @@ statistics-container .statistics-table .table-cell.stor-count{
     background-color: #fff;
     color: #333;
 }
-.category-choose .button-container input[type="button"]:hover {
+.category-choose .button-container input[type="button"]:hover,
+.message-container .button-container input[type="button"]:hover{
     background-color: #eee;
+}
+
+.message-container .error-dialog-header {
+    background: #aa0000;
+    padding: 10px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: bold;
+    color: #ffffff;
+    border-radius: 4px;
+}
+.message-container .message {
+    margin: 25px 0 15px;
+    padding: 10px;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
