@@ -1,23 +1,37 @@
 <div class="form-container">
-    <div class="title"><%=state.title%></div>
+    <div class="categories-dialog-header">
+        <%=state.title%>
+    </div>
     <div class="link-form-error-block" style="display:none;"></div>
     <div class="errors" style="display:none;"></div>
     <input type="hidden" class="link-id" value="<%=model.linkId%>" />
     <div class="settings-link-form-item">
-        Имя ссылки<br />
-        <input type="text" class="link-name" value="<%=model.linkName%>" placeholder="Введите имя ссылки" />
+        <div>
+            Имя ссылки
+        </div>
+        <div>
+            <input type="text" class="link-name" value="<%=model.linkName%>" placeholder="Введите имя ссылки" />
+        </div>
     </div>
     <div class="settings-link-form-item">
-        Адрес ссылки<br />
-        <input type="text" class="link-href" value="<%=model.linkHref%>" placeholder="Введите адрес ссылки" />
+        <div>
+            Адрес ссылки
+        </div>
+        <div>
+            <input type="text" class="link-href" value="<%=model.linkHref%>" placeholder="Введите адрес ссылки" />
+        </div>
     </div>
     <div class="settings-link-form-item">
-        <input type="checkbox" class="link-using" <%=model.linkIsOn?'checked="checked"':''%> />
-        Включена
+        <label>
+            <input type="checkbox" class="link-using" <%=model.linkIsOn?'checked="checked"':''%> />
+            Включена
+        </label>
     </div>
     <div class="settings-link-form-item">
-        <input type="checkbox" class="link-multi" <%=model.linkIsMultipage?'checked="checked"':''%> />
-        Многостраничность
+        <label>
+            <input type="checkbox" class="link-multi" <%=model.linkIsMultipage?'checked="checked"':''%> />
+            Многостраничность
+        </label>
     </div>
     <div class="settings-link-form-item">
         <button class="link-submit"><%=state.submit%></button>
@@ -31,6 +45,6 @@
 <div class="message-container" style="display:none;">
     <span class="message-text"></span>
         <div>
-            <button class="link-ok">ОК</button>
+            <button class="link-ok">Закрыть</button>
         </div>
 </div>

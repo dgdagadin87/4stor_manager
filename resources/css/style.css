@@ -762,7 +762,7 @@ fs--main-content .breadcrumbs-separator {
     margin-top:15px;
 }
 
-.search-error-block, .link-form-error-block {
+.search-error-block {
     border: 1px solid #AA0000;
     color: #AA0000;
     background: #ffe6e6;
@@ -1248,13 +1248,16 @@ statistics-container .statistics-table .table-cell.stor-count{
     text-align: center;
 }
 .category-choose .button-container input[type="button"],
-.message-container .button-container input[type="button"] {
+.message-container .button-container input[type="button"],
+.settings-link-form-container button {
     background-image: none;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    background: #f0f0f0;
+    color: #000;
+    border: 1px solid #aaaaaa;
+    border-radius: 0px;
     cursor: pointer;
     display: inline-block;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 1.42857;
     margin-bottom: 0;
@@ -1262,12 +1265,11 @@ statistics-container .statistics-table .table-cell.stor-count{
     text-align: center;
     vertical-align: middle;
     white-space: nowrap;
-    background-color: #fff;
-    color: #333;
 }
 .category-choose .button-container input[type="button"]:hover,
-.message-container .button-container input[type="button"]:hover{
-    background-color: #eee;
+.message-container .button-container input[type="button"]:hover,
+.settings-link-form-container button:hover {
+    border: 1px solid #333333;
 }
 
 .message-container .error-dialog-header {
@@ -1282,6 +1284,35 @@ statistics-container .statistics-table .table-cell.stor-count{
 .message-container .message {
     margin: 25px 0 15px;
     padding: 10px;
+}
+
+ .link-form-error-block {
+    border: 1px solid #AA0000;
+    color: #AA0000;
+    background: #ffe6e6;
+    padding: 10px;
+    margin: 10px 10px 0;
+    font-size: 14px;
+    border-radius: 3px;
+}
+.settings-link-form-item {
+    width: 400px;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+.settings-link-form-item:last-child {
+    margin-bottom:5px;
+    text-align: center;
+}
+.settings-link-form-item input[type="text"] {
+    width: 100%;
+    font-size: 15px;
+    background: #ffffff;
+    border: 1px solid #888;
+    padding: 2px 0;
+}
+.settings-link-form-item input[type="checkbox"] {
+    vertical-align: middle;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
