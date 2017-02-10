@@ -227,7 +227,7 @@ define([
                 me._breadCrumbs = breadCrumbsData;
                 me._pageMeta = pageMetaData;
                 me._categoryName = catName;
-                me._pageTitle = 'Категория "'+me._categoryName+'"';
+                me._pageTitle = me._categoryName;
 
                 me._listComponent.setData(categoryData);
                 me._pagingComponent.setData(pagingData);
