@@ -1243,13 +1243,16 @@ statistics-container .statistics-table .table-cell.stor-count{
 .category-chose-list-item input[type="checkbox"] {
     vertical-align: middle;
 }
-.category-choose .button-container, .message-container .button-container {
+.category-choose .button-container,
+.message-container .button-container,
+.settings-link-confirm-container .button-container{
     padding: 8px 0;
     text-align: center;
 }
 .category-choose .button-container input[type="button"],
 .message-container .button-container input[type="button"],
-.settings-link-form-container button {
+.settings-link-form-container button,
+.settings-link-confirm-container  button {
     background-image: none;
     background: #f0f0f0;
     color: #000;
@@ -1268,7 +1271,8 @@ statistics-container .statistics-table .table-cell.stor-count{
 }
 .category-choose .button-container input[type="button"]:hover,
 .message-container .button-container input[type="button"]:hover,
-.settings-link-form-container button:hover {
+.settings-link-form-container button:hover,
+.settings-link-confirm-container  button:hover{
     border: 1px solid #333333;
 }
 
@@ -1286,7 +1290,7 @@ statistics-container .statistics-table .table-cell.stor-count{
     padding: 10px;
 }
 
- .link-form-error-block {
+.link-form-error-block {
     border: 1px solid #AA0000;
     color: #AA0000;
     background: #ffe6e6;
@@ -1313,6 +1317,26 @@ statistics-container .statistics-table .table-cell.stor-count{
 }
 .settings-link-form-item input[type="checkbox"] {
     vertical-align: middle;
+}
+
+.settings-link-form-container .message-container .message-text,
+.settings-link-form-container .preloader-container .text-small,
+.settings-link-confirm-container .message-container .message-text,
+.settings-link-confirm-container .preloader-container .text-small,
+.settings-link-confirm-item {
+    margin: 25px 0 15px;
+    padding: 10px;
+}
+.settings-link-confirm-item.buttons {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    padding-bottom: 5px;
+}
+.settings-link-form-container .message-container .message-text.success {
+}
+.settings-link-form-container .message-container .message-text.error {
+    color: red;
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {

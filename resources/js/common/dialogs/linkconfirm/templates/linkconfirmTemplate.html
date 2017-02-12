@@ -1,21 +1,28 @@
 <div class="confirm-container">
-    <div class="title">Удаление ссылки</div>
+    <div class="categories-dialog-header">
+        Удаление ссылки
+    </div>
     <input type="hidden" class="link-id" value="<%=linkId%>" />
     <div class="settings-link-confirm-item">
         Вы действительно хотите удалить ссылку для синхронизации "<%=linkName%>"?
     </div>
-    <div class="settings-link-confirm-item">
-        <button class="link-submit">Ок</button>
+    <div class="settings-link-confirm-item buttons">
+        <button class="link-submit">Удалить</button>
         <button class="link-cancel">Отмена</button>
     </div>
 </div>
 <div class="preloader-container" style="display:none;">
-    <div class="img-small"></div>
+    <div class="categories-dialog-header">
+        Удаление ссылки
+    </div>
     <div class="text-small">Идет удаление ссылки...</div>
 </div>
 <div class="message-container" style="display:none;">
-    <span class="message-text"></span>
-        <div>
-            <button class="link-ok">ОК</button>
-        </div>
+    <div class="categories-dialog-header">
+        Удаление ссылки
+    </div>
+    <div class="message-text"></div>
+    <div class="button-container">
+        <button class="link-ok">Закрыть</button>
+    </div>
 </div>
