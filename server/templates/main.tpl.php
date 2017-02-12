@@ -16,8 +16,13 @@
         <![endif]-->
     </head>
     <body id="main-body">
-        <div class="spinner-title">Загрузка</div>
-        <div class="spinner-loader large"></div>
-        <div class="spinner-message">Подождите, идет загрузка общих компонентов...</div>
+        <div class="fs--loader-container">
+            <div class="fs--loader-center">
+                <div class="fs--loader-block">
+                    <div class="loader"></div>
+                    <div class="message">Подождите, идет загрузка общих компонентов...</div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
