@@ -140,7 +140,7 @@ define([
         this._view['pagingRegion'].$el.hide();
         if (!this._spinnerComponent.isRendered()) {
             this._spinnerComponent.getModel().set({
-                title:'Идет загрузка',
+                title:'Идет загрузка данных...',
                 spinclass: 'large'
             });
             this._spinnerComponent.showSpinner();
