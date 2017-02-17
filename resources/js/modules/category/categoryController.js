@@ -167,16 +167,16 @@ define([
     
     categoryController.prototype.showCurrentContent = function(poParams) {
         var catId = poParams.categoryId || 0;
-        if (catId !== this._categoryId) {
+        //if (catId !== this._categoryId) {
             this._meta.set(this._metaDefault, {
                 silent: true
             });
             this._categoryId = catId;
             this._showCurrentContent();
-        }
-        else {
-            this.__renderContent();
-        }
+        //}
+        //else {
+        //    this.__renderContent();
+        //}
     };
     
     categoryController.prototype._renderComponents = function() {
