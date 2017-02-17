@@ -1375,6 +1375,24 @@ statistics-container .statistics-table .table-cell.stor-count{
     color: red;
 }
 
+.about-container div.paragraph {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+.about-container a {
+    color: #091b9f;
+    text-decoration: underline;
+}
+.about-container a:hover {
+    text-decoration: none;
+}
+.about-container div.paragraph > ul {
+    margin: 5px 20px 5px;
+}
+.about-container div.paragraph > ul > li > ul {
+    margin: 0px 20px;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .search-form-table img {
         vertical-align: middle;
