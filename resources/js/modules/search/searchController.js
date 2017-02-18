@@ -46,6 +46,8 @@ define([
         
         this._moduleCode = 'search';
         
+        this._isSearched = false;
+        
         this._meta = new metaModel();
         this._data = new dataModel();
         
@@ -161,6 +163,7 @@ define([
         this._bindSearchData();
         var errors = this._validateErrors();
         if (errors.length < 1) {
+            this._isSearched = true;
             this.loadData(true);
         }
         else {
@@ -366,6 +369,9 @@ define([
             me.__renderContent();
             if (!me.isComponentRendered()) {
                 layoutView[me._regionName].show(me.getView());
+            }
+            if (me._isSearched) {
+                me.loadData(true);
             }
         };
         lfRender();
