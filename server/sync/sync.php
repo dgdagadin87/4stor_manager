@@ -1,6 +1,6 @@
 <?php
 
-require (__DIR__ . '/../cfg/config.php');
+require (__DIR__ . '/../cfg/config.sync.php');
 require (__DIR__ . '/../inc/db.inc.php');
 require (__DIR__ . '/../inc/helper.inc.php');
 
