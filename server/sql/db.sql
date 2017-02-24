@@ -114,3 +114,14 @@ CREATE TABLE system_users
 ) 
 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
 ENGINE = MYISAM;
+
+DROP TABLE IF EXISTS sync_log;
+CREATE TABLE sync_log 
+(
+    syncLogId BIGINT AUTO_INCREMENT NOT NULL , 
+    syncLogDate DATETIME NOT NULL ,
+  
+    PRIMARY KEY ( syncLogId )
+) 
+DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
+ENGINE = MYISAM;

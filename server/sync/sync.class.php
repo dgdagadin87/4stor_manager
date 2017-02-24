@@ -16,6 +16,7 @@ class serverSync {
         foreach ($syncLinks as $linkData) {
             $this->_syncronizeLink($linkData);
         }
+        $this->model->insertLogData();
     }
     
     public function _syncronizeLink($linkData) {

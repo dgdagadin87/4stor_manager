@@ -14,6 +14,14 @@ class serverSyncModel {
         }
     }
     
+    public function insertLogData () {
+        $SQL = 'INSERT INTO `sync_log` (syncLogDate) VALUES (NOW())';
+        $Query = DB_Query ('mysql', $SQL, $this->connection);
+        if (!$Query) {
+            exit ($SQL . "\r\n" . DB_Error ('mysql', $this->connection));
+        }
+    }
+    
     public function insertStor ($pnStorId, $paStorData) {
         $getStorSQL = 'SELECT `storId` FROM `stories` WHERE `storId` = \'' . intval($pnStorId) . '\'';
         $getStorQuery = DB_Query ('mysql', $getStorSQL, $this->connection);
