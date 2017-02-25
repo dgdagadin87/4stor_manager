@@ -279,6 +279,8 @@ define([
     searchController.prototype.loadData = function(isGlobal) {
         var me = this;
         
+        var isReload = arguments[1] || false;
+        
         var lfRender = function(){
             me._renderListComponents({
                 toScroll: true
@@ -317,7 +319,7 @@ define([
         };
 
         if (isGlobal) {
-            me._meta.set(me._metaDefault);
+            !isReload && me._meta.set(me._metaDefault);
             me._showSearchSpinner();
         }
 
@@ -371,7 +373,7 @@ define([
                 layoutView[me._regionName].show(me.getView());
             }
             if (me._isSearched) {
-                me.loadData(true);
+                me.loadData(true, true);
             }
         };
         lfRender();
