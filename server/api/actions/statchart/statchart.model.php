@@ -74,7 +74,32 @@ class statchartModel extends abstractModel {
         $data['labels'][] = '(' . $count . ')';
         $data['total'] += $numStors;
         
+        $data['total_true'] = $this->getTotalTrue();
+        
         return ($data);
+    }
+    
+    public function getTotalTrue() {
+        $SQL = 'SELECT COUNT(DISTINCT s.storId) FROM stories s LEFT JOIN cats2stories c2s ON c2s.storId = s.storId WHERE c2s.catId IN (' . implode(',', $this->getCategories()) . ')';
+        $Query = DB_Query ('mysql', $SQL, $this->connection);
+        if (!$Query) {
+            return 'Ошибка при получении количества историй в поиске';
+        }
+        $numStores = DB_Result ('mysql', $Query, 0, 0);
+        return ($numStores);
+    }
+    
+    public function getCategories() {
+        $SQL = 'SELECT catId FROM `categories`';
+        $Query = DB_Query ('mysql', $SQL, $this->connection);
+        if (!$Query) {
+            return 'Ошибка при получении списка категорий';
+        }
+        $categories = array();
+        while($catData = DB_FetchAssoc ('mysql', $Query)) {
+            $categories[] = $catData['catId'];
+        }
+        return $categories;
     }
     
     public function getChartColors() {

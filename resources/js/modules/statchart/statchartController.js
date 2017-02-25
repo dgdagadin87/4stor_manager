@@ -119,6 +119,7 @@ define([
                 var labelData = laData.labels || [];
                 var colorData = laData.colors || [];
                 var total = laData.total || 0;
+                var totalTrue = laData.total_true || 0;
                 var lbSuccess = data.success || false;
                 var lsMessage = data.message || '';
                 
@@ -134,7 +135,8 @@ define([
                         'labelData' : labelData,
                         'chartData' : chartData,
                         'colorData' : colorData,
-                        'total': total
+                        'total'     : total,
+                        'totalTrue' : totalTrue
                     });
                     lfRender();
                 }

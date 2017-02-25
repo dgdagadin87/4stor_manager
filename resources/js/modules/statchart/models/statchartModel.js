@@ -16,7 +16,8 @@ define(
                 labelData: [],
                 chartData: [],
                 colorData: [],
-                total: 0
+                total: 0,
+                totalTrue: 0
             },
             initialize : function() {
             }
