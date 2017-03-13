@@ -35,8 +35,8 @@ class searchModel extends abstractModel {
         
         // критерии поиска
         $storName = isset($_POST['storName']) && !empty($_POST['storName']) ? trim($_POST['storName']) : null;
-        $storRateStart = isset($_POST['storRateStart']) && ctype_digit($_POST['storRateStart']) ? intval($_POST['storRateStart']) : null;
-        $storRateEnd = isset($_POST['storRateEnd']) && ctype_digit($_POST['storRateEnd']) ? intval($_POST['storRateEnd']) : null;
+        $storRateStart = isset($_POST['storRateStart']) && is_numeric($_POST['storRateStart']) ? intval($_POST['storRateStart']) : null;
+        $storRateEnd = isset($_POST['storRateEnd']) && is_numeric($_POST['storRateEnd']) ? intval($_POST['storRateEnd']) : null;
         $storDateFrom = isset($_POST['storDateFrom']) && !empty($_POST['storDateFrom']) ? $_POST['storDateFrom'] : null;
         $storDateTo = isset($_POST['storDateTo']) && !empty($_POST['storDateTo']) ? $_POST['storDateTo'] : null;
         $storWatchesFrom = isset($_POST['storWatchesFrom']) && ctype_digit($_POST['storWatchesFrom']) ? intval($_POST['storWatchesFrom']) : null;
