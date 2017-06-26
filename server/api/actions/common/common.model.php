@@ -13,6 +13,7 @@ class commonModel extends abstractModel {
             'data'    => array()
         );
         $categories = $this->getCategories();
+        $popular = $this->getPopular();
         if (!is_array($categories)) {
             $laReturn['success'] = false;
             $laReturn['message'] = $categories;
@@ -21,9 +22,27 @@ class commonModel extends abstractModel {
         $headers = $this->getHeaders();
         $user = $this->getUser();
         $laReturn['data']['categories'] = $categories;
+        $laReturn['data']['popular'] = $popular;
         $laReturn['data']['headers'] = $headers;
         $laReturn['data']['user'] = $user;
         return $laReturn;
+    }
+    
+    public function getPopular() {
+        $SQL = 'SELECT * FROM `popular` ORDER BY popularName ASC';
+        $Query = DB_Query ('mysql', $SQL, $this->connection);
+        if (!$Query) {
+            return 'Ошибка при получении списка популярных рассказов';
+        }
+        $popular = array();
+        while($popularData = DB_FetchAssoc ('mysql', $Query)) {
+            $stor = array();
+            $stor['popularId'] = $popularData['popularId'];
+            $stor['popularName'] = $popularData['popularName'];
+            $stor['popularHref'] = $popularData['popularHref'];
+            $popular[] = $stor;
+        }
+        return $popular;
     }
     
     public function getCategories() {

@@ -17,7 +17,8 @@ define([
     'common/components/catlist/catlistController',
     'common/components/content/contentController',
     'common/components/spinner/spinnerController',
-    'common/components/pagetitle/pagetitleController'
+    'common/components/pagetitle/pagetitleController',
+    'common/components/popular/popularController'
 ], function (
     _,
     Backbone,
@@ -35,7 +36,8 @@ define([
     catlistComponent,
     contentController,
     spinnerComponent,
-    pagetitleComponent
+    pagetitleComponent,
+    popularComponent
 ) {
     var layoutController = function() {
 
@@ -54,6 +56,7 @@ define([
         this._view = new mainLayoutView();
 
         this._headerComponent = new headerComponent();
+        this._popularComponent = new popularComponent();
         this._userinfoComponent = new userinfoComponent();
         this._pagetitleComponent = new pagetitleComponent();
         this._crumbsComponent = new crumbsComponent();
@@ -85,6 +88,7 @@ define([
         /* reqres */
         Application.reqres.setHandler('user:get:data', this._onUserGetData.bind(this));
         Application.reqres.setHandler('header:get:data', this._onHeaderGetData.bind(this));
+        Application.reqres.setHandler('popular:get:data', this._onPopularGetData.bind(this));
         Application.reqres.setHandler('catlist:get:data', this._onCatlistGetData.bind(this));
         Application.reqres.setHandler('catlist:get:important', this._onCatlistGetImportant.bind(this));
         Application.reqres.setHandler('catlist:get:other', this._onCatlistGetOther.bind(this));
@@ -146,6 +150,10 @@ define([
         var headerData = this._commonData.headers || [];
         return headerData;
     };
+    layoutController.prototype._onPopularGetData = function() {
+        var popularData = this._commonData.popular || [];
+        return popularData;
+    };
     layoutController.prototype._onCatlistGetData = function() {
         var categoriesData = this._commonData.categories || [];
         return categoriesData;
@@ -176,6 +184,7 @@ define([
         var params = this._urlParams;
         var categories = this._commonData.categories || [];
         this._headerComponent.showHeader();
+        this._popularComponent.showPopular();
         this._userinfoComponent.showUserInfo();
         this._pagetitleComponent.showPageTitle('Страшные истории', 'default');
         this._catlistComponent.showCategoryList(categories);

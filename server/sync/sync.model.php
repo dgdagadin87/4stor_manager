@@ -14,6 +14,26 @@ class serverSyncModel {
         }
     }
     
+    public function insertPopular ($paPopular) {
+        $SQL = 'DELETE FROM popular';
+        $Query = DB_Query ('mysql', $SQL, $this->connection);
+        if (!$Query) {
+            exit ($SQL . "\r\n" . DB_Error ('mysql', $this->connection));
+        }
+        $SqlArray = array();
+        foreach ($paPopular as $k=>$v) {
+            $Id = intval($k);
+            $Name = DB_EscapeString('mysql', $this->connection, $v['name']);
+            $Link = DB_EscapeString('mysql', $this->connection, $v['link']);
+            $SqlArray[] = '(' . $Id . ', \'' . $Name . '\', \'' . $Link . '\')';
+        }
+        $SQL = 'INSERT INTO `popular` (popularId, popularName, popularHref) VALUES ' . implode(', ', $SqlArray);
+        $Query = DB_Query ('mysql', $SQL, $this->connection);
+        if (!$Query) {
+            exit ($SQL . "\r\n" . DB_Error ('mysql', $this->connection));
+        }
+    }
+    
     public function insertLogData () {
         $SQL = 'INSERT INTO `sync_log` (syncLogDate) VALUES (NOW())';
         $Query = DB_Query ('mysql', $SQL, $this->connection);

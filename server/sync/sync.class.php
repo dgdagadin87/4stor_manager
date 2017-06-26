@@ -6,6 +6,7 @@ class serverSync {
     public $xpath;
     public $href;
     public $data;
+    public $popular;
     
     public function __construct($paConf) {
         $this->model = $paConf['model'];
@@ -17,6 +18,7 @@ class serverSync {
             $this->_syncronizeLink($linkData);
         }
         $this->model->insertLogData();
+        $this->synchronizePopular();
     }
     
     public function _syncronizeLink($linkData) {
@@ -218,11 +220,46 @@ class serverSync {
         $this->model->run($this->data);
     }
     
+    private function _putPopularIntoDB () {
+        $this->model->insertPopular($this->popular);
+    }
+    
     private function _ouputDebug () {
         header('Content-Type: text/html; charset=utf-8');
         echo '<pre>';
         var_dump($this->data);
         exit;
+    }
+    
+    private function synchronizePopular () {
+        $this->dom = new DOMDocument();
+        
+        $laPopular = array();
+        
+        @$this->dom->loadHTML(file_get_contents('https://4stor.ru'));
+        
+        $this->xpath = new DOMXpath($this->dom);
+        
+        // Id, Name, link
+        $elements = $this->xpath->query(".//*[@class='popular']/a");
+
+        $count = 0;
+        
+        if (!is_null($elements)) {
+            foreach ($elements as $element) {
+                if ($count === 20) {
+                    break;
+                }
+                $lsId = $this->_getStorId($element);
+                $lsName = $this->_getStorName($element);
+                $lsLink = $this->_getStorLink($element);
+                $laPopular[$lsId] = array('name'=>$lsName, 'link'=>$lsLink);
+                $count++;
+            }
+            $this->popular = $laPopular;
+        }
+        
+        $this->_putPopularIntoDB();
     }
     
 }

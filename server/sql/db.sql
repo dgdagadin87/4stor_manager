@@ -1,3 +1,15 @@
+DROP TABLE IF EXISTS popular;
+CREATE TABLE popular 
+(
+    popularId BIGINT NOT NULL , 
+    popularName TEXT NOT NULL , 
+    popularHref TEXT NOT NULL , 
+  
+    PRIMARY KEY ( popularId )
+) 
+DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci
+ENGINE = MYISAM;
+
 DROP TABLE IF EXISTS categories;
 CREATE TABLE categories 
 (

@@ -17,6 +17,7 @@ define(
 
             regions : {
                 headerRegion: '#header-region',
+                popularRegion: '#popular-region',
                 pagetitleRegion: '#page-title-region',
                 userinfoRegion: '#user-info-region',
                 mainRegion: '#main-region',
