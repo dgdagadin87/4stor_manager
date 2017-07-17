@@ -105,7 +105,8 @@ class commonModel extends abstractModel {
                 'selected' => false,
                 'outer' => false,
                 'forActive' => array(
-                    'settings'
+                    'settings',
+                    'userlist'
                 )
             ),
             array(

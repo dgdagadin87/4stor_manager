@@ -13,7 +13,8 @@ define([
     'modules/statistics/statisticsController',
     'modules/statchart/statchartController',
     'modules/settings/settingsController',
-    'modules/about/aboutController'
+    'modules/about/aboutController',
+    'jsx!modules/userlist/userlistController'
     
 ], function (
     _,
@@ -28,7 +29,8 @@ define([
     statisticsModule,
     statchartModule,
     settingsModule,
-    aboutModule
+    aboutModule,
+    userlistModule
 ) {
     var contentController = function() {
         

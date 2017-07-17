@@ -1393,6 +1393,26 @@ statistics-container .statistics-table .table-cell.stor-count{
     margin: 0px 20px;
 }
 
+.userlist-container .tabs {
+    margin-bottom:20px;
+}
+.userlist-container .tabs span {
+    font-weight:bold;
+    color:#333;
+    font-size:15px;
+}
+.userlist-container .tabs a {
+    font-weight:normal;
+    font-size:15px;
+    margin-right:10px;
+    color: #091b9f;
+    text-decoration: underline;
+}
+.userlist-container .tabs a:hover {
+    color: #cf1557;
+    text-decoration: none;
+}
+
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .search-form-table img {
         vertical-align: middle;

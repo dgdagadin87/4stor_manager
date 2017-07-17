@@ -14,6 +14,7 @@ define(
                 "settings"     : "settings",
                 "statistics"   : "statistics",
                 "statchart"    : "statchart",
+                "userlist"     : "userlist",
                 "about"        : "about"
             }
         });

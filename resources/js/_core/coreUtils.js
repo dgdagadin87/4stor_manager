@@ -54,6 +54,9 @@ define([
             else if (psAction === 'about') {
                 lsClassPrefix = 'about';
             }
+            else if (psAction === 'userlist') {
+                lsClassPrefix = 'userlist';
+            }
             var regionName = lsClassPrefix;
             return regionName;
         },

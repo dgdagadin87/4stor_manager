@@ -49,6 +49,10 @@ define(
                 this._layout.showComponents('category', {
                     categoryId: catId
                 });
+            },
+            
+            userlist : function() {
+                this._layout.showComponents('userlist', {});
             }
         });
     }

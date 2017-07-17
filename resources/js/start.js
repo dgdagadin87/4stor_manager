@@ -9,10 +9,14 @@ require.config({
         backbone       : 'library/backbone/backbone',
         marionette     : 'library/backbone/backbone.marionette',
         Chartist       : 'library/chartist/chartist.min',
+        
+        react          : 'library/react/react',
+        JSXTransformer : 'library/react/JSXTransformer',
 
         mediaPolyfill  : 'library/chartist/machmedia.polyfill',
 
         text           : 'library/require/text',
+        jsx            : 'library/react/jsx',
 		
         Application    : 'application/Application',
         Router         : 'application/Router',
@@ -23,7 +27,18 @@ require.config({
         regionManager  : '_core/regionManager',
         chartManager   : '_core/chartManager'
     },
+    jsx: {
+        fileExtension: '.jsx',
+        transformOptions: {
+            harmony: true,
+            stripTypes: false
+        },
+        usePragma: false
+    },
     shim : {
+        'react' : {
+            deps : [ 'JSXTransformer' ]
+        },
         'jquery_ui' : {
             deps : [ 'jquery' ]
         },
