@@ -60,24 +60,28 @@ define([
     userlistController.prototype = Object.create(BaseModule.prototype);
     
     userlistController.prototype._bindEvents = function() {
-        //this._view.on('render', this._onViewRendered.bind(this));
+        Application.on('userlist:add', this._onUserAddClick.bind(this));
+        Application.on('userlist:delete:checked', this._onUserAddClick.bind(this));
     };
     
     userlistController.prototype._init = function() {
     };
+
+    userlistController.prototype._onUserAddClick = function(event) {
+        console.log(event);
+    };
     
-    userlistController.prototype._onViewRendered = function() {
-        this.setComponentRendered(true);
+    userlistController.prototype._onUsersDeleteClick = function(event) {
+        console.log(event);
     };
 
     userlistController.prototype.showCurrentContent = function() {
         var me = this;
-        var mainLayout = Application.getMainLayout();
         var regionName = me._regionName + '-region';
 
-        me.__renderContent();
-        
-        if (!me.isComponentRendered()) {
+        var lfRender = function(){
+            
+            me.__renderContent();
             
             this.setComponentRendered(true);
 
@@ -87,7 +91,15 @@ define([
                 ModuleComponent(),
                 document.getElementById(regionName)
             );
+        };
+
+        
+        
+        if (!me.isComponentRendered()) {
+            
+            
         }
+
 
     };
 

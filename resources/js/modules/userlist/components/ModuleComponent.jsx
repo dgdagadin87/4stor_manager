@@ -1,9 +1,13 @@
 define([
     'react',
-    'jsx!./HeaderComponent'
+    'jsx!./HeaderComponent',
+    'jsx!./ToolbarComponent',
+    'jsx!./GridComponent'
 ], function(
     React,
-    Header
+    Header,
+    Toolbar,
+    Grid
 ) {
 
     var ModuleComponent = React.createClass({
@@ -18,6 +22,10 @@ define([
             return (
                 <div className="userlist-container">
                     <Header/>
+                    <Toolbar/>
+                    <Grid
+                        foo="bar"
+                    />
                 </div>
             );
         }

@@ -4,7 +4,7 @@ define([
     React
 ) {
 
-    var ModuleComponent = React.createClass({
+    var HeaderComponent = React.createClass({
         getInitialState: function() {
             return {};
         },
@@ -23,5 +23,5 @@ define([
         }
   });
 
-  return ModuleComponent;
+  return HeaderComponent;
 });
