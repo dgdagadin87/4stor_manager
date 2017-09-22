@@ -79,7 +79,7 @@ define([
         var me = this;
         var regionName = me._regionName + '-region';
 
-        var lfRender = function(){
+        var lfRender = function(serverData){
             
             me.__renderContent();
             
@@ -87,19 +87,64 @@ define([
 
             ModuleComponent = React.createFactory(ModuleComponent);
 
-            React.render(
-                ModuleComponent(),
-                document.getElementById(regionName)
-            );
+            if (!me.isComponentRendered()) {
+                React.render(
+                    <ModuleComponent
+                        serverData={serverData}
+                    />,
+                    document.getElementById(regionName)
+                );
+            }
         };
 
-        
-        
-        if (!me.isComponentRendered()) {
-            
-            
+        if (me._isGlobalLoading === true) {
+            me.__renderSpinner();
+            return false;
         }
+        
+        if (!me._isDataLoaded) {
+            var afterSuccess = function(data) {
+                var laData = data.data || [];
+                var indexData = laData.userlist || [];
+                var breadCrumbsData = laData.breadcrumbs || [];
+                var metaData = laData.pageMeta || {};
+                var lbSuccess = data.success || false;
+                var lsMessage = data.message || '';
+                
+                me._isGlobalLoading = false;
 
+                if (!lbSuccess) {
+                    me.__showGlobalError(lsMessage);
+                }
+                else {
+                    me._isDataLoaded = true;
+                    me._breadCrumbs = breadCrumbsData;
+                    me._pageMeta = metaData;
+                    me.getView().collection.set(indexData);
+                    lfRender(laData);
+                }
+            };
+
+            var afterError = function(data){
+                var lsMessage = data.message || '';
+                this._isGlobalLoading = false;
+                Application.trigger('error:modal:show', lsMessage);
+            };
+
+            this._isGlobalLoading = true;
+            this.__renderSpinner();
+
+            CoreUtils.ajaxQuery({
+                url: Settings.url.getUserlistData
+            },
+            {
+                afterSuccess: afterSuccess,
+                afterError: afterError
+            });
+        }
+        else {
+            lfRender();
+        }
 
     };
 

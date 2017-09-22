@@ -11,7 +11,7 @@ define([
             
             this._bindEvents();
             return {
-                disabled: false
+                disabled: this.props.disabled || false
             };
         },
         

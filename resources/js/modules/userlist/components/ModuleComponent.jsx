@@ -12,19 +12,32 @@ define([
 
     var ModuleComponent = React.createClass({
         getInitialState: function() {
-            return {};
+            return {
+                disabled: true,
+                serverData: this.props.serverData
+            };
         },
 
         componentDidMount: function() {
         },
 
         render: function() {
+            
+            var states = this.state || {};
+            var serverData = states.serverData || {};
+            var disabled = states.disabled || false;
+            
             return (
                 <div className="userlist-container">
-                    <Header/>
-                    <Toolbar/>
+                    <Header
+                        disabled={disabled}
+                    />
+                    <Toolbar
+                        disabled={disabled}
+                    />
                     <Grid
-                        foo="bar"
+                        disabled={disabled}
+                        serverData={serverData} 
                     />
                 </div>
             );

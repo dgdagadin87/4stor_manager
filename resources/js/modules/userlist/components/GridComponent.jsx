@@ -1,16 +1,19 @@
 define([
     'Application',
-    'react'
+    'react',
+    'jsx!./HeaderComponent'
 ], function(
     Application,
-    React
+    React,
+    ItemComponent
 ) {
 
     return  GridComponent = React.createClass({
         getInitialState: function() {
 
             return {
-                disabled: false
+                disabled: this.props.disabled,
+                serverData: this.props.serverData
             };
         },
         
@@ -22,8 +25,35 @@ define([
                 disabled: state
             });
         },
+        
+        componentWillReceiveProps: function(nextProps) {
+
+            this.setState({
+                disabled: nextProps.disabled || false,
+                serverData: nextProps.serverData || false
+            });
+        },
 
         componentDidMount: function() {
+        },
+
+        _renderTableRows: function() {
+            
+            var state = this.state || {};
+            var serverData = state.serverData || {};
+            var userList = serverData.userlist || [];
+            var items = '';
+            
+            for (var i = 0; i < userList.length; i++) {
+                var currentItem = userList[i];
+                items.concat(
+                    <ItemComponent
+                        itemData={currentItem}
+                    />    
+                );
+            }
+            
+            return items;
         },
 
         render: function() {
@@ -43,6 +73,9 @@ define([
                                     <td className="controls-cell">&nbsp;</td>
                                 </tr>
                             </thead>
+                            <tbody>
+                                {this._renderTableRows()}
+                            </tbody>
                         </table>
                     </div>
                 </div>

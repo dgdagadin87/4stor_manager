@@ -23,6 +23,7 @@ class Helper {
             'statistics',
             'statchart',
             'synclinks',
+            'userlist',
             'addlink',
             'editlink',
             'dellink'

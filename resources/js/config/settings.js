@@ -14,6 +14,7 @@ define({
         "getStatisticsData": "/index.php?mode=json&action=statistics",
         "getStatchartData": "/index.php?mode=json&action=statchart",
         "getLinksData": "/index.php?mode=json&action=synclinks",
+        "getUserlistData": "/index.php?mode=json&action=userlist",
         
         "addLink": "/index.php?mode=json&action=addlink",
         "editLink": "/index.php?mode=json&action=editlink",
